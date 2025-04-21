@@ -50,10 +50,10 @@ size = Vector3(1.50104, 0.15033, 1)
 height = 0.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_70uel"]
-size = Vector3(0.255676, 1.15002, 0.101353)
+size = Vector3(0.255676, 0.102249, 1.14643)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_le6xu"]
-size = Vector3(0.2556, 0.812637, 0.108566)
+size = Vector3(0.265495, 0.112322, 0.796977)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hiqwa"]
 size = Vector3(2.00201, 0.801208, 1.99742)
@@ -71,7 +71,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 visible = false
 use_collision = true
-size = Vector3(24, 0.195, 24)
+size = Vector3(240, 0.195, 240)
 
 [node name="player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.675)
@@ -152,7 +152,7 @@ shape = SubResource("BoxShape3D_wse8f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
 shape = SubResource("BoxShape3D_k40i2")
 
-[node name="bowl" type="RigidBody3D" parent="." groups=["pickupable"]]
+[node name="bowl" type="RigidBody3D" parent="." groups=["pickupable", "stackable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01034, 0)
 mass = 0.8
 
@@ -165,22 +165,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151726, 0)
 shape = SubResource("CylinderShape3D_tlwt5")
 
 [node name="knife" type="RigidBody3D" parent="." groups=["pickupable"]]
-transform = Transform3D(1, 0, 4.37114e-08, -4.37114e-08, 1.91069e-15, 1, 0, -1, 1.91069e-15, 5.42865, 1.85485, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42865, 1.11574, 0.139493)
 mass = 0.6
 
 [node name="Knife" type="MeshInstance3D" parent="knife"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.38, 0)
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
 mesh = ExtResource("10_bpfb4")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="knife"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0, -0.365)
 shape = SubResource("BoxShape3D_70uel")
 
 [node name="cut_area" type="Area3D" parent="knife"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="knife/cut_area"]
-transform = Transform3D(1, 0, -1.59578e-37, 0, 1, 0, 0, 0, 1, -0.0856705, 0.174202, 0.000114441)
+transform = Transform3D(1, 0, -1.59578e-37, 0, 1, 0, 0, 0, 1, -0.0749478, 0, -0.54)
 shape = SubResource("BoxShape3D_le6xu")
 
 [node name="ui" type="CanvasLayer" parent="."]

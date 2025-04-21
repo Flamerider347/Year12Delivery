@@ -30,6 +30,7 @@ pickupable=""
 choppable=""
 can_chop=""
 summoner=""
+stackable=""
 
 [input]
 

@@ -37,6 +37,18 @@ func _physics_process(delta: float):
 			held_object.position = collision_point
 		else:
 			held_object.position = seecast.to_global(seecast.target_position)
+	if Input.is_action_just_pressed("pickup") and held_object and seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and can_pickup:
+		can_pickup = false
+		$pickup_timer.start(0.2)
+		var stack_bottom = seecast.get_collider()
+		held_object.reparent(stack_bottom)
+		held_object.position = Vector3(0,0.2 * (stack_bottom.get_child_count()-1)/2,0)
+		held_object.rotation = Vector3.ZERO
+		held_object.find_child("CollisionShape3D").disabled = false
+		held_object.find_child("CollisionShape3D").reparent(stack_bottom)
+		held_object.remove_from_group("pickupable")
+		held_object.freeze = true
+		held_object = null
 	if Input.is_action_just_pressed("pickup") and not held_object and can_pickup:
 		can_pickup = false
 		$pickup_timer.start(0.2)
@@ -50,6 +62,7 @@ func _physics_process(delta: float):
 		can_pickup = false
 		$pickup_timer.start(0.2)
 		drop(held_object)
+
 	movement(delta)
 	move_and_slide()
 func movement(delta):
@@ -71,15 +84,20 @@ func movement(delta):
 	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 
-
 func pickup(object):
-	object.find_child("CollisionShape3D").disabled = true
+	object.freeze = true
 	seecast.target_position.z = -1.5
+	object.find_child("CollisionShape3D").disabled = true
+	for child in object.get_children():
+		if child is CollisionObject3D:
+			seecast.add_exception(child)
 func drop(object):
 	object.find_child("CollisionShape3D").disabled = false
-	object.linear_velocity.y = 0.1
+	object.freeze = false
 	held_object = null
+	seecast.clear_exceptions()
 	seecast.target_position.z = -3
+	object.linear_velocity.y = 0.3
 func summon(item):
 	var instance = ingredient_scenes[item].instantiate()
 	$"..".add_child(instance)

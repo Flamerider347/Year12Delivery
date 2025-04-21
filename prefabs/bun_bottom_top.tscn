@@ -6,7 +6,7 @@
 height = 0.205811
 radius = 0.343262
 
-[node name="bun_bottom_top" type="RigidBody3D" groups=["pickupable"]]
+[node name="bun_bottom_top" type="RigidBody3D" groups=["pickupable", "stackable"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100464, 0)
