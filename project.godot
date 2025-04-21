@@ -31,6 +31,7 @@ choppable=""
 can_chop=""
 summoner=""
 stackable=""
+hitbox=""
 
 [input]
 

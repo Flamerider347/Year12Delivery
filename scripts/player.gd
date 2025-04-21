@@ -14,8 +14,11 @@ const GRAVITY = 9.81 #ms^-2
 
 #region ingredients
 var bun = preload("res://prefabs/bun.tscn")
+var cheese = preload("res://prefabs/cheese.tscn")
+#endregion
 var ingredient_scenes = {
-	"bun":bun
+	"bun":bun,
+	"cheese":cheese,
 }
 var held_object = null  # Stores the object being held
 var collision_point
@@ -87,12 +90,17 @@ func movement(delta):
 func pickup(object):
 	object.freeze = true
 	seecast.target_position.z = -1.5
-	object.find_child("CollisionShape3D").disabled = true
+	object.rotation = Vector3.ZERO
+	for child in object.get_children():
+		if child.is_in_group("hitbox"):
+			child.disabled = true
 	for child in object.get_children():
 		if child is CollisionObject3D:
 			seecast.add_exception(child)
 func drop(object):
-	object.find_child("CollisionShape3D").disabled = false
+	for child in object.get_children():
+		if child.is_in_group("hitbox"):
+			child.disabled = false
 	object.freeze = false
 	held_object = null
 	seecast.clear_exceptions()

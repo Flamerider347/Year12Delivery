@@ -1,8 +1,9 @@
 extends Node3D
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_top.tscn")
+var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
 var ingredients = {
-
+"cheese": cheese_chopped
 }
 
 # Called when the node enters the scene tree for the first time.
