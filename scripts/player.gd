@@ -39,6 +39,9 @@ func _physics_process(delta: float):
 		if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
 			held_object = seecast.get_collider()
 			pickup(held_object)
+		if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
+			var summon_type = seecast.get_collider().name.replace("_crate","")
+			print(summon_type)
 	if Input.is_action_just_pressed("pickup") and held_object and can_pickup:
 		can_pickup = false
 		$pickup_timer.start(0.2)
