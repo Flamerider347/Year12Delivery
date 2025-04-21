@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv46wkdxtp5ee"]
+
+[ext_resource type="ArrayMesh" uid="uid://drk3np67577f0" path="res://assets/kitchenassets/food_ingredient_bun_bottom.obj" id="1_aakid"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5o1mu"]
+height = 0.205811
+radius = 0.343262
+
+[node name="bun_bottom_top" type="RigidBody3D" groups=["pickupable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100464, 0)
+shape = SubResource("CylinderShape3D_5o1mu")
+
+[node name="FoodIngredientBunBottom" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_aakid")

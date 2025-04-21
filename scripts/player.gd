@@ -11,7 +11,11 @@ const GRAVITY = 9.81 #ms^-2
 @onready var head = $head
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
+
+#region ingredients
+var bun = preload("res://prefabs/bun.tscn")
 var ingredient_scenes = {
+	"bun":bun
 }
 var held_object = null  # Stores the object being held
 var collision_point
@@ -41,7 +45,7 @@ func _physics_process(delta: float):
 			pickup(held_object)
 		if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
 			var summon_type = seecast.get_collider().name.replace("_crate","")
-			print(summon_type)
+			summon(summon_type)
 	if Input.is_action_just_pressed("pickup") and held_object and can_pickup:
 		can_pickup = false
 		$pickup_timer.start(0.2)
@@ -76,5 +80,13 @@ func drop(object):
 	object.linear_velocity.y = 0.1
 	held_object = null
 	seecast.target_position.z = -3
+func summon(item):
+	var instance = ingredient_scenes[item].instantiate()
+	$"..".add_child(instance)
+	held_object = instance
+	instance.add_to_group("pickupable")
+	instance.add_to_group("choppable")
+	instance.find_child("CollisionShape3D").disabled = true
+	seecast.target_position.z = -1.5
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true
