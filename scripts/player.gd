@@ -111,10 +111,10 @@ func stack():
 		ingredient_added.connect(stack_bottom._on_player_ingredient_added)
 		if item_shape is BoxShape3D:
 			var item_size = item_shape.size.y
-			ingredient_added.emit(held_object.name,item_size)
+			ingredient_added.emit(held_object.type,item_size)
 		elif item_shape is CylinderShape3D:
 			var item_size = item_shape.height
-			ingredient_added.emit(held_object.name,item_size)
+			ingredient_added.emit(held_object.type,item_size)
 		ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
 		held_object.rotation = Vector3.ZERO
 		held_object.find_child("CollisionShape3D").disabled = false
@@ -123,13 +123,12 @@ func stack():
 		held_object.freeze = true
 		held_object = null
 func summon(item):
-	print("summoning", item)
 	money -= 1
 	money_change.emit(money)
 	var instance = ingredient_scenes[item].instantiate()
-	instance.name = item
 	$"..".add_child(instance)
 	held_object = instance
+	instance.type = str(item)
 	instance.add_to_group("pickupable")
 	instance.add_to_group("choppable")
 	instance.find_child("CollisionShape3D").disabled = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cv46wkdxtp5ee"]
 
-[ext_resource type="Script" uid="uid://crgt1165l5fko" path="res://scripts/bun_bottom_top.gd" id="1_pxvl4"]
+[ext_resource type="Script" uid="uid://crgt1165l5fko" path="res://scripts/bun_bottom_chopped.gd" id="1_pxvl4"]
 [ext_resource type="ArrayMesh" uid="uid://drk3np67577f0" path="res://assets/kitchenassets/food_ingredient_bun_bottom.obj" id="2_um8pd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pxvl4"]

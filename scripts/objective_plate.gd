@@ -68,6 +68,7 @@ func update_target():
 	elif item_hitbox_1 is CylinderShape3D:
 		var item_size = item_hitbox_1.height
 		next_position += item_size
+		
 	add_child(item_2)
 	item_2.remove_from_group("pickupable")
 	item_2.freeze = true
@@ -113,3 +114,12 @@ func update_target():
 		item_5.position = Vector3(0,next_position,0)
 		next_position = 0
 	
+
+
+func _on_world_correct_order() -> void:
+	for child in get_children():
+		if not child.is_in_group("keep"):
+			child.queue_free()
+	next_position = 0.1
+	contents = []
+	randomise_objective()

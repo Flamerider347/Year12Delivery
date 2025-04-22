@@ -34,6 +34,7 @@ stackable=""
 hitbox=""
 can_stack=""
 knife=""
+keep=""
 
 [input]
 

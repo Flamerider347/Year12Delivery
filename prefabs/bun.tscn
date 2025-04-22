@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj6x37hlxhskq"]
+[gd_scene load_steps=4 format=3 uid="uid://cj6x37hlxhskq"]
 
 [ext_resource type="ArrayMesh" uid="uid://bthlco7r3n27t" path="res://assets/kitchenassets/food_ingredient_bun.obj" id="1_qna2p"]
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_wg27y"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wg27y"]
 height = 0.485199
 radius = 0.354492
 
 [node name="bun" type="RigidBody3D"]
+script = ExtResource("1_wg27y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.242569, 0)

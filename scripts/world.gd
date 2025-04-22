@@ -1,4 +1,5 @@
 extends Node3D
+signal correct_order
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
@@ -16,10 +17,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if product_check:
 		if product == objective:
-			print("good job")
 			product_check = false
+			$player.money += 10 
+			correct_order.emit()
 		else:
-			print("you suck")
 			product_check = false
 func _on_chopping_board_body_entered(body: Node3D) -> void:
 	if body.is_in_group("choppable"):
@@ -33,11 +34,14 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 			var instance2 = bun_chopped_top.instantiate()
 			add_child(instance)
 			add_child(instance2)
+			instance.type = "bun_bottom_chopped"
+			instance2.type = "bun_top_chopped"
 			instance.position = body.position
 			instance2.position = body.position + Vector3(0,0.1,0)
 			body.queue_free()
 		elif body.name in ingredients:
 			var instance = ingredients[body.name].instantiate()
+			instance.type = body.type + "_chopped"
 			instance.position = body.position
 			add_child(instance)
 			body.queue_free()
@@ -47,16 +51,19 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 
 func _on_objective_plate_objective(changed_objective) -> void:
 	objective = changed_objective
-	print("objective", objective)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("stackable"):
 		product = body.contents
-		print("product", product)
 		product_check = true
+		body.queue_free()
 		
 
 
 func _on_player_money_change(money) -> void:
 	$ui/Label.text = "Money: " + str(money)
+
+
+func _on_correct_order() -> void:
+	$ui/Label.text = "Money: " + str($player.money)

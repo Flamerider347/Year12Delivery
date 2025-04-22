@@ -246,20 +246,20 @@ text = "Money: 0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
 script = ExtResource("14_sxw1y")
 
-[node name="Plate" type="MeshInstance3D" parent="objective_plate"]
+[node name="Plate" type="MeshInstance3D" parent="objective_plate" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="objective_plate"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="objective_plate" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
 shape = SubResource("CylinderShape3D_sxw1y")
 
-[node name="TableRoundASmall" type="MeshInstance3D" parent="objective_plate"]
+[node name="TableRoundASmall" type="MeshInstance3D" parent="objective_plate" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = ExtResource("16_nwl14")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="objective_plate"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="objective_plate" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500488, 0)
 shape = SubResource("CylinderShape3D_nwl14")
 
@@ -289,6 +289,8 @@ shape = SubResource("CylinderShape3D_sxw1y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
+[connection signal="correct_order" from="." to="." method="_on_correct_order"]
+[connection signal="correct_order" from="." to="objective_plate" method="_on_world_correct_order"]
 [connection signal="money_change" from="player" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="player/pickup_timer" to="player" method="_on_pickup_timer_timeout"]
 [connection signal="body_entered" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]

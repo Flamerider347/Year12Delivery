@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://covbro0ywwnnm"]
+[gd_scene load_steps=4 format=3 uid="uid://covbro0ywwnnm"]
 
 [ext_resource type="ArrayMesh" uid="uid://c5s3jo8leob6g" path="res://assets/kitchenassets/food_ingredient_cheese.obj" id="1_caa3o"]
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_pedng"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pedng"]
 size = Vector3(0.972, 0.5, 0.728)
 
 [node name="cheese" type="RigidBody3D" groups=["can_stack", "choppable", "pickupable"]]
+script = ExtResource("1_pedng")
 
 [node name="FoodIngredientCheese" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_caa3o")

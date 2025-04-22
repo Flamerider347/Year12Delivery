@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://isxvm7p31pc4"]
+[gd_scene load_steps=5 format=3 uid="uid://isxvm7p31pc4"]
 
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_5lp56"]
 [ext_resource type="ArrayMesh" uid="uid://b3uhykyjujrl4" path="res://assets/kitchenassets/food_ingredient_bun_top.obj" id="1_psc68"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_psc68"]
@@ -11,6 +12,7 @@ radius = 0.339844
 
 [node name="bun_top_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
 physics_material_override = SubResource("PhysicsMaterial_psc68")
+script = ExtResource("1_5lp56")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
