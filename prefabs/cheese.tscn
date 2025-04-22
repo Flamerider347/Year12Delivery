@@ -3,9 +3,9 @@
 [ext_resource type="ArrayMesh" uid="uid://c5s3jo8leob6g" path="res://assets/kitchenassets/food_ingredient_cheese.obj" id="1_caa3o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pedng"]
-size = Vector3(0.972076, 0.504883, 0.727539)
+size = Vector3(0.972, 0.5, 0.728)
 
-[node name="cheese" type="RigidBody3D" groups=["choppable", "pickupable"]]
+[node name="cheese" type="RigidBody3D" groups=["can_stack", "choppable", "pickupable"]]
 
 [node name="FoodIngredientCheese" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_caa3o")

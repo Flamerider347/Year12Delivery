@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://7b8ecsljuur7"]
+[gd_scene load_steps=35 format=3 uid="uid://7b8ecsljuur7"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://dtxutdwarivkd" path="res://assets/Cursor.png" id="11_b1m2q"]
 [ext_resource type="ArrayMesh" uid="uid://rs6dw7qecvnp" path="res://assets/kitchenassets/crate_buns.obj" id="12_8bx52"]
 [ext_resource type="ArrayMesh" uid="uid://n3f34hcu8wgp" path="res://assets/kitchenassets/crate_cheese.obj" id="13_le6xu"]
+[ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
+[ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_plate.gd" id="14_sxw1y"]
+[ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="16_nwl14"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -28,24 +31,32 @@ tonemap_mode = 2
 fog_density = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fj7yv"]
+radius = 0.49
+height = 1.99
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tlwt5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_aqk2v"]
 height = 1.0
-radius = 1.48
+radius = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3n1d"]
-size = Vector3(3.99, 0.99, 1.99)
+size = Vector3(4, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2o6r5"]
-size = Vector3(1.99, 0.99, 3.99)
+size = Vector3(2, 1, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1.49, 0.175, 0.99)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k40i2"]
 size = Vector3(1.50104, 0.15033, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hiqwa"]
+size = Vector3(2.00201, 0.801208, 1.99742)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_le6xu"]
+bounce = 0.2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tlwt5"]
 height = 0.3
@@ -56,10 +67,17 @@ size = Vector3(0.255676, 0.102249, 1.14643)
 [sub_resource type="BoxShape3D" id="BoxShape3D_le6xu"]
 size = Vector3(0.265495, 0.112322, 0.796977)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hiqwa"]
-size = Vector3(2.00201, 0.801208, 1.99742)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sxw1y"]
+height = 0.108154
 
-[node name="world" type="Node3D" groups=["knife"]]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nwl14"]
+height = 0.999023
+radius = 0.744629
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2a2la"]
+height = 0.705811
+
+[node name="world" type="Node3D"]
 script = ExtResource("1_k40i2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -71,6 +89,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 [node name="floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 use_collision = true
+collision_layer = 3
 size = Vector3(240, 0.195, 240)
 
 [node name="player" type="CharacterBody3D" parent="."]
@@ -96,6 +115,7 @@ target_position = Vector3(0, 0, -3)
 [node name="pickup_timer" type="Timer" parent="player"]
 
 [node name="table" type="StaticBody3D" parent="."]
+collision_layer = 3
 
 [node name="TableRoundA" type="MeshInstance3D" parent="table"]
 mesh = ExtResource("3_q76tg")
@@ -107,6 +127,7 @@ shape = SubResource("CylinderShape3D_aqk2v")
 
 [node name="counter" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+collision_layer = 3
 
 [node name="KitchencounterStraightADecorated" type="MeshInstance3D" parent="counter"]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 4)
@@ -137,6 +158,7 @@ shape = SubResource("BoxShape3D_2o6r5")
 
 [node name="chopping_board" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+collision_layer = 3
 
 [node name="chopping_board" type="Area3D" parent="chopping_board"]
 
@@ -152,9 +174,33 @@ shape = SubResource("BoxShape3D_wse8f")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
 shape = SubResource("BoxShape3D_k40i2")
 
+[node name="bun_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bun_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15527e-05, 0.401031, 0.000465393)
+shape = SubResource("BoxShape3D_hiqwa")
+
+[node name="CrateBuns" type="MeshInstance3D" parent="bun_crate"]
+mesh = ExtResource("12_8bx52")
+
+[node name="cheese_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cheese_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395, 0)
+shape = SubResource("BoxShape3D_hiqwa")
+
+[node name="CrateCheese" type="MeshInstance3D" parent="cheese_crate"]
+mesh = ExtResource("13_le6xu")
+skeleton = NodePath("../..")
+
 [node name="bowl" type="RigidBody3D" parent="." groups=["pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01034, 0)
 mass = 0.8
+physics_material_override = SubResource("PhysicsMaterial_le6xu")
 
 [node name="bowl" type="MeshInstance3D" parent="bowl"]
 mesh = ExtResource("9_gi6id")
@@ -196,27 +242,56 @@ offset_right = 485.0
 offset_bottom = 43.0
 text = "Money: 0"
 
-[node name="bun_crate" type="StaticBody3D" parent="." groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+[node name="objective_plate" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+script = ExtResource("14_sxw1y")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bun_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15527e-05, 0.401031, 0.000465393)
-shape = SubResource("BoxShape3D_hiqwa")
-
-[node name="CrateBuns" type="MeshInstance3D" parent="bun_crate"]
-mesh = ExtResource("12_8bx52")
-
-[node name="cheese_crate" type="StaticBody3D" parent="." groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cheese_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395, 0)
-shape = SubResource("BoxShape3D_hiqwa")
-
-[node name="CrateCheese" type="MeshInstance3D" parent="cheese_crate"]
-mesh = ExtResource("13_le6xu")
+[node name="Plate" type="MeshInstance3D" parent="objective_plate"]
+mesh = ExtResource("14_q76tg")
 skeleton = NodePath("../..")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="objective_plate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
+shape = SubResource("CylinderShape3D_sxw1y")
+
+[node name="TableRoundASmall" type="MeshInstance3D" parent="objective_plate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = ExtResource("16_nwl14")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="objective_plate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500488, 0)
+shape = SubResource("CylinderShape3D_nwl14")
+
+[node name="delivery_plate" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 0)
+
+[node name="TableRoundASmall" type="MeshInstance3D" parent="delivery_plate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = ExtResource("16_nwl14")
+skeleton = NodePath("../..")
+
+[node name="Plate" type="MeshInstance3D" parent="delivery_plate"]
+mesh = ExtResource("14_q76tg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="delivery_plate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500488, 0)
+shape = SubResource("CylinderShape3D_nwl14")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="delivery_plate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045, 0)
+shape = SubResource("CylinderShape3D_sxw1y")
+
+[node name="Area3D" type="Area3D" parent="delivery_plate"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="delivery_plate/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
+shape = SubResource("CylinderShape3D_2a2la")
+
+[connection signal="money_change" from="player" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="player/pickup_timer" to="player" method="_on_pickup_timer_timeout"]
 [connection signal="body_entered" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]
 [connection signal="body_entered" from="knife/cut_area" to="." method="_on_cut_area_body_entered"]
+[connection signal="objective" from="objective_plate" to="." method="_on_objective_plate_objective"]
+[connection signal="body_entered" from="delivery_plate/Area3D" to="." method="_on_area_3d_body_entered"]

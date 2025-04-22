@@ -32,6 +32,8 @@ can_chop=""
 summoner=""
 stackable=""
 hitbox=""
+can_stack=""
+knife=""
 
 [input]
 

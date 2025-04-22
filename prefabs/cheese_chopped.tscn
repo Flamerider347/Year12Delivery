@@ -3,13 +3,13 @@
 [ext_resource type="ArrayMesh" uid="uid://d0wayyy88wqcv" path="res://assets/kitchenassets/food_ingredient_cheese_slice.obj" id="1_asmgi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cn6fc"]
-size = Vector3(0.824951, 0.105453, 0.828491)
+size = Vector3(0.825, 0.1, 0.828)
 
-[node name="cheese_chopped" type="RigidBody3D" groups=["pickupable"]]
+[node name="cheese_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
 
 [node name="FoodIngredientCheeseSlice" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_asmgi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207, -0.0362167, 0.00262451)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.035, 0)
 shape = SubResource("BoxShape3D_cn6fc")
