@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://7b8ecsljuur7"]
+[gd_scene load_steps=41 format=3 uid="uid://7b8ecsljuur7"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -11,12 +11,12 @@
 [ext_resource type="ArrayMesh" uid="uid://dku845kqwnd76" path="res://assets/kitchenassets/bowl.obj" id="9_gi6id"]
 [ext_resource type="ArrayMesh" uid="uid://dnw6ln86toimb" path="res://assets/kitchenassets/knife.obj" id="10_bpfb4"]
 [ext_resource type="Texture2D" uid="uid://dtxutdwarivkd" path="res://assets/Cursor.png" id="11_b1m2q"]
-[ext_resource type="ArrayMesh" uid="uid://rs6dw7qecvnp" path="res://assets/kitchenassets/crate_buns.obj" id="12_8bx52"]
-[ext_resource type="ArrayMesh" uid="uid://n3f34hcu8wgp" path="res://assets/kitchenassets/crate_cheese.obj" id="13_le6xu"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_plate.gd" id="14_sxw1y"]
+[ext_resource type="Script" uid="uid://8nrws8bwiprl" path="res://scripts/fridge_door.gd" id="15_2a2la"]
+[ext_resource type="ArrayMesh" uid="uid://bja6wsds8k0cf" path="res://assets/kitchenassets/fridge_A_decorated.obj" id="15_nwl14"]
+[ext_resource type="ArrayMesh" uid="uid://bmnjpfam7mg7n" path="res://assets/kitchenassets/fridge_B_door.obj" id="16_2a2la"]
 [ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="16_nwl14"]
-[ext_resource type="ArrayMesh" uid="uid://iwrrk2ci74kj" path="res://assets/kitchenassets/crate_steak.obj" id="17_deaom"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -60,9 +60,6 @@ size = Vector3(1.49, 0.175, 0.99)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k40i2"]
 size = Vector3(1.50104, 0.15033, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hiqwa"]
-size = Vector3(2.00201, 0.801208, 1.99742)
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_le6xu"]
 bounce = 0.2
 
@@ -84,6 +81,18 @@ radius = 0.744629
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2a2la"]
 height = 0.705811
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwl14"]
+size = Vector3(0.51, 2.5, 2.001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2a2la"]
+size = Vector3(1, 0.646027, 0.649841)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_deaom"]
+size = Vector3(1, 0.641602, 0.836487)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mti1"]
+size = Vector3(1, 0.452454, 1.48477)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_k40i2")
@@ -123,6 +132,7 @@ target_position = Vector3(0, 0, -3)
 [node name="pickup_timer" type="Timer" parent="player"]
 
 [node name="table" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0067, 0, 2.91959)
 collision_layer = 3
 
 [node name="TableRoundA" type="MeshInstance3D" parent="table"]
@@ -196,29 +206,6 @@ shape = SubResource("BoxShape3D_wse8f")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chopping_board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
 shape = SubResource("BoxShape3D_k40i2")
-
-[node name="bun_crate" type="StaticBody3D" parent="." groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
-collision_layer = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bun_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.15527e-05, 0.401031, 0.000465393)
-shape = SubResource("BoxShape3D_hiqwa")
-
-[node name="CrateBuns" type="MeshInstance3D" parent="bun_crate"]
-mesh = ExtResource("12_8bx52")
-
-[node name="cheese_crate" type="StaticBody3D" parent="." groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
-collision_layer = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cheese_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395, 0)
-shape = SubResource("BoxShape3D_hiqwa")
-
-[node name="CrateCheese" type="MeshInstance3D" parent="cheese_crate"]
-mesh = ExtResource("13_le6xu")
-skeleton = NodePath("../..")
 
 [node name="bowl" type="RigidBody3D" parent="." groups=["pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01034, 0)
@@ -313,16 +300,61 @@ shape = SubResource("CylinderShape3D_sxw1y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
+[node name="chopping_board2" type="StaticBody3D" parent="."]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 1, 2)
+collision_layer = 3
+
+[node name="chopping_board" type="Area3D" parent="chopping_board2"]
+
+[node name="Cuttingboard" type="MeshInstance3D" parent="chopping_board2/chopping_board"]
+mesh = ExtResource("8_6mti1")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chopping_board2/chopping_board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+shape = SubResource("BoxShape3D_wse8f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chopping_board2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
+shape = SubResource("BoxShape3D_k40i2")
+
+[node name="fridge_door" type="StaticBody3D" parent="." groups=["door"]]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 5.57167, 0, 7.00747)
+script = ExtResource("15_2a2la")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fridge_door"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.00611, 1.25239, 0.320662)
+shape = SubResource("BoxShape3D_nwl14")
+
+[node name="FridgeBDoor" type="MeshInstance3D" parent="fridge_door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5)
+mesh = ExtResource("16_2a2la")
+skeleton = NodePath("../..")
+
+[node name="tomato_crate" type="StaticBody3D" parent="." groups=["pickupable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.9, 5.6)
+
+[node name="FridgeADecorated" type="MeshInstance3D" parent="tomato_crate"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -1.9, 0.4)
+mesh = ExtResource("15_nwl14")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tomato_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0192719, -0.0162048)
+shape = SubResource("BoxShape3D_2a2la")
+
+[node name="cheese_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83549, 6.37025)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cheese_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00557, 0.0854492, -0.0470276)
+shape = SubResource("BoxShape3D_deaom")
+
 [node name="meat_crate" type="StaticBody3D" parent="." groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="meat_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395, 0)
-shape = SubResource("BoxShape3D_hiqwa")
-
-[node name="CrateSteak" type="MeshInstance3D" parent="meat_crate"]
-mesh = ExtResource("17_deaom")
-skeleton = NodePath("../..")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9999, 1.22806, 6.00139)
+shape = SubResource("BoxShape3D_6mti1")
 
 [connection signal="correct_order" from="." to="." method="_on_correct_order"]
 [connection signal="correct_order" from="." to="objective_plate" method="_on_world_correct_order"]
@@ -334,3 +366,4 @@ skeleton = NodePath("../..")
 [connection signal="body_entered" from="knife/cut_area" to="." method="_on_cut_area_body_entered"]
 [connection signal="objective" from="objective_plate" to="." method="_on_objective_plate_objective"]
 [connection signal="body_entered" from="delivery_plate/Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="chopping_board2/chopping_board" to="." method="_on_chopping_board_body_entered"]

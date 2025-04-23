@@ -46,6 +46,9 @@ func _physics_process(delta: float):
 		else:
 			held_object.position = seecast.to_global(seecast.target_position)
 	stack()
+	if Input.is_action_just_pressed("pickup") and seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+		var door = seecast.get_collider()
+		door.swinging = true
 	if Input.is_action_just_pressed("pickup") and not held_object and can_pickup:
 		can_pickup = false
 		$pickup_timer.start(0.2)
