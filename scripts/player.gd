@@ -126,7 +126,9 @@ func stack():
 			var item_size = item_shape.height
 			ingredient_added.emit(held_object.type,item_size)
 		ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
-		held_object.rotation = Vector3.ZERO
+		held_object.rotation_degrees.x = 0
+		held_object.rotation_degrees.y = randi_range(0,360)
+		held_object.rotation_degrees.z = 0
 		held_object.find_child("CollisionShape3D").disabled = false
 		held_object.find_child("CollisionShape3D").reparent(stack_bottom)
 		held_object.remove_from_group("pickupable")

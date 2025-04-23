@@ -31,13 +31,15 @@ func _physics_process(_delta: float) -> void:
 			product_check = false
 			$player.money += 10 
 			correct_order.emit()
-			var random_success = randi_range(1,3)
+			var random_success = randi_range(1,4)
 			if random_success == 1:
 				$beautiful.play()
 			if random_success == 2:
 				$yippie.play()
 			if random_success == 3:
 				$well_done.play()
+			if random_success == 4:
+				$homer_mmmm.play()
 		else:
 			product_check = false
 func _on_chopping_board_body_entered(body: Node3D) -> void:

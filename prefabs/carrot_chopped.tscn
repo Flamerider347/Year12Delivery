@@ -1,32 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://h05l1dy3rwu2"]
+[gd_scene load_steps=5 format=3 uid="uid://h05l1dy3rwu2"]
 
-[ext_resource type="ArrayMesh" uid="uid://dfaurj2rba0r0" path="res://assets/kitchenassets/food_ingredient_carrot_pieces.obj" id="1_0giwg"]
 [ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_ubwx7"]
+[ext_resource type="ArrayMesh" uid="uid://bewc7hpqqbqd8" path="res://assets/kitchenassets/food_ingredient_tomato_slice.obj" id="2_ubwx7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ubwx7"]
-height = 0.318115
+height = 0.0501709
 radius = 0.414551
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bamal"]
+albedo_color = Color(1, 0.415686, 0, 1)
+
 [node name="carrot_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_ubwx7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0260278, 0)
 shape = SubResource("CylinderShape3D_ubwx7")
 
-[node name="FoodIngredientCarrotPieces" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.015, 0)
-mesh = ExtResource("1_0giwg")
+[node name="FoodIngredientTomatoSlice" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.253, 0.001, -0.022)
+material_override = SubResource("StandardMaterial3D_bamal")
+mesh = ExtResource("2_ubwx7")
 
-[node name="FoodIngredientCarrotPieces2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
-mesh = ExtResource("1_0giwg")
+[node name="FoodIngredientTomatoSlice2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.19, 0.002, -0.162)
+material_override = SubResource("StandardMaterial3D_bamal")
+mesh = ExtResource("2_ubwx7")
 
-[node name="FoodIngredientCarrotPieces3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-mesh = ExtResource("1_0giwg")
+[node name="FoodIngredientTomatoSlice3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.08, 0.003, 0.24)
+material_override = SubResource("StandardMaterial3D_bamal")
+mesh = ExtResource("2_ubwx7")
 
-[node name="FoodIngredientCarrotPieces4" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-mesh = ExtResource("1_0giwg")
+[node name="FoodIngredientTomatoSlice4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.093, 0.004, -0.234)
+material_override = SubResource("StandardMaterial3D_bamal")
+mesh = ExtResource("2_ubwx7")
+
+[node name="FoodIngredientTomatoSlice5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.213404, 0, 0.132618)
+material_override = SubResource("StandardMaterial3D_bamal")
+mesh = ExtResource("2_ubwx7")
