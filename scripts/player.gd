@@ -16,10 +16,11 @@ const GRAVITY = 9.81 #ms^-2
 #region ingredients
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
-
+var meat = preload("res://prefabs/meat.tscn")
 var ingredient_scenes = {
 	"bun":bun,
 	"cheese":cheese,
+	"meat" : meat,
 }
 #endregion
 var held_object = null  # Stores the object being held
@@ -35,7 +36,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
 	if held_object:

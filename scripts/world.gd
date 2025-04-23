@@ -3,11 +3,13 @@ signal correct_order
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
+var meat_chopped = preload("res://prefabs/meat_chopped.tscn")
 var product_check = false
 var objective = []
 var product = []
 var ingredients = {
-"cheese": cheese_chopped
+"cheese": cheese_chopped,
+"meat":meat_chopped
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +17,8 @@ func _ready() -> void:
 	$floor.show()
 
 func _physics_process(_delta: float) -> void:
+	if $knife.position.y < -5:
+		$knife.position = Vector3(5.2,1.1,0.4)
 	if product_check:
 		if product == objective:
 			product_check = false
@@ -40,10 +44,15 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 			instance2.position = body.position + Vector3(0,0.1,0)
 			body.queue_free()
 		elif body.name in ingredients:
-			var instance = ingredients[body.name].instantiate()
-			instance.type = body.type + "_chopped"
-			instance.position = body.position
-			add_child(instance)
+			if body.is_in_group("meat"):
+				var instance = ingredients[body.name].instantiate()
+				instance.position = body.position
+				add_child(instance)
+			else:
+				var instance = ingredients[body.name].instantiate()
+				instance.type = body.type + "_chopped"
+				instance.position = body.position
+				add_child(instance)
 			body.queue_free()
 		else:
 			pass
@@ -67,3 +76,21 @@ func _on_player_money_change(money) -> void:
 
 func _on_correct_order() -> void:
 	$ui/Label.text = "Money: " + str($player.money)
+
+
+func _on_stove_body_entered(body: Node3D) -> void:
+	if body.is_in_group("cookable"):
+		body.cooking = true
+
+
+func _on_stove_body_exited(body: Node3D) -> void:
+	if body.is_in_group("cookable"):
+		body.cooking = false
+
+
+func _on_meat_chopped_cooked() -> void:
+	print("")
+
+
+func _on_meat_chopped_burnt() -> void:
+	pass # Replace with function body.

@@ -35,6 +35,8 @@ hitbox=""
 can_stack=""
 knife=""
 keep=""
+cookable=""
+meat=""
 
 [input]
 

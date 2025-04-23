@@ -1,11 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://7b8ecsljuur7"]
+[gd_scene load_steps=38 format=3 uid="uid://7b8ecsljuur7"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
 [ext_resource type="ArrayMesh" uid="uid://bqcilnxekln6g" path="res://assets/kitchenassets/table_round_A.obj" id="3_q76tg"]
-[ext_resource type="ArrayMesh" uid="uid://dncwc5px4srsq" path="res://assets/kitchenassets/kitchencounter_straight_A_decorated.obj" id="4_sxw1y"]
-[ext_resource type="ArrayMesh" uid="uid://b3yrokh8w85cr" path="res://assets/kitchenassets/kitchencounter_sink.obj" id="5_nwl14"]
+[ext_resource type="ArrayMesh" uid="uid://d3hkf5s5qkh65" path="res://assets/kitchenassets/stove_single.obj" id="4_sxw1y"]
 [ext_resource type="ArrayMesh" uid="uid://chytia7sek7ru" path="res://assets/kitchenassets/kitchencounter_straight_B.obj" id="6_2a2la"]
+[ext_resource type="ArrayMesh" uid="uid://bt5fqusd0i7s8" path="res://assets/kitchenassets/pan_A.obj" id="7_2a2la"]
 [ext_resource type="ArrayMesh" uid="uid://ccdu8si88el7q" path="res://assets/kitchenassets/kitchencounter_innercorner.obj" id="7_deaom"]
 [ext_resource type="ArrayMesh" uid="uid://dodfdfkndbmla" path="res://assets/kitchenassets/cuttingboard.obj" id="8_6mti1"]
 [ext_resource type="ArrayMesh" uid="uid://dku845kqwnd76" path="res://assets/kitchenassets/bowl.obj" id="9_gi6id"]
@@ -16,6 +16,7 @@
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_plate.gd" id="14_sxw1y"]
 [ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="16_nwl14"]
+[ext_resource type="ArrayMesh" uid="uid://iwrrk2ci74kj" path="res://assets/kitchenassets/crate_steak.obj" id="17_deaom"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -45,6 +46,13 @@ size = Vector3(4, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2o6r5"]
 size = Vector3(2, 1, 4)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6mti1"]
+height = 0.992188
+radius = 0.168945
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_deaom"]
+height = 2.26318
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
 size = Vector3(1.49, 0.175, 0.99)
@@ -129,14 +137,9 @@ shape = SubResource("CylinderShape3D_aqk2v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 collision_layer = 3
 
-[node name="KitchencounterStraightADecorated" type="MeshInstance3D" parent="counter"]
+[node name="StoveSingle" type="MeshInstance3D" parent="counter"]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 4)
 mesh = ExtResource("4_sxw1y")
-skeleton = NodePath("../..")
-
-[node name="KitchencounterSink" type="MeshInstance3D" parent="counter"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 2)
-mesh = ExtResource("5_nwl14")
 skeleton = NodePath("../..")
 
 [node name="KitchencounterStraightB" type="MeshInstance3D" parent="counter"]
@@ -155,6 +158,26 @@ shape = SubResource("BoxShape3D_k3n1d")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="counter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
 shape = SubResource("BoxShape3D_2o6r5")
+
+[node name="KitchencounterStraightB2" type="MeshInstance3D" parent="counter"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 2)
+mesh = ExtResource("6_2a2la")
+skeleton = NodePath("../..")
+
+[node name="stove" type="Area3D" parent="counter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 4)
+
+[node name="PanA" type="MeshInstance3D" parent="counter/stove"]
+mesh = ExtResource("7_2a2la")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="counter/stove"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503906, 0)
+shape = SubResource("CylinderShape3D_6mti1")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="counter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131592, 4)
+shape = SubResource("CylinderShape3D_deaom")
 
 [node name="chopping_board" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
@@ -211,7 +234,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151726, 0)
 shape = SubResource("CylinderShape3D_tlwt5")
 
 [node name="knife" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.42865, 1.11574, 0.139493)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 1.1, 0.4)
 mass = 0.6
 
 [node name="Knife" type="MeshInstance3D" parent="knife"]
@@ -240,6 +263,7 @@ offset = Vector2(43, 134)
 [node name="Label" type="Label" parent="ui"]
 offset_right = 485.0
 offset_bottom = 43.0
+scale = Vector2(3, 3)
 text = "Money: 0"
 
 [node name="objective_plate" type="StaticBody3D" parent="."]
@@ -289,10 +313,23 @@ shape = SubResource("CylinderShape3D_sxw1y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
+[node name="meat_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="meat_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395, 0)
+shape = SubResource("BoxShape3D_hiqwa")
+
+[node name="CrateSteak" type="MeshInstance3D" parent="meat_crate"]
+mesh = ExtResource("17_deaom")
+skeleton = NodePath("../..")
+
 [connection signal="correct_order" from="." to="." method="_on_correct_order"]
 [connection signal="correct_order" from="." to="objective_plate" method="_on_world_correct_order"]
 [connection signal="money_change" from="player" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="player/pickup_timer" to="player" method="_on_pickup_timer_timeout"]
+[connection signal="body_entered" from="counter/stove" to="." method="_on_stove_body_entered"]
+[connection signal="body_exited" from="counter/stove" to="." method="_on_stove_body_exited"]
 [connection signal="body_entered" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]
 [connection signal="body_entered" from="knife/cut_area" to="." method="_on_cut_area_body_entered"]
 [connection signal="objective" from="objective_plate" to="." method="_on_objective_plate_objective"]

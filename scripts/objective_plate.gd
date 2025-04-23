@@ -10,11 +10,16 @@ var ingredient_4 = null
 var ingredient_5 = null
 var next_position = 0.1
 var contents = []
+
 var ingredient_list = {
-	"bun_bottom_chopped": preload("res://prefabs/bun_bottom_chopped.tscn"),
-	"bun_top_chopped": preload("res://prefabs/bun_top_chopped.tscn"),
+	"meat": preload("res://prefabs/meat.tscn"),
+	"meat_chopped": preload("res://prefabs/meat_chopped.tscn"),
+	"meat_cooked": preload("res://prefabs/meat_cooked.tscn"),
+	"meat_burnt": preload("res://prefabs/meat_burnt.tscn"),
 	"cheese_chopped": preload("res://prefabs/cheese_chopped.tscn"),
-	"cheese": preload("res://prefabs/cheese.tscn")
+	#"cheese": preload("res://prefabs/cheese.tscn"),
+	"bun_bottom_chopped" : preload("res://prefabs/bun_bottom_chopped.tscn"),
+	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
 }
 
 
@@ -24,28 +29,34 @@ func _ready() -> void:
 func randomise_objective():
 	var list_keys = ingredient_list.keys()
 	var list_size = list_keys.size()
-	ingredient_amount = randi_range(2, 5)
+	ingredient_amount = randi_range(3, 5)
 
 	if ingredient_amount > 1:
 		ingredient_1 = "bun_bottom_chopped"
 		contents.append(ingredient_1)
 	if ingredient_amount > 2:
-		ingredient_2 = list_keys[randi_range(0, list_size - 1)]
+		ingredient_2 = list_keys[randi_range(0, list_size - 3)]
 		contents.append(ingredient_2)
 	if ingredient_amount == 2:
-		ingredient_2 = "bun_bottom_chopped"
+		ingredient_2 = "bun_top_chopped"
+		ingredient_3 = null
+		ingredient_4 = null
+		ingredient_5 = null
 		contents.append(ingredient_2)
 	if ingredient_amount > 3:
-		ingredient_3 = list_keys[randi_range(0, list_size - 1)]
+		ingredient_3 = list_keys[randi_range(0, list_size - 3)]
 		contents.append(ingredient_3)
 	if ingredient_amount == 3:
 		ingredient_3 = "bun_top_chopped"
+		ingredient_4 = null
+		ingredient_5 = null
 		contents.append(ingredient_3)
 	if ingredient_amount > 4:
-		ingredient_4 = list_keys[randi_range(0, list_size - 1)]
+		ingredient_4 = list_keys[randi_range(0, list_size - 3)]
 		contents.append(ingredient_4)
 	if ingredient_amount == 4:
 		ingredient_4 = "bun_top_chopped"
+		ingredient_5 = null
 		contents.append(ingredient_4)
 	if ingredient_amount == 5:
 		ingredient_5 = "bun_top_chopped"
@@ -120,6 +131,7 @@ func _on_world_correct_order() -> void:
 	for child in get_children():
 		if not child.is_in_group("keep"):
 			child.queue_free()
+	ingredient_amount = 0
 	next_position = 0.1
 	contents = []
 	randomise_objective()
