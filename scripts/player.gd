@@ -18,11 +18,15 @@ var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
 var meat = preload("res://prefabs/meat.tscn")
 var tomato = preload("res://prefabs/tomato.tscn")
+var carrot = preload("res://prefabs/carrot.tscn")
+var lettuce = preload("res://prefabs/lettuce.tscn")
 var ingredient_scenes = {
 	"bun":bun,
 	"cheese":cheese,
 	"meat" : meat,
 	"tomato": tomato,
+	"lettuce": lettuce,
+	"carrot": carrot,
 }
 #endregion
 var held_object = null  # Stores the object being held
@@ -87,10 +91,8 @@ func movement(delta):
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 
 func pickup(object):
-	print(object.get_groups())
 	object.freeze = true
 	seecast.target_position.z = -1.5
-	object.rotation = Vector3.ZERO
 	object.rotation_degrees.y = head.rotation_degrees.y
 	object.linear_velocity = Vector3.ZERO
 	for child in object.get_children():

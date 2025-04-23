@@ -16,6 +16,8 @@ var ingredient_list = {
 	"meat_cooked": preload("res://prefabs/meat_cooked.tscn"),
 	"meat_burnt": preload("res://prefabs/meat_burnt.tscn"),
 	"cheese_chopped": preload("res://prefabs/cheese_chopped.tscn"),
+	"carrot_chopped":preload("res://prefabs/carrot_chopped.tscn"),
+	"lettuce_chopped":preload("res://prefabs/lettuce_chopped.tscn"),
 	"bun_bottom_chopped" : preload("res://prefabs/bun_bottom_chopped.tscn"),
 	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://7b8ecsljuur7"]
+[gd_scene load_steps=52 format=3 uid="uid://7b8ecsljuur7"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -20,6 +20,10 @@
 [ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="16_nwl14"]
 [ext_resource type="ArrayMesh" uid="uid://s6dxpx2ietsv" path="res://assets/kitchenassets/crate.obj" id="19_6mti1"]
 [ext_resource type="ArrayMesh" uid="uid://cxs3mxpafj2no" path="res://assets/kitchenassets/crate_lid.obj" id="20_gi6id"]
+[ext_resource type="AudioStream" uid="uid://djkvx77pdubnc" path="res://assets/kitchenassets/ChamberUltKill3.mp3" id="21_bpfb4"]
+[ext_resource type="AudioStream" uid="uid://bx8v1d3rongx8" path="res://assets/yippee-made-with-Voicemod.mp3" id="22_8bx52"]
+[ext_resource type="AudioStream" uid="uid://cdtcjsf46c7dv" path="res://assets/CloveCommend3.mp3" id="23_xfqyr"]
+[ext_resource type="AudioStream" uid="uid://b64gognx3odf8" path="res://assets/the-simpsons---homer---hmm...-donuts-made-with-Voicemod-[AudioTrimmer.com].mp3" id="24_xfqyr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -69,8 +73,8 @@ size = Vector3(4, 1, 2)
 size = Vector3(2, 1, 4)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6mti1"]
-height = 0.992188
-radius = 0.168945
+height = 0.1
+radius = 0.1
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_deaom"]
 height = 2.26318
@@ -247,8 +251,11 @@ mesh = ExtResource("7_2a2la")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="counter/stove"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503906, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0630493, 0)
 shape = SubResource("CylinderShape3D_6mti1")
+
+[node name="Label3D" type="Label3D" parent="counter/stove"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0.78665, 0)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="counter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131592, 4)
@@ -422,6 +429,22 @@ mesh = ExtResource("20_gi6id")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bin/incinerator"]
 shape = SubResource("BoxShape3D_8bx52")
 
+[node name="refresh_timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="beautiful" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("21_bpfb4")
+
+[node name="yippie" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("22_8bx52")
+
+[node name="well_done" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("23_xfqyr")
+
+[node name="homer_mmmm" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("24_xfqyr")
+
 [connection signal="correct_order" from="." to="." method="_on_correct_order"]
 [connection signal="correct_order" from="." to="objective_plate" method="_on_world_correct_order"]
 [connection signal="money_change" from="player" to="." method="_on_player_money_change"]
@@ -435,3 +458,4 @@ shape = SubResource("BoxShape3D_8bx52")
 [connection signal="body_entered" from="delivery_plate/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="knife/cut_area" to="." method="_on_cut_area_body_entered"]
 [connection signal="body_entered" from="bin/incinerator" to="." method="_on_incinerator_body_entered"]
+[connection signal="timeout" from="refresh_timer" to="." method="_on_refresh_timer_timeout"]

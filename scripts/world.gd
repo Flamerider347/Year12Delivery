@@ -5,13 +5,17 @@ var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
 var meat_chopped = preload("res://prefabs/meat_chopped.tscn")
 var tomato_chopped = preload("res://prefabs/tomato_chopped.tscn")
+var lettuce_chopped = preload("res://prefabs/lettuce_chopped.tscn")
+var carrot_chopped = preload("res://prefabs/carrot_chopped.tscn")
 var product_check = false
 var objective = []
 var product = []
 var ingredients = {
 "cheese": cheese_chopped,
 "meat":meat_chopped,
-"tomato":tomato_chopped
+"tomato":tomato_chopped,
+"carrot":carrot_chopped,
+"lettuce":lettuce_chopped,
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -20,13 +24,20 @@ func _ready() -> void:
 	$fridge_door.rotation_degrees.y = -90
 
 func _physics_process(_delta: float) -> void:
-	if $knife.position.y < -5:
+	if $knife.position.y < 0.2:
 		$knife.position = Vector3(5.2,1.1,0.4)
 	if product_check:
 		if product == objective:
 			product_check = false
 			$player.money += 10 
 			correct_order.emit()
+			var random_success = randi_range(1,3)
+			if random_success == 1:
+				$beautiful.play()
+			if random_success == 2:
+				$yippie.play()
+			if random_success == 3:
+				$well_done.play()
 		else:
 			product_check = false
 func _on_chopping_board_body_entered(body: Node3D) -> void:
@@ -38,7 +49,6 @@ func _on_chopping_board_body_exited(body: Node3D) -> void:
 		body.remove_from_group("can_chop")
 		
 func _on_cut_area_body_entered(body: Node3D) -> void:
-	print(body.name)
 	if body.is_in_group("can_chop"):
 		if body.type == "bun":
 			var instance = bun_chopped_bottom.instantiate()
@@ -93,10 +103,15 @@ func _on_stove_body_entered(body: Node3D) -> void:
 func _on_stove_body_exited(body: Node3D) -> void:
 	if body.is_in_group("cookable"):
 		body.cooking = false
-
+		$counter/stove/Label3D.text = ""
 
 func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife"):
 		body.queue_free()
 	if body.is_in_group("knife"):
 		body.position = Vector3(5.2,1.1,0.4)
+
+
+func _on_refresh_timer_timeout() -> void:
+	if $counter/stove/Label3D.rotation_degrees.y != $player/head.rotation_degrees.y:
+		$counter/stove/Label3D.rotation_degrees.y = $player/head.rotation_degrees.y
