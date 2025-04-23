@@ -4,17 +4,20 @@ var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
 var meat_chopped = preload("res://prefabs/meat_chopped.tscn")
+var tomato_chopped = preload("res://prefabs/tomato_chopped.tscn")
 var product_check = false
 var objective = []
 var product = []
 var ingredients = {
 "cheese": cheese_chopped,
-"meat":meat_chopped
+"meat":meat_chopped,
+"tomato":tomato_chopped
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$floor.show()
+	$fridge_door.rotation_degrees.y = -90
 
 func _physics_process(_delta: float) -> void:
 	if $knife.position.y < -5:
@@ -30,10 +33,14 @@ func _on_chopping_board_body_entered(body: Node3D) -> void:
 	if body.is_in_group("choppable"):
 		body.add_to_group("can_chop")
 
-
+func _on_chopping_board_body_exited(body: Node3D) -> void:
+	if body.is_in_group("choppable"):
+		body.remove_from_group("can_chop")
+		
 func _on_cut_area_body_entered(body: Node3D) -> void:
+	print(body.name)
 	if body.is_in_group("can_chop"):
-		if body.name == "bun":
+		if body.type == "bun":
 			var instance = bun_chopped_bottom.instantiate()
 			var instance2 = bun_chopped_top.instantiate()
 			add_child(instance)
@@ -43,13 +50,13 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 			instance.position = body.position
 			instance2.position = body.position + Vector3(0,0.1,0)
 			body.queue_free()
-		elif body.name in ingredients:
+		elif body.type in ingredients:
 			if body.is_in_group("meat"):
-				var instance = ingredients[body.name].instantiate()
+				var instance = ingredients[body.type].instantiate()
 				instance.position = body.position
 				add_child(instance)
 			else:
-				var instance = ingredients[body.name].instantiate()
+				var instance = ingredients[body.type].instantiate()
 				instance.type = body.type + "_chopped"
 				instance.position = body.position
 				add_child(instance)
@@ -88,9 +95,8 @@ func _on_stove_body_exited(body: Node3D) -> void:
 		body.cooking = false
 
 
-func _on_meat_chopped_cooked() -> void:
-	print("")
-
-
-func _on_meat_chopped_burnt() -> void:
-	pass # Replace with function body.
+func _on_incinerator_body_entered(body: Node3D) -> void:
+	if body.is_in_group("pickupable") and not body.is_in_group("knife"):
+		body.queue_free()
+	if body.is_in_group("knife"):
+		body.position = Vector3(5.2,1.1,0.4)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://duehm2rbcdilj"]
+
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_ultlf"]
+[ext_resource type="ArrayMesh" uid="uid://bqgmppusg7adl" path="res://assets/kitchenassets/food_ingredient_tomato.obj" id="1_wevo6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ultlf"]
+height = 0.511719
+radius = 0.368652
+
+[node name="tomato" type="RigidBody3D" groups=["choppable", "pickupable"]]
+script = ExtResource("1_ultlf")
+
+[node name="FoodIngredientTomato" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wevo6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.255859, 0)
+shape = SubResource("CylinderShape3D_ultlf")

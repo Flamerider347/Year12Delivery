@@ -12,12 +12,10 @@ var next_position = 0.1
 var contents = []
 
 var ingredient_list = {
-	"meat": preload("res://prefabs/meat.tscn"),
-	"meat_chopped": preload("res://prefabs/meat_chopped.tscn"),
+	"tomato_chopped":preload("res://prefabs/tomato_chopped.tscn"),
 	"meat_cooked": preload("res://prefabs/meat_cooked.tscn"),
 	"meat_burnt": preload("res://prefabs/meat_burnt.tscn"),
 	"cheese_chopped": preload("res://prefabs/cheese_chopped.tscn"),
-	#"cheese": preload("res://prefabs/cheese.tscn"),
 	"bun_bottom_chopped" : preload("res://prefabs/bun_bottom_chopped.tscn"),
 	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
 }

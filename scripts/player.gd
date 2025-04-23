@@ -17,10 +17,12 @@ const GRAVITY = 9.81 #ms^-2
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
 var meat = preload("res://prefabs/meat.tscn")
+var tomato = preload("res://prefabs/tomato.tscn")
 var ingredient_scenes = {
 	"bun":bun,
 	"cheese":cheese,
 	"meat" : meat,
+	"tomato": tomato,
 }
 #endregion
 var held_object = null  # Stores the object being held
@@ -85,9 +87,11 @@ func movement(delta):
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 
 func pickup(object):
+	print(object.get_groups())
 	object.freeze = true
 	seecast.target_position.z = -1.5
 	object.rotation = Vector3.ZERO
+	object.rotation_degrees.y = head.rotation_degrees.y
 	object.linear_velocity = Vector3.ZERO
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
@@ -133,6 +137,7 @@ func summon(item):
 	$"..".add_child(instance)
 	held_object = instance
 	instance.type = str(item)
+	instance.position = Vector3(0,-5,0)
 	instance.add_to_group("pickupable")
 	instance.add_to_group("choppable")
 	instance.find_child("CollisionShape3D").disabled = true

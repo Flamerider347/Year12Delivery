@@ -7,7 +7,7 @@
 height = 0.485199
 radius = 0.354492
 
-[node name="bun" type="RigidBody3D"]
+[node name="bun" type="RigidBody3D" groups=["choppable"]]
 script = ExtResource("1_wg27y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
