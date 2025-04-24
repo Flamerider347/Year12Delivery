@@ -57,7 +57,7 @@ func _physics_process(delta: float):
 		door.swinging = true
 	if Input.is_action_just_pressed("pickup") and not held_object and can_pickup:
 		can_pickup = false
-		$pickup_timer.start(0.2)
+		$pickup_timer.start()
 		if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
 			held_object = seecast.get_collider()
 			pickup(held_object)
@@ -66,7 +66,7 @@ func _physics_process(delta: float):
 			summon(summon_type)
 	if Input.is_action_just_pressed("pickup") and held_object and can_pickup:
 		can_pickup = false
-		$pickup_timer.start(0.2)
+		$pickup_timer.start()
 		drop(held_object)
 
 	movement(delta)
@@ -113,7 +113,7 @@ func drop(object):
 func stack():
 	if Input.is_action_just_pressed("pickup") and held_object and seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and can_pickup and held_object.is_in_group("can_stack"):
 		can_pickup = false
-		$pickup_timer.start(0.2)
+		$pickup_timer.start()
 		var stack_bottom = seecast.get_collider()
 		var item_shape = held_object.find_child("CollisionShape3D").shape
 		held_object.reparent(stack_bottom)

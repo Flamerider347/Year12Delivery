@@ -10,7 +10,18 @@ var ingredient_4 = null
 var ingredient_5 = null
 var next_position = 0.1
 var contents = []
-
+var timer_duration = 0
+var timer_difficulty = 1
+var ingredient_duration = {
+	"tomato_chopped":10,
+	"meat_cooked": 15,
+	"meat_burnt": 15,
+	"cheese_chopped": 10,
+	"carrot_chopped":10,
+	"lettuce_chopped":10,
+	"bun_bottom_chopped" : 10,
+	"bun_top_chopped" :10,
+}
 var ingredient_list = {
 	"tomato_chopped":preload("res://prefabs/tomato_chopped.tscn"),
 	"meat_cooked": preload("res://prefabs/meat_cooked.tscn"),
@@ -26,6 +37,9 @@ var ingredient_list = {
 func _ready() -> void:
 	randomise_objective()
 
+func _physics_process(_delta: float) -> void:
+	if $objective_refresh.time_left > 0:
+		$objective_timer.text = str(round($objective_refresh.time_left*10)/10)
 func randomise_objective():
 	var list_keys = ingredient_list.keys()
 	var list_size = list_keys.size()
@@ -123,8 +137,15 @@ func update_target():
 		item_5.freeze = true
 		item_5.remove_from_group("pickupable")
 		item_5.position = Vector3(0,next_position,0)
-		next_position = 0
-	
+	timer_duration += ingredient_duration[ingredient_1]
+	timer_duration += ingredient_duration[ingredient_2]
+	timer_duration += ingredient_duration[ingredient_3]
+	if ingredient_4:
+		timer_duration += ingredient_duration[ingredient_4]
+	if ingredient_5:
+		timer_duration += ingredient_duration[ingredient_5]
+	$objective_refresh.start(timer_duration*timer_difficulty)
+	timer_duration = 0
 
 
 func _on_world_correct_order() -> void:
@@ -134,4 +155,17 @@ func _on_world_correct_order() -> void:
 	ingredient_amount = 0
 	next_position = 0.1
 	contents = []
+	timer_duration = 0
+	timer_difficulty -=0.01
+	randomise_objective()
+
+
+func _on_objective_refresh_timeout() -> void:
+	for child in get_children():
+		if not child.is_in_group("keep"):
+			child.queue_free()
+	ingredient_amount = 0
+	next_position = 0.1
+	contents = []
+	timer_duration = 0
 	randomise_objective()

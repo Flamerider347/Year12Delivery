@@ -151,6 +151,7 @@ fov = 90.0
 target_position = Vector3(0, 0, -3)
 
 [node name="pickup_timer" type="Timer" parent="player"]
+wait_time = 0.06
 
 [node name="crates" type="Node3D" parent="."]
 
@@ -256,7 +257,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0630493, 0)
 shape = SubResource("CylinderShape3D_6mti1")
 
-[node name="Label3D" type="Label3D" parent="counter/stove"]
+[node name="stove_timer" type="Label3D" parent="counter/stove"]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0.78665, 0)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="counter"]
@@ -319,6 +320,12 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="objective_plate" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.500488, 0)
 shape = SubResource("CylinderShape3D_nwl14")
+
+[node name="objective_timer" type="Label3D" parent="objective_plate" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+text = "4.0"
+
+[node name="objective_refresh" type="Timer" parent="objective_plate" groups=["keep"]]
 
 [node name="delivery_plate" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 4)
@@ -457,6 +464,7 @@ stream = ExtResource("24_xfqyr")
 [connection signal="body_exited" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_exited"]
 [connection signal="body_entered" from="chopping_board2/chopping_board" to="." method="_on_chopping_board_body_entered"]
 [connection signal="objective" from="objective_plate" to="." method="_on_objective_plate_objective"]
+[connection signal="timeout" from="objective_plate/objective_refresh" to="objective_plate" method="_on_objective_refresh_timeout"]
 [connection signal="body_entered" from="delivery_plate/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="knife/cut_area" to="." method="_on_cut_area_body_entered"]
 [connection signal="body_entered" from="bin/incinerator" to="." method="_on_incinerator_body_entered"]

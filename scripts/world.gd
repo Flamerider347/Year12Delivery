@@ -105,7 +105,7 @@ func _on_stove_body_entered(body: Node3D) -> void:
 func _on_stove_body_exited(body: Node3D) -> void:
 	if body.is_in_group("cookable"):
 		body.cooking = false
-		$counter/stove/Label3D.text = ""
+		$counter/stove/stove_timer.text = ""
 
 func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife"):
@@ -115,5 +115,7 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 
 
 func _on_refresh_timer_timeout() -> void:
-	if $counter/stove/Label3D.rotation_degrees.y != $player/head.rotation_degrees.y:
-		$counter/stove/Label3D.rotation_degrees.y = $player/head.rotation_degrees.y
+	if $counter/stove/stove_timer.rotation_degrees.y != $player/head.rotation_degrees.y:
+		$counter/stove/stove_timer.rotation_degrees.y = $player/head.rotation_degrees.y
+	if $objective_plate/objective_timer.rotation_degrees.y != $player/head.rotation_degrees.y:
+		$objective_plate/objective_timer.rotation_degrees.y = $player/head.rotation_degrees.y
