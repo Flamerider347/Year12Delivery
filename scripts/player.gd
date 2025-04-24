@@ -45,6 +45,8 @@ func _unhandled_input(event):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
+	if money < 0:
+		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
 	if held_object:
 		if seecast.is_colliding():
 			collision_point = seecast.get_collision_point()
@@ -149,3 +151,8 @@ func summon(item):
 
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true
+
+
+func _on_world_failed_order() -> void:
+	money -=1
+	money_change.emit(money)

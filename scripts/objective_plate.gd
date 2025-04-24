@@ -10,7 +10,7 @@ var ingredient_4 = null
 var ingredient_5 = null
 var next_position = 0.1
 var contents = []
-var timer_duration = 0
+var timer_duration = 30
 var timer_difficulty = 1
 var ingredient_duration = {
 	"tomato_chopped":10,
@@ -155,12 +155,11 @@ func _on_world_correct_order() -> void:
 	ingredient_amount = 0
 	next_position = 0.1
 	contents = []
-	timer_duration = 0
+	timer_duration = 30
 	timer_difficulty -=0.01
 	randomise_objective()
 
-
-func _on_objective_refresh_timeout() -> void:
+func _on_world_failed_order() -> void:
 	for child in get_children():
 		if not child.is_in_group("keep"):
 			child.queue_free()

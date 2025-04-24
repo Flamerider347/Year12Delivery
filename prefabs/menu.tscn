@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxf3pejwghn5s"]
+
+[ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_oeexw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oeexw"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_f06o2"]
+sky_material = SubResource("ProceduralSkyMaterial_oeexw")
+
+[sub_resource type="Environment" id="Environment_rixcb"]
+background_mode = 2
+sky = SubResource("Sky_f06o2")
+tonemap_mode = 2
+fog_density = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f06o2"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oeexw"]
+size = Vector3(0.5, 20, 0.5)
+
+[node name="Menu" type="Node3D"]
+script = ExtResource("1_oeexw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rixcb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 22.0
+offset_right = 100.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_f06o2")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+shape = SubResource("BoxShape3D_oeexw")
+
+[node name="name" type="Label3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2.38498e-08, 2, 0, -2, 2.38498e-08, 0, 10, -0.7)
+text = "Kitchen Chaos
+Return of the
+UNNAMED PROJECT"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]

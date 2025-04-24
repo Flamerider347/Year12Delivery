@@ -1,5 +1,8 @@
 extends Node3D
 signal correct_order
+signal failed_order
+signal order_contents
+signal delivered_correctly
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
@@ -8,6 +11,9 @@ var tomato_chopped = preload("res://prefabs/tomato_chopped.tscn")
 var lettuce_chopped = preload("res://prefabs/lettuce_chopped.tscn")
 var carrot_chopped = preload("res://prefabs/carrot_chopped.tscn")
 var product_check = false
+var delivery_objective_list = ["A1","B1","C1","A2","B2","C2","A3","B3","C3"]
+var delivery_objective
+var making_time_left = 0
 var objective = []
 var product = []
 var ingredients = {
@@ -29,8 +35,11 @@ func _physics_process(_delta: float) -> void:
 	if product_check:
 		if product == objective:
 			product_check = false
-			$player.money += 10 
-			correct_order.emit()
+			making_time_left = round($objective_plate/objective_refresh.time_left) + 30
+			$objective_plate/objective_refresh.stop()
+			$loss_timer.start(200)
+			delivery_objective = delivery_objective_list[randi_range(0,delivery_objective_list.size()-1)]
+			order_contents.emit(objective,delivery_objective)
 			var random_success = randi_range(1,4)
 			if random_success == 1:
 				$beautiful.play()
@@ -119,3 +128,22 @@ func _on_refresh_timer_timeout() -> void:
 		$counter/stove/stove_timer.rotation_degrees.y = $player/head.rotation_degrees.y
 	if $objective_plate/objective_timer.rotation_degrees.y != $player/head.rotation_degrees.y:
 		$objective_plate/objective_timer.rotation_degrees.y = $player/head.rotation_degrees.y
+
+func _on_reset_objective_body_entered(body: Node3D) -> void:
+	if body.name == "player" and $player.money > 0:
+		failed_order.emit()
+
+func _on_house_item_entered(address,target_address) -> void:
+	if address == target_address:
+		var loss_time = round($loss_timer.time_left)
+		making_time_left -= 200-loss_time
+		if making_time_left <= 0:
+			making_time_left = 0
+		$player.money += making_time_left
+		$player.money_change.emit($player.money)
+		delivered_correctly.emit()
+		correct_order.emit()
+
+
+func _on_objective_refresh_timeout() -> void:
+	failed_order.emit()
