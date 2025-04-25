@@ -35,3 +35,12 @@ shape = SubResource("CylinderShape3D_7702b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289027, 0.500105)
 visible = false
 text = "1A"
+
+[node name="Label3D2" type="Label3D" parent="." groups=["lid"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826133, 0)
+visible = false
+text = "59"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

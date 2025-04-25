@@ -1,8 +1,10 @@
 extends StaticBody3D
-
+signal objective_timeout
 signal objective
-
+var delivery_list = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+var delivery_location
 var ingredient_amount = 0
+var timing = false
 var ingredient_1 = null
 var ingredient_2 = null
 var ingredient_3 = null
@@ -10,17 +12,15 @@ var ingredient_4 = null
 var ingredient_5 = null
 var next_position = 0.1
 var contents = []
-var timer_duration = 30
-var timer_difficulty = 1
-var ingredient_duration = {
+var ingredient_time = {
 	"tomato_chopped":10,
 	"meat_cooked": 15,
-	"meat_burnt": 15,
+	"meat_burnt": 20,
 	"cheese_chopped": 10,
 	"carrot_chopped":10,
 	"lettuce_chopped":10,
 	"bun_bottom_chopped" : 10,
-	"bun_top_chopped" :10,
+	"bun_top_chopped" : 10,
 }
 var ingredient_list = {
 	"tomato_chopped":preload("res://prefabs/tomato_chopped.tscn"),
@@ -32,15 +32,10 @@ var ingredient_list = {
 	"bun_bottom_chopped" : preload("res://prefabs/bun_bottom_chopped.tscn"),
 	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
 }
-
-
-func _ready() -> void:
-	randomise_objective()
-
 func _physics_process(_delta: float) -> void:
-	if $objective_refresh.time_left > 0:
-		$objective_timer.text = str(round($objective_refresh.time_left*10)/10)
+	$Label3D.text = str(int($order_time.time_left))
 func randomise_objective():
+	delivery_location = delivery_list[randi_range(0,8)]
 	var list_keys = ingredient_list.keys()
 	var list_size = list_keys.size()
 	ingredient_amount = randi_range(3, 5)
@@ -75,8 +70,20 @@ func randomise_objective():
 	if ingredient_amount == 5:
 		ingredient_5 = "bun_top_chopped"
 		contents.append(ingredient_5)
-	objective.emit(contents)
+	var plate_name = self.name.replace("objective_plate","")
+	var make_time = 30
+	make_time += ingredient_time[ingredient_1]
+	make_time += ingredient_time[ingredient_2]
+	make_time += ingredient_time[ingredient_3]
+	if ingredient_4:
+		make_time += ingredient_time[ingredient_1]
+		if ingredient_5:
+			make_time += ingredient_time[ingredient_1]
+	$order_time.start(make_time)
+	objective.emit(contents,plate_name,$order_time.time_left,delivery_location,self.name)
+	timing = true
 	update_target()
+
 
 func update_target():
 	var item_1 = ingredient_list[ingredient_1].instantiate()
@@ -137,34 +144,134 @@ func update_target():
 		item_5.freeze = true
 		item_5.remove_from_group("pickupable")
 		item_5.position = Vector3(0,next_position,0)
-	timer_duration += ingredient_duration[ingredient_1]
-	timer_duration += ingredient_duration[ingredient_2]
-	timer_duration += ingredient_duration[ingredient_3]
-	if ingredient_4:
-		timer_duration += ingredient_duration[ingredient_4]
-	if ingredient_5:
-		timer_duration += ingredient_duration[ingredient_5]
-	$objective_refresh.start(timer_duration*timer_difficulty)
-	timer_duration = 0
+
+func _on_world_make_order_1(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+func _on_world_make_order_2(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+func _on_world_make_order_3(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+func _on_world_make_order_4(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+func _on_world_make_order_5(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
 
 
-func _on_world_correct_order() -> void:
+func _on_world_make_order_6(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+func _on_world_make_order_7(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+
+func _on_world_make_order_8(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+func _on_world_make_order_9(a) -> void:
+	if a == "kill":
+		for child in get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		ingredient_amount = 0
+		next_position = 0.1
+		contents = []
+		$Label3D.text = "0"
+		$order_time.stop()
+	if a == "make":
+		randomise_objective()
+
+
+func _on_order_time_timeout() -> void:
 	for child in get_children():
 		if not child.is_in_group("keep"):
 			child.queue_free()
 	ingredient_amount = 0
 	next_position = 0.1
 	contents = []
-	timer_duration = 30
-	timer_difficulty -=0.01
-	randomise_objective()
-
-func _on_world_failed_order() -> void:
-	for child in get_children():
-		if not child.is_in_group("keep"):
-			child.queue_free()
-	ingredient_amount = 0
-	next_position = 0.1
-	contents = []
-	timer_duration = 0
-	randomise_objective()
+	objective_timeout.emit()
+	$Label3D.text = "0"
+	$order_time.stop()
