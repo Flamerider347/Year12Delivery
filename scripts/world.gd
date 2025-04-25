@@ -225,7 +225,6 @@ func _on_house_item_entered(address,target_address,time_left) -> void:
 		$player.money_change.emit($player.money)
 		delivered_correctly.emit()
 		correct_order.emit()
-		$professional_timer.start()
 
 
 func _on_order_timer_timeout() -> void:
@@ -236,7 +235,6 @@ func _on_order_timer_timeout() -> void:
 		else:
 			pass
 	$order_timer.start(next_spawn_time)
-	next_spawn_time = 30
 
 
 
@@ -252,17 +250,3 @@ func _on_delivery_pot_timeout() -> void:
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
-
-
-func _on_professional_timer_timeout() -> void:
-	for i in range(len(orders)):
-		print(orders)
-		var completed_plates = 9
-		if orders[i] == 0:
-			completed_plates -=1
-			order = true
-		else:
-			break
-		if completed_plates == 0:
-			print("time_let = 30")
-			$order_timer.time_left = 30

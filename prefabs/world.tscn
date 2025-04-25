@@ -701,10 +701,6 @@ size = Vector3(10, 2, 1)
 
 [node name="order_timer" type="Timer" parent="."]
 
-[node name="professional_timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
 [connection signal="correct_order" from="." to="plates/objective_plate1" method="_on_world_correct_order"]
 [connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
 [connection signal="make_order_1" from="." to="plates/objective_plate1" method="_on_world_make_order_1"]
@@ -775,4 +771,3 @@ autostart = true
 [connection signal="body_entered" from="houses/C3" to="houses/C3" method="_on_body_entered"]
 [connection signal="item_entered" from="houses/C3" to="." method="_on_house_item_entered"]
 [connection signal="timeout" from="order_timer" to="." method="_on_order_timer_timeout"]
-[connection signal="timeout" from="professional_timer" to="." method="_on_professional_timer_timeout"]
