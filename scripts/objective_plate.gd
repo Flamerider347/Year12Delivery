@@ -71,7 +71,7 @@ func randomise_objective():
 		ingredient_5 = "bun_top_chopped"
 		contents.append(ingredient_5)
 	var plate_name = self.name.replace("objective_plate","")
-	var make_time = 30
+	var make_time = 100
 	make_time += ingredient_time[ingredient_1]
 	make_time += ingredient_time[ingredient_2]
 	make_time += ingredient_time[ingredient_3]

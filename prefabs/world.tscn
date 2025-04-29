@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://7b8ecsljuur7"]
+[gd_scene load_steps=61 format=4 uid="uid://7b8ecsljuur7"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://bx8v1d3rongx8" path="res://assets/yippee-made-with-Voicemod.mp3" id="22_8bx52"]
 [ext_resource type="PackedScene" uid="uid://1gco46vh5o4v" path="res://prefabs/delivery_pot.tscn" id="22_b1m2q"]
 [ext_resource type="AudioStream" uid="uid://cdtcjsf46c7dv" path="res://assets/CloveCommend3.mp3" id="23_xfqyr"]
+[ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://prefabs/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="AudioStream" uid="uid://b64gognx3odf8" path="res://assets/the-simpsons---homer---hmm...-donuts-made-with-Voicemod-[AudioTrimmer.com].mp3" id="24_xfqyr"]
 
@@ -36,12 +37,6 @@ background_mode = 2
 sky = SubResource("Sky_fj7yv")
 tonemap_mode = 2
 fog_density = 0.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fj7yv"]
-radius = 0.49
-height = 1.99
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tlwt5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b1m2q"]
 size = Vector3(2, 1, 2)
@@ -129,6 +124,12 @@ data = PackedByteArray("//uExAAAEh0nGhT2AAKhJ233K1YCNM62eEcg9AuBLIpyGgaBoFsLgdDp
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrdq4"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fj7yv"]
+radius = 0.49
+height = 1.99
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tlwt5"]
+
 [node name="world" type="Node3D"]
 script = ExtResource("1_k40i2")
 
@@ -143,28 +144,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 use_collision = true
 collision_layer = 3
 size = Vector3(240, 0.195, 240)
-
-[node name="player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
-script = ExtResource("2_le6xu")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
-shape = SubResource("CapsuleShape3D_fj7yv")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
-mesh = SubResource("CapsuleMesh_tlwt5")
-
-[node name="head" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
-
-[node name="player_camera" type="Camera3D" parent="player/head"]
-current = true
-
-[node name="seecast" type="RayCast3D" parent="player/head/player_camera"]
-target_position = Vector3(0, 0, -5)
-
-[node name="pickup_timer" type="Timer" parent="player"]
-wait_time = 0.06
 
 [node name="crates" type="Node3D" parent="."]
 
@@ -528,7 +507,7 @@ physics_material_override = SubResource("PhysicsMaterial_le6xu")
 
 [node name="bowl" type="MeshInstance3D" parent="bowl"]
 mesh = ExtResource("9_gi6id")
-skeleton = NodePath("../../player/head/player_camera")
+skeleton = NodePath("../../GridContainer/SubViewportContainer/SubViewport/player/head/player_camera")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bowl" groups=["hitbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151726, 0)
@@ -559,7 +538,13 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ui"]
-position = Vector2(960, 540)
+position = Vector2(490, 540)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_b1m2q")
+offset = Vector2(43, 134)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ui"]
+position = Vector2(1450, 540)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("11_b1m2q")
 offset = Vector2(43, 134)
@@ -577,10 +562,6 @@ offset_right = 1166.0
 offset_bottom = 130.0
 scale = Vector2(3, 3)
 text = "Stars: 5"
-
-[node name="refresh_timer" type="Timer" parent="."]
-wait_time = 0.2
-autostart = true
 
 [node name="beautiful" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamMP3_8bx52")
@@ -701,6 +682,79 @@ size = Vector3(10, 2, 1)
 
 [node name="order_timer" type="Timer" parent="."]
 
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+columns = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
+size = Vector2i(958, 1080)
+
+[node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
+script = ExtResource("2_le6xu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+shape = SubResource("CapsuleShape3D_fj7yv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+mesh = SubResource("CapsuleMesh_tlwt5")
+
+[node name="head" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
+
+[node name="player_camera" type="Camera3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head"]
+current = true
+
+[node name="seecast" type="RayCast3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head/player_camera"]
+target_position = Vector3(0, 0, -5)
+
+[node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+wait_time = 0.06
+
+[node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(958, 1080)
+render_target_update_mode = 4
+
+[node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188471, 1, 4)
+script = ExtResource("24_n7i1a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+shape = SubResource("CapsuleShape3D_fj7yv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+mesh = SubResource("CapsuleMesh_tlwt5")
+
+[node name="head" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
+
+[node name="player_camera" type="Camera3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head"]
+current = true
+
+[node name="seecast" type="RayCast3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head/player_camera"]
+target_position = Vector3(0, 0, -5)
+
+[node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+wait_time = 0.06
+
+[node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+
 [connection signal="correct_order" from="." to="plates/objective_plate1" method="_on_world_correct_order"]
 [connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
 [connection signal="make_order_1" from="." to="plates/objective_plate1" method="_on_world_make_order_1"]
@@ -713,8 +767,6 @@ size = Vector3(10, 2, 1)
 [connection signal="make_order_8" from="." to="plates/objective_plate8" method="_on_world_make_order_8"]
 [connection signal="make_order_9" from="." to="plates/objective_plate9" method="_on_world_make_order_9"]
 [connection signal="order_contents" from="." to="delivery_pot" method="_on_world_order_contents"]
-[connection signal="money_change" from="player" to="." method="_on_player_money_change"]
-[connection signal="timeout" from="player/pickup_timer" to="player" method="_on_pickup_timer_timeout"]
 [connection signal="body_entered" from="counter/stove" to="." method="_on_stove_body_entered"]
 [connection signal="body_exited" from="counter/stove" to="." method="_on_stove_body_exited"]
 [connection signal="body_entered" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]
@@ -751,7 +803,6 @@ size = Vector3(10, 2, 1)
 [connection signal="body_entered" from="bin/incinerator" to="." method="_on_incinerator_body_entered"]
 [connection signal="body_entered" from="knife/cut_area" to="." method="_on_cut_area_body_entered"]
 [connection signal="timeout" from="delivery_pot" to="." method="_on_delivery_pot_timeout"]
-[connection signal="timeout" from="refresh_timer" to="." method="_on_refresh_timer_timeout"]
 [connection signal="body_entered" from="houses/A1" to="houses/A1" method="_on_body_entered"]
 [connection signal="item_entered" from="houses/A1" to="." method="_on_house_item_entered"]
 [connection signal="body_entered" from="houses/A2" to="houses/A2" method="_on_body_entered"]
@@ -771,3 +822,9 @@ size = Vector3(10, 2, 1)
 [connection signal="body_entered" from="houses/C3" to="houses/C3" method="_on_body_entered"]
 [connection signal="item_entered" from="houses/C3" to="." method="_on_house_item_entered"]
 [connection signal="timeout" from="order_timer" to="." method="_on_order_timer_timeout"]
+[connection signal="money_change" from="GridContainer/SubViewportContainer/SubViewport/player" to="." method="_on_player_money_change"]
+[connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/pickup_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_pickup_timer_timeout"]
+[connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/swap_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_swap_timer_timeout"]
+[connection signal="money_change" from="GridContainer/SubViewportContainer2/SubViewport/player2" to="." method="_on_player_money_change"]
+[connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
+[connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]

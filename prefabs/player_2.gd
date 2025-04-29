@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 var speed = 0
 var can_pickup = true
-
 var control = true
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
@@ -14,7 +13,7 @@ const JOY_AXIS_R2 = 5
 @onready var head = $head
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
-@export var controller_id: int = 0
+@export var controller_id: int = 1
 #region ingredients
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
@@ -36,8 +35,6 @@ var collision_point
 
 signal ingredient_added
 signal money_change
-func _ready():
-	money_change.emit(money)
 
 const TRIGGER_THRESHOLD = 0.5
 var r2_down = false
@@ -182,7 +179,3 @@ func _on_pickup_timer_timeout() -> void:
 
 func _on_world_failed_order() -> void:
 	money_change.emit()
-
-
-func _on_swap_timer_timeout() -> void:
-	pass # Replace with function body.

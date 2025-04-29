@@ -24,6 +24,7 @@ var next_spawn_time = 30
 var order = false
 var action
 var stars = 5
+var money = 10
 var orders = [0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
@@ -37,6 +38,8 @@ var ingredients = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var controllers = Input.get_connected_joypads()
+	print(controllers)
 	$order_timer.start(0.1)
 	$floor.show()
 	$fridge_door.rotation_degrees.y = -90
@@ -194,7 +197,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		
 
 
-func _on_player_money_change(money) -> void:
+func _on_player_money_change() -> void:
+	money -= 1
 	$ui/Label.text = "Money: " + str(money)
 
 
@@ -215,14 +219,11 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 		body.position = Vector3(5.2,1.1,0.4)
 
 
-func _on_refresh_timer_timeout() -> void:
-	if $counter/stove/stove_timer.rotation_degrees.y != $player/head.rotation_degrees.y:
-		$counter/stove/stove_timer.rotation_degrees.y = $player/head.rotation_degrees.y
 func _on_house_item_entered(address,target_address,time_left) -> void:
 	if address == target_address:
 		making_time_left = round(time_left)
-		$player.money += making_time_left
-		$player.money_change.emit($player.money)
+		money += making_time_left
+		$ui/Label.text = "Money: " + str(money)
 		delivered_correctly.emit()
 		correct_order.emit()
 
