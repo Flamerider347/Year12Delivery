@@ -3,6 +3,7 @@ extends CharacterBody3D
 var speed = 0
 var can_pickup = true
 var control = true
+var apply_gravity = true
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 5
@@ -36,48 +37,34 @@ var collision_point
 signal ingredient_added
 signal money_change
 
-const TRIGGER_THRESHOLD = 0.5
-var r2_down = false
 
 func _unhandled_input(event):
-	if Input.is_action_just_pressed("jump_p2") and event.device == controller_id:
-		if is_on_floor():
-			velocity.y += JUMP_VELOCITY
-	# Handle Jump
-	if event is InputEventJoypadButton and event.pressed and event.device == controller_id:
-		if event.button_index == JOY_BUTTON_A and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-
-	# Handle R2 as Pickup (R2 is axis index 5 on most controllers)
-	if event is InputEventJoypadMotion and event.axis == JOY_AXIS_R2 and event.device == controller_id:
-		if event.axis_value > TRIGGER_THRESHOLD and not r2_down:
-			r2_down = true
-			handle_pickup_logic()
-		elif event.axis_value < TRIGGER_THRESHOLD:
-			r2_down = false
-
-func handle_pickup_logic():
-	if held_object and seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and can_pickup and held_object.is_in_group("can_stack"):
-		stack()
-	elif seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
-		var door = seecast.get_collider()
-		door.swinging = true
-	elif not held_object and can_pickup:
-		can_pickup = false
-		$pickup_timer.start()
-		if seecast.is_colliding():
-			var col = seecast.get_collider()
-			if col.is_in_group("pickupable"):
-				held_object = col
-				pickup(held_object)
-			elif col.is_in_group("summoner") and money > 0:
-				var summon_type = col.name.replace("_crate", "")
-				summon(summon_type)
-	elif held_object and can_pickup:
-		can_pickup = false
-		$pickup_timer.start()
-		drop(held_object)
-
+	if event.device == controller_id:
+		if event is InputEventJoypadButton:
+			if event.button_index == JOY_BUTTON_A and event.pressed:
+				if is_on_floor():
+					velocity.y += JUMP_VELOCITY
+		if event is InputEventJoypadButton:
+			if event.button_index == JOY_BUTTON_X and can_pickup and event.pressed:
+				if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+					var door = seecast.get_collider()
+					door.swinging = true
+				if not held_object and can_pickup:
+					$pickup_timer.start()
+					can_pickup = false
+					if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+						held_object = seecast.get_collider()
+						pickup(held_object)
+					if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+						var summon_type = seecast.get_collider().name.replace("_crate","")
+						summon(summon_type)
+				if held_object and can_pickup:
+					if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+						stack()
+					else:
+						drop(held_object)
+					$pickup_timer.start()
+					can_pickup = false
 func _physics_process(delta: float):
 	if money < 0:
 		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
@@ -90,7 +77,7 @@ func _physics_process(delta: float):
 	movement(delta)
 	move_and_slide()
 func movement(delta):
-	if not is_on_floor():
+	if not is_on_floor() and apply_gravity:
 		velocity.y -= GRAVITY * delta * 1.5
 		# Handle Jump.
 
@@ -120,11 +107,16 @@ func movement(delta):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 
+
 func pickup(object):
-	object.freeze = true
+	if object is RigidBody3D:
+		object.freeze = true
+		object.linear_velocity = Vector3.ZERO
+	else:
+		remove_from_group("pickupable")
+		object.apply_gravity = false
 	seecast.target_position.z = -1.5
 	object.rotation_degrees.y = head.rotation_degrees.y
-	object.linear_velocity = Vector3.ZERO
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = true
@@ -135,11 +127,16 @@ func drop(object):
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = false
-	object.freeze = false
+	if object is RigidBody3D:
+		object.freeze = false
+		object.linear_velocity.y = 0.3
+	else:
+		object.apply_gravity = true
+		add_to_group("pickupable")
 	held_object = null
 	seecast.clear_exceptions()
 	seecast.target_position.z = -3
-	object.linear_velocity.y = 0.3
+
 func stack():
 		can_pickup = false
 		$pickup_timer.start()

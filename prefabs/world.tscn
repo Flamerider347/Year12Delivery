@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://7b8ecsljuur7"]
+[gd_scene load_steps=61 format=4 uid="uid://7b8ecsljuur7"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -7,7 +7,6 @@
 [ext_resource type="ArrayMesh" uid="uid://bt5fqusd0i7s8" path="res://assets/kitchenassets/pan_A.obj" id="7_2a2la"]
 [ext_resource type="ArrayMesh" uid="uid://ccdu8si88el7q" path="res://assets/kitchenassets/kitchencounter_innercorner.obj" id="7_deaom"]
 [ext_resource type="ArrayMesh" uid="uid://dodfdfkndbmla" path="res://assets/kitchenassets/cuttingboard.obj" id="8_6mti1"]
-[ext_resource type="ArrayMesh" uid="uid://dku845kqwnd76" path="res://assets/kitchenassets/bowl.obj" id="9_gi6id"]
 [ext_resource type="ArrayMesh" uid="uid://dnw6ln86toimb" path="res://assets/kitchenassets/knife.obj" id="10_bpfb4"]
 [ext_resource type="Texture2D" uid="uid://dtxutdwarivkd" path="res://assets/Cursor.png" id="11_b1m2q"]
 [ext_resource type="ArrayMesh" uid="uid://rs6dw7qecvnp" path="res://assets/kitchenassets/crate_buns.obj" id="12_8bx52"]
@@ -91,12 +90,6 @@ size = Vector3(0.51, 2.5, 2.001)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8bx52"]
 size = Vector3(1, 1, 1.12305)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_le6xu"]
-bounce = 0.2
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_tlwt5"]
-height = 0.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_70uel"]
 size = Vector3(0.255676, 0.102249, 1.14643)
@@ -507,19 +500,6 @@ shape = SubResource("BoxShape3D_8bx52")
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0.11, 0)
 text = "Bin"
 
-[node name="bowl" type="RigidBody3D" parent="." groups=["pickupable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.19944, 1, -0.361585)
-mass = 0.8
-physics_material_override = SubResource("PhysicsMaterial_le6xu")
-
-[node name="bowl" type="MeshInstance3D" parent="bowl"]
-mesh = ExtResource("9_gi6id")
-skeleton = NodePath("../../GridContainer/SubViewportContainer/SubViewport/player/head/player_camera")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bowl" groups=["hitbox"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151726, 0)
-shape = SubResource("CylinderShape3D_tlwt5")
-
 [node name="knife" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 1.1, 0.4)
 mass = 0.6
@@ -707,11 +687,11 @@ handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
-[node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport"]
+[node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0906353, 1, 2.02271)
 script = ExtResource("2_le6xu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]
 shape = SubResource("CapsuleShape3D_fj7yv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
@@ -742,11 +722,11 @@ handle_input_locally = false
 size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
-[node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport"]
+[node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188471, 1, 4)
 script = ExtResource("24_n7i1a")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2" groups=["hitbox"]]
 shape = SubResource("CapsuleShape3D_fj7yv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
@@ -789,6 +769,25 @@ target_position = Vector3(0, 0, -5)
 wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="player_single"]
+
+[node name="knife2" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6, 1.1, 0.4)
+mass = 0.6
+
+[node name="Knife" type="MeshInstance3D" parent="knife2"]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+mesh = ExtResource("10_bpfb4")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="knife2" groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.075, 0, -0.365)
+shape = SubResource("BoxShape3D_70uel")
+
+[node name="cut_area" type="Area3D" parent="knife2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="knife2/cut_area"]
+transform = Transform3D(1, 0, -1.59578e-37, 0, 1, 0, 0, 0, 1, -0.0749478, 0, -0.54)
+shape = SubResource("BoxShape3D_le6xu")
 
 [connection signal="correct_order" from="." to="plates/objective_plate1" method="_on_world_correct_order"]
 [connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
@@ -865,3 +864,4 @@ wait_time = 0.06
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]
+[connection signal="body_entered" from="knife2/cut_area" to="." method="_on_cut_area_body_entered"]

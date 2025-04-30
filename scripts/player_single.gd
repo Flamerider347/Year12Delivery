@@ -5,9 +5,9 @@ var can_pickup = true
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 5
-const SENSITIVITY = 0.002
+const SENSITIVITY = 0.06
 const GRAVITY = 9.81 #ms^-2
-
+@export var controller_id: int = 0
 @onready var head = $head
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
@@ -40,46 +40,43 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		head.rotate_y(-event.relative.x * SENSITIVITY/20)
+		camera.rotate_x(-event.relative.y * SENSITIVITY/20)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
 	if money < 0:
 		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
-	if held_object:
-		if seecast.is_colliding():
-			collision_point = seecast.get_collision_point()
-			held_object.position = collision_point
-		else:
-			held_object.position = seecast.to_global(seecast.target_position)
-	stack()
-	if Input.is_action_just_pressed("pickup_p1") and seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
-		var door = seecast.get_collider()
-		door.swinging = true
-	if Input.is_action_just_pressed("pickup_p1") and not held_object and can_pickup:
-		can_pickup = false
-		$pickup_timer.start()
-		if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
-			held_object = seecast.get_collider()
-			pickup(held_object)
-		if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
-			var summon_type = seecast.get_collider().name.replace("_crate","")
-			summon(summon_type)
-	if Input.is_action_just_pressed("pickup_p1") and held_object and can_pickup:
-		can_pickup = false
-		$pickup_timer.start()
-		drop(held_object)
-
+	if Input.is_action_just_pressed("pickup_p1") and can_pickup:
+		if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+			var door = seecast.get_collider()
+			door.swinging = true
+		if not held_object and can_pickup:
+			$pickup_timer.start()
+			can_pickup = false
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+				held_object = seecast.get_collider()
+				pickup(held_object)
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+				var summon_type = seecast.get_collider().name.replace("_crate","")
+				summon(summon_type)
+		if held_object and can_pickup:
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+				stack()
+			else:
+				drop(held_object)
+			$pickup_timer.start()
+			can_pickup = false
+	position_held_object()
 	movement(delta)
 	move_and_slide()
+
 func movement(delta):
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta * 1.5
 		# Handle Jump.
 	if Input.is_action_just_pressed("jump_p1") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
 		# Handle Sprint.
 	if Input.is_action_pressed("sprint"):
 		speed = SPRINT_SPEED
@@ -91,18 +88,27 @@ func movement(delta):
 	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
+
+	if cam_input.length() > 0.1:
+		head.rotate_y(-cam_input.x * SENSITIVITY)
+		camera.rotate_x(-cam_input.y * SENSITIVITY)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func pickup(object):
 	object.freeze = true
 	seecast.target_position.z = -1.5
 	object.rotation_degrees.y = head.rotation_degrees.y
 	object.linear_velocity = Vector3.ZERO
+	object.position = Vector3(0,-5,0)
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = true
 	for child in object.get_children():
 		if child is CollisionObject3D:
 			seecast.add_exception(child)
+	position_held_object()
+
 func drop(object):
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
@@ -112,10 +118,16 @@ func drop(object):
 	seecast.clear_exceptions()
 	seecast.target_position.z = -3
 	object.linear_velocity.y = 0.3
+
+func position_held_object():
+	if held_object:
+		if seecast.is_colliding():
+			collision_point = seecast.get_collision_point()
+			held_object.position = collision_point
+		else:
+			held_object.position = seecast.to_global(seecast.target_position)
+
 func stack():
-	if Input.is_action_just_pressed("pickup_p1") and held_object and seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and can_pickup and held_object.is_in_group("can_stack"):
-		can_pickup = false
-		$pickup_timer.start()
 		var stack_bottom = seecast.get_collider()
 		var item_shape = held_object.find_child("CollisionShape3D").shape
 		held_object.reparent(stack_bottom)
@@ -136,6 +148,7 @@ func stack():
 		held_object.remove_from_group("pickupable")
 		held_object.freeze = true
 		held_object = null
+
 func summon(item):
 	money_change.emit()
 	var instance = ingredient_scenes[item].instantiate()
@@ -150,7 +163,6 @@ func summon(item):
 
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true
-
 
 func _on_world_failed_order() -> void:
 	money_change.emit()
