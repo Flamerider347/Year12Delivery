@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://7b8ecsljuur7"]
+[gd_scene load_steps=64 format=4 uid="uid://7b8ecsljuur7"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -24,17 +24,18 @@
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://prefabs/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="AudioStream" uid="uid://b64gognx3odf8" path="res://assets/the-simpsons---homer---hmm...-donuts-made-with-Voicemod-[AudioTrimmer.com].mp3" id="24_xfqyr"]
+[ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_fj7yv"]
+[sub_resource type="Sky" id="Sky_xfqyr"]
 sky_material = SubResource("ProceduralSkyMaterial_f3sb7")
 
 [sub_resource type="Environment" id="Environment_tlwt5"]
 background_mode = 2
-sky = SubResource("Sky_fj7yv")
+sky = SubResource("Sky_xfqyr")
 tonemap_mode = 2
 fog_density = 0.0
 
@@ -129,6 +130,12 @@ radius = 0.49
 height = 1.99
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tlwt5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7i1a"]
+radius = 0.49
+height = 1.99
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k1hdb"]
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_k40i2")
@@ -554,6 +561,7 @@ offset_right = 485.0
 offset_bottom = 43.0
 scale = Vector2(3, 3)
 text = "Money: 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="ui"]
 offset_left = 876.0
@@ -562,6 +570,7 @@ offset_right = 1166.0
 offset_bottom = 130.0
 scale = Vector2(3, 3)
 text = "Stars: 5"
+metadata/_edit_use_anchors_ = true
 
 [node name="beautiful" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamMP3_8bx52")
@@ -694,10 +703,12 @@ size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
+handle_input_locally = false
 size = Vector2i(958, 1080)
+render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0906353, 1, 2.02271)
 script = ExtResource("2_le6xu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
@@ -754,6 +765,30 @@ target_position = Vector3(0, 0, -5)
 wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+
+[node name="player_single" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
+script = ExtResource("25_u7kri")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_single"]
+shape = SubResource("CapsuleShape3D_n7i1a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="player_single"]
+mesh = SubResource("CapsuleMesh_k1hdb")
+
+[node name="head" type="Node3D" parent="player_single"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
+
+[node name="player_camera" type="Camera3D" parent="player_single/head"]
+current = true
+
+[node name="seecast" type="RayCast3D" parent="player_single/head/player_camera"]
+target_position = Vector3(0, 0, -5)
+
+[node name="pickup_timer" type="Timer" parent="player_single"]
+wait_time = 0.06
+
+[node name="swap_timer" type="Timer" parent="player_single"]
 
 [connection signal="correct_order" from="." to="plates/objective_plate1" method="_on_world_correct_order"]
 [connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
@@ -828,3 +863,5 @@ wait_time = 0.06
 [connection signal="money_change" from="GridContainer/SubViewportContainer2/SubViewport/player2" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
+[connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
+[connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]

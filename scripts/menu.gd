@@ -17,21 +17,31 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasLayer/Button.hide()
-	$CanvasLayer/Button.modulate.a = 0
-
+	$"CanvasLayer/1".hide()
+	$"CanvasLayer/1".modulate.a = 0
+	$"CanvasLayer/2".hide()
+	$"CanvasLayer/2".modulate.a = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_pressed("pickup_p1"):
+		name_thing.position.y = -2
 	if name_thing.position.y > -2:
 		name_thing.position.y -= delta
 	else:
-		$CanvasLayer/Button.show()
-		if $CanvasLayer/Button.modulate.a < 1:
-			$CanvasLayer/Button.modulate.a += delta
+		$"CanvasLayer/1".show()
+		if $"CanvasLayer/1".modulate.a <1:
+			$"CanvasLayer/1".modulate.a += delta
+		$"CanvasLayer/2".show()
+		if $"CanvasLayer/2".modulate.a <1:
+			$"CanvasLayer/2".modulate.a += delta
 	if spawn:
 		_spawn()
 func _on_button_pressed() -> void:
+	Global.button_value = 1
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+func _on_pressed_2() -> void:
+	Global.button_value = 2
 	get_tree().change_scene_to_file("res://prefabs/world.tscn")
 
 func _spawn():

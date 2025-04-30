@@ -11,6 +11,8 @@ signal make_order_6
 signal make_order_7
 signal make_order_8
 signal make_order_9
+var grid_exists = true
+var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
@@ -38,6 +40,13 @@ var ingredients = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if Global.button_value == 1:
+		$GridContainer.queue_free()
+		$ui/Sprite2D2.hide()
+		$ui/Sprite2D.position.x = 960
+	if Global.button_value == 2:
+		$player_single.queue_free()
+	
 	var controllers = Input.get_connected_joypads()
 	print(controllers)
 	$order_timer.start(0.1)

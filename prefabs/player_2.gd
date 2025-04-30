@@ -6,7 +6,7 @@ var control = true
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 5
-const SENSITIVITY = 0.003
+const SENSITIVITY = 0.06
 const GRAVITY = 9.81 #ms^-2
 const JOY_AXIS_R2 = 5
 @onready var money = $"../../../..".money
@@ -40,6 +40,9 @@ const TRIGGER_THRESHOLD = 0.5
 var r2_down = false
 
 func _unhandled_input(event):
+	if Input.is_action_just_pressed("jump_p2") and event.device == controller_id:
+		if is_on_floor():
+			velocity.y += JUMP_VELOCITY
 	# Handle Jump
 	if event is InputEventJoypadButton and event.pressed and event.device == controller_id:
 		if event.button_index == JOY_BUTTON_A and is_on_floor():
@@ -104,16 +107,16 @@ func movement(delta):
 		joy_input = Vector2.ZERO
 
 	var direction = (head.transform.basis * transform.basis * Vector3(joy_input.x, 0, joy_input.y)).normalized()
-	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7)
+	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7)
 	var cam_input = Vector2(
 	Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X),
 	Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y)
 )
 
 	if cam_input.length() > 0.1:
-		head.rotate_y(-cam_input.x * SENSITIVITY * 20)
-		camera.rotate_x(-cam_input.y * SENSITIVITY * 20)
+		head.rotate_y(-cam_input.x * SENSITIVITY)
+		camera.rotate_x(-cam_input.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 

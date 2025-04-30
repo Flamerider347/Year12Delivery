@@ -32,7 +32,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="1" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -45,6 +45,20 @@ offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play"
+
+[node name="2" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 101.495
+offset_right = 100.0
+offset_bottom = 161.495
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Multiplayer"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -71,7 +85,8 @@ text = "Kitchen Chaos
 Return of the
 UNNAMED PROJECT"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/1" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/2" to="." method="_on_pressed_2"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]
