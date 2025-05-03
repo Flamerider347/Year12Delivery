@@ -13,14 +13,20 @@ var lettuce_chopped = preload("res://prefabs/lettuce_chopped.tscn")
 var carrot_chopped = preload("res://prefabs/carrot_chopped.tscn")
 var product_check = false
 var making_time_left = 0
-var next_spawn_time = 10
+var next_spawn_time = 1
 var order = false
 var action
-var stars = 5
+var stars = 50
 var money = 10
 var orders = [0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
+var current_map
+var maps = {
+	"volcano" : Vector3(-128,0,128),
+	"underwater" : Vector3(128,0,128),
+	"siberia" : Vector3(-128,0,-128),
+}
 var ingredients = {
 "cheese": cheese_chopped,
 "meat":meat_chopped,
@@ -30,6 +36,7 @@ var ingredients = {
 }
 
 func _ready() -> void:
+	map_select()
 	if Global.player_count == 1:
 		$GridContainer.queue_free()
 		$ui/Sprite2D2.hide()
@@ -44,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 			if orders[i] == 0:
 				orders[i] = 1
 				order = false
-				$order_timer.start(30)
+				$order_timer.start(next_spawn_time)
 				break
 			else:
 				pass
@@ -62,7 +69,7 @@ func _physics_process(_delta: float) -> void:
 				var plate_number = objectives[objective][3]
 				product_check = false
 				var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
-				order_contents.emit(product,objectives[objective][2],timer)
+				order_contents.emit(product,objectives[objective][2],timer,plate_number)
 				emit_signal("make_order","kill",plate_number)
 				orders[int(plate_number)-1] = 0
 				objectives.erase(objective)
@@ -115,7 +122,6 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
-	print(objectives)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -163,20 +169,31 @@ func _on_order_timer_timeout() -> void:
 			break
 		else:
 			pass
-	$order_timer.start(next_spawn_time)
-
-
 
 func _on_objective_plate_timeout(timer_number) -> void:
-	orders[timer_number-1] = 0
+	orders[int(timer_number)-1] = 0
+	objectives.erase(str("plate_" + str(timer_number)))
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		get_tree().change_scene_to_file("res://prefabs/game.tscn")
 
-
-func _on_delivery_pot_timeout() -> void:
+func _on_delivery_pot_timeout(_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		get_tree().change_scene_to_file("res://prefabs/game.tscn")
+
+func map_select():
+	for i in maps:
+		maps[i].hide()
+	var map_keys = maps.keys()
+	var map_amount = maps.keys().size()
+	var random_map = map_keys[randi_range(0,map_amount-1)]
+	current_map = maps[random_map]
+	current_map.show()
+	$kitchen.position = current_map + Vector3(0,0.1,0)
+	$player_single.position = current_map + Vector3(0,1.15,3)
+	$GridContainer/SubViewportContainer/SubViewport/player.position = current_map + Vector3(2,1.15,3)
+	$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map + Vector3(0,1.15,3)
+	
