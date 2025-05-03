@@ -17,6 +17,7 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$"CanvasLayer/1".hide()
 	$"CanvasLayer/1".modulate.a = 0
 	$"CanvasLayer/2".hide()
@@ -38,12 +39,10 @@ func _process(delta: float) -> void:
 	if spawn:
 		_spawn()
 func _on_button_pressed() -> void:
-	Global.button_value = 1
 	get_tree().change_scene_to_file("res://prefabs/world.tscn")
 func _on_pressed_2() -> void:
-	Global.button_value = 2
+	Global.player_count = 2
 	get_tree().change_scene_to_file("res://prefabs/world.tscn")
-
 func _spawn():
 	var list_keys = random_spawn.keys()
 	var list_size = list_keys.size()

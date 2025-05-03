@@ -6,7 +6,7 @@ var type = "meat_cooked"
 var meat_burnt = preload("res://prefabs/meat_burnt.tscn")
 func _physics_process(delta: float) -> void:
 	if cooking and cook_progress <= 200:
-		$"../counter/stove/stove_timer".text = str(round((50-cook_progress))/10)
+		$"../kitchen/counter/stove/stove_timer".text = str(round((50-cook_progress))/10)
 		cook_progress += delta * 10
 	if cook_progress > 50:
 		var spawned_meat_burnt = meat_burnt.instantiate()

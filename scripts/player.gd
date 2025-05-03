@@ -39,6 +39,10 @@ signal money_change
 
 
 func _unhandled_input(event):
+	if event is InputEventMouseMotion:
+		head.rotate_y(-event.relative.x * SENSITIVITY/20)
+		camera.rotate_x(-event.relative.y * SENSITIVITY/20)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 	if event.device == controller_id:
 		if event is InputEventJoypadButton:
 			if event.button_index == JOY_BUTTON_A and event.pressed:
@@ -74,9 +78,32 @@ func _physics_process(delta: float):
 			held_object.position = collision_point
 		else:
 			held_object.position = seecast.to_global(seecast.target_position)
+	if Input.is_action_just_pressed("pickup_p1") and can_pickup:
+		if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+			var door = seecast.get_collider()
+			door.swinging = true
+		if not held_object and can_pickup:
+			$pickup_timer.start()
+			can_pickup = false
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+				held_object = seecast.get_collider()
+				pickup(held_object)
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+				var summon_type = seecast.get_collider().name.replace("_crate","")
+				summon(summon_type)
+		if held_object and can_pickup:
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+				stack()
+			else:
+				drop(held_object)
+			$pickup_timer.start()
+			can_pickup = false
 	movement(delta)
 	move_and_slide()
 func movement(delta):
+	if Input.is_action_just_pressed("jump_p1") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		# Handle Sprint.
 	if not is_on_floor() and apply_gravity:
 		velocity.y -= GRAVITY * delta * 1.5
 		# Handle Jump.
@@ -100,7 +127,10 @@ func movement(delta):
 	Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X),
 	Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y)
 )
-
+	var input_dir = Input.get_vector("left", "right", "up", "down")
+	direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	if cam_input.length() > 0.1:
 		head.rotate_y(-cam_input.x * SENSITIVITY)
 		camera.rotate_x(-cam_input.y * SENSITIVITY)
