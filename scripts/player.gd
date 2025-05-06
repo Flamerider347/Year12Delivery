@@ -48,7 +48,6 @@ func _unhandled_input(event):
 			if event.button_index == JOY_BUTTON_A and event.pressed:
 				if is_on_floor():
 					velocity.y += JUMP_VELOCITY
-		if event is InputEventJoypadButton:
 			if event.button_index == JOY_BUTTON_X and can_pickup and event.pressed:
 				if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
 					var door = seecast.get_collider()

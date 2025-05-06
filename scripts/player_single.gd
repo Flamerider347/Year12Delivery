@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var speed = 0
 var can_pickup = true
-const WALK_SPEED = 5.0
+const WALK_SPEED = 10
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 5
 const SENSITIVITY = 0.06
@@ -43,7 +43,32 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY/20)
 		camera.rotate_x(-event.relative.y * SENSITIVITY/20)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
-
+	if event.device == controller_id:
+		if event is InputEventJoypadButton:
+			if event.button_index == JOY_BUTTON_A and event.pressed:
+				if is_on_floor():
+					velocity.y += JUMP_VELOCITY
+		if event is InputEventJoypadButton:
+			if event.button_index == JOY_BUTTON_X and can_pickup and event.pressed:
+				if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+					var door = seecast.get_collider()
+					door.swinging = true
+				if not held_object and can_pickup:
+					$pickup_timer.start()
+					can_pickup = false
+					if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+						held_object = seecast.get_collider()
+						pickup(held_object)
+					if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+						var summon_type = seecast.get_collider().name.replace("_crate","")
+						summon(summon_type)
+				if held_object and can_pickup:
+					if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+						stack()
+					else:
+						drop(held_object)
+					$pickup_timer.start()
+					can_pickup = false
 func _physics_process(delta: float):
 	if money < 0:
 		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
@@ -82,12 +107,22 @@ func movement(delta):
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
+	var joy_input = Vector2(
+	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_X),
+	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_Y),)
 
+	if joy_input.length() < 0.1:
+		joy_input = Vector2.ZERO
+
+	var direction = (head.transform.basis * transform.basis * Vector3(joy_input.x, 0, joy_input.y)).normalized()
+	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7)
+	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7)
 	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	if joy_input.length() < 0.1:
+		var input_dir = Input.get_vector("left", "right", "up", "down")
+		direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
 
 	if cam_input.length() > 0.1:

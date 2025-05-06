@@ -13,7 +13,7 @@ var lettuce_chopped = preload("res://prefabs/lettuce_chopped.tscn")
 var carrot_chopped = preload("res://prefabs/carrot_chopped.tscn")
 var product_check = false
 var making_time_left = 0
-var next_spawn_time = 1
+var next_spawn_time = 30
 var order = false
 var action
 var stars = 50
@@ -22,10 +22,12 @@ var orders = [0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
 var current_map
-var maps = {
-	"volcano" : Vector3(-128,0,128),
-	"underwater" : Vector3(128,0,128),
-	"siberia" : Vector3(-128,0,-128),
+@onready var maps = {
+	"dine_in" : $dine_in,
+	"volcano" : $volcano,
+	"underwater" : $underwater,
+	"siberia" : $siberia,
+
 }
 var ingredients = {
 "cheese": cheese_chopped,
@@ -61,8 +63,8 @@ func _physics_process(_delta: float) -> void:
 			if orders[i] == 1:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
-	if $kitchen/knife.position.y < 0.2:
-		$kitchen/knife.position = Vector3(5.2,1.1,0.4)
+	if $knife.position.y < 0.2:
+		$knife.position = Vector3(5.2,1.1,0.4)
 	if product_check:
 		for objective in objectives:
 			if product == objectives[objective][0]:
@@ -185,15 +187,17 @@ func _on_delivery_pot_timeout(_number) -> void:
 		get_tree().change_scene_to_file("res://prefabs/game.tscn")
 
 func map_select():
-	for i in maps:
+	for i in maps.keys():
 		maps[i].hide()
 	var map_keys = maps.keys()
-	var map_amount = maps.keys().size()
-	var random_map = map_keys[randi_range(0,map_amount-1)]
+	var random_map = map_keys[Global.level-1]
 	current_map = maps[random_map]
 	current_map.show()
-	$kitchen.position = current_map + Vector3(0,0.1,0)
-	$player_single.position = current_map + Vector3(0,1.15,3)
-	$GridContainer/SubViewportContainer/SubViewport/player.position = current_map + Vector3(2,1.15,3)
-	$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map + Vector3(0,1.15,3)
+	$delivery_pot.position = current_map.position + Vector3(-1.5,1.2,4)
+	$knife.position = current_map.position + Vector3(5.2,1.1,0.4)
+	$knife2.position = current_map.position + Vector3(5.6,1.1,0.4)
+	$kitchen.position = current_map.position + Vector3(0,0.1,0)
+	$player_single.position = current_map.position + Vector3(0,1.15,3)
+	$GridContainer/SubViewportContainer/SubViewport/player.position = current_map.position + Vector3(2,1.15,3)
+	$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map.position + Vector3(0,1.15,3)
 	

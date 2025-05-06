@@ -1,5 +1,6 @@
 extends Node3D
 var spawn = true
+var menu_toggle = true
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
@@ -17,11 +18,16 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for i in $CanvasLayer/level_select.get_children():
+		if str(i.name) in Global.unlocked_levels.keys():
+			if Global.unlocked_levels[str(i.name)] == false:
+				i.queue_free()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$"CanvasLayer/1".hide()
-	$"CanvasLayer/1".modulate.a = 0
-	$"CanvasLayer/2".hide()
-	$"CanvasLayer/2".modulate.a = 0
+	$"CanvasLayer/main_menu".hide()
+	$CanvasLayer/level_select.hide()
+	$"CanvasLayer/main_menu/players_1".modulate.a = 0
+	$"CanvasLayer/main_menu/players_2".modulate.a = 0
+	$"CanvasLayer/main_menu/quit".modulate.a = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,19 +36,15 @@ func _process(delta: float) -> void:
 	if name_thing.position.y > -2:
 		name_thing.position.y -= delta
 	else:
-		$"CanvasLayer/1".show()
-		if $"CanvasLayer/1".modulate.a <1:
-			$"CanvasLayer/1".modulate.a += delta
-		$"CanvasLayer/2".show()
-		if $"CanvasLayer/2".modulate.a <1:
-			$"CanvasLayer/2".modulate.a += delta
+		if menu_toggle:
+			$"CanvasLayer/main_menu".show()
+			menu_toggle = false
+		if $"CanvasLayer/main_menu/players_1".modulate.a <1:
+			$"CanvasLayer/main_menu/players_1".modulate.a += delta
+			$"CanvasLayer/main_menu/players_2".modulate.a += delta
+			$"CanvasLayer/main_menu/quit".modulate.a += delta
 	if spawn:
 		_spawn()
-func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
-func _on_pressed_2() -> void:
-	Global.player_count = 2
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
 func _spawn():
 	var list_keys = random_spawn.keys()
 	var list_size = list_keys.size()
@@ -61,3 +63,37 @@ func _on_timer_timeout() -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	body.queue_free()
+
+
+func _on_1_player() -> void:
+	$CanvasLayer/level_select.show()
+	$CanvasLayer/main_menu.hide()
+
+func _on_2_players() -> void:
+	Global.player_count = 2
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+
+func _on_level_1() -> void:
+	Global.level = 1
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+
+func _on_level_2() -> void:
+	Global.level = 2
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+
+func _on_level_3() -> void:
+	Global.level = 3
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+
+func _on_level_4() -> void:
+	Global.level = 4
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+
+
+func _on_level_select_return() -> void:
+	$CanvasLayer/level_select.hide()
+	$CanvasLayer/main_menu.show()
+
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()
