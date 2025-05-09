@@ -1,0 +1,288 @@
+[gd_scene load_steps=11 format=3 uid="uid://bk5q2jyy76phw"]
+
+[ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_oeexw"]
+[ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_axi1q"]
+[ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="3_pjmcm"]
+[ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="4_uc3vu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2uc7u"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_f06o2"]
+sky_material = SubResource("ProceduralSkyMaterial_2uc7u")
+
+[sub_resource type="Environment" id="Environment_qyo8t"]
+background_mode = 2
+sky = SubResource("Sky_f06o2")
+tonemap_mode = 2
+fog_density = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhrhb"]
+size = Vector2(128, 128)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3yftb"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tx50j"]
+size = Vector3(0.5, 20, 0.5)
+
+[node name="menu" type="Node3D"]
+script = ExtResource("1_oeexw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qyo8t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 860.0
+offset_top = 562.0
+offset_right = 1060.0
+offset_bottom = 622.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+metadata/_edit_use_anchors_ = true
+
+[node name="players_2" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 860.0
+offset_top = 641.495
+offset_right = 1060.0
+offset_bottom = 701.495
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Multiplayer"
+metadata/_edit_use_anchors_ = true
+
+[node name="quit" type="Button" parent="CanvasLayer/main_menu"]
+offset_left = 860.0
+offset_top = 724.475
+offset_right = 1060.0
+offset_bottom = 784.475
+text = "Quit"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/main_menu"]
+offset_left = 857.0
+offset_top = 806.0
+offset_right = 1246.0
+offset_bottom = 862.0
+placeholder_text = "Typey typey"
+
+[node name="save_confirm" type="Button" parent="CanvasLayer/main_menu"]
+offset_left = 1277.0
+offset_top = 778.0
+offset_right = 1460.0
+offset_bottom = 875.0
+text = "Enter
+"
+
+[node name="build_edit" type="Button" parent="CanvasLayer/main_menu"]
+offset_left = 855.0
+offset_top = 465.0
+offset_right = 1062.0
+offset_bottom = 557.0
+text = "Rearrange Kitchen"
+
+[node name="level_select" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="level_1" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 530.0
+offset_right = 1060.0
+offset_bottom = 580.0
+text = "level 1"
+
+[node name="level_2" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 630.0
+offset_right = 1060.0
+offset_bottom = 680.0
+text = "level 2"
+
+[node name="level_3" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 730.0
+offset_right = 1060.0
+offset_bottom = 780.0
+text = "Level 3"
+
+[node name="level_4" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 830.0
+offset_right = 1060.0
+offset_bottom = 880.0
+text = "level 4"
+
+[node name="level_5" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 1092.0
+offset_top = 530.0
+offset_right = 1292.0
+offset_bottom = 580.0
+text = "level 5"
+
+[node name="return" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 930.0
+offset_right = 1060.0
+offset_bottom = 980.0
+text = "Return to main menu"
+
+[node name="build_stuff_menu" type="Node2D" parent="CanvasLayer"]
+
+[node name="build_button" type="Button" parent="CanvasLayer/build_stuff_menu"]
+offset_right = 486.0
+offset_bottom = 195.0
+text = "Build"
+
+[node name="upgrades_button" type="Button" parent="CanvasLayer/build_stuff_menu"]
+visible = false
+offset_left = 500.0
+offset_top = 2.0
+offset_right = 983.0
+offset_bottom = 194.0
+text = "Upgrades"
+
+[node name="recipies_button" type="Button" parent="CanvasLayer/build_stuff_menu"]
+visible = false
+offset_left = 1004.0
+offset_top = 1.0
+offset_right = 1533.0
+offset_bottom = 194.0
+text = "recipies"
+
+[node name="layout" type="Node2D" parent="CanvasLayer/build_stuff_menu"]
+script = ExtResource("2_axi1q")
+
+[node name="bench_1" type="Area2D" parent="CanvasLayer/build_stuff_menu/layout"]
+position = Vector2(65, 264)
+script = ExtResource("3_pjmcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/build_stuff_menu/layout/bench_1"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/build_stuff_menu/layout/bench_1"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/build_stuff_menu/layout/bench_1"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_2" type="Area2D" parent="CanvasLayer/build_stuff_menu/layout"]
+position = Vector2(65, 410)
+script = ExtResource("3_pjmcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/build_stuff_menu/layout/bench_2"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/build_stuff_menu/layout/bench_2"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/build_stuff_menu/layout/bench_2"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="layout_upgrades" type="Node2D" parent="CanvasLayer/build_stuff_menu/layout"]
+
+[node name="bench" type="Button" parent="CanvasLayer/build_stuff_menu/layout/layout_upgrades"]
+offset_left = 1667.0
+offset_top = 397.0
+offset_right = 1898.0
+offset_bottom = 481.0
+text = "Bench"
+
+[node name="stove" type="Button" parent="CanvasLayer/build_stuff_menu/layout/layout_upgrades"]
+offset_left = 1675.0
+offset_top = 503.0
+offset_right = 1894.0
+offset_bottom = 584.0
+text = "Stove"
+
+[node name="confirm" type="Button" parent="CanvasLayer/build_stuff_menu/layout/layout_upgrades"]
+offset_left = 1714.0
+offset_top = 634.0
+offset_right = 1889.0
+offset_bottom = 722.0
+text = "Confirm"
+
+[node name="money" type="Label" parent="CanvasLayer/build_stuff_menu/layout"]
+offset_right = 161.0
+offset_bottom = 44.0
+text = "Money: 10"
+
+[node name="upgrades" type="Node2D" parent="CanvasLayer/build_stuff_menu"]
+
+[node name="other stuff" type="Node2D" parent="CanvasLayer/build_stuff_menu"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_3yftb")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+shape = SubResource("BoxShape3D_tx50j")
+
+[node name="name" type="Label3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2.38498e-08, 2, 0, -2, 2.38498e-08, 0, 10, -0.7)
+text = "Kitchen Chaos
+Return of the
+UNNAMED PROJECT"
+
+[connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="_on_1_player"]
+[connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="_on_2_players"]
+[connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
+[connection signal="pressed" from="CanvasLayer/main_menu/build_edit" to="." method="_on_build_edit_pressed"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_2" to="." method="_on_level_2"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_3" to="." method="_on_level_3"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_4" to="." method="_on_level_4"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_5" to="." method="_on_level_5"]
+[connection signal="pressed" from="CanvasLayer/level_select/return" to="." method="_on_level_select_return"]
+[connection signal="pressed" from="CanvasLayer/build_stuff_menu/build_button" to="." method="_on_build_pressed"]
+[connection signal="bench_name" from="CanvasLayer/build_stuff_menu/layout/bench_1" to="CanvasLayer/build_stuff_menu/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/build_stuff_menu/layout/bench_1" to="CanvasLayer/build_stuff_menu/layout/bench_1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/build_stuff_menu/layout/bench_1" to="CanvasLayer/build_stuff_menu/layout/bench_1" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/build_stuff_menu/layout/bench_2" to="CanvasLayer/build_stuff_menu/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/build_stuff_menu/layout/bench_2" to="CanvasLayer/build_stuff_menu/layout/bench_2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/build_stuff_menu/layout/bench_2" to="CanvasLayer/build_stuff_menu/layout/bench_2" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/build_stuff_menu/layout/layout_upgrades/bench" to="CanvasLayer/build_stuff_menu/layout" method="_on_bench_pressed"]
+[connection signal="pressed" from="CanvasLayer/build_stuff_menu/layout/layout_upgrades/stove" to="CanvasLayer/build_stuff_menu/layout" method="_on_stove_pressed"]
+[connection signal="pressed" from="CanvasLayer/build_stuff_menu/layout/layout_upgrades/confirm" to="CanvasLayer/build_stuff_menu/layout" method="_on_confirm_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]

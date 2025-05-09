@@ -1,6 +1,7 @@
 extends Node3D
 var spawn = true
 var menu_toggle = true
+var save_code
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
@@ -21,16 +22,21 @@ func _ready() -> void:
 	for i in $CanvasLayer/level_select.get_children():
 		if str(i.name) in Global.unlocked_levels.keys():
 			if Global.unlocked_levels[str(i.name)] == false:
-				i.queue_free()
+				i.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$"CanvasLayer/main_menu".hide()
 	$CanvasLayer/level_select.hide()
+	$"CanvasLayer/build_stuff_menu".hide()
+	$"CanvasLayer/build_stuff_menu/layout".hide()
+	$"CanvasLayer/build_stuff_menu/layout/layout_upgrades".hide()
 	$"CanvasLayer/main_menu/players_1".modulate.a = 0
 	$"CanvasLayer/main_menu/players_2".modulate.a = 0
 	$"CanvasLayer/main_menu/quit".modulate.a = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("enter"):
+		_on_save_confirm()
 	if Input.is_action_pressed("pickup_p1"):
 		name_thing.position.y = -2
 	if name_thing.position.y > -2:
@@ -88,12 +94,41 @@ func _on_level_3() -> void:
 func _on_level_4() -> void:
 	Global.level = 4
 	get_tree().change_scene_to_file("res://prefabs/world.tscn")
-
+	
+func _on_level_5() -> void:
+	Global.level = 5
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
 
 func _on_level_select_return() -> void:
 	$CanvasLayer/level_select.hide()
 	$CanvasLayer/main_menu.show()
 
-
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_save_confirm() -> void:
+	save_code = $CanvasLayer/main_menu/LineEdit.text
+	if save_code:
+		Global.save_code = save_code
+		Global.save_update = true
+	await get_tree().create_timer(0.1).timeout
+	for i in $CanvasLayer/level_select.get_children():
+		if str(i.name) in Global.unlocked_levels.keys():
+			if Global.unlocked_levels[str(i.name)] == true:
+				i.show()
+
+
+func _on_bench_name() -> void:
+	pass # Replace with function body.
+
+
+func _on_build_edit_pressed() -> void:
+	$CanvasLayer/build_stuff_menu.show()
+	$CanvasLayer/main_menu.hide()
+
+
+func _on_build_pressed() -> void:
+	$CanvasLayer/build_stuff_menu/layout.show()
+	$CanvasLayer/build_stuff_menu/build_button.hide()
+	$CanvasLayer/build_stuff_menu/upgrades_button.hide()
+	$CanvasLayer/build_stuff_menu/recipies_button.hide()

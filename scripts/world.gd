@@ -15,18 +15,20 @@ var product_check = false
 var making_time_left = 0
 var next_spawn_time = 30
 var order = false
+var loaded = true
 var action
-var stars = 50
-var money = 10
+var stars = Global.stars
+var money = Global.money
 var orders = [0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
 var current_map
 @onready var maps = {
-	"dine_in" : $dine_in,
+	"tutorial" : $dine_in,
 	"volcano" : $volcano,
 	"underwater" : $underwater,
 	"siberia" : $siberia,
+	"dine_in" : $dine_in
 
 }
 var ingredients = {
@@ -38,6 +40,9 @@ var ingredients = {
 }
 
 func _ready() -> void:
+	$player_single.position = Vector3(1.8,1.1,4.3)
+	$ui/Label.text = "Money: " + str(money)
+	$day_timer.start()
 	map_select()
 	if Global.player_count == 1:
 		$GridContainer.queue_free()
@@ -48,6 +53,11 @@ func _ready() -> void:
 	$order_timer.start(0.1)
 	$kitchen/fridge_door.rotation_degrees.y = -90
 func _physics_process(_delta: float) -> void:
+	if $day_timer.time_left >0:
+		var time = $day_timer.time_left
+		var minutes = round(int(time)) / 60
+		var seconds = int(time) % 60
+		$ui/Label3.text = str(15-minutes).pad_zeros(2) + ":" + str(59-seconds).pad_zeros(2)
 	if order:
 		for i in range(len(orders)):
 			if orders[i] == 0:
@@ -94,7 +104,7 @@ func _on_chopping_board_body_entered(body: Node3D) -> void:
 func _on_chopping_board_body_exited(body: Node3D) -> void:
 	if body.is_in_group("choppable"):
 		body.remove_from_group("can_chop")
-		
+
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("can_chop"):
 		if body.type == "bun":
@@ -125,7 +135,6 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
 
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("stackable"):
 		product = body.contents
@@ -133,11 +142,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		body.queue_free()
 		
 
-
 func _on_player_money_change() -> void:
-	money -= 1
 	$ui/Label.text = "Money: " + str(money)
-
 
 func _on_stove_body_entered(body: Node3D) -> void:
 	if body.is_in_group("cookable"):
@@ -191,13 +197,29 @@ func map_select():
 		maps[i].hide()
 	var map_keys = maps.keys()
 	var random_map = map_keys[Global.level-1]
+	var old_map = map_keys[Global.level-2]
 	current_map = maps[random_map]
 	current_map.show()
 	$delivery_pot.position = current_map.position + Vector3(-1.5,1.2,4)
 	$knife.position = current_map.position + Vector3(5.2,1.1,0.4)
 	$knife2.position = current_map.position + Vector3(5.6,1.1,0.4)
 	$kitchen.position = current_map.position + Vector3(0,0.1,0)
-	$player_single.position = current_map.position + Vector3(0,1.15,3)
-	$GridContainer/SubViewportContainer/SubViewport/player.position = current_map.position + Vector3(2,1.15,3)
-	$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map.position + Vector3(0,1.15,3)
-	
+	if Global.player_count == 1 :
+		if loaded:
+			$player_single.position = current_map.position + $player_single.position
+			$delivery_pot.position = current_map.position + $delivery_pot.position
+			loaded = false
+		else:
+			$player_single.position = current_map.position + $player_single.position - maps[old_map].position
+			$delivery_pot.position = current_map.position + $delivery_pot.position - maps[old_map].position
+	if Global.player_count == 2:
+		$GridContainer/SubViewportContainer/SubViewport/player.position = current_map.position + Vector3(2,1.15,3)
+		$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map.position + Vector3(0,1.15,3)
+
+
+func _on_day_timer_timeout() -> void:
+	if Global.level < 5:
+		Global.level_updates_left += 1
+		map_select()
+		Global.level += 1
+		$day_timer.start()

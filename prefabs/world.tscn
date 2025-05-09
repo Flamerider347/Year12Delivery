@@ -703,6 +703,9 @@ environment = SubResource("Environment_tlwt5")
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
+[node name="day_timer" type="Timer" parent="."]
+wait_time = 300.0
+
 [node name="order_timer" type="Timer" parent="."]
 
 [node name="ui" type="CanvasLayer" parent="."]
@@ -735,6 +738,17 @@ scale = Vector2(3, 3)
 text = "Stars: 5"
 metadata/_edit_use_anchors_ = true
 
+[node name="Label3" type="Label" parent="ui"]
+anchors_preset = -1
+anchor_left = -0.00104167
+anchor_right = -0.00104167
+offset_left = 1700.0
+offset_right = 2185.0
+offset_bottom = 43.0
+scale = Vector2(3, 3)
+text = "00:00"
+metadata/_edit_use_anchors_ = true
+
 [node name="beautiful" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamMP3_8bx52")
 
@@ -760,7 +774,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep", "pickupable"]]
@@ -796,7 +810,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep", "pickupable"]]
@@ -824,7 +838,7 @@ wait_time = 0.06
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
 [node name="player_single" type="CharacterBody3D" parent="." groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88616, 0, 4.32461)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.1, 4.3)
 script = ExtResource("25_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_single"]
@@ -899,6 +913,7 @@ wait_time = 0.06
 [connection signal="body_entered" from="knife2/cut_area" to="." method="_on_cut_area_body_entered"]
 [connection signal="timeout" from="delivery_pot" to="." method="_on_delivery_pot_timeout"]
 [connection signal="timeout" from="delivery_pot" to="kitchen/plates" method="_on_delivery_pot_timeout"]
+[connection signal="timeout" from="day_timer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="order_timer" to="." method="_on_order_timer_timeout"]
 [connection signal="money_change" from="GridContainer/SubViewportContainer/SubViewport/player" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/pickup_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_pickup_timer_timeout"]
@@ -906,5 +921,6 @@ wait_time = 0.06
 [connection signal="money_change" from="GridContainer/SubViewportContainer2/SubViewport/player2" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
+[connection signal="money_change" from="player_single" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]

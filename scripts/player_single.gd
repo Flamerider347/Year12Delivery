@@ -11,7 +11,7 @@ const GRAVITY = 9.81 #ms^-2
 @onready var head = $head
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
-@onready var money = $"..".money
+@onready var money = Global.money
 
 #region ingredients
 var bun = preload("res://prefabs/bun.tscn")
@@ -35,7 +35,7 @@ var collision_point
 signal ingredient_added
 signal money_change
 func _ready():
-	money_change.emit(money)
+	money_change.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):
@@ -70,6 +70,8 @@ func _unhandled_input(event):
 					$pickup_timer.start()
 					can_pickup = false
 func _physics_process(delta: float):
+	if Input.is_action_just_pressed("menu"):
+		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
 	if money < 0:
 		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
 	if Input.is_action_just_pressed("pickup_p1") and can_pickup:
@@ -189,6 +191,7 @@ func summon(item):
 	var instance = ingredient_scenes[item].instantiate()
 	$"..".add_child(instance)
 	held_object = instance
+	money -= 1
 	instance.type = str(item)
 	instance.position = Vector3(0,-5,0)
 	instance.add_to_group("pickupable")
