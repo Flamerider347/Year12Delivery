@@ -19,22 +19,25 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for i in $CanvasLayer.get_children():
+		i.hide()
+	if Global.menu_method == "main":
+		main_menu()
+		$"CanvasLayer/main_menu/players_1".modulate.a = 0
+		$"CanvasLayer/main_menu/players_2".modulate.a = 0
+		$"CanvasLayer/main_menu/quit".modulate.a = 0
 	for i in $CanvasLayer/level_select.get_children():
 		if str(i.name) in Global.unlocked_levels.keys():
 			if Global.unlocked_levels[str(i.name)] == false:
 				i.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	$"CanvasLayer/main_menu".hide()
-	$CanvasLayer/level_select.hide()
-	$"CanvasLayer/build_stuff_menu".hide()
-	$"CanvasLayer/build_stuff_menu/layout".hide()
-	$"CanvasLayer/build_stuff_menu/layout/layout_upgrades".hide()
-	$"CanvasLayer/main_menu/players_1".modulate.a = 0
-	$"CanvasLayer/main_menu/players_2".modulate.a = 0
-	$"CanvasLayer/main_menu/quit".modulate.a = 0
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("down"):
+		$CanvasLayer/main_menu/LineEdit.show()
+		$CanvasLayer/main_menu/save_confirm.show()
 	if Input.is_action_just_pressed("enter"):
 		_on_save_confirm()
 	if Input.is_action_pressed("pickup_p1"):
@@ -77,27 +80,26 @@ func _on_1_player() -> void:
 
 func _on_2_players() -> void:
 	Global.player_count = 2
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
 
 func _on_level_1() -> void:
 	Global.level = 1
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+	_on_play_level_pressed()
 
 func _on_level_2() -> void:
 	Global.level = 2
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+	build_or_level()
 
 func _on_level_3() -> void:
 	Global.level = 3
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+	build_or_level()
 
 func _on_level_4() -> void:
 	Global.level = 4
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+	build_or_level()
 	
 func _on_level_5() -> void:
 	Global.level = 5
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+	build_or_level()
 
 func _on_level_select_return() -> void:
 	$CanvasLayer/level_select.hide()
@@ -117,18 +119,47 @@ func _on_save_confirm() -> void:
 			if Global.unlocked_levels[str(i.name)] == true:
 				i.show()
 
+func level_select():
+	hide_everything()
+	$CanvasLayer/level_select.show()
 
-func _on_bench_name() -> void:
-	pass # Replace with function body.
+func main_menu():
+	hide_everything()
+	$name.show()
+	$CanvasLayer/main_menu.show()
 
+func build_or_level():
+	hide_everything()
+	$CanvasLayer/build_or_level_menu.show()
+	$CanvasLayer/build_or_level_menu/play_level.text = "Play level " + str(Global.level)
 
-func _on_build_edit_pressed() -> void:
+func build_menu():
+	hide_everything()
 	$CanvasLayer/build_stuff_menu.show()
-	$CanvasLayer/main_menu.hide()
+
+func layout():
+	hide_everything()
+	$CanvasLayer/layout.show()
+
+func layout_upgrades():
+	hide_everything()
+	$CanvasLayer/layout.show()
+	$CanvasLayer/layout_upgrades.show()
+	$CanvasLayer/layout_upgrades/confirm.hide()
+
+func _on_play_level_pressed() -> void:
+	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+
+func hide_everything():
+	$name.hide()
+	for i in $CanvasLayer.get_children():
+		i.hide()
+		
+func level_select_1() -> void:
+	Global.player_count = 1
+	level_select()
 
 
-func _on_build_pressed() -> void:
-	$CanvasLayer/build_stuff_menu/layout.show()
-	$CanvasLayer/build_stuff_menu/build_button.hide()
-	$CanvasLayer/build_stuff_menu/upgrades_button.hide()
-	$CanvasLayer/build_stuff_menu/recipies_button.hide()
+func level_select_2() -> void:
+	Global.player_count = 2
+	level_select()

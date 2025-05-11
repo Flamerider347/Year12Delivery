@@ -4,11 +4,14 @@ var level = 1
 var level_updates_left = 0
 var money = 10
 var stars = 3
-var save_code
+var day_timer = 300
+var benches = {}
+var menu_method = "main" # could be "main", "build", "level"
+var save_code #level,money,stars : <5, unlimited, <=5
 var save_update = false
 var unlocked_levels = {
 	"level_1" :true,
-	"level_2" : false,
+	"level_2" : true,
 	"level_3" : false,
 	"level_4" : false,
 	"level_5" : false
@@ -28,7 +31,6 @@ func _physics_process(_delta: float) -> void:
 		save_update = false
 	if level_updates_left >0 and level <5:
 		level += 1
-		print("did")
 		var level_key = "level_%d" % (level)
 		if level_key in unlocked_levels.keys():
 			unlocked_levels[level_key] = true

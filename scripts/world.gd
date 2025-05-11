@@ -23,6 +23,14 @@ var orders = [0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
 var current_map
+var bench_summoning = {
+	"bench_1" : [Vector3(10,1,10),],
+	"bench_2" : [Vector3(12,1,10),]
+}
+@onready var bench_types = {
+	"bench" : preload("res://prefabs/bench.tscn"),
+	"stove" : preload("res://prefabs/meat_burnt.tscn")
+}
 @onready var maps = {
 	"tutorial" : $dine_in,
 	"volcano" : $volcano,
@@ -52,6 +60,12 @@ func _ready() -> void:
 		$player_single.queue_free()
 	$order_timer.start(0.1)
 	$kitchen/fridge_door.rotation_degrees.y = -90
+	for i in Global.benches:
+		if i in bench_summoning.keys():
+			if Global.benches[i] in bench_types:
+				var summoned_bench = bench_types[Global.benches[i]].instantiate()
+				$kitchen.add_child(summoned_bench)
+				summoned_bench.position = bench_summoning[i][0]
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
@@ -168,7 +182,7 @@ func _on_house_item_entered(address,target_address,time_left) -> void:
 		money += making_time_left
 		$ui/Label.text = "Money: " + str(money)
 		delivered_correctly.emit()
-
+		$delivery_pot.position = current_map.position + Vector3(-1.5,1.2,4)
 
 func _on_order_timer_timeout() -> void:
 	for i in range(len(orders)):
@@ -207,11 +221,11 @@ func map_select():
 	if Global.player_count == 1 :
 		if loaded:
 			$player_single.position = current_map.position + $player_single.position
-			$delivery_pot.position = current_map.position + $delivery_pot.position
+			#$delivery_pot.position = current_map.position + $delivery_pot.position
 			loaded = false
 		else:
 			$player_single.position = current_map.position + $player_single.position - maps[old_map].position
-			$delivery_pot.position = current_map.position + $delivery_pot.position - maps[old_map].position
+			#$delivery_pot.position = current_map.position + $delivery_pot.position - maps[old_map].position
 	if Global.player_count == 2:
 		$GridContainer/SubViewportContainer/SubViewport/player.position = current_map.position + Vector3(2,1.15,3)
 		$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map.position + Vector3(0,1.15,3)

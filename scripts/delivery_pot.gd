@@ -28,7 +28,6 @@ func _on_world_delivered_correctly() -> void:
 	for child in get_children():
 		if child.is_in_group("lid"):
 			child.hide()
-	position = Vector3(-1.5,1.1,4)
 
 
 func _on_timer_timeout() -> void:
@@ -38,5 +37,4 @@ func _on_timer_timeout() -> void:
 	for child in get_children():
 		if child.is_in_group("lid"):
 			child.hide()
-	position = Vector3(-1.5,1.1,4)
 	timeout.emit(timer_number)
