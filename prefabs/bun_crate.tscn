@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c78jtgxi0ld1l"]
+
+[ext_resource type="ArrayMesh" uid="uid://rs6dw7qecvnp" path="res://assets/kitchenassets/crate_buns.obj" id="1_ipbrf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bejym"]
+size = Vector3(2.00146, 0.804199, 1.99854)
+
+[node name="bun_crate" type="StaticBody3D" groups=["summoner"]]
+
+[node name="CrateBuns" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ipbrf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.396491, -0.000488281)
+shape = SubResource("BoxShape3D_bejym")

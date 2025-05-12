@@ -48,6 +48,7 @@ var bench_summoning = {
 	"stove"  : preload("res://prefabs/stove.tscn"),
 	"chopping_board" : preload("res://prefabs/chopping_board.tscn"),
 	"fridge" : preload("res://prefabs/fridge.tscn"),
+	"bun_crate" : preload("res://prefabs/bun_crate.tscn"),
 	"bin"    : preload("res://prefabs/bin.tscn"),
 }
 @onready var maps = {

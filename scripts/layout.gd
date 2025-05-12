@@ -7,8 +7,8 @@ var bench_costs = {
 	"stove" : 5,
 	"chopping_board" : 5,
 	"fridge": 10,
+	"bun_crate" : 5,
 	"bin" : 5,
-	"bun_crate" : 5
 }
 @onready var benches = {
 	"bench_1" : "bench",
