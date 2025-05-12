@@ -9,6 +9,7 @@ var benches = {}
 var menu_method = "main" # could be "main", "build", "level"
 var save_code #level,money,stars : <5, unlimited, <=5
 var save_update = false
+var restart = false
 var unlocked_levels = {
 	"level_1" :true,
 	"level_2" : true,
@@ -17,6 +18,17 @@ var unlocked_levels = {
 	"level_5" : false
 }
 func _physics_process(_delta: float) -> void:
+	if restart:
+		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
+		money = 10
+		stars = 3
+		level = 1
+		player_count = 1
+		level_updates_left = 0
+		restart = false
+		for i in unlocked_levels.keys():
+			unlocked_levels[i] = false
+		unlocked_levels["level_1"] = true
 	if save_update:
 		var parts = save_code.split("-")
 		if parts.size() == 3:

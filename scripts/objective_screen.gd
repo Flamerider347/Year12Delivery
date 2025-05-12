@@ -54,7 +54,7 @@ var ingredient_time = {
 	"bun_bottom_chopped" : 10,
 	"bun_top_chopped" : 10,
 }
-var ingredient_list = {
+var burger_list = {
 	"tomato_chopped":preload("res://prefabs/tomato_chopped.tscn"),
 	"meat_cooked": preload("res://prefabs/meat_cooked.tscn"),
 	"cheese_chopped": preload("res://prefabs/cheese_chopped.tscn"),
@@ -76,7 +76,7 @@ func _physics_process(_delta: float) -> void:
 
 func randomise_objective():
 	delivery_location = delivery_list[randi_range(0,8)]
-	var list_keys = ingredient_list.keys()
+	var list_keys = burger_list.keys()
 	var list_size = list_keys.size()
 	ingredient_amount = randi_range(3, 5)
 
@@ -111,7 +111,7 @@ func randomise_objective():
 		ingredient_5 = "bun_top_chopped"
 		plate_contents[making_plate].append(ingredient_5)
 	var plate_name = making_plate.replace("plate_", "")
-	var make_time = 100
+	var make_time = -30
 	make_time += ingredient_time[ingredient_1]
 	make_time += ingredient_time[ingredient_2]
 	make_time += ingredient_time[ingredient_3]
@@ -124,9 +124,9 @@ func randomise_objective():
 	timing = true
 	update_target()
 func update_target():
-	var item_1 = ingredient_list[ingredient_1].instantiate()
+	var item_1 = burger_list[ingredient_1].instantiate()
 	var item_hitbox_1 = item_1.find_child("CollisionShape3D").shape
-	var item_2 = ingredient_list[ingredient_2].instantiate()
+	var item_2 = burger_list[ingredient_2].instantiate()
 	var item_hitbox_2 = item_2.find_child("CollisionShape3D").shape
 	plates[making_plate].add_child(item_1)
 	item_1.remove_from_group("pickupable")
@@ -151,7 +151,7 @@ func update_target():
 		next_position += item_size
 
 	if ingredient_3:
-		var item_3 = ingredient_list[ingredient_3].instantiate()
+		var item_3 = burger_list[ingredient_3].instantiate()
 		var item_hitbox_3 = item_3.find_child("CollisionShape3D").shape
 		plates[making_plate].add_child(item_3)
 		item_3.remove_from_group("pickupable")
@@ -164,7 +164,7 @@ func update_target():
 			var item_size = item_hitbox_3.height
 			next_position += item_size
 	if ingredient_4:
-		var item_4 = ingredient_list[ingredient_4].instantiate()
+		var item_4 = burger_list[ingredient_4].instantiate()
 		var item_hitbox_4 = item_4.find_child("CollisionShape3D").shape
 		plates[making_plate].add_child(item_4)
 		item_4.remove_from_group("pickupable")
@@ -177,7 +177,7 @@ func update_target():
 			var item_size = item_hitbox_4.height
 			next_position += item_size
 	if ingredient_5:
-		var item_5 = ingredient_list[ingredient_5].instantiate()
+		var item_5 = burger_list[ingredient_5].instantiate()
 		plates[making_plate].add_child(item_5)
 		item_5.freeze = true
 		item_5.remove_from_group("pickupable")

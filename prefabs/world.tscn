@@ -1,25 +1,15 @@
-[gd_scene load_steps=70 format=4 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=46 format=4 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
 [ext_resource type="Texture2D" uid="uid://yaqtpg8sikk" path="res://assets/materials/lave_ambientocclusion.png" id="2_xky7j"]
 [ext_resource type="Script" uid="uid://d0vlgi3des8jt" path="res://scripts/objective_plates.gd" id="3_u7kri"]
 [ext_resource type="Texture2D" uid="uid://b46jqktnxqbq0" path="res://assets/materials/lave_normal.png" id="4_mrigr"]
-[ext_resource type="ArrayMesh" uid="uid://d3hkf5s5qkh65" path="res://assets/kitchenassets/stove_single.obj" id="4_sxw1y"]
-[ext_resource type="ArrayMesh" uid="uid://chytia7sek7ru" path="res://assets/kitchenassets/kitchencounter_straight_B.obj" id="6_2a2la"]
-[ext_resource type="ArrayMesh" uid="uid://bt5fqusd0i7s8" path="res://assets/kitchenassets/pan_A.obj" id="7_2a2la"]
-[ext_resource type="ArrayMesh" uid="uid://ccdu8si88el7q" path="res://assets/kitchenassets/kitchencounter_innercorner.obj" id="7_deaom"]
-[ext_resource type="ArrayMesh" uid="uid://dodfdfkndbmla" path="res://assets/kitchenassets/cuttingboard.obj" id="8_6mti1"]
 [ext_resource type="ArrayMesh" uid="uid://dnw6ln86toimb" path="res://assets/kitchenassets/knife.obj" id="10_bpfb4"]
 [ext_resource type="Texture2D" uid="uid://dtxutdwarivkd" path="res://assets/Cursor.png" id="11_b1m2q"]
-[ext_resource type="ArrayMesh" uid="uid://rs6dw7qecvnp" path="res://assets/kitchenassets/crate_buns.obj" id="12_8bx52"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
-[ext_resource type="Script" uid="uid://8nrws8bwiprl" path="res://scripts/fridge_door.gd" id="15_2a2la"]
-[ext_resource type="ArrayMesh" uid="uid://bja6wsds8k0cf" path="res://assets/kitchenassets/fridge_A_decorated.obj" id="15_nwl14"]
-[ext_resource type="ArrayMesh" uid="uid://bmnjpfam7mg7n" path="res://assets/kitchenassets/fridge_B_door.obj" id="16_2a2la"]
 [ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="16_nwl14"]
-[ext_resource type="ArrayMesh" uid="uid://s6dxpx2ietsv" path="res://assets/kitchenassets/crate.obj" id="19_6mti1"]
 [ext_resource type="Texture2D" uid="uid://rmmlwqdyxuv0" path="res://assets/materials/lave_emissive.png" id="19_n7i1a"]
 [ext_resource type="AudioStream" uid="uid://bx8v1d3rongx8" path="res://assets/yippee-made-with-Voicemod.mp3" id="22_8bx52"]
 [ext_resource type="PackedScene" uid="uid://1gco46vh5o4v" path="res://prefabs/delivery_pot.tscn" id="22_b1m2q"]
@@ -41,55 +31,12 @@ albedo_texture = ExtResource("4_mrigr")
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sxw1y"]
 height = 0.108154
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nwl14"]
-size = Vector3(0.51, 2.5, 2.001)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wse8f"]
-size = Vector3(1.49, 0.7, 0.99)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k40i2"]
-size = Vector3(1.50104, 0.15033, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k3n1d"]
-size = Vector3(4, 1, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2o6r5"]
-size = Vector3(2, 1, 4)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_6mti1"]
-height = 0.1
-radius = 0.1
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_deaom"]
-height = 2.26318
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_b1m2q"]
-size = Vector3(2, 1, 2)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bpfb4"]
-size = Vector3(1, 0.705566, 0.72998)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gi6id"]
-size = Vector3(1, 0.707733, 0.762451)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6mti1"]
-size = Vector3(1, 0.452454, 1.48477)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_deaom"]
-size = Vector3(1, 0.641602, 0.836487)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2a2la"]
-size = Vector3(1, 0.646027, 0.649841)
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nwl14"]
 height = 0.999023
 radius = 0.744629
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2a2la"]
 height = 0.705811
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8bx52"]
-size = Vector3(1, 1, 1.12305)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7kri"]
 
@@ -345,156 +292,8 @@ wait_time = 1000.0
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
 
-[node name="fridge_door" type="StaticBody3D" parent="kitchen" groups=["door"]]
-transform = Transform3D(0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, 0.642788, 5.57167, 0, 7.00747)
-script = ExtResource("15_2a2la")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/fridge_door"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.00611, 1.25239, 0.320662)
-shape = SubResource("BoxShape3D_nwl14")
-
-[node name="FridgeBDoor" type="MeshInstance3D" parent="kitchen/fridge_door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5)
-mesh = ExtResource("16_2a2la")
-skeleton = NodePath("../../..")
-
-[node name="chopping_board" type="StaticBody3D" parent="kitchen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
-collision_layer = 3
-
-[node name="chopping_board" type="Area3D" parent="kitchen/chopping_board"]
-
-[node name="Cuttingboard" type="MeshInstance3D" parent="kitchen/chopping_board/chopping_board"]
-mesh = ExtResource("8_6mti1")
-skeleton = NodePath("../../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/chopping_board/chopping_board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
-shape = SubResource("BoxShape3D_wse8f")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/chopping_board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
-shape = SubResource("BoxShape3D_k40i2")
-
-[node name="counter" type="StaticBody3D" parent="kitchen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
-collision_layer = 3
-
-[node name="StoveSingle" type="MeshInstance3D" parent="kitchen/counter"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 4)
-mesh = ExtResource("4_sxw1y")
-skeleton = NodePath("../../..")
-
-[node name="KitchencounterStraightB" type="MeshInstance3D" parent="kitchen/counter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
-mesh = ExtResource("6_2a2la")
-skeleton = NodePath("../../..")
-
-[node name="KitchencounterInnercorner" type="MeshInstance3D" parent="kitchen/counter"]
-mesh = ExtResource("7_deaom")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/counter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 0)
-shape = SubResource("BoxShape3D_k3n1d")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="kitchen/counter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
-shape = SubResource("BoxShape3D_2o6r5")
-
-[node name="KitchencounterStraightB2" type="MeshInstance3D" parent="kitchen/counter"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 2)
-mesh = ExtResource("6_2a2la")
-skeleton = NodePath("../../..")
-
-[node name="stove" type="Area3D" parent="kitchen/counter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 4)
-
-[node name="PanA" type="MeshInstance3D" parent="kitchen/counter/stove"]
-mesh = ExtResource("7_2a2la")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/counter/stove"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0630493, 0)
-shape = SubResource("CylinderShape3D_6mti1")
-
-[node name="stove_timer" type="Label3D" parent="kitchen/counter/stove"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0.78665, 0)
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="kitchen/counter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.131592, 4)
-shape = SubResource("CylinderShape3D_deaom")
-
-[node name="crates" type="Node3D" parent="kitchen"]
-
-[node name="bun_crate" type="StaticBody3D" parent="kitchen/crates" groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/crates/bun_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_b1m2q")
-
-[node name="CrateBuns" type="MeshInstance3D" parent="kitchen/crates/bun_crate"]
-mesh = ExtResource("12_8bx52")
-skeleton = NodePath("../../../..")
-
-[node name="lettuce_crate" type="StaticBody3D" parent="kitchen/crates" groups=["summoner"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/crates/lettuce_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00238, 0.651303, 6.38137)
-shape = SubResource("BoxShape3D_bpfb4")
-
-[node name="carrot_crate" type="StaticBody3D" parent="kitchen/crates" groups=["summoner"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/crates/carrot_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.03463, 0.650192, 5.63208)
-shape = SubResource("BoxShape3D_gi6id")
-
-[node name="meat_crate" type="StaticBody3D" parent="kitchen/crates" groups=["summoner"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/crates/meat_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9999, 1.22806, 6.00139)
-shape = SubResource("BoxShape3D_6mti1")
-
-[node name="cheese_crate" type="StaticBody3D" parent="kitchen/crates" groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83549, 6.37025)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/crates/cheese_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00557, 0.0854492, -0.0470276)
-shape = SubResource("BoxShape3D_deaom")
-
-[node name="tomato_crate" type="StaticBody3D" parent="kitchen/crates" groups=["summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.9, 5.6)
-
-[node name="FridgeADecorated" type="MeshInstance3D" parent="kitchen/crates/tomato_crate"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -1.9, 0.4)
-mesh = ExtResource("15_nwl14")
-skeleton = NodePath("../../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/crates/tomato_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0192719, -0.0162048)
-shape = SubResource("BoxShape3D_2a2la")
-
-[node name="chopping_board2" type="StaticBody3D" parent="kitchen"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 6, 1, 2)
-collision_layer = 3
-
-[node name="chopping_board" type="Area3D" parent="kitchen/chopping_board2"]
-
-[node name="Cuttingboard" type="MeshInstance3D" parent="kitchen/chopping_board2/chopping_board"]
-mesh = ExtResource("8_6mti1")
-skeleton = NodePath("../../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/chopping_board2/chopping_board"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312556, 0)
-shape = SubResource("BoxShape3D_wse8f")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/chopping_board2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
-shape = SubResource("BoxShape3D_k40i2")
-
 [node name="delivery_plate_table" type="StaticBody3D" parent="kitchen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 10)
 
 [node name="TableRoundASmall" type="MeshInstance3D" parent="kitchen/delivery_plate_table"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -518,31 +317,6 @@ shape = SubResource("CylinderShape3D_sxw1y")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/delivery_plate_table/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
-
-[node name="bin" type="StaticBody3D" parent="kitchen"]
-
-[node name="Crate" type="MeshInstance3D" parent="kitchen/bin"]
-mesh = ExtResource("19_6mti1")
-skeleton = NodePath("../../..")
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="kitchen/bin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-depth = 2.0
-polygon = PackedVector2Array(0, 0.8, 0, 0, 0, 0, 2, 0, 2, 0.8, 1.95, 0.8, 1.95, 0.05, 0.05, 0.05, 0.05, 0.8)
-
-[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="kitchen/bin"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.030442, 0, 1.00388)
-depth = 2.0
-polygon = PackedVector2Array(0, 0.8, 0, 0, 0, 0, 2, 0, 2, 0.8, 1.95, 0.8, 1.95, 0.05, 0.05, 0.05, 0.05, 0.8)
-
-[node name="incinerator" type="Area3D" parent="kitchen/bin"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/bin/incinerator"]
-shape = SubResource("BoxShape3D_8bx52")
-
-[node name="Label3D" type="Label3D" parent="kitchen/bin"]
-transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0.11, 0)
-text = "Bin"
 
 [node name="houses" type="Node3D" parent="kitchen"]
 
@@ -695,7 +469,7 @@ transform = Transform3D(1, 0, -1.59578e-37, 0, 1, 0, 0, 0, 1, -0.0749478, 0, -0.
 shape = SubResource("BoxShape3D_le6xu")
 
 [node name="delivery_pot" parent="." groups=["deliverable"] instance=ExtResource("22_b1m2q")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1.1, 4)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 1.1, 10)
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tlwt5")
@@ -774,7 +548,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep", "pickupable"]]
@@ -810,7 +584,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep", "pickupable"]]
@@ -838,7 +612,7 @@ wait_time = 0.06
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
 [node name="player_single" type="CharacterBody3D" parent="." groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.1, 4.3)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.8, 1.1, 4.3)
 script = ExtResource("25_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_single"]
@@ -884,13 +658,7 @@ wait_time = 0.06
 [connection signal="timeout" from="kitchen/plates/objective_plate8/order_time" to="kitchen/plates/objective_plate8" method="_on_order_time_timeout"]
 [connection signal="timed_out_timer" from="kitchen/plates/objective_plate9" to="kitchen/plates" method="_on_objective_plate_timed_out_timer"]
 [connection signal="timeout" from="kitchen/plates/objective_plate9/order_time" to="kitchen/plates/objective_plate9" method="_on_order_time_timeout"]
-[connection signal="body_entered" from="kitchen/chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]
-[connection signal="body_exited" from="kitchen/chopping_board/chopping_board" to="." method="_on_chopping_board_body_exited"]
-[connection signal="body_entered" from="kitchen/counter/stove" to="." method="_on_stove_body_entered"]
-[connection signal="body_exited" from="kitchen/counter/stove" to="." method="_on_stove_body_exited"]
-[connection signal="body_entered" from="kitchen/chopping_board2/chopping_board" to="." method="_on_chopping_board_body_entered"]
 [connection signal="body_entered" from="kitchen/delivery_plate_table/Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="kitchen/bin/incinerator" to="." method="_on_incinerator_body_entered"]
 [connection signal="body_entered" from="kitchen/houses/A1" to="kitchen/houses/A1" method="_on_body_entered"]
 [connection signal="item_entered" from="kitchen/houses/A1" to="." method="_on_house_item_entered"]
 [connection signal="body_entered" from="kitchen/houses/A2" to="kitchen/houses/A2" method="_on_body_entered"]

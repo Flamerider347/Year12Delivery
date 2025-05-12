@@ -24,12 +24,31 @@ var objectives = {}
 var product = []
 var current_map
 var bench_summoning = {
-	"bench_1" : [Vector3(10,1,10),],
-	"bench_2" : [Vector3(12,1,10),]
+	"bench_1" : [Vector3(-5,0,0),0],
+	"bench_2" : [Vector3(-3,0,0),0],
+	"bench_3" : [Vector3(-1,0,0),0],
+	"bench_4" : [Vector3(1,0,0),0],
+	"bench_5" : [Vector3(3,0,0),0],
+	"bench_6" : [Vector3(5,0,0),0],
+	"bench_7" : [Vector3(-5,0,2),90],
+	"bench_8" : [Vector3(5,0,2),270],
+	"bench_9" : [Vector3(-5,0,4),90],
+	"bench_10" : [Vector3(5,0,4),270],
+	"bench_11" : [Vector3(-5,0,6),90],
+	"bench_12" : [Vector3(5,0,6),270],
+	"bench_13" : [Vector3(-5,0,8),90],
+	"bench_14" : [Vector3(5,0,8),270],
+	"bench_15" : [Vector3(-5,0,10),90],
+	"bench_16" : [Vector3(5,0,10),270],
+	"bench_17" : [Vector3(-3,0,10),180],
+	"bench_18" : [Vector3(3,0,10),180],
 }
 @onready var bench_types = {
-	"bench" : preload("res://prefabs/bench.tscn"),
-	"stove" : preload("res://prefabs/meat_burnt.tscn")
+	"bench"  : preload("res://prefabs/bench.tscn"),
+	"stove"  : preload("res://prefabs/stove.tscn"),
+	"chopping_board" : preload("res://prefabs/chopping_board.tscn"),
+	"fridge" : preload("res://prefabs/fridge.tscn"),
+	"bin"    : preload("res://prefabs/bin.tscn"),
 }
 @onready var maps = {
 	"tutorial" : $dine_in,
@@ -59,13 +78,14 @@ func _ready() -> void:
 	if Global.player_count == 2:
 		$player_single.queue_free()
 	$order_timer.start(0.1)
-	$kitchen/fridge_door.rotation_degrees.y = -90
 	for i in Global.benches:
-		if i in bench_summoning.keys():
-			if Global.benches[i] in bench_types:
-				var summoned_bench = bench_types[Global.benches[i]].instantiate()
-				$kitchen.add_child(summoned_bench)
-				summoned_bench.position = bench_summoning[i][0]
+		if Global.benches[i]:
+			if i in bench_summoning.keys():
+				if Global.benches[i] in bench_types:
+					var summoned_bench = bench_types[Global.benches[i]].instantiate()
+					$kitchen.add_child(summoned_bench)
+					summoned_bench.position = bench_summoning[i][0]
+					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
@@ -111,13 +131,6 @@ func _physics_process(_delta: float) -> void:
 				break
 			else:
 				product_check = false
-func _on_chopping_board_body_entered(body: Node3D) -> void:
-	if body.is_in_group("choppable"):
-		body.add_to_group("can_chop")
-
-func _on_chopping_board_body_exited(body: Node3D) -> void:
-	if body.is_in_group("choppable"):
-		body.remove_from_group("can_chop")
 
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("can_chop"):
@@ -159,16 +172,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_player_money_change() -> void:
 	$ui/Label.text = "Money: " + str(money)
 
-func _on_stove_body_entered(body: Node3D) -> void:
-	if body.is_in_group("cookable"):
-		body.cooking = true
-
-
-func _on_stove_body_exited(body: Node3D) -> void:
-	if body.is_in_group("cookable"):
-		body.cooking = false
-		$kitchen/counter/stove/stove_timer.text = ""
-
 func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife") and not body.is_in_group("keep"):
 		body.queue_free()
@@ -198,13 +201,13 @@ func _on_objective_plate_timeout(timer_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
-		get_tree().change_scene_to_file("res://prefabs/game.tscn")
+		Global.restart = true
 
 func _on_delivery_pot_timeout(_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
-		get_tree().change_scene_to_file("res://prefabs/game.tscn")
+		Global.restart = true
 
 func map_select():
 	for i in maps.keys():
@@ -214,7 +217,7 @@ func map_select():
 	var old_map = map_keys[Global.level-2]
 	current_map = maps[random_map]
 	current_map.show()
-	$delivery_pot.position = current_map.position + Vector3(-1.5,1.2,4)
+	$delivery_pot.position = current_map.position + Vector3(3,1.2,10)
 	$knife.position = current_map.position + Vector3(5.2,1.1,0.4)
 	$knife2.position = current_map.position + Vector3(5.6,1.1,0.4)
 	$kitchen.position = current_map.position + Vector3(0,0.1,0)
@@ -234,6 +237,4 @@ func map_select():
 func _on_day_timer_timeout() -> void:
 	if Global.level < 5:
 		Global.level_updates_left += 1
-		map_select()
-		Global.level += 1
-		$day_timer.start()
+		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
