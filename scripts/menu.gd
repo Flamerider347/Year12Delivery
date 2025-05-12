@@ -60,7 +60,7 @@ func _spawn():
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
 	var instance = random_spawn[spawned_random_item].instantiate()
 	add_child(instance)
-	instance.position = Vector3(randf_range(-3,3),10,randf_range(-3,3))
+	instance.position = Vector3(randf_range(-3,3),1,randf_range(-3,3))
 	instance.rotation_degrees = Vector3(randi_range(0,360),randi_range(0,360),randi_range(0,360))
 	spawn = false
 	$Timer.start()
@@ -149,6 +149,10 @@ func layout_upgrades():
 
 func _on_play_level_pressed() -> void:
 	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+
+func upgrades() -> void:
+	hide_everything()
+	$CanvasLayer/upgrades.show()
 
 func hide_everything():
 	$name.hide()

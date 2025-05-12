@@ -612,7 +612,7 @@ wait_time = 0.06
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
 [node name="player_single" type="CharacterBody3D" parent="." groups=["keep"]]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.8, 1.1, 4.3)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 1.8, 1.1, 4.3)
 script = ExtResource("25_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_single"]

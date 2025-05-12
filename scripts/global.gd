@@ -37,7 +37,6 @@ func _physics_process(_delta: float) -> void:
 			var maybe_stars = int(parts[2])
 			if typeof(maybe_level) == TYPE_INT and typeof(maybe_money) == TYPE_INT and typeof(maybe_stars) == TYPE_INT and maybe_level <= 4 and maybe_stars <=5:
 				level_updates_left = int(parts[0])
-				print(level_updates_left)
 				money = int(parts[1])
 				stars = int(parts[2])
 		save_update = false

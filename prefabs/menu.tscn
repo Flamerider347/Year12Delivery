@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=12 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_oeexw"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_axi1q"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="3_pjmcm"]
 [ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="4_uc3vu"]
+[ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="5_pjmcm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2uc7u"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -38,7 +39,448 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="layout" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("2_axi1q")
+
+[node name="money" type="Label" parent="CanvasLayer/layout"]
+offset_right = 161.0
+offset_bottom = 44.0
+scale = Vector2(3, 3)
+text = "Money: 10"
+
+[node name="return" type="Button" parent="CanvasLayer/layout"]
+offset_left = 1700.0
+offset_top = 10.0
+offset_right = 1900.0
+offset_bottom = 60.0
+text = "Return"
+
+[node name="bench_1" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(640, 128)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_1"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_1"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_1"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_2" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(768, 128)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_2"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_2"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_2"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_3" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(896, 128)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_3"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_3"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_3"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_4" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1024, 128)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_4"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_4"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_4"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_5" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1152, 128)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_5"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_5"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_5"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_6" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1280, 128)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_6"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_6"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_6"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_7" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(640, 256)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_7"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_7"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_7"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_8" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1280, 256)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_8"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_8"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_8"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_9" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(640, 384)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_9"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_9"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_9"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_10" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1280, 384)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_10"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_10"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_10"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_11" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(640, 512)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_11"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_11"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_11"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_12" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1280, 512)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_12"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_12"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_12"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_13" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(640, 640)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_13"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_13"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_13"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_14" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1280, 640)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_14"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_14"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_14"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_15" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(640, 768)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_15"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_15"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_15"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_16" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1280, 768)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_16"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_16"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_16"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_17" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(768, 768)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_17"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_17"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_17"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_18" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(1152, 768)
+script = ExtResource("3_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_18"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_18"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench_18"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(128, 960)
+script = ExtResource("5_pjmcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bench"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "bench"
+
+[node name="stove" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(272, 960)
+script = ExtResource("5_pjmcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/stove"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/stove"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/stove"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "stove"
+
+[node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/dragging_bench"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/dragging_bench"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -16.0
+offset_bottom = -33.0
+
+[node name="fridge" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(560, 960)
+script = ExtResource("5_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/fridge"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/fridge"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/fridge"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "fridge"
+
+[node name="bin" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(704, 960)
+script = ExtResource("5_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bin"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bin"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/bin"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "bin"
+
+[node name="chopping_board" type="Area2D" parent="CanvasLayer/layout"]
+position = Vector2(416, 960)
+script = ExtResource("5_pjmcm")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/chopping_board"]
+shape = SubResource("RectangleShape2D_jhrhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/chopping_board"]
+texture = ExtResource("4_uc3vu")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/chopping_board"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "chopping board"
+
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -94,29 +536,6 @@ offset_bottom = 875.0
 text = "Enter
 "
 
-[node name="build_or_level_menu" type="Node2D" parent="CanvasLayer"]
-visible = false
-
-[node name="play_level" type="Button" parent="CanvasLayer/build_or_level_menu"]
-offset_left = 860.0
-offset_top = 600.0
-offset_right = 1060.0
-offset_bottom = 650.0
-
-[node name="build_menu" type="Button" parent="CanvasLayer/build_or_level_menu"]
-offset_left = 860.0
-offset_top = 660.0
-offset_right = 1060.0
-offset_bottom = 710.0
-text = "Open Build Menu"
-
-[node name="return" type="Button" parent="CanvasLayer/build_or_level_menu"]
-offset_left = 860.0
-offset_top = 740.0
-offset_right = 1060.0
-offset_bottom = 790.0
-text = "return to levels"
-
 [node name="level_select" type="Node2D" parent="CanvasLayer"]
 visible = false
 
@@ -156,402 +575,34 @@ offset_bottom = 880.0
 text = "level 5"
 
 [node name="return" type="Button" parent="CanvasLayer/level_select"]
-offset_left = 860.0
-offset_top = 930.0
-offset_right = 1060.0
-offset_bottom = 980.0
+offset_left = 1700.0
+offset_top = 10.0
+offset_right = 1900.0
+offset_bottom = 60.0
 text = "Return to main menu"
 
-[node name="layout" type="Node2D" parent="CanvasLayer"]
-script = ExtResource("2_axi1q")
-
-[node name="bench_1" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(64, 256)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_1"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_1"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_1"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_2" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(192, 256)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_2"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_2"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_2"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="money" type="Label" parent="CanvasLayer/layout"]
-offset_right = 161.0
-offset_bottom = 44.0
-text = "Money: 10"
-
-[node name="return" type="Button" parent="CanvasLayer/layout"]
-offset_left = 1518.0
-offset_top = -3.0
-offset_right = 1923.0
-offset_bottom = 159.0
-text = "Return"
-
-[node name="bench_3" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(320, 256)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_3"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_3"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_3"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_4" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(448, 256)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_4"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_4"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_4"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_5" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(576, 256)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_5"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_5"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_5"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_6" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(704, 256)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_6"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_6"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_6"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_7" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(64, 384)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_7"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_7"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_7"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_8" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(704, 384)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_8"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_8"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_8"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_9" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(64, 512)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_9"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_9"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_9"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_10" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(704, 512)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_10"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_10"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_10"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_11" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(64, 640)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_11"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_11"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_11"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_12" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(704, 640)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_12"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_12"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_12"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_13" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(64, 768)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_13"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_13"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_13"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_14" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(704, 768)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_14"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_14"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_14"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_15" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(64, 896)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_15"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_15"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_15"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_16" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(704, 896)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_16"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_16"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_16"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_17" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(192, 896)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_17"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_17"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_17"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="bench_18" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(576, 896)
-script = ExtResource("3_pjmcm")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench_18"]
-shape = SubResource("RectangleShape2D_jhrhb")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/bench_18"]
-texture = ExtResource("4_uc3vu")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/bench_18"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
-[node name="layout_upgrades" type="Node2D" parent="CanvasLayer"]
+[node name="build_or_level_menu" type="Node2D" parent="CanvasLayer"]
 visible = false
 
-[node name="bench" type="Button" parent="CanvasLayer/layout_upgrades"]
+[node name="play_level" type="Button" parent="CanvasLayer/build_or_level_menu"]
+offset_left = 860.0
+offset_top = 600.0
+offset_right = 1060.0
+offset_bottom = 650.0
+
+[node name="build_menu" type="Button" parent="CanvasLayer/build_or_level_menu"]
+offset_left = 860.0
+offset_top = 660.0
+offset_right = 1060.0
+offset_bottom = 710.0
+text = "Open Build Menu"
+
+[node name="return" type="Button" parent="CanvasLayer/build_or_level_menu"]
 offset_left = 1700.0
-offset_top = 300.0
+offset_top = 10.0
 offset_right = 1900.0
-offset_bottom = 350.0
-text = "Bench"
-
-[node name="stove" type="Button" parent="CanvasLayer/layout_upgrades"]
-offset_left = 1700.0
-offset_top = 360.0
-offset_right = 1900.0
-offset_bottom = 410.0
-text = "Stove"
-
-[node name="chopping_board" type="Button" parent="CanvasLayer/layout_upgrades"]
-offset_left = 1700.0
-offset_top = 420.0
-offset_right = 1900.0
-offset_bottom = 470.0
-text = "Chopping Board"
-
-[node name="fridge" type="Button" parent="CanvasLayer/layout_upgrades"]
-offset_left = 1700.0
-offset_top = 480.0
-offset_right = 1900.0
-offset_bottom = 530.0
-text = "Fridge"
-
-[node name="bin" type="Button" parent="CanvasLayer/layout_upgrades"]
-offset_left = 1700.0
-offset_top = 540.0
-offset_right = 1900.0
-offset_bottom = 590.0
-text = "Bin"
-
-[node name="confirm" type="Button" parent="CanvasLayer/layout_upgrades"]
-offset_left = 1714.0
-offset_top = 634.0
-offset_right = 1889.0
-offset_bottom = 722.0
-text = "Confirm"
-
-[node name="return" type="Button" parent="CanvasLayer/layout_upgrades"]
-offset_left = 1518.0
-offset_top = -3.0
-offset_right = 1923.0
-offset_bottom = 159.0
-text = "Return"
+offset_bottom = 60.0
+text = "return to levels"
 
 [node name="build_stuff_menu" type="Node2D" parent="CanvasLayer"]
 visible = false
@@ -576,15 +627,34 @@ offset_bottom = 194.0
 text = "recipies"
 
 [node name="return" type="Button" parent="CanvasLayer/build_stuff_menu"]
-offset_left = 1518.0
-offset_top = -3.0
-offset_right = 1923.0
-offset_bottom = 159.0
+offset_left = 1700.0
+offset_top = 10.0
+offset_right = 1900.0
+offset_bottom = 60.0
 text = "Return"
 
-[node name="upgrades" type="Node2D" parent="CanvasLayer/build_stuff_menu"]
+[node name="upgrades" type="Node2D" parent="CanvasLayer"]
+visible = false
 
-[node name="other stuff" type="Node2D" parent="CanvasLayer/build_stuff_menu"]
+[node name="return" type="Button" parent="CanvasLayer/upgrades"]
+offset_left = 1700.0
+offset_top = 10.0
+offset_right = 1900.0
+offset_bottom = 60.0
+text = "Return"
+
+[node name="buy_benches" type="Button" parent="CanvasLayer/upgrades"]
+offset_left = 320.0
+offset_right = 520.0
+offset_bottom = 50.0
+text = "Buy: $20"
+
+[node name="buy_benches_text" type="Label" parent="CanvasLayer/upgrades"]
+offset_right = 312.0
+offset_bottom = 64.0
+text = "Bench 9"
+
+[node name="other stuff" type="Node2D" parent="CanvasLayer"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -611,26 +681,13 @@ text = "Kitchen Chaos
 Return of the
 UNNAMED PROJECT"
 
-[connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
-[connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
-[connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
-[connection signal="pressed" from="CanvasLayer/build_or_level_menu/play_level" to="." method="_on_play_level_pressed"]
-[connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="build_menu"]
-[connection signal="pressed" from="CanvasLayer/build_or_level_menu/return" to="." method="level_select"]
-[connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]
-[connection signal="pressed" from="CanvasLayer/level_select/level_2" to="." method="_on_level_2"]
-[connection signal="pressed" from="CanvasLayer/level_select/level_3" to="." method="_on_level_3"]
-[connection signal="pressed" from="CanvasLayer/level_select/level_4" to="." method="_on_level_4"]
-[connection signal="pressed" from="CanvasLayer/level_select/level_5" to="." method="_on_level_5"]
-[connection signal="pressed" from="CanvasLayer/level_select/return" to="." method="main_menu"]
+[connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_menu"]
 [connection signal="bench_name" from="CanvasLayer/layout/bench_1" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/bench_1" to="CanvasLayer/layout/bench_1" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/bench_1" to="CanvasLayer/layout/bench_1" method="_on_mouse_exited"]
 [connection signal="bench_name" from="CanvasLayer/layout/bench_2" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/bench_2" to="CanvasLayer/layout/bench_2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/bench_2" to="CanvasLayer/layout/bench_2" method="_on_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_menu"]
 [connection signal="bench_name" from="CanvasLayer/layout/bench_3" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/bench_3" to="CanvasLayer/layout/bench_3" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/bench_3" to="CanvasLayer/layout/bench_3" method="_on_mouse_exited"]
@@ -679,15 +736,38 @@ UNNAMED PROJECT"
 [connection signal="bench_name" from="CanvasLayer/layout/bench_18" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/bench_18" to="CanvasLayer/layout/bench_18" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/bench_18" to="CanvasLayer/layout/bench_18" method="_on_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/layout_upgrades/bench" to="CanvasLayer/layout" method="_on_bench_pressed"]
-[connection signal="pressed" from="CanvasLayer/layout_upgrades/stove" to="CanvasLayer/layout" method="_on_stove_pressed"]
-[connection signal="pressed" from="CanvasLayer/layout_upgrades/chopping_board" to="CanvasLayer/layout" method="_on_chopping_board_pressed"]
-[connection signal="pressed" from="CanvasLayer/layout_upgrades/fridge" to="CanvasLayer/layout" method="_on_fridge_pressed"]
-[connection signal="pressed" from="CanvasLayer/layout_upgrades/bin" to="CanvasLayer/layout" method="_on_bin_pressed"]
-[connection signal="pressed" from="CanvasLayer/layout_upgrades/confirm" to="CanvasLayer/layout" method="_on_confirm_pressed"]
-[connection signal="pressed" from="CanvasLayer/layout_upgrades/return" to="." method="layout"]
+[connection signal="bench_type" from="CanvasLayer/layout/bench" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/bench" to="CanvasLayer/layout/bench" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/bench" to="CanvasLayer/layout/bench" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/stove" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/stove" to="CanvasLayer/layout/stove" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/stove" to="CanvasLayer/layout/stove" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/fridge" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/fridge" to="CanvasLayer/layout/fridge" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/fridge" to="CanvasLayer/layout/fridge" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/bin" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/bin" to="CanvasLayer/layout/bin" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/bin" to="CanvasLayer/layout/bin" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/chopping_board" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/chopping_board" to="CanvasLayer/layout/chopping_board" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/chopping_board" to="CanvasLayer/layout/chopping_board" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
+[connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
+[connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_2" to="." method="_on_level_2"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_3" to="." method="_on_level_3"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_4" to="." method="_on_level_4"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_5" to="." method="_on_level_5"]
+[connection signal="pressed" from="CanvasLayer/level_select/return" to="." method="main_menu"]
+[connection signal="pressed" from="CanvasLayer/build_or_level_menu/play_level" to="." method="_on_play_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="build_menu"]
+[connection signal="pressed" from="CanvasLayer/build_or_level_menu/return" to="." method="level_select"]
 [connection signal="pressed" from="CanvasLayer/build_stuff_menu/build_button" to="." method="layout"]
+[connection signal="pressed" from="CanvasLayer/build_stuff_menu/upgrades_button" to="." method="upgrades"]
 [connection signal="pressed" from="CanvasLayer/build_stuff_menu/return" to="." method="build_or_level"]
+[connection signal="pressed" from="CanvasLayer/upgrades/return" to="." method="build_menu"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]
