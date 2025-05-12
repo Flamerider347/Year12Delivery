@@ -15,7 +15,7 @@ var bench_costs = {
 	"bench_2" : "stove",
 	"bench_3" : "bench",
 	"bench_4" : "chopping_board",
-	"bench_5" : "bench",
+	"bench_5" : "bun_crate",
 	"bench_6" : "bench",
 	"bench_7" : "bench",
 	"bench_8" : "bench",
@@ -33,9 +33,13 @@ var bench_costs = {
 func _ready() -> void:
 	Global.benches = benches
 	money_bench_check()
+	print(null)
 func _physics_process(_delta: float) -> void:
 	if $dragging_bench.visible:
 		$dragging_bench.position = get_local_mouse_position()
+	if editing_bench:
+		if bench_type:
+			$dragging_bench.rotation_degrees = 90
 	if Input.is_action_just_released("pickup_p1"):
 		if bench_type:
 			if editing_bench:
@@ -48,6 +52,7 @@ func _physics_process(_delta: float) -> void:
 				find_child(str(editing_bench)).find_child("Label").text = str(bench_type)
 				$money.text = "Money: " + str(Global.money)
 				money_bench_check()
+		editing_bench=  null
 		bench_type = null
 		$dragging_bench.hide()
 
@@ -60,7 +65,7 @@ func money_bench_check():
 				i.show()
 
 func _on_bench_name(bench_name) -> void:
-	if bench_name in benches.keys():
+	if bench_name:
 		editing_bench = str(bench_name)
 
 func _on_bench_bench_type(type) -> void:
@@ -68,3 +73,4 @@ func _on_bench_bench_type(type) -> void:
 	$dragging_bench/Label.text = bench_type
 	$dragging_bench.position = get_local_mouse_position()
 	$dragging_bench.show()
+	$dragging_bench.rotation_degrees = 0
