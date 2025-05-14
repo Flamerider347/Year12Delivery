@@ -2,6 +2,7 @@ extends Node3D
 var spawn = true
 var menu_toggle = true
 var save_code
+var benches_bought = 9
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
@@ -141,12 +142,6 @@ func layout():
 	hide_everything()
 	$CanvasLayer/layout.show()
 
-func layout_upgrades():
-	hide_everything()
-	$CanvasLayer/layout.show()
-	$CanvasLayer/layout_upgrades.show()
-	$CanvasLayer/layout_upgrades/confirm.hide()
-
 func _on_play_level_pressed() -> void:
 	get_tree().change_scene_to_file("res://prefabs/world.tscn")
 
@@ -167,3 +162,13 @@ func level_select_1() -> void:
 func level_select_2() -> void:
 	Global.player_count = 2
 	level_select()
+
+
+func _on_buy_benches_pressed() -> void:
+	if benches_bought < 18:
+		benches_bought += 1
+	$CanvasLayer/layout.benches["bench_"+str(benches_bought)][2] = true
+	$CanvasLayer/layout.find_child("bench_"+str(benches_bought)).show()
+	for i in $CanvasLayer/layout.benches:
+		if $CanvasLayer/layout.benches[i][2] == false:
+			$CanvasLayer/layout.find_child(i).hide()

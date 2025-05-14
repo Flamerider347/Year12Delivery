@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=13 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_oeexw"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_axi1q"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="3_pjmcm"]
 [ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="4_uc3vu"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="5_pjmcm"]
+[ext_resource type="Texture2D" uid="uid://dynfana5geddq" path="res://assets/kitchenassets/istockphoto-648352074-612x612-removebg-preview.png" id="6_uc3vu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2uc7u"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -56,7 +57,7 @@ offset_bottom = 60.0
 text = "Return"
 
 [node name="bench_1" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(640, 128)
+position = Vector2(1088, 136)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -74,7 +75,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_2" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(768, 128)
+position = Vector2(1216, 136)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -92,7 +93,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_3" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(896, 128)
+position = Vector2(1344, 136)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -110,7 +111,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_4" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1024, 128)
+position = Vector2(1472, 136)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -128,7 +129,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_5" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1152, 128)
+position = Vector2(1600, 136)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -146,7 +147,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_6" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1280, 128)
+position = Vector2(1728, 136)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -164,7 +165,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_7" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(640, 256)
+position = Vector2(1088, 264)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -182,7 +183,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_8" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1280, 256)
+position = Vector2(1728, 264)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -200,7 +201,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_9" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(640, 384)
+position = Vector2(1088, 392)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -218,7 +219,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_10" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1280, 384)
+position = Vector2(1728, 392)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -236,7 +237,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_11" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(640, 512)
+position = Vector2(1088, 520)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -254,7 +255,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_12" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1280, 512)
+position = Vector2(1728, 520)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -272,7 +273,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_13" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(640, 640)
+position = Vector2(1088, 648)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -290,7 +291,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_14" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1280, 640)
+position = Vector2(1728, 648)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -308,7 +309,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_15" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(640, 768)
+position = Vector2(1088, 776)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -326,7 +327,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_16" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1280, 768)
+position = Vector2(1728, 776)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -344,7 +345,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_17" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(768, 768)
+position = Vector2(1216, 776)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -362,7 +363,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench_18" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(1152, 768)
+position = Vector2(1600, 776)
 script = ExtResource("3_pjmcm")
 metadata/_edit_group_ = true
 
@@ -380,7 +381,7 @@ offset_bottom = -38.0
 text = "Bench"
 
 [node name="bench" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(128, 960)
+position = Vector2(1096, 968)
 script = ExtResource("5_pjmcm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/bench"]
@@ -395,9 +396,10 @@ offset_top = -56.0
 offset_right = -7.0
 offset_bottom = -33.0
 text = "bench"
+metadata/_edit_use_anchors_ = true
 
 [node name="stove" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(272, 960)
+position = Vector2(1240, 968)
 script = ExtResource("5_pjmcm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/stove"]
@@ -412,6 +414,7 @@ offset_top = -56.0
 offset_right = -7.0
 offset_bottom = -33.0
 text = "stove"
+metadata/_edit_use_anchors_ = true
 
 [node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
 metadata/_edit_group_ = true
@@ -426,7 +429,7 @@ offset_right = -16.0
 offset_bottom = -33.0
 
 [node name="fridge" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(560, 960)
+position = Vector2(1528, 968)
 script = ExtResource("5_pjmcm")
 metadata/_edit_group_ = true
 
@@ -444,7 +447,7 @@ offset_bottom = -33.0
 text = "fridge"
 
 [node name="bin" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(848, 960)
+position = Vector2(1816, 968)
 script = ExtResource("5_pjmcm")
 metadata/_edit_group_ = true
 
@@ -462,7 +465,7 @@ offset_bottom = -33.0
 text = "bin"
 
 [node name="chopping_board" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(416, 960)
+position = Vector2(1384, 968)
 script = ExtResource("5_pjmcm")
 metadata/_edit_group_ = true
 
@@ -480,7 +483,7 @@ offset_bottom = -33.0
 text = "chopping board"
 
 [node name="bun_crate" type="Area2D" parent="CanvasLayer/layout"]
-position = Vector2(704, 960)
+position = Vector2(1672, 968)
 script = ExtResource("5_pjmcm")
 metadata/_edit_group_ = true
 
@@ -496,6 +499,25 @@ offset_top = -56.0
 offset_right = -7.0
 offset_bottom = -33.0
 text = "bun crate"
+
+[node name="Istockphoto-648352074-612x612-removebg-preview" type="Sprite2D" parent="CanvasLayer/layout"]
+position = Vector2(320, 624)
+scale = Vector2(2.325, 2.325)
+texture = ExtResource("6_uc3vu")
+
+[node name="upgrades" type="Button" parent="CanvasLayer/layout"]
+offset_left = 32.0
+offset_top = 88.0
+offset_right = 192.0
+offset_bottom = 176.0
+text = "Upgrades"
+
+[node name="recipes" type="Button" parent="CanvasLayer/layout"]
+offset_left = 208.0
+offset_top = 88.0
+offset_right = 368.0
+offset_bottom = 176.0
+text = "recipes"
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
 visible = false
@@ -699,7 +721,7 @@ text = "Kitchen Chaos
 Return of the
 UNNAMED PROJECT"
 
-[connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_menu"]
+[connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_or_level"]
 [connection signal="bench_name" from="CanvasLayer/layout/bench_1" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/bench_1" to="CanvasLayer/layout/bench_1" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/bench_1" to="CanvasLayer/layout/bench_1" method="_on_mouse_exited"]
@@ -783,12 +805,13 @@ UNNAMED PROJECT"
 [connection signal="pressed" from="CanvasLayer/level_select/level_5" to="." method="_on_level_5"]
 [connection signal="pressed" from="CanvasLayer/level_select/return" to="." method="main_menu"]
 [connection signal="pressed" from="CanvasLayer/build_or_level_menu/play_level" to="." method="_on_play_level_pressed"]
-[connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="build_menu"]
+[connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/build_or_level_menu/return" to="." method="level_select"]
 [connection signal="pressed" from="CanvasLayer/build_stuff_menu/build_button" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/build_stuff_menu/upgrades_button" to="." method="upgrades"]
 [connection signal="pressed" from="CanvasLayer/build_stuff_menu/return" to="." method="build_or_level"]
 [connection signal="pressed" from="CanvasLayer/upgrades/return" to="." method="build_menu"]
+[connection signal="pressed" from="CanvasLayer/upgrades/buy_benches" to="." method="_on_buy_benches_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]

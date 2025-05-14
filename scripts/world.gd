@@ -80,10 +80,10 @@ func _ready() -> void:
 		$player_single.queue_free()
 	$order_timer.start(0.1)
 	for i in Global.benches:
-		if Global.benches[i]:
+		if Global.benches[i][2] == true:
 			if i in bench_summoning.keys():
-				if Global.benches[i] in bench_types:
-					var summoned_bench = bench_types[Global.benches[i]].instantiate()
+				if Global.benches[i][0] in bench_types:
+					var summoned_bench = bench_types[Global.benches[i][0]].instantiate()
 					$kitchen.add_child(summoned_bench)
 					summoned_bench.position = bench_summoning[i][0]
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
