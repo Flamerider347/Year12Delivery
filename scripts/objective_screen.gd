@@ -12,6 +12,7 @@ var ingredient_4 = null
 var ingredient_5 = null
 var next_position = 0.1
 var making_plate = "plate_1"
+var recipes_list = Global.recipes_list
 var plate_contents = {
 	"plate_1" : [],
 	"plate_2" : [],
@@ -22,6 +23,7 @@ var plate_contents = {
 	"plate_7" : [],
 	"plate_8" : [],
 	"plate_9" : [],
+	"plate_10" : []
 }
 @onready var plates = {
 	"plate_1" : $objective_plate1,
@@ -33,6 +35,7 @@ var plate_contents = {
 	"plate_7" : $objective_plate7,
 	"plate_8" : $objective_plate8,
 	"plate_9" : $objective_plate9,
+	"plate_10" : $objective_plate10
 }
 @onready var plate_timers = {
 	"plate_1" : $objective_plate1/order_time,
@@ -44,6 +47,7 @@ var plate_contents = {
 	"plate_7" : $objective_plate7/order_time,
 	"plate_8" : $objective_plate8/order_time,
 	"plate_9" : $objective_plate9/order_time,
+	"plate_10" : $objective_plate10/order_time,
 }
 var ingredient_time = {
 	"tomato_chopped":10,
@@ -111,7 +115,7 @@ func randomise_objective():
 		ingredient_5 = "bun_top_chopped"
 		plate_contents[making_plate].append(ingredient_5)
 	var plate_name = making_plate.replace("plate_", "")
-	var make_time = -30
+	var make_time = 100
 	make_time += ingredient_time[ingredient_1]
 	make_time += ingredient_time[ingredient_2]
 	make_time += ingredient_time[ingredient_3]

@@ -5,7 +5,27 @@ var level_updates_left = 0
 var money = 10
 var stars = 3
 var day_timer = 300
-var benches = {}
+var recipes_list = {}
+var benches = {
+	"bench_1" : ["bench",0,true],
+	"bench_2" : ["fridge",0,true],
+	"bench_3" : ["chopping_board",0,true],
+	"bench_4" : ["stove",0,true],
+	"bench_5" : ["bench",0,true],
+	"bench_6" : ["bench",0,true],
+	"bench_7" : ["bench",270,true],
+	"bench_8" : ["bench",90,false],
+	"bench_9" : ["bench",270,false],
+	"bench_10" : ["bench",90,false],
+	"bench_11" : ["bench",270,false],
+	"bench_12" : ["bench",90,false],
+	"bench_13" : ["bench",270,false],
+	"bench_14" : ["bench",90,false],
+	"bench_15" : ["bench",270,false],
+	"bench_16" : ["bench",90,false],
+	"bench_17" : ["bench",180,false],
+	"bench_18" : ["bench",180,false],
+}
 var menu_method = "main" # could be "main", "build", "level"
 var save_code #level,money,stars : <5, unlimited, <=5
 var save_update = false

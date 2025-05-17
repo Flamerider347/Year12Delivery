@@ -19,7 +19,7 @@ var loaded = true
 var action
 var stars = Global.stars
 var money = Global.money
-var orders = [0,0,0,0,0,0,0,0,0]
+var orders = [0,0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
 var current_map

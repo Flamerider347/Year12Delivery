@@ -41,7 +41,7 @@ height = 0.705811
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrdq4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfqyr"]
-size = Vector3(10.0016, 2.01129, 1)
+size = Vector3(12, 0.4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7kri"]
 
@@ -136,10 +136,11 @@ size = Vector3(50, 0.195, 50)
 [node name="kitchen" type="Node3D" parent="."]
 
 [node name="plates" type="Node3D" parent="kitchen"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, -4, 2.15409, 0)
 script = ExtResource("14_sxw1y")
 
 [node name="objective_plate1" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
@@ -154,10 +155,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate2" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
@@ -171,10 +172,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate3" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
@@ -188,10 +189,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate4" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
@@ -205,10 +206,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate5" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
@@ -222,10 +223,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate6" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
@@ -239,10 +240,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate7" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
@@ -256,10 +257,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate8" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
@@ -273,10 +274,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="objective_plate9" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
@@ -290,7 +291,25 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+
+[node name="objective_plate10" type="StaticBody3D" parent="kitchen/plates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0)
+script = ExtResource("3_u7kri")
+
+[node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
+mesh = ExtResource("14_q76tg")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
+shape = SubResource("CylinderShape3D_sxw1y")
+
+[node name="order_time" type="Timer" parent="kitchen/plates/objective_plate10" groups=["keep"]]
+wait_time = 1000.0
+
+[node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
 [node name="delivery_plate_table" type="StaticBody3D" parent="kitchen"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 10)
@@ -319,14 +338,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
 [node name="plate_stand" type="StaticBody3D" parent="kitchen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.63, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 2.9, 0.267)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="kitchen/plate_stand"]
 material_override = SubResource("StandardMaterial3D_qrdq4")
-size = Vector3(10, 2, 1)
+size = Vector3(12, 0.4, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plate_stand"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000671387, -0.00259399, 0)
 shape = SubResource("BoxShape3D_xfqyr")
 
 [node name="houses" type="Node3D" parent="kitchen"]
@@ -548,7 +566,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep", "pickupable"]]
@@ -584,7 +602,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(958, 1080)
 render_target_update_mode = 4
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep", "pickupable"]]
@@ -658,6 +676,8 @@ wait_time = 0.06
 [connection signal="timeout" from="kitchen/plates/objective_plate8/order_time" to="kitchen/plates/objective_plate8" method="_on_order_time_timeout"]
 [connection signal="timed_out_timer" from="kitchen/plates/objective_plate9" to="kitchen/plates" method="_on_objective_plate_timed_out_timer"]
 [connection signal="timeout" from="kitchen/plates/objective_plate9/order_time" to="kitchen/plates/objective_plate9" method="_on_order_time_timeout"]
+[connection signal="timed_out_timer" from="kitchen/plates/objective_plate10" to="kitchen/plates" method="_on_objective_plate_timed_out_timer"]
+[connection signal="timeout" from="kitchen/plates/objective_plate10/order_time" to="kitchen/plates/objective_plate10" method="_on_order_time_timeout"]
 [connection signal="body_entered" from="kitchen/delivery_plate_table/Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="kitchen/houses/A1" to="kitchen/houses/A1" method="_on_body_entered"]
 [connection signal="item_entered" from="kitchen/houses/A1" to="." method="_on_house_item_entered"]

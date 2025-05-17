@@ -1,6 +1,7 @@
 extends Node2D
 var editing_bench = null
 var bench_type = null
+var benches_bought = 7
 @onready var menu = $"../.."
 var bench_costs = {
 	"bench" : 0,
@@ -10,30 +11,13 @@ var bench_costs = {
 	"bun_crate" : 5,
 	"bin" : 5,
 }
-@onready var benches = {
-	"bench_1" : ["bench",0,true],
-	"bench_2" : ["bench",0,true],
-	"bench_3" : ["bench",0,true],
-	"bench_4" : ["bench",0,true],
-	"bench_5" : ["bench",0,true],
-	"bench_6" : ["bench",0,true],
-	"bench_7" : ["bench",270,true],
-	"bench_8" : ["bench",90,true],
-	"bench_9" : ["bench",270,true],
-	"bench_10" : ["bench",90,false],
-	"bench_11" : ["bench",270,false],
-	"bench_12" : ["bench",90,false],
-	"bench_13" : ["bench",270,false],
-	"bench_14" : ["bench",90,false],
-	"bench_15" : ["bench",270,false],
-	"bench_16" : ["bench",90,false],
-	"bench_17" : ["bench",180,false],
-	"bench_18" : ["bench",180,false],
-}
+@onready var benches = Global.benches
 func _ready() -> void:
-	Global.benches = benches
 	money_bench_check()
 	hide_benches()
+	assign_layout_names()
+	$upgrades.show()
+	$recipes.hide()
 func _physics_process(_delta: float) -> void:
 	if $dragging_bench.visible:
 		$dragging_bench.position = get_local_mouse_position()
@@ -48,7 +32,7 @@ func _physics_process(_delta: float) -> void:
 				purchase_cost += bench_costs[bench_type]
 				benches[editing_bench][0] = bench_type
 				Global.money -= purchase_cost
-				find_child(str(editing_bench)).find_child("Label").text = str(bench_type)
+				$layout_benches.find_child(str(editing_bench)).find_child("Label").text = str(bench_type)
 				$money.text = "Money: " + str(Global.money)
 				money_bench_check()
 		editing_bench=  null
@@ -56,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 		$dragging_bench.hide()
 
 func money_bench_check():
-	for i in get_children():
+	for i in $layout_benches.get_children():
 		if str(i.name) in bench_costs.keys():
 			if Global.money < bench_costs[str(i.name)]:
 				i.hide()
@@ -66,6 +50,11 @@ func hide_benches():
 	for i in benches:
 		if benches[i][2] == false:
 			find_child(i).hide()
+
+func assign_layout_names():
+	for i in benches:
+		if benches[i][2] == true:
+			$layout_benches.find_child(i).find_child("Label").text = benches[i][0]
 func _on_bench_name(bench_name) -> void:
 	if bench_name:
 		editing_bench = str(bench_name)
@@ -76,3 +65,25 @@ func _on_bench_bench_type(type) -> void:
 	$dragging_bench.position = get_local_mouse_position()
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0
+
+
+func _on_recipes_button_pressed() -> void:
+	$upgrades.hide()
+	$recipes.show()
+
+
+func _on_upgrades_button_pressed() -> void:
+	$upgrades.show()
+	$recipes.hide()
+
+func _on_item_purchasable(item,item_cost) -> void:
+	if item == "bench":
+		if benches_bought < 18:
+			benches_bought += 1
+		benches["bench_"+str(benches_bought)][2] = true
+		$layout_benches.find_child("bench_"+str(benches_bought)).show()
+		for i in benches:
+			if benches[i][2] == false:
+				$layout_benches.find_child(i).hide()
+		Global.money -= item_cost
+		assign_layout_names()
