@@ -204,7 +204,7 @@ func _on_objective_plate_timeout(timer_number) -> void:
 	if stars <= 0:
 		Global.restart = true
 
-func _on_delivery_pot_timeout(_number) -> void:
+func _on_order_timeout(_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:

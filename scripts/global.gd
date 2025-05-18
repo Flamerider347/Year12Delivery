@@ -11,7 +11,7 @@ var benches = {
 	"bench_2" : ["fridge",0,true],
 	"bench_3" : ["chopping_board",0,true],
 	"bench_4" : ["stove",0,true],
-	"bench_5" : ["bench",0,true],
+	"bench_5" : ["bun_crate",0,true],
 	"bench_6" : ["bench",0,true],
 	"bench_7" : ["bench",270,true],
 	"bench_8" : ["bench",90,false],

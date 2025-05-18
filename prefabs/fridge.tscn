@@ -63,7 +63,6 @@ skeleton = NodePath("../../..")
 
 [node name="fridge_door" type="StaticBody3D" parent="." groups=["door"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00318, 0, 0.49724)
-visible = false
 script = ExtResource("2_252b1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="fridge_door"]
