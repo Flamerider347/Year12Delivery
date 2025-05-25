@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="3_pjmcm"]
 [ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="4_uc3vu"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="5_pjmcm"]
-[ext_resource type="Texture2D" uid="uid://dynfana5geddq" path="res://assets/kitchenassets/istockphoto-648352074-612x612-removebg-preview.png" id="6_uc3vu"]
+[ext_resource type="Texture2D" uid="uid://dynfana5geddq" path="res://istockphoto-648352074-612x612-removebg-preview.png" id="6_uc3vu"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="8_jfis0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2uc7u"]

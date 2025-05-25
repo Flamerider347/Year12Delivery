@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dynfana5geddq"
-path="res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-53875eaf55cfd6d259c8b2f7034c06a9.ctex"
+path="res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-a475054c122f995dca554930f34f2a59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/kitchenassets/istockphoto-648352074-612x612-removebg-preview.png"
-dest_files=["res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-53875eaf55cfd6d259c8b2f7034c06a9.ctex"]
+source_file="res://istockphoto-648352074-612x612-removebg-preview.png"
+dest_files=["res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-a475054c122f995dca554930f34f2a59.ctex"]
 
 [params]
 

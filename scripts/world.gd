@@ -11,6 +11,7 @@ var meat_chopped = preload("res://prefabs/meat_chopped.tscn")
 var tomato_chopped = preload("res://prefabs/tomato_chopped.tscn")
 var lettuce_chopped = preload("res://prefabs/lettuce_chopped.tscn")
 var carrot_chopped = preload("res://prefabs/carrot_chopped.tscn")
+var meat_cooked_chopped = preload("res://prefabs/meat_cooked_chopped.tscn")
 var product_check = false
 var making_time_left = 0
 var next_spawn_time = 30
@@ -65,6 +66,7 @@ var ingredients = {
 "tomato":tomato_chopped,
 "carrot":carrot_chopped,
 "lettuce":lettuce_chopped,
+"meat_cooked_chopped" : meat_cooked_chopped,
 }
 
 func _ready() -> void:
@@ -186,7 +188,7 @@ func _on_house_item_entered(address,target_address,time_left) -> void:
 		money += making_time_left
 		$ui/Label.text = "Money: " + str(money)
 		delivered_correctly.emit()
-		$delivery_pot.position = current_map.position + Vector3(-1.5,1.2,4)
+		$delivery_pot.position = current_map.position + Vector3(3,1.2,10)
 
 func _on_order_timer_timeout() -> void:
 	for i in range(len(orders)):

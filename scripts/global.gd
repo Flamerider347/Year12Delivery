@@ -5,7 +5,10 @@ var level_updates_left = 0
 var money = 10
 var stars = 3
 var day_timer = 300
-var recipes_list = {}
+var recipes_list = {
+	"burger" : ["bottom_bun_chopped","top_bun_chopped","cheese_chopped","lettuce_chopped","tomato_chopped","meat_cooked"],
+	"stew" : ["carrot_chopped", "onion_chopped", "potato_chopped"]
+}
 var benches = {
 	"bench_1" : ["bench",0,true],
 	"bench_2" : ["fridge",0,true],

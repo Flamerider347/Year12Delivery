@@ -82,7 +82,7 @@ func randomise_objective():
 				ingredients["ingredient_" + str(i)] = "bun_top_chopped"
 				plate_contents[making_plate].append(ingredients["ingredient_"+str(i)])
 	var plate_name = making_plate.replace("plate_", "")
-	var make_time = -10
+	var make_time = 100
 	for i in ingredients:
 		if ingredients[i]:
 			make_time += ingredient_time[ingredients[i]]
