@@ -673,7 +673,7 @@ visible = false
 [node name="Label" type="Label" parent="CanvasLayer/layout/recipes"]
 offset_left = 48.0
 offset_top = 200.0
-offset_right = 178.0
+offset_right = 201.0
 offset_bottom = 405.0
 text = "Burguire
 -Sells for 10-30$

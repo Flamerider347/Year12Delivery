@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbj4i32tgpa6q"]
+
+[ext_resource type="Theme" uid="uid://b5drpisq6dd6c" path="res://assets/theme_ui.tres" id="1_nsxd1"]
+
+[node name="THEME UI" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 228.0
+offset_top = 116.0
+offset_right = 290.0
+offset_bottom = 147.0
+theme = ExtResource("1_nsxd1")
+text = "Button
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 358.0
+offset_top = 112.0
+offset_right = 620.0
+offset_bottom = 165.0
+text = "Rich text label
+"

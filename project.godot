@@ -47,6 +47,10 @@ door=""
 lid=""
 deliverable=""
 
+[gui]
+
+theme/custom="uid://b5drpisq6dd6c"
+
 [input]
 
 jump_p1={
