@@ -1,3 +1,42 @@
-[gd_resource type="Theme" format=3 uid="uid://b5drpisq6dd6c"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b5drpisq6dd6c"]
+
+[ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/Charm/Charm-Regular.ttf" id="1_anvu1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anvu1"]
+bg_color = Color(0.281187, 0.281187, 0.281187, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uiji5"]
+bg_color = Color(0.385493, 0.385493, 0.385492, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd0hi"]
+bg_color = Color(0.197937, 0.197937, 0.197937, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jqu7"]
+bg_color = Color(0.384314, 0.384314, 0.384314, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.384314, 0.384314, 0.384314, 1)
 
 [resource]
+default_font = ExtResource("1_anvu1")
+Button/styles/hover = SubResource("StyleBoxFlat_anvu1")
+Button/styles/normal = SubResource("StyleBoxFlat_uiji5")
+Button/styles/pressed = SubResource("StyleBoxFlat_rd0hi")
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_5jqu7")
