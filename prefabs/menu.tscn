@@ -164,7 +164,8 @@ offset_left = 1700.0
 offset_top = 10.0
 offset_right = 1900.0
 offset_bottom = 60.0
-text = "return to levels"
+text = "Return to Level Select
+"
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
 script = ExtResource("2_axi1q")
@@ -611,6 +612,7 @@ offset_bottom = -33.0
 text = "bun crate"
 
 [node name="money" type="Label" parent="CanvasLayer/layout"]
+texture_filter = 1
 offset_right = 161.0
 offset_bottom = 44.0
 scale = Vector2(3, 3)
@@ -652,9 +654,9 @@ text = "recipes"
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="buy_bench" type="Button" parent="CanvasLayer/layout/upgrades"]
-offset_left = 560.0
+offset_left = 498.0
 offset_top = 208.0
-offset_right = 610.0
+offset_right = 561.0
 offset_bottom = 258.0
 text = "eehehehe"
 script = ExtResource("8_jfis0")
@@ -668,21 +670,54 @@ text = "Buy bench 8
 -Adds another customisable bench!"
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
-visible = false
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/recipes"]
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/layout/recipes"]
 offset_left = 48.0
 offset_top = 200.0
-offset_right = 178.0
-offset_bottom = 405.0
-text = "Burguire
--Sells for 10-30$
+offset_right = 607.0
+offset_bottom = 949.0
+bbcode_enabled = true
+text = "[center][u]Burguire[/u]
+- Sells for 10-30$
+[u]Ingredients[/u]
+- Meat Pattie
+- 	Chopped Bun
+- 	Chopped Lettuce
+- 	Chopped Cheese
+- 	Chopped Tomato
+[u]Needs:[/u]
+- Bun Crate (0)
 
-Needs:
--Stove (0)
--Fridge (0)
--Chopping Board (0)
--Bun Crate (0)"
+[u]Stew[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Chopped Potato
+- 	Chopped Meat Pattie
+- 	Chopped Carrot
+
+[u]Chips[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Chopped Potato
+[u]Needs:[/u]
+- Deep Fryer (0)
+
+[u]Fish and Chips[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Fish
+- 	Chopped Potato
+[u]Needs:[/u]
+- Deep Fryer (0)
+
+[u]Soup[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Chopped Potato
+- 	Chopped Lettuce
+[u]Needs:[/u]
+- 	Blender (0)
+"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -705,6 +740,7 @@ shape = SubResource("BoxShape3D_tx50j")
 
 [node name="name" type="Label3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2.38498e-08, 2, 0, -2, 2.38498e-08, 0, 10, -0.7)
+texture_filter = 2
 text = "Kitchen Chaos
 Return of the
 UNNAMED PROJECT"
