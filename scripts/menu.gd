@@ -132,7 +132,7 @@ func main_menu():
 func build_or_level():
 	hide_everything()
 	$CanvasLayer/build_or_level_menu.show()
-	$CanvasLayer/build_or_level_menu/play_level.text = "Play level " + str(Global.level)
+	$CanvasLayer/build_or_level_menu/play_level.text = "Play Level " + str(Global.level)
 
 func build_menu():
 	hide_everything()

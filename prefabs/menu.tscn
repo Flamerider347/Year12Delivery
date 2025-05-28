@@ -164,10 +164,10 @@ offset_left = 1700.0
 offset_top = 10.0
 offset_right = 1900.0
 offset_bottom = 60.0
-text = "return to levels"
+text = "Return to Level Select
+"
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_axi1q")
 
 [node name="Istockphoto-648352074-612x612-removebg-preview" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -654,9 +654,9 @@ text = "recipes"
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="buy_bench" type="Button" parent="CanvasLayer/layout/upgrades"]
-offset_left = 560.0
+offset_left = 498.0
 offset_top = 208.0
-offset_right = 610.0
+offset_right = 561.0
 offset_bottom = 258.0
 text = "eehehehe"
 script = ExtResource("8_jfis0")
@@ -679,12 +679,19 @@ offset_bottom = 949.0
 bbcode_enabled = true
 text = "[center][u]Burguire[/u]
 -	Sells for 10-30$
-
+[u]Potential Ingrediants[/u]
+-	
+-	
+-	
+-	
+-	
 [u]Needs:[/u]
--	Stove (0)
--	Fridge (0)
--	Chopping Board (0)
--	Bun Crate (0)"
+-	Bun Crate (0)
+
+[u] Stew [/u]
+- Sells for xx-xx$
+[u]
+"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
