@@ -6,15 +6,9 @@ var grid_exists = true
 var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
-var cheese_chopped = preload("res://prefabs/cheese_chopped.tscn")
-var meat_chopped = preload("res://prefabs/meat_chopped.tscn")
-var tomato_chopped = preload("res://prefabs/tomato_chopped.tscn")
-var lettuce_chopped = preload("res://prefabs/lettuce_chopped.tscn")
-var carrot_chopped = preload("res://prefabs/carrot_chopped.tscn")
-var meat_cooked_chopped = preload("res://prefabs/meat_cooked_chopped.tscn")
 var product_check = false
 var making_time_left = 0
-var next_spawn_time = 30
+var next_spawn_time = 5
 var order = false
 var loaded = true
 var action
@@ -61,12 +55,13 @@ var bench_summoning = {
 
 }
 var ingredients = {
-"cheese": cheese_chopped,
-"meat":meat_chopped,
-"tomato":tomato_chopped,
-"carrot":carrot_chopped,
-"lettuce":lettuce_chopped,
-"meat_cooked_chopped" : meat_cooked_chopped,
+"potato": preload("res://prefabs/potato_chopped.tscn"),
+"cheese": preload("res://prefabs/cheese_chopped.tscn"),
+"meat":preload("res://prefabs/meat_chopped.tscn"),
+"tomato":preload("res://prefabs/tomato_chopped.tscn"),
+"carrot":preload("res://prefabs/carrot_chopped.tscn"),
+"lettuce":preload("res://prefabs/lettuce_chopped.tscn"),
+"meat_cooked" : preload("res://prefabs/meat_cooked_chopped.tscn"),
 }
 
 func _ready() -> void:
@@ -148,25 +143,18 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 			instance2.position = body.position + Vector3(0,0.1,0)
 			body.queue_free()
 		elif body.type in ingredients:
-			if body.is_in_group("meat"):
-				var instance = ingredients[body.type].instantiate()
-				instance.position = body.position
-				add_child(instance)
-			else:
-				var instance = ingredients[body.type].instantiate()
-				instance.type = body.type + "_chopped"
-				instance.position = body.position
-				add_child(instance)
+			var instance = ingredients[body.type].instantiate()
+			instance.type = body.type + "_chopped"
+			instance.position = body.position
+			add_child(instance)
 			body.queue_free()
-		else:
-			pass
 
 
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("stackable"):
+	if body.is_in_group("packageable"):
 		product = body.contents
 		product_check = true
 		body.queue_free()
@@ -220,10 +208,10 @@ func map_select():
 	var old_map = map_keys[Global.level-2]
 	current_map = maps[random_map]
 	current_map.show()
-	$delivery_pot.position = current_map.position + Vector3(3,1.2,10)
-	$knife.position = current_map.position + Vector3(5.2,1.1,0.4)
-	$knife2.position = current_map.position + Vector3(5.6,1.1,0.4)
-	$kitchen.position = current_map.position + Vector3(0,0.1,0)
+	$delivery_pot.position += current_map.position
+	$knife.position += current_map.position
+	$knife2.position += current_map.position
+	$kitchen.position += current_map.position
 	if Global.player_count == 1 :
 		if loaded:
 			$player_single.position = current_map.position + $player_single.position

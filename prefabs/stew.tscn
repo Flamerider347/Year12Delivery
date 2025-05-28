@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://6ifj71hk85y0"]
+
+[ext_resource type="ArrayMesh" uid="uid://c84uuiaa1qccr" path="res://assets/kitchenassets/food_stew.obj" id="1_68uaq"]
+[ext_resource type="Script" uid="uid://jlmuh7ts5tkn" path="res://scripts/stew.gd" id="1_o4a88"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o4a88"]
+size = Vector3(0.955811, 0.375122, 0.945862)
+
+[node name="stew" type="RigidBody3D" groups=["packagable", "packageable", "pickupable"]]
+script = ExtResource("1_o4a88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.16584e-05, 0.193129, 0.000439763)
+shape = SubResource("BoxShape3D_o4a88")
+
+[node name="FoodStew" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_68uaq")

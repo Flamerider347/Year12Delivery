@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgwd0lj8xv61h"]
+[gd_scene load_steps=12 format=3 uid="uid://cgwd0lj8xv61h"]
 
+[ext_resource type="ArrayMesh" uid="uid://to15mhx1isw1" path="res://assets/kitchenassets/food_ingredient_potato.obj" id="1_252b1"]
 [ext_resource type="Script" uid="uid://8nrws8bwiprl" path="res://scripts/fridge_door.gd" id="2_252b1"]
 [ext_resource type="ArrayMesh" uid="uid://bja6wsds8k0cf" path="res://assets/kitchenassets/fridge_A_decorated.obj" id="2_tovh2"]
 [ext_resource type="ArrayMesh" uid="uid://bmnjpfam7mg7n" path="res://assets/kitchenassets/fridge_B_door.obj" id="3_2xlda"]
@@ -18,6 +19,9 @@ size = Vector3(1, 0.641602, 0.836487)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2a2la"]
 size = Vector3(1, 0.646027, 0.649841)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xlda"]
+size = Vector3(0.600586, 0.777466, 0.678955)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_56ary"]
 size = Vector3(0.51, 2.5, 2.001)
@@ -56,6 +60,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59661, 1.79119, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tomato_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0192719, -0.0162048)
 shape = SubResource("BoxShape3D_2a2la")
+
+[node name="potato_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5696, 1.22972, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="potato_crate"]
+shape = SubResource("BoxShape3D_2xlda")
+
+[node name="FoodIngredientPotato" type="MeshInstance3D" parent="potato_crate"]
+mesh = ExtResource("1_252b1")
+skeleton = NodePath("../..")
 
 [node name="FridgeADecorated" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_tovh2")
