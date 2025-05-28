@@ -46,6 +46,7 @@ meat=""
 door=""
 lid=""
 deliverable=""
+packageable=""
 
 [input]
 

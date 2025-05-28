@@ -8,13 +8,6 @@ var timing = false
 var next_position = 0.1
 var making_plate = "plate_1"
 var recipes_list = Global.recipes_list
-var ingredients = {
-	"ingredient_1" : "bun_bottom_chopped",
-	"ingredient_2" : null,
-	"ingredient_3" : null,
-	"ingredient_4" : null,
-	"ingredient_5" : null,
-}
 var plate_contents = {
 	"plate_1" : [],
 	"plate_2" : [],
@@ -40,6 +33,8 @@ var plate_contents = {
 	"plate_10" : $objective_plate10
 }
 var ingredient_time = {
+	"plate" : 5,
+	"bowl" : 5,
 	"tomato_chopped":10,
 	"meat_cooked": 15,
 	"cheese_chopped": 10,
@@ -48,14 +43,18 @@ var ingredient_time = {
 	"bun_bottom_chopped" : 10,
 	"bun_top_chopped" : 10,
 }
-var burger_list = {
+var ingredient_list = {
+	"plate" : preload("res://prefabs/plate.tscn"),
+	"bowl" : preload("res://prefabs/bowl.tscn"),
 	"tomato_chopped":preload("res://prefabs/tomato_chopped.tscn"),
 	"meat_cooked": preload("res://prefabs/meat_cooked.tscn"),
+	"meat_cooked_chopped" : preload("res://prefabs/meat_cooked_chopped.tscn"),
 	"cheese_chopped": preload("res://prefabs/cheese_chopped.tscn"),
 	"carrot_chopped":preload("res://prefabs/carrot_chopped.tscn"),
 	"lettuce_chopped":preload("res://prefabs/lettuce_chopped.tscn"),
 	"bun_bottom_chopped" : preload("res://prefabs/bun_bottom_chopped.tscn"),
 	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
+	"stew" : preload("res://prefabs/stew.tscn")
 }
 func _ready() -> void:
 	$"../..".connect("make_order", Callable(self, "_on_make_order"))
@@ -68,43 +67,41 @@ func _process(_delta: float) -> void:
 		elif plate_label.text != "":
 			plate_label.text = ""
 func randomise_objective():
+	var making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
 	delivery_location = delivery_list[randi_range(0,8)]
-	var list_keys = burger_list.keys()
-	var list_size = list_keys.size()
-	ingredient_amount = randi_range(2,4)
-	plate_contents[making_plate].append("bun_bottom_chopped")
-	for i in ingredient_amount:
-		if i !=0:
-			if ingredient_amount - i > 0:
-				ingredients["ingredient_" + str(i)] = list_keys[randi_range(0, list_size - 3)]
-				plate_contents[making_plate].append(ingredients["ingredient_"+str(i)])
-			if ingredient_amount - i == 1:
-				ingredients["ingredient_" + str(i)] = "bun_top_chopped"
-				plate_contents[making_plate].append(ingredients["ingredient_"+str(i)])
-	var plate_name = making_plate.replace("plate_", "")
+	ingredient_amount = randi_range(3,5)
 	var make_time = 100
-	for i in ingredients:
-		if ingredients[i]:
-			make_time += ingredient_time[ingredients[i]]
+	for i in recipes_list[making_recipe][0]:
+		plate_contents[making_plate].append(i)
+		if i in ingredient_time.keys():
+			make_time += ingredient_time[i]
+	var plate_name = making_plate.replace("plate_", "")
 	plates[making_plate].find_child("order_time").start(make_time)
 	objective.emit(plate_contents[making_plate],plate_name,plates[making_plate].find_child("order_time").time_left,delivery_location,plates[making_plate])
 	timing = true
-	update_target()
-func update_target():
+	update_target(making_recipe.substr(0,6))
+func update_target(recipe):
+	if recipe != "burger":
+		plate_contents[making_plate] = ["stew",]
 	next_position = 0.1
 	for i in plate_contents[making_plate]:
-			var spawned_item = burger_list[i].instantiate()
-			var spawned_item_hitbox = spawned_item.find_child("CollisionShape3D").shape
-			plates[making_plate].add_child(spawned_item)
-			spawned_item.remove_from_group("pickupable")
-			spawned_item.freeze = true
-			spawned_item.position = Vector3(0,next_position,0)
-			if spawned_item_hitbox is BoxShape3D:
-				var item_size = spawned_item_hitbox.size.y
-				next_position += item_size
-			elif spawned_item_hitbox is CylinderShape3D:
-				var item_size = spawned_item_hitbox.height
-				next_position += item_size
+		var spawned_item = ingredient_list[i].instantiate()
+		var spawned_item_hitbox = spawned_item.find_child("CollisionShape3D").shape
+		plates[making_plate].add_child(spawned_item)
+		spawned_item.remove_from_group("pickupable")
+		spawned_item.freeze = true
+		spawned_item.position = Vector3(0,next_position,0)
+		if spawned_item_hitbox is BoxShape3D:
+			var item_size = spawned_item_hitbox.size.y
+			next_position += item_size
+		elif spawned_item_hitbox is CylinderShape3D:
+			var item_size = spawned_item_hitbox.height
+			next_position += item_size
+		if recipe != "burger":
+			spawned_item.rotation_degrees.x = 50
+			spawned_item.position = Vector3(0,0.4,-0.25)
+		else:
+			spawned_item.rotation_degrees.x = 0
 
 func _on_make_order(action: String,plate_number) -> void:
 	making_plate = str("plate_" + str(plate_number))
@@ -112,11 +109,9 @@ func _on_make_order(action: String,plate_number) -> void:
 		for child in plates[making_plate].get_children():
 			if not child.is_in_group("keep"):
 				child.queue_free()
-		ingredient_amount = 0
-		next_position = 0.1
 		plate_contents[making_plate] = []
 		var plate = plates[making_plate]
-		plate.find_child("Label3D").text = "0"
+		plate.find_child("Label3D").text = ""
 		plate.find_child("order_time").stop()
 	elif action == "make":
 		randomise_objective()
@@ -126,11 +121,7 @@ func _on_order_timeout(number) -> void:
 	for child in plates[plate].get_children():
 		if not child.is_in_group("keep"):
 			child.queue_free()
-	for i in ingredients:
-		ingredients[i] = null
-	ingredient_amount = 0
-	next_position = 0.1
 	objective_timeout.emit(number)
 	plate_contents[plate].clear()
-	plates[plate].find_child("Label3D").text = "0"
+	plates[plate].find_child("Label3D").text = ""
 	plates[plate].find_child("order_time").stop()

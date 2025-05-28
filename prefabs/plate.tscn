@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://7l1aumhj5t7u"]
+
+[ext_resource type="Script" uid="uid://sjqfr8737avq" path="res://scripts/plate.gd" id="1_1rwj6"]
+[ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="1_ik348"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rwj6"]
+size = Vector3(0.951904, 0.104431, 0.952515)
+
+[node name="plate" type="RigidBody3D" groups=["packageable", "pickupable", "stackable"]]
+script = ExtResource("1_1rwj6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0474494, 0)
+shape = SubResource("BoxShape3D_1rwj6")
+
+[node name="Plate" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ik348")

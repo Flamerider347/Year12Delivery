@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpmwd2num8jfm"]
+
+[ext_resource type="Script" uid="uid://g1andvietg5x" path="res://scripts/bowl.gd" id="1_dfrlc"]
+[ext_resource type="ArrayMesh" uid="uid://dku845kqwnd76" path="res://assets/kitchenassets/bowl.obj" id="1_s8apd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dfrlc"]
+size = Vector3(0.958984, 0.303223, 1)
+
+[node name="bowl" type="RigidBody3D" groups=["pickupable", "stackable"]]
+script = ExtResource("1_dfrlc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151611, 0)
+shape = SubResource("BoxShape3D_dfrlc")
+
+[node name="Bowl" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_s8apd")

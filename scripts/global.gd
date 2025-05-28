@@ -6,17 +6,19 @@ var money = 10
 var stars = 3
 var day_timer = 300
 var recipes_list = {
-	"burger" : ["bottom_bun_chopped","top_bun_chopped","cheese_chopped","lettuce_chopped","tomato_chopped","meat_cooked"],
-	"stew" : ["carrot_chopped", "onion_chopped", "potato_chopped"]
+	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","tomato_chopped","cheese_chopped","lettuce_chopped","bun_top_chopped"],true],
+	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
+	"burger_hayden" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","meat_cooked","cheese_chopped","meat_cooked","meat_cooked","bun_top_chopped"],true],
+	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
 }
 var benches = {
-	"bench_1" : ["bench",0,true],
-	"bench_2" : ["fridge",0,true],
+	"bench_1" : ["bin",0,true],
+	"bench_2" : ["bench",0,true],
 	"bench_3" : ["chopping_board",0,true],
-	"bench_4" : ["stove",0,true],
-	"bench_5" : ["bun_crate",0,true],
-	"bench_6" : ["bench",0,true],
-	"bench_7" : ["bench",270,true],
+	"bench_4" : ["bench",0,true],
+	"bench_5" : ["fridge",0,true],
+	"bench_6" : ["bun_crate",0,true],
+	"bench_7" : ["stove",270,true],
 	"bench_8" : ["bench",90,false],
 	"bench_9" : ["bench",270,false],
 	"bench_10" : ["bench",90,false],

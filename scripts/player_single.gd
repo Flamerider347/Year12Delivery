@@ -13,22 +13,19 @@ const GRAVITY = 9.81 #ms^-2
 @onready var seecast = $head/player_camera/seecast
 @onready var money = Global.money
 
-#region ingredients
-var bun = preload("res://prefabs/bun.tscn")
-var cheese = preload("res://prefabs/cheese.tscn")
-var meat = preload("res://prefabs/meat.tscn")
-var tomato = preload("res://prefabs/tomato.tscn")
-var carrot = preload("res://prefabs/carrot.tscn")
-var lettuce = preload("res://prefabs/lettuce.tscn")
 var ingredient_scenes = {
-	"bun":bun,
-	"cheese":cheese,
-	"meat" : meat,
-	"tomato": tomato,
-	"lettuce": lettuce,
-	"carrot": carrot,
+	"bun":preload("res://prefabs/bun.tscn"),
+	"cheese":preload("res://prefabs/cheese.tscn"),
+	"meat" : preload("res://prefabs/meat.tscn"),
+	"tomato": preload("res://prefabs/tomato.tscn"),
+	"lettuce": preload("res://prefabs/lettuce.tscn"),
+	"carrot": preload("res://prefabs/carrot.tscn"),
+	"potato": preload("res://prefabs/potato.tscn"),
+	"bowl" : preload(("res://prefabs/bowl.tscn")),
+	"plate": preload("res://prefabs/plate.tscn"),
+	"stew" : preload("res://prefabs/stew.tscn")
 }
-#endregion
+
 var held_object = null  # Stores the object being held
 var collision_point
 
@@ -177,6 +174,9 @@ func stack():
 			var item_size = item_shape.height
 			ingredient_added.emit(held_object.type,item_size)
 		ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
+		if held_object.type == "bun_top_chopped":
+			stack_bottom.add_to_group("packageable")
+			stack_bottom.remove_from_group("stackable")
 		held_object.rotation_degrees.x = 0
 		held_object.rotation_degrees.y = randi_range(0,360)
 		held_object.rotation_degrees.z = 0
@@ -185,7 +185,13 @@ func stack():
 		held_object.remove_from_group("pickupable")
 		held_object.freeze = true
 		held_object = null
-
+		for i in Global.recipes_list:
+			if i[1]:
+				if stack_bottom.contents == Global.recipes_list[i][0]:
+					var spawned_recipe = ingredient_scenes[i].instantiate()
+					$"..".add_child(spawned_recipe)
+					spawned_recipe.position = stack_bottom.position
+					stack_bottom.queue_free()
 func summon(item):
 	money_change.emit()
 	var instance = ingredient_scenes[item].instantiate()
