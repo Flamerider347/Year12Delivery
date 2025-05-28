@@ -8,7 +8,7 @@ var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var product_check = false
 var making_time_left = 0
-var next_spawn_time = 5
+var next_spawn_time = 30
 var order = false
 var loaded = true
 var action
