@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 var speed = 0
 var can_pickup = true
+var controlling = false
 const WALK_SPEED = 10
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 5
@@ -31,69 +32,71 @@ var collision_point
 
 signal ingredient_added
 signal money_change
-func _ready():
+func _setup():
 	money_change.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	controlling = true
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY/20)
-		camera.rotate_x(-event.relative.y * SENSITIVITY/20)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
-	if event.device == controller_id:
-		if event is InputEventJoypadButton:
-			if event.button_index == JOY_BUTTON_A and event.pressed:
-				if is_on_floor():
-					velocity.y += JUMP_VELOCITY
-		if event is InputEventJoypadButton:
-			if event.button_index == JOY_BUTTON_X and can_pickup and event.pressed:
-				if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
-					var door = seecast.get_collider()
-					door.swinging = true
-				if not held_object and can_pickup:
-					$pickup_timer.start()
-					can_pickup = false
-					if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
-						held_object = seecast.get_collider()
-						pickup(held_object)
-					if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
-						var summon_type = seecast.get_collider().name.replace("_crate","")
-						summon(summon_type)
-				if held_object and can_pickup:
-					if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
-						stack()
-					else:
-						drop(held_object)
-					$pickup_timer.start()
-					can_pickup = false
+	if controlling:
+		if event is InputEventMouseMotion:
+			head.rotate_y(-event.relative.x * SENSITIVITY/20)
+			camera.rotate_x(-event.relative.y * SENSITIVITY/20)
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+		if event.device == controller_id:
+			if event is InputEventJoypadButton:
+				if event.button_index == JOY_BUTTON_A and event.pressed:
+					if is_on_floor():
+						velocity.y += JUMP_VELOCITY
+			if event is InputEventJoypadButton:
+				if event.button_index == JOY_BUTTON_X and can_pickup and event.pressed:
+					if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+						var door = seecast.get_collider()
+						door.swinging = true
+					if not held_object and can_pickup:
+						$pickup_timer.start()
+						can_pickup = false
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+							held_object = seecast.get_collider()
+							pickup(held_object)
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+							var summon_type = seecast.get_collider().name.replace("_crate","")
+							summon(summon_type)
+					if held_object and can_pickup:
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+							stack()
+						else:
+							drop(held_object)
+						$pickup_timer.start()
+						can_pickup = false
 func _physics_process(delta: float):
-	if Input.is_action_just_pressed("menu"):
-		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
-	if money < 0:
-		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
-	if Input.is_action_just_pressed("pickup_p1") and can_pickup:
-		if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
-			var door = seecast.get_collider()
-			door.swinging = true
-		if not held_object and can_pickup:
-			$pickup_timer.start()
-			can_pickup = false
-			if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
-				held_object = seecast.get_collider()
-				pickup(held_object)
-			if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
-				var summon_type = seecast.get_collider().name.replace("_crate","")
-				summon(summon_type)
-		if held_object and can_pickup:
-			if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
-				stack()
-			else:
-				drop(held_object)
-			$pickup_timer.start()
-			can_pickup = false
-	position_held_object()
-	movement(delta)
-	move_and_slide()
+	if controlling:
+		if Input.is_action_just_pressed("menu"):
+			get_tree().reload_current_scene()
+		if money < 0:
+			get_tree().change_scene_to_file("res://prefabs/menu.tscn")
+		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+				var door = seecast.get_collider()
+				door.swinging = true
+			if not held_object and can_pickup:
+				$pickup_timer.start()
+				can_pickup = false
+				if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+					held_object = seecast.get_collider()
+					pickup(held_object)
+				if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+					var summon_type = seecast.get_collider().name.replace("_crate","")
+					summon(summon_type)
+			if held_object and can_pickup:
+				if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+					stack()
+				else:
+					drop(held_object)
+				$pickup_timer.start()
+				can_pickup = false
+		position_held_object()
+		movement(delta)
+		move_and_slide()
 
 func movement(delta):
 	if not is_on_floor():

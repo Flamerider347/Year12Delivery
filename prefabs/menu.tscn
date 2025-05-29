@@ -556,6 +556,7 @@ offset_top = -56.0
 offset_right = -7.0
 offset_bottom = -33.0
 text = "fridge"
+metadata/_edit_use_anchors_ = true
 
 [node name="bin" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1816, 968)
@@ -574,6 +575,7 @@ offset_top = -56.0
 offset_right = -7.0
 offset_bottom = -33.0
 text = "bin"
+metadata/_edit_use_anchors_ = true
 
 [node name="chopping_board" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1384, 968)
@@ -592,6 +594,7 @@ offset_top = -56.0
 offset_right = -7.0
 offset_bottom = -33.0
 text = "chopping board"
+metadata/_edit_use_anchors_ = true
 
 [node name="bun_crate" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1672, 968)
@@ -610,6 +613,7 @@ offset_top = -56.0
 offset_right = -7.0
 offset_bottom = -33.0
 text = "bun crate"
+metadata/_edit_use_anchors_ = true
 
 [node name="money" type="Label" parent="CanvasLayer/layout"]
 texture_filter = 1
@@ -617,6 +621,7 @@ offset_right = 161.0
 offset_bottom = 44.0
 scale = Vector2(3, 3)
 text = "Money: 10"
+metadata/_edit_use_anchors_ = true
 
 [node name="return" type="Button" parent="CanvasLayer/layout"]
 offset_left = 1700.0
@@ -624,6 +629,7 @@ offset_top = 10.0
 offset_right = 1900.0
 offset_bottom = 60.0
 text = "Return"
+metadata/_edit_use_anchors_ = true
 
 [node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
 metadata/_edit_group_ = true
@@ -636,6 +642,7 @@ offset_left = -56.0
 offset_top = -56.0
 offset_right = -16.0
 offset_bottom = -33.0
+metadata/_edit_use_anchors_ = true
 
 [node name="upgrades_button" type="Button" parent="CanvasLayer/layout"]
 offset_left = 32.0
@@ -643,6 +650,7 @@ offset_top = 88.0
 offset_right = 192.0
 offset_bottom = 176.0
 text = "Upgrades"
+metadata/_edit_use_anchors_ = true
 
 [node name="recipes_button" type="Button" parent="CanvasLayer/layout"]
 offset_left = 208.0
@@ -650,6 +658,7 @@ offset_top = 88.0
 offset_right = 368.0
 offset_bottom = 176.0
 text = "recipes"
+metadata/_edit_use_anchors_ = true
 
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
 
@@ -660,6 +669,7 @@ offset_right = 561.0
 offset_bottom = 258.0
 text = "eehehehe"
 script = ExtResource("8_jfis0")
+metadata/_edit_use_anchors_ = true
 
 [node name="benches" type="Label" parent="CanvasLayer/layout/upgrades"]
 offset_left = 48.0
@@ -668,6 +678,7 @@ offset_right = 88.0
 offset_bottom = 231.0
 text = "Buy bench 8
 -Adds another customisable bench!"
+metadata/_edit_use_anchors_ = true
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
 
@@ -718,6 +729,7 @@ text = "[center][u]Burguire[/u]
 [u]Needs:[/u]
 - 	Blender (0)
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)

@@ -65,16 +65,22 @@ var ingredients = {
 }
 
 func _ready() -> void:
-	$player_single.position = Vector3(1.8,1.1,4.3)
+	$GridContainer.hide()
+	$ui/Sprite2D.hide()
+	$ui/Sprite2D2.hide()
+func _setup():
+	$ui.show()
 	$ui/Label.text = "Money: " + str(money)
 	$day_timer.start()
 	map_select()
 	if Global.player_count == 1:
-		$GridContainer.queue_free()
-		$ui/Sprite2D2.hide()
+		$ui/Sprite2D.show()
+		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
 	if Global.player_count == 2:
-		$player_single.queue_free()
+		$GridContainer.show()
+		$ui/Sprite2D.show()
+		$ui/Sprite2D2.show()
 	$order_timer.start(0.1)
 	for i in Global.benches:
 		if Global.benches[i][2] == true:
@@ -84,6 +90,7 @@ func _ready() -> void:
 					$kitchen.add_child(summoned_bench)
 					summoned_bench.position = bench_summoning[i][0]
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
+
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left

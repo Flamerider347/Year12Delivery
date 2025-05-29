@@ -20,19 +20,18 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in $CanvasLayer.get_children():
-		i.hide()
-	if Global.menu_method == "main":
-		main_menu()
-		$"CanvasLayer/main_menu/players_1".modulate.a = 0
-		$"CanvasLayer/main_menu/players_2".modulate.a = 0
-		$"CanvasLayer/main_menu/quit".modulate.a = 0
+	menu_load()
+func menu_load():
+	$"../ui".hide()
+	hide_everything()
+	$"CanvasLayer/main_menu/players_1".modulate.a = 0
+	$"CanvasLayer/main_menu/players_2".modulate.a = 0
+	$"CanvasLayer/main_menu/quit".modulate.a = 0
 	for i in $CanvasLayer/level_select.get_children():
 		if str(i.name) in Global.unlocked_levels.keys():
 			if Global.unlocked_levels[str(i.name)] == false:
 				i.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -41,12 +40,13 @@ func _process(delta: float) -> void:
 		$CanvasLayer/main_menu/save_confirm.show()
 	if Input.is_action_just_pressed("enter"):
 		_on_save_confirm()
-	if Input.is_action_pressed("pickup_p1"):
+	if Input.is_action_just_released("pickup_p1"):
 		name_thing.position.y = -2
 	if name_thing.position.y > -2:
 		name_thing.position.y -= delta
 	else:
 		if menu_toggle:
+			hide_everything()
 			$"CanvasLayer/main_menu".show()
 			menu_toggle = false
 		if $"CanvasLayer/main_menu/players_1".modulate.a <1:
@@ -143,7 +143,13 @@ func layout():
 	$CanvasLayer/layout.show()
 
 func _on_play_level_pressed() -> void:
-	get_tree().change_scene_to_file("res://prefabs/world.tscn")
+	$".."._setup()
+	$"../player_single"._setup()
+	$Camera3D.current = false
+	$"../player_single/head/player_camera".current = true
+	hide_everything()
+	spawn = false
+	$Timer.stop()
 
 
 func hide_everything():
