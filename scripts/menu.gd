@@ -22,8 +22,19 @@ var random_spawn = {
 func _ready() -> void:
 	menu_load()
 func menu_load():
+	Global.stars = 5
+	$"../order_timer".stop()
+	$"../kitchen/plates".clear()
+	$"../player_single".controlling = false
+	name_thing.position.y = 0.5
+	spawn = true
+	$Timer.start()
+	$Camera3D.current = true
+	$"../player_single/head/player_camera".current = false
+	$"../GridContainer".hide()
 	$"../ui".hide()
 	hide_everything()
+	main_menu()
 	$"CanvasLayer/main_menu/players_1".modulate.a = 0
 	$"CanvasLayer/main_menu/players_2".modulate.a = 0
 	$"CanvasLayer/main_menu/quit".modulate.a = 0
@@ -47,7 +58,7 @@ func _process(delta: float) -> void:
 	else:
 		if menu_toggle:
 			hide_everything()
-			$"CanvasLayer/main_menu".show()
+			main_menu()
 			menu_toggle = false
 		if $"CanvasLayer/main_menu/players_1".modulate.a <1:
 			$"CanvasLayer/main_menu/players_1".modulate.a += delta

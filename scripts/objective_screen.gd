@@ -1,6 +1,7 @@
 extends Node3D
 signal objective_timeout
 signal objective
+signal objective_clear
 var delivery_list = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
 var delivery_location
 var ingredient_amount = 0
@@ -62,15 +63,23 @@ func _process(_delta: float) -> void:
 	for i in plates:
 		var plate_label = plates[i].find_child("Label3D")
 		var timer = plates[i].find_child("order_time")
-		if timer.is_inside_tree() and timer.time_left > 0:
+		if timer.is_inside_tree() and timer.time_left > 10:
+			plate_label.text = str(round(timer.time_left)).replace(".0","")
+			plate_label.modulate = Color(1, 1, 1)
+		elif timer.is_inside_tree() and timer.time_left > 0:
 			plate_label.text = str(round(timer.time_left*10)/10)
+			plate_label.modulate = Color(1, 0, 0)
 		elif plate_label.text != "":
 			plate_label.text = ""
 func randomise_objective():
 	var making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
+	while true:
+		if recipes_list[making_recipe][1] == false:
+			making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
+		else:
+			break
 	delivery_location = delivery_list[randi_range(0,8)]
-	ingredient_amount = randi_range(3,5)
-	var make_time = 100
+	var make_time = 0
 	for i in recipes_list[making_recipe][0]:
 		plate_contents[making_plate].append(i)
 		if i in ingredient_time.keys():
@@ -125,3 +134,15 @@ func _on_order_timeout(number) -> void:
 	plate_contents[plate].clear()
 	plates[plate].find_child("Label3D").text = ""
 	plates[plate].find_child("order_time").stop()
+
+func clear():
+	for i in range(10):
+		i = i+1
+		var plate = "plate_" + str(i)
+		for child in plates[plate].get_children():
+			if not child.is_in_group("keep"):
+				child.queue_free()
+		objective_clear.emit(i)
+		plate_contents[plate].clear()
+		plates[plate].find_child("Label3D").text = ""
+		plates[plate].find_child("order_time").stop()

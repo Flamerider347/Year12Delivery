@@ -8,9 +8,8 @@ var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var product_check = false
 var making_time_left = 0
-var next_spawn_time = 5
+var next_spawn_time = 1
 var order = false
-var loaded = true
 var action
 var stars = Global.stars
 var money = Global.money
@@ -68,7 +67,12 @@ func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
+	$knife.freeze = true
+	$knife2.freeze = true
 func _setup():
+	for i in $kitchen.get_children():
+		if not i.is_in_group("keep"):
+			i.queue_free()
 	$ui.show()
 	$ui/Label.text = "Money: " + str(money)
 	$day_timer.start()
@@ -107,13 +111,15 @@ func _physics_process(_delta: float) -> void:
 			else:
 				pass
 		var count = 0
-		for i in range(9):
+		for i in range(10):
 			count += 1
 			if orders[i] == 1:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
 	if $knife.position.y < 0.2:
-		$knife.position = Vector3(5.2,1.1,0.4)
+		$knife.position.y += 1.1
+	if $knife2.position.y < 0.2:
+		$knife2.position.y += 1.1
 	if product_check:
 		for objective in objectives:
 			if product == objectives[objective][0]:
@@ -200,33 +206,35 @@ func _on_objective_plate_timeout(timer_number) -> void:
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		Global.restart = true
+		$menu.menu_load()
+		stars = 5
+
+func _on_plates_objective_clear(timer_number) -> void:
+	orders[int(timer_number)-1] = 0
+	objectives.erase(str("plate_" + str(timer_number)))
 
 func _on_order_timeout(_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		Global.restart = true
+		$menu.menu_load()
 
 func map_select():
 	for i in maps.keys():
 		maps[i].hide()
 	var map_keys = maps.keys()
 	var random_map = map_keys[Global.level-1]
-	var old_map = map_keys[Global.level-2]
 	current_map = maps[random_map]
 	current_map.show()
-	$delivery_pot.position += current_map.position
-	$knife.position += current_map.position
-	$knife2.position += current_map.position
-	$kitchen.position += current_map.position
+	$knife.freeze = false
+	$knife2.freeze = false
+	$knife.position = current_map.position + Vector3($knife.position.x,1.1,$knife.position.z)
+	$knife2.position = current_map.position + Vector3($knife2.position.x,1.1,$knife2.position.z)
+	$delivery_pot.position = current_map.position + Vector3(3,1.1,10)
+	$kitchen.position = current_map.position
 	if Global.player_count == 1 :
-		if loaded:
-			$player_single.position = current_map.position + $player_single.position
-			#$delivery_pot.position = current_map.position + $delivery_pot.position
-			loaded = false
-		else:
-			$player_single.position = current_map.position + $player_single.position - maps[old_map].position
-			#$delivery_pot.position = current_map.position + $delivery_pot.position - maps[old_map].position
+		$player_single.position = current_map.position + Vector3(0,1.15,3)
 	if Global.player_count == 2:
 		$GridContainer/SubViewportContainer/SubViewport/player.position = current_map.position + Vector3(2,1.15,3)
 		$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map.position + Vector3(0,1.15,3)
@@ -235,4 +243,4 @@ func map_select():
 func _on_day_timer_timeout() -> void:
 	if Global.level < 5:
 		Global.level_updates_left += 1
-		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
+		$menu.menu_load()

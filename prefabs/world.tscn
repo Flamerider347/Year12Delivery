@@ -151,7 +151,7 @@ size = Vector3(50, 0.195, 50)
 
 [node name="kitchen" type="Node3D" parent="."]
 
-[node name="plates" type="Node3D" parent="kitchen"]
+[node name="plates" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, -4, 2.15409, 0)
 script = ExtResource("14_sxw1y")
 
@@ -223,6 +223,7 @@ wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+text = "5.5"
 
 [node name="objective_plate5" type="StaticBody3D" parent="kitchen/plates"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1, 0)
@@ -327,7 +328,7 @@ wait_time = 1000.0
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
 
-[node name="delivery_plate_table" type="StaticBody3D" parent="kitchen"]
+[node name="delivery_plate_table" type="StaticBody3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 10)
 
 [node name="TableRoundASmall" type="MeshInstance3D" parent="kitchen/delivery_plate_table"]
@@ -353,7 +354,7 @@ shape = SubResource("CylinderShape3D_sxw1y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
-[node name="plate_stand" type="StaticBody3D" parent="kitchen"]
+[node name="plate_stand" type="StaticBody3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 2.9, 0.267)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="kitchen/plate_stand"]
@@ -363,7 +364,7 @@ size = Vector3(12, 0.4, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plate_stand"]
 shape = SubResource("BoxShape3D_xfqyr")
 
-[node name="houses" type="Node3D" parent="kitchen"]
+[node name="houses" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="A1" type="Area3D" parent="kitchen/houses"]
@@ -588,7 +589,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(958, 1080)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep", "pickupable"]]
@@ -624,7 +625,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(958, 1080)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep", "pickupable"]]
@@ -1392,7 +1393,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 shape = SubResource("BoxShape3D_hpiwi")
 
 [node name="name" type="Label3D" parent="menu"]
-transform = Transform3D(2, 0, 0, 0, 2.38498e-08, 2, 0, -2, 2.38498e-08, 0, 10, -0.7)
+transform = Transform3D(2, 0, 0, 0, 2.38498e-08, 2, 0, -2, 2.38498e-08, 0, 0.5, -0.7)
 texture_filter = 2
 text = "Kitchen Chaos
 Return of the
@@ -1401,6 +1402,7 @@ UNNAMED PROJECT"
 [connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
 [connection signal="order_contents" from="." to="delivery_pot" method="_on_world_order_contents"]
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
+[connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
 [connection signal="objective_timeout" from="kitchen/plates" to="." method="_on_objective_plate_timeout"]
 [connection signal="timed_out_timer" from="kitchen/plates/objective_plate1" to="kitchen/plates" method="_on_order_timeout"]
 [connection signal="timeout" from="kitchen/plates/objective_plate1/order_time" to="kitchen/plates/objective_plate1" method="_on_order_time_timeout"]

@@ -71,7 +71,7 @@ func _unhandled_input(event):
 func _physics_process(delta: float):
 	if controlling:
 		if Input.is_action_just_pressed("menu"):
-			get_tree().reload_current_scene()
+			$"../menu".menu_load()
 		if money < 0:
 			get_tree().change_scene_to_file("res://prefabs/menu.tscn")
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
@@ -191,10 +191,11 @@ func stack():
 		for i in Global.recipes_list:
 			if i[1]:
 				if stack_bottom.contents == Global.recipes_list[i][0]:
-					var spawned_recipe = ingredient_scenes[i].instantiate()
-					$"..".add_child(spawned_recipe)
-					spawned_recipe.position = stack_bottom.position
-					stack_bottom.queue_free()
+					if i in ingredient_scenes:
+						var spawned_recipe = ingredient_scenes[i].instantiate()
+						$"..".add_child(spawned_recipe)
+						spawned_recipe.position = stack_bottom.position
+						stack_bottom.queue_free()
 func summon(item):
 	money_change.emit()
 	var instance = ingredient_scenes[item].instantiate()

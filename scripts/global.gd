@@ -3,12 +3,12 @@ var player_count = 1
 var level = 1
 var level_updates_left = 0
 var money = 10
-var stars = 3
-var day_timer = 300
+var stars = 5
+var day_timer = 20
 var recipes_list = {
-	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","tomato_chopped","cheese_chopped","lettuce_chopped","bun_top_chopped"],true],
-	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
-	"burger_hayden" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","meat_cooked","cheese_chopped","meat_cooked","meat_cooked","bun_top_chopped"],true],
+	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","tomato_chopped","cheese_chopped","lettuce_chopped","bun_top_chopped"],false],
+	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],false],
+	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],false],
 	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
 }
 var benches = {
@@ -44,16 +44,10 @@ var unlocked_levels = {
 }
 func _physics_process(_delta: float) -> void:
 	if restart:
-		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
 		money = 10
-		stars = 3
-		level = 1
-		player_count = 1
+		stars = 5
 		level_updates_left = 0
 		restart = false
-		for i in unlocked_levels.keys():
-			unlocked_levels[i] = false
-		unlocked_levels["level_1"] = true
 	if save_update:
 		var parts = save_code.split("-")
 		if parts.size() == 3:
