@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dautawjnvenim"
-path="res://.godot/imported/Charm-Bold.ttf-329d7dbe1637481ae1bba1760c2a6f0d.fontdata"
+uid="uid://ddfpgth32l7y1"
+path="res://.godot/imported/Charm-Regular.ttf-d8ecc2b2de030208c107d277755b8db9.fontdata"
 
 [deps]
 
-source_file="res://assets/Charm/Charm-Bold.ttf"
-dest_files=["res://.godot/imported/Charm-Bold.ttf-329d7dbe1637481ae1bba1760c2a6f0d.fontdata"]
+source_file="res://assets/Charm Font/Charm-Regular.ttf"
+dest_files=["res://.godot/imported/Charm-Regular.ttf-d8ecc2b2de030208c107d277755b8db9.fontdata"]
 
 [params]
 
