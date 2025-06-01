@@ -47,6 +47,8 @@ door=""
 lid=""
 deliverable=""
 packageable=""
+look_at=""
+look_at_plates=""
 
 [gui]
 

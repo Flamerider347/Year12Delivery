@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=57 format=4 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0vlgi3des8jt" path="res://scripts/objective_plates.gd" id="3_u7kri"]
 [ext_resource type="Texture2D" uid="uid://b46jqktnxqbq0" path="res://assets/materials/lave_normal.png" id="4_mrigr"]
 [ext_resource type="ArrayMesh" uid="uid://dnw6ln86toimb" path="res://assets/kitchenassets/knife.obj" id="10_bpfb4"]
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="10_n7i1a"]
 [ext_resource type="Texture2D" uid="uid://dtxutdwarivkd" path="res://assets/Cursor.png" id="11_b1m2q"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
@@ -152,11 +153,11 @@ size = Vector3(50, 0.195, 50)
 [node name="kitchen" type="Node3D" parent="."]
 
 [node name="plates" type="Node3D" parent="kitchen" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, -4, 2.15409, 0)
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
 script = ExtResource("14_sxw1y")
 
-[node name="objective_plate1" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+[node name="objective_plate1" type="StaticBody3D" parent="kitchen/plates" groups=["look_at", "look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
@@ -171,10 +172,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate2" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+[node name="objective_plate2" type="StaticBody3D" parent="kitchen/plates" groups=["look_at", "look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
@@ -188,10 +189,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate3" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, 0)
+[node name="objective_plate3" type="StaticBody3D" parent="kitchen/plates" groups=["look_at", "look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
@@ -205,10 +206,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate4" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 0)
+[node name="objective_plate4" type="StaticBody3D" parent="kitchen/plates" groups=["look_at"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
@@ -222,11 +223,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
-text = "5.5"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate5" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1, 0)
+[node name="objective_plate5" type="StaticBody3D" parent="kitchen/plates" groups=["look_at"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
@@ -240,10 +240,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate6" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 0)
+[node name="objective_plate6" type="StaticBody3D" parent="kitchen/plates" groups=["look_at"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
@@ -257,10 +257,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate7" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 0)
+[node name="objective_plate7" type="StaticBody3D" parent="kitchen/plates" groups=["look_at"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
@@ -274,10 +274,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate8" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, 0)
+[node name="objective_plate8" type="StaticBody3D" parent="kitchen/plates" groups=["look_at"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
@@ -291,10 +291,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate9" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, 0)
+[node name="objective_plate9" type="StaticBody3D" parent="kitchen/plates" groups=["look_at"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
@@ -308,10 +308,10 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate10" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0)
+[node name="objective_plate10" type="StaticBody3D" parent="kitchen/plates" groups=["look_at"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
@@ -326,7 +326,7 @@ shape = SubResource("CylinderShape3D_sxw1y")
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
 [node name="delivery_plate_table" type="StaticBody3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 10)
@@ -355,7 +355,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
 [node name="plate_stand" type="StaticBody3D" parent="kitchen" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 2.9, 0.267)
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -15.06, 2.823, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="kitchen/plate_stand"]
 material_override = SubResource("StandardMaterial3D_qrdq4")
@@ -466,9 +466,10 @@ shape = SubResource("BoxShape3D_qrdq4")
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
 text = "C3"
 
-[node name="knife" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
+[node name="knife" type="RigidBody3D" parent="." groups=["knife", "look_at", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, 0.4)
 mass = 0.6
+script = ExtResource("10_n7i1a")
 
 [node name="Knife" type="MeshInstance3D" parent="knife"]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -485,9 +486,10 @@ shape = SubResource("BoxShape3D_70uel")
 transform = Transform3D(1, 0, -1.59578e-37, 0, 1, 0, 0, 0, 1, -0.0749478, 0, -0.54)
 shape = SubResource("BoxShape3D_le6xu")
 
-[node name="knife2" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
+[node name="knife2" type="RigidBody3D" parent="." groups=["knife", "look_at", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.1, 0.4)
 mass = 0.6
+script = ExtResource("10_n7i1a")
 
 [node name="Knife" type="MeshInstance3D" parent="knife2"]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -559,6 +561,12 @@ scale = Vector2(3, 3)
 text = "00:00"
 metadata/_edit_use_anchors_ = true
 
+[node name="looking_recipe" type="RichTextLabel" parent="ui"]
+offset_left = 1664.0
+offset_top = 379.0
+offset_right = 1912.0
+offset_bottom = 704.0
+
 [node name="beautiful" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamMP3_8bx52")
 
@@ -572,7 +580,6 @@ stream = ExtResource("23_xfqyr")
 stream = ExtResource("24_xfqyr")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.1, 4.3)
 current = true
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -594,6 +601,7 @@ render_target_update_mode = 0
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941749, 1, 6.1318)
+visible = false
 script = ExtResource("2_le6xu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]
@@ -630,6 +638,7 @@ render_target_update_mode = 0
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188471, 1, 4)
+visible = false
 script = ExtResource("24_n7i1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2" groups=["hitbox"]]
@@ -653,7 +662,7 @@ wait_time = 0.06
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
 [node name="player_single" type="CharacterBody3D" parent="." groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.1, 4.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 1.1, 5.21)
 script = ExtResource("25_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_single"]
@@ -670,6 +679,9 @@ far = 300.0
 
 [node name="seecast" type="RayCast3D" parent="player_single/head/player_camera"]
 target_position = Vector3(0, 0, -5)
+
+[node name="lookcast" type="RayCast3D" parent="player_single/head/player_camera"]
+target_position = Vector3(0, 0, -10)
 
 [node name="pickup_timer" type="Timer" parent="player_single"]
 wait_time = 0.06
@@ -1455,6 +1467,7 @@ UNNAMED PROJECT"
 [connection signal="money_change" from="GridContainer/SubViewportContainer2/SubViewport/player2" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
+[connection signal="looking_recipe" from="player_single" to="." method="looking_recipe"]
 [connection signal="money_change" from="player_single" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]

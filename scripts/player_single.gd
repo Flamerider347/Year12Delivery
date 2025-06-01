@@ -12,6 +12,7 @@ const GRAVITY = 9.81 #ms^-2
 @onready var head = $head
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
+@onready var lookcast = $head/player_camera/lookcast
 @onready var money = Global.money
 
 var ingredient_scenes = {
@@ -32,6 +33,7 @@ var collision_point
 
 signal ingredient_added
 signal money_change
+signal looking_recipe
 func _setup():
 	money_change.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -42,6 +44,7 @@ func _unhandled_input(event):
 			head.rotate_y(-event.relative.x * SENSITIVITY/20)
 			camera.rotate_x(-event.relative.y * SENSITIVITY/20)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+			look_recipe()
 		if event.device == controller_id:
 			if event is InputEventJoypadButton:
 				if event.button_index == JOY_BUTTON_A and event.pressed:
@@ -94,6 +97,7 @@ func _physics_process(delta: float):
 					drop(held_object)
 				$pickup_timer.start()
 				can_pickup = false
+
 		position_held_object()
 		movement(delta)
 		move_and_slide()
@@ -163,7 +167,6 @@ func position_held_object():
 			held_object.position = collision_point
 		else:
 			held_object.position = seecast.to_global(seecast.target_position)
-
 func stack():
 		var stack_bottom = seecast.get_collider()
 		var item_shape = held_object.find_child("CollisionShape3D").shape
@@ -208,6 +211,28 @@ func summon(item):
 	instance.add_to_group("choppable")
 	instance.find_child("CollisionShape3D").disabled = true
 	seecast.target_position.z = -1.5
+
+func look_recipe():
+	if lookcast.is_colliding():
+		var collision_item = lookcast.get_collider()
+		var emitting_collision_item = null
+		if collision_item is RigidBody3D:
+			if collision_item.type:
+				emitting_collision_item = [collision_item.type]
+				looking_recipe.emit(emitting_collision_item)
+		if collision_item is StaticBody3D:
+			if collision_item.is_in_group("look_at"):
+				emitting_collision_item = [collision_item.name.replace("_crate","")]
+				looking_recipe.emit(emitting_collision_item)
+			if collision_item.is_in_group("look_at_plates"):
+				emitting_collision_item = $"../kitchen/plates".plate_contents[collision_item.name.replace("objective_plate","plate_")]
+				looking_recipe.emit(emitting_collision_item)
+		if collision_item is RigidBody3D:
+			if collision_item.is_in_group("look_at"):
+				emitting_collision_item = [collision_item.name]
+				looking_recipe.emit(emitting_collision_item)
+	else:
+		$"../ui/looking_recipe".hide()
 
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true

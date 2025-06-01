@@ -79,7 +79,7 @@ func randomise_objective():
 		else:
 			break
 	delivery_location = delivery_list[randi_range(0,8)]
-	var make_time = 0
+	var make_time = 100
 	for i in recipes_list[making_recipe][0]:
 		plate_contents[making_plate].append(i)
 		if i in ingredient_time.keys():
@@ -96,10 +96,14 @@ func update_target(recipe):
 	for i in plate_contents[making_plate]:
 		var spawned_item = ingredient_list[i].instantiate()
 		var spawned_item_hitbox = spawned_item.find_child("CollisionShape3D").shape
+		if plate_contents[making_plate].size() > 1:
+			spawned_item.type = i
 		plates[making_plate].add_child(spawned_item)
 		spawned_item.remove_from_group("pickupable")
 		spawned_item.freeze = true
 		spawned_item.position = Vector3(0,next_position,0)
+		if plate_contents[making_plate][0] in Global.recipes_list.keys():
+			plate_contents[making_plate] = Global.recipes_list[plate_contents[making_plate][0]][0]
 		if spawned_item_hitbox is BoxShape3D:
 			var item_size = spawned_item_hitbox.size.y
 			next_position += item_size

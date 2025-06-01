@@ -121,8 +121,13 @@ func _physics_process(_delta: float) -> void:
 	if $knife2.position.y < 0.2:
 		$knife2.position.y += 1.1
 	if product_check:
+		var sorted_product = product.duplicate()
+		sorted_product.sort()
 		for objective in objectives:
-			if product == objectives[objective][0]:
+			var sorted_objective = objectives[objective][0].duplicate()
+			sorted_objective.sort()
+			print(sorted_objective)
+			if sorted_product == sorted_objective:
 				var plate_number = objectives[objective][3]
 				product_check = false
 				var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
@@ -244,3 +249,11 @@ func _on_day_timer_timeout() -> void:
 	if Global.level < 5:
 		Global.level_updates_left += 1
 		$menu.menu_load()
+
+func looking_recipe(looking_at_list):
+	if looking_at_list.size() == 1 and looking_at_list[0] in Global.recipes_list.keys():
+		looking_at_list = Global.recipes_list[looking_at_list[0]][0]
+	$ui/looking_recipe.show()
+	$ui/looking_recipe.text = ""
+	for i in looking_at_list:
+		$ui/looking_recipe.text = $ui/looking_recipe.text + "\n" + str(i).replacen("_"," ") 

@@ -6,9 +6,9 @@ var money = 10
 var stars = 5
 var day_timer = 20
 var recipes_list = {
-	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","tomato_chopped","cheese_chopped","lettuce_chopped","bun_top_chopped"],false],
-	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],false],
-	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],false],
+	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","tomato_chopped","cheese_chopped","lettuce_chopped","bun_top_chopped"],true],
+	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
+	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],true],
 	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
 }
 var benches = {

@@ -2,6 +2,7 @@ extends RigidBody3D
 var contents = []
 var target_location
 var timer_number
+var type = "delivery_pot"
 signal timeout
 @onready var delivery_location_text = $Label3D
 @onready var time_left_text = $Label3D2
