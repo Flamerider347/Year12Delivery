@@ -3,6 +3,7 @@ extends CharacterBody3D
 var speed = 0
 var can_pickup = true
 var controlling = false
+var evil = false
 const WALK_SPEED = 10
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 5
@@ -168,37 +169,43 @@ func position_held_object():
 		else:
 			held_object.position = seecast.to_global(seecast.target_position)
 func stack():
+		evil = false
 		var stack_bottom = seecast.get_collider()
 		var item_shape = held_object.find_child("CollisionShape3D").shape
-		held_object.reparent(stack_bottom)
-		held_object.position = Vector3(0,stack_bottom.next_position,0)
-		ingredient_added.connect(stack_bottom._on_player_ingredient_added)
-		if item_shape is BoxShape3D:
-			var item_size = item_shape.size.y
-			ingredient_added.emit(held_object.type,item_size)
-		elif item_shape is CylinderShape3D:
-			var item_size = item_shape.height
-			ingredient_added.emit(held_object.type,item_size)
-		ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
-		if held_object.type == "bun_top_chopped":
-			stack_bottom.add_to_group("packageable")
-			stack_bottom.remove_from_group("stackable")
-		held_object.rotation_degrees.x = 0
-		held_object.rotation_degrees.y = randi_range(0,360)
-		held_object.rotation_degrees.z = 0
-		held_object.find_child("CollisionShape3D").disabled = false
-		held_object.find_child("CollisionShape3D").reparent(stack_bottom)
-		held_object.remove_from_group("pickupable")
-		held_object.freeze = true
-		held_object = null
-		for i in Global.recipes_list:
-			if i[1]:
-				if stack_bottom.contents == Global.recipes_list[i][0]:
-					if i in ingredient_scenes:
-						var spawned_recipe = ingredient_scenes[i].instantiate()
-						$"..".add_child(spawned_recipe)
-						spawned_recipe.position = stack_bottom.position
-						stack_bottom.queue_free()
+		if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 2 and held_object.type != "bun_bottom_chopped":
+			evil = true
+		if not evil:
+			held_object.reparent(stack_bottom)
+			held_object.position = Vector3(0,stack_bottom.next_position,0)
+			ingredient_added.connect(stack_bottom._on_player_ingredient_added)
+			if item_shape is BoxShape3D:
+				var item_size = item_shape.size.y
+				ingredient_added.emit(held_object.type,item_size)
+			elif item_shape is CylinderShape3D:
+				var item_size = item_shape.height
+				ingredient_added.emit(held_object.type,item_size)
+			ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
+			if held_object.type == "bun_top_chopped":
+				stack_bottom.add_to_group("packageable")
+				stack_bottom.remove_from_group("stackable")
+			held_object.rotation_degrees.x = 0
+			held_object.rotation_degrees.y = randi_range(0,360)
+			held_object.rotation_degrees.z = 0
+			held_object.find_child("CollisionShape3D").disabled = false
+			held_object.find_child("CollisionShape3D").reparent(stack_bottom)
+			held_object.remove_from_group("pickupable")
+			held_object.freeze = true
+			held_object = null
+			for i in Global.recipes_list:
+				if i[1]:
+					if stack_bottom.contents == Global.recipes_list[i][0]:
+						if i in ingredient_scenes:
+							var spawned_recipe = ingredient_scenes[i].instantiate()
+							$"..".add_child(spawned_recipe)
+							spawned_recipe.position = stack_bottom.position
+							stack_bottom.queue_free()
+		if evil:
+			drop(held_object)
 func summon(item):
 	money_change.emit()
 	var instance = ingredient_scenes[item].instantiate()

@@ -126,7 +126,6 @@ func _physics_process(_delta: float) -> void:
 		for objective in objectives:
 			var sorted_objective = objectives[objective][0].duplicate()
 			sorted_objective.sort()
-			print(sorted_objective)
 			if sorted_product == sorted_objective:
 				var plate_number = objectives[objective][3]
 				product_check = false
