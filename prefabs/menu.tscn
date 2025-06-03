@@ -1,0 +1,840 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtjxhgwfv24sv"]
+
+[ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
+[ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
+[ext_resource type="Texture2D" uid="uid://dynfana5geddq" path="res://istockphoto-648352074-612x612-removebg-preview.png" id="3_jfis0"]
+[ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
+[ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="5_3nfdx"]
+[ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
+[ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
+size = Vector2(128, 128)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hpiwi"]
+size = Vector3(0.5, 20, 0.5)
+
+[node name="menu" type="Node3D"]
+script = ExtResource("1_jhrhb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 860.0
+offset_top = 562.0
+offset_right = 1060.0
+offset_bottom = 622.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+metadata/_edit_use_anchors_ = true
+
+[node name="players_2" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 860.0
+offset_top = 641.495
+offset_right = 1060.0
+offset_bottom = 701.495
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Multiplayer"
+metadata/_edit_use_anchors_ = true
+
+[node name="quit" type="Button" parent="CanvasLayer/main_menu"]
+offset_left = 860.0
+offset_top = 724.475
+offset_right = 1060.0
+offset_bottom = 784.475
+text = "Quit"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/main_menu"]
+visible = false
+offset_left = 857.0
+offset_top = 806.0
+offset_right = 1246.0
+offset_bottom = 862.0
+placeholder_text = "Typey typey"
+
+[node name="save_confirm" type="Button" parent="CanvasLayer/main_menu"]
+visible = false
+offset_left = 1277.0
+offset_top = 778.0
+offset_right = 1460.0
+offset_bottom = 875.0
+text = "Enter
+"
+
+[node name="level_select" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="level_1" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 430.0
+offset_right = 1060.0
+offset_bottom = 480.0
+text = "Tutorial"
+
+[node name="level_2" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 530.0
+offset_right = 1060.0
+offset_bottom = 580.0
+text = "level 2"
+
+[node name="level_3" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 630.0
+offset_right = 1060.0
+offset_bottom = 680.0
+text = "Level 3"
+
+[node name="level_4" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 730.0
+offset_right = 1060.0
+offset_bottom = 780.0
+text = "level 4"
+
+[node name="level_5" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 830.0
+offset_right = 1060.0
+offset_bottom = 880.0
+text = "level 5"
+
+[node name="return" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 1700.0
+offset_top = 10.0
+offset_right = 1900.0
+offset_bottom = 60.0
+text = "Return to main menu"
+
+[node name="build_or_level_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="play_level" type="Button" parent="CanvasLayer/build_or_level_menu"]
+offset_left = 860.0
+offset_top = 600.0
+offset_right = 1060.0
+offset_bottom = 650.0
+
+[node name="build_menu" type="Button" parent="CanvasLayer/build_or_level_menu"]
+offset_left = 860.0
+offset_top = 660.0
+offset_right = 1060.0
+offset_bottom = 710.0
+text = "Open Build Menu"
+
+[node name="return" type="Button" parent="CanvasLayer/build_or_level_menu"]
+offset_left = 1700.0
+offset_top = 10.0
+offset_right = 1900.0
+offset_bottom = 60.0
+text = "Return to Level Select
+"
+
+[node name="layout" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("2_kuqlr")
+
+[node name="Istockphoto-648352074-612x612-removebg-preview" type="Sprite2D" parent="CanvasLayer/layout"]
+position = Vector2(320, 624)
+scale = Vector2(2.325, 2.325)
+texture = ExtResource("3_jfis0")
+
+[node name="layout_benches" type="Node2D" parent="CanvasLayer/layout"]
+
+[node name="bench_1" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1088, 136)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_1"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_1"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_1"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+scale = Vector2(0.5, 0.5)
+text = "Bench"
+
+[node name="bench_2" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1216, 136)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_2"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_2"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_2"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+scale = Vector2(0.5, 0.5)
+text = "Bench"
+
+[node name="bench_3" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1344, 136)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_3"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_3"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_3"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_4" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1472, 136)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_4"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_4"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_4"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_5" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1600, 136)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_5"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_5"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_5"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_6" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1728, 136)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_6"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_6"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_6"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1728, 264)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_8"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_7" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1088, 264)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_7"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_7"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_7"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_9" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1088, 392)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_9"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_9"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_9"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_10" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1728, 392)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_10"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_10"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_10"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_11" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1088, 520)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_11"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_11"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_11"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_12" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1728, 520)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_12"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_12"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_12"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_13" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1088, 648)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_13"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_13"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_13"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_14" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1728, 648)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_14"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_14"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_14"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_15" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1088, 776)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_15"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_15"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_15"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_16" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1728, 776)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_16"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_16"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_16"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_17" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1216, 776)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_17"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_17"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_17"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="bench_18" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+position = Vector2(1600, 776)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_18"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_18"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_18"]
+offset_left = -25.0
+offset_top = -61.0
+offset_right = 24.0
+offset_bottom = -38.0
+text = "Bench"
+
+[node name="layout_shop" type="Node2D" parent="CanvasLayer/layout"]
+
+[node name="bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(1096, 968)
+script = ExtResource("6_y5qo3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/bench"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bench"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/bench"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "bench"
+metadata/_edit_use_anchors_ = true
+
+[node name="stove" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(1240, 968)
+script = ExtResource("6_y5qo3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/stove"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/stove"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/stove"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "stove"
+metadata/_edit_use_anchors_ = true
+
+[node name="fridge" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(1528, 968)
+script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/fridge"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/fridge"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/fridge"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "fridge"
+metadata/_edit_use_anchors_ = true
+
+[node name="bin" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(1816, 968)
+script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/bin"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bin"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/bin"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+scale = Vector2(0.5, 0.5)
+text = "bin"
+metadata/_edit_use_anchors_ = true
+
+[node name="chopping_board" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(1384, 968)
+script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/chopping_board"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/chopping_board"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/chopping_board"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+scale = Vector2(0.5, 0.5)
+text = "chopping board"
+metadata/_edit_use_anchors_ = true
+
+[node name="bun_crate" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(1672, 968)
+script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/bun_crate"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -7.0
+offset_bottom = -33.0
+text = "bun crate"
+metadata/_edit_use_anchors_ = true
+
+[node name="money" type="Label" parent="CanvasLayer/layout"]
+texture_filter = 1
+offset_right = 161.0
+offset_bottom = 44.0
+scale = Vector2(0.5, 0.5)
+text = "Money:"
+metadata/_edit_use_anchors_ = true
+
+[node name="return" type="Button" parent="CanvasLayer/layout"]
+offset_left = 1700.0
+offset_top = 10.0
+offset_right = 1900.0
+offset_bottom = 60.0
+text = "Return"
+metadata/_edit_use_anchors_ = true
+
+[node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/dragging_bench"]
+texture = ExtResource("5_3nfdx")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/dragging_bench"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -16.0
+offset_bottom = -33.0
+metadata/_edit_use_anchors_ = true
+
+[node name="upgrades_button" type="Button" parent="CanvasLayer/layout"]
+offset_left = 32.0
+offset_top = 88.0
+offset_right = 192.0
+offset_bottom = 176.0
+text = "Upgrades"
+metadata/_edit_use_anchors_ = true
+
+[node name="recipes_button" type="Button" parent="CanvasLayer/layout"]
+offset_left = 208.0
+offset_top = 88.0
+offset_right = 368.0
+offset_bottom = 176.0
+text = "recipes"
+metadata/_edit_use_anchors_ = true
+
+[node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
+
+[node name="buy_bench" type="Button" parent="CanvasLayer/layout/upgrades"]
+offset_left = 498.0
+offset_top = 208.0
+offset_right = 561.0
+offset_bottom = 258.0
+text = "eehehehe"
+script = ExtResource("7_73aox")
+metadata/_edit_use_anchors_ = true
+
+[node name="benches" type="Label" parent="CanvasLayer/layout/upgrades"]
+offset_left = 48.0
+offset_top = 208.0
+offset_right = 88.0
+offset_bottom = 231.0
+scale = Vector2(0.705, 0.705)
+text = "Buy bench 8
+-Adds another customisable bench!"
+metadata/_edit_use_anchors_ = true
+
+[node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/layout/recipes"]
+offset_left = 45.0
+offset_top = 200.0
+offset_right = 609.88
+offset_bottom = 1044.05
+bbcode_enabled = true
+text = "[center][u]Burguire[/u]
+- Sells for 10-30$
+[u]Ingredients[/u]
+- Meat Pattie
+- 	Chopped Bun
+- 	Chopped Lettuce
+- 	Chopped Cheese
+- 	Chopped Tomato
+[u]Needs:[/u]
+- Bun Crate (0)
+
+[u]Stew[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Chopped Potato
+- 	Chopped Meat Pattie
+- 	Chopped Carrot
+
+[u]Chips[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Chopped Potato
+[u]Needs:[/u]
+- Deep Fryer (0)
+
+[u]Fish and Chips[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Fish
+- 	Chopped Potato
+[u]Needs:[/u]
+- Deep Fryer (0)
+
+[u]Soup[/u]
+- Sells for xx-xx$
+[u]Ingredients[/u]
+- 	Chopped Potato
+- 	Chopped Lettuce
+[u]Needs:[/u]
+- 	Blender (0)
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+current = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+shape = SubResource("BoxShape3D_hpiwi")
+
+[node name="name" type="Label3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0.5, -0.7)
+texture_filter = 2
+text = "Kitchen Chaos
+Return of the
+UNNAMED PROJECT"
+font_size = 128
+
+[connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
+[connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
+[connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_2" to="." method="_on_level_2"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_3" to="." method="_on_level_3"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_4" to="." method="_on_level_4"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_5" to="." method="_on_level_5"]
+[connection signal="pressed" from="CanvasLayer/level_select/return" to="." method="main_menu"]
+[connection signal="pressed" from="CanvasLayer/build_or_level_menu/play_level" to="." method="_on_play_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="layout"]
+[connection signal="pressed" from="CanvasLayer/build_or_level_menu/return" to="." method="level_select"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_1" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_1" to="CanvasLayer/layout/layout_benches/bench_1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_1" to="CanvasLayer/layout/layout_benches/bench_1" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_2" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_2" to="CanvasLayer/layout/layout_benches/bench_2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_2" to="CanvasLayer/layout/layout_benches/bench_2" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_3" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_3" to="CanvasLayer/layout/layout_benches/bench_3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_3" to="CanvasLayer/layout/layout_benches/bench_3" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_4" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_4" to="CanvasLayer/layout/layout_benches/bench_4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_4" to="CanvasLayer/layout/layout_benches/bench_4" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_5" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_5" to="CanvasLayer/layout/layout_benches/bench_5" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_5" to="CanvasLayer/layout/layout_benches/bench_5" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_6" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_6" to="CanvasLayer/layout/layout_benches/bench_6" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_6" to="CanvasLayer/layout/layout_benches/bench_6" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout/layout_benches/bench_8" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout/layout_benches/bench_8" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_7" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_7" to="CanvasLayer/layout/layout_benches/bench_7" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_7" to="CanvasLayer/layout/layout_benches/bench_7" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_9" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_9" to="CanvasLayer/layout/layout_benches/bench_9" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_9" to="CanvasLayer/layout/layout_benches/bench_9" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_10" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_10" to="CanvasLayer/layout/layout_benches/bench_10" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_10" to="CanvasLayer/layout/layout_benches/bench_10" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_11" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_11" to="CanvasLayer/layout/layout_benches/bench_11" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_11" to="CanvasLayer/layout/layout_benches/bench_11" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_12" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_12" to="CanvasLayer/layout/layout_benches/bench_12" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_12" to="CanvasLayer/layout/layout_benches/bench_12" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_13" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_13" to="CanvasLayer/layout/layout_benches/bench_13" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_13" to="CanvasLayer/layout/layout_benches/bench_13" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_14" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_14" to="CanvasLayer/layout/layout_benches/bench_14" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_14" to="CanvasLayer/layout/layout_benches/bench_14" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_15" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_15" to="CanvasLayer/layout/layout_benches/bench_15" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_15" to="CanvasLayer/layout/layout_benches/bench_15" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_16" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_16" to="CanvasLayer/layout/layout_benches/bench_16" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_16" to="CanvasLayer/layout/layout_benches/bench_16" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_17" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_17" to="CanvasLayer/layout/layout_benches/bench_17" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_17" to="CanvasLayer/layout/layout_benches/bench_17" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_18" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_18" to="CanvasLayer/layout/layout_benches/bench_18" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_18" to="CanvasLayer/layout/layout_benches/bench_18" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/bench" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/bench" to="CanvasLayer/layout/layout_shop/bench" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/bench" to="CanvasLayer/layout/layout_shop/bench" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/stove" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/stove" to="CanvasLayer/layout/layout_shop/stove" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/stove" to="CanvasLayer/layout/layout_shop/stove" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/fridge" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/fridge" to="CanvasLayer/layout/layout_shop/fridge" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/fridge" to="CanvasLayer/layout/layout_shop/fridge" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/bin" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/bin" to="CanvasLayer/layout/layout_shop/bin" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/bin" to="CanvasLayer/layout/layout_shop/bin" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/chopping_board" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/chopping_board" to="CanvasLayer/layout/layout_shop/chopping_board" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/chopping_board" to="CanvasLayer/layout/layout_shop/chopping_board" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/bun_crate" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/bun_crate" to="CanvasLayer/layout/layout_shop/bun_crate" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/bun_crate" to="CanvasLayer/layout/layout_shop/bun_crate" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_or_level"]
+[connection signal="pressed" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout" method="_on_upgrades_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
+[connection signal="item_purchasable" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout" method="_on_item_purchasable"]
+[connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]
