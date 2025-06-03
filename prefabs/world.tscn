@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=54 format=4 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b46jqktnxqbq0" path="res://assets/materials/lave_normal.png" id="4_mrigr"]
 [ext_resource type="ArrayMesh" uid="uid://dnw6ln86toimb" path="res://assets/kitchenassets/knife.obj" id="10_bpfb4"]
 [ext_resource type="Texture2D" uid="uid://dtxutdwarivkd" path="res://assets/Cursor.png" id="11_b1m2q"]
+[ext_resource type="ArrayMesh" uid="uid://iirqhphq2bjw" path="res://assets/kitchenassets/wall_window_open.obj" id="11_gi6id"]
+[ext_resource type="ArrayMesh" uid="uid://b3ulkq0panu7q" path="res://assets/kitchenassets/wall_doorway.obj" id="12_bpfb4"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
 [ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="16_nwl14"]
@@ -64,6 +66,18 @@ size = Vector3(12, 0.4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_deaom"]
 size = Vector3(4.3222, 4.45566, 0.490234)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gi6id"]
+size = Vector3(11.9759, 1.19092, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bpfb4"]
+size = Vector3(11.9809, 1.16296, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b1m2q"]
+size = Vector3(2.9585, 2.62158, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8bx52"]
+size = Vector3(3.00171, 2.82086, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_70uel"]
 size = Vector3(0.255676, 0.102249, 1.14643)
@@ -453,109 +467,211 @@ shape = SubResource("BoxShape3D_qrdq4")
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
 text = "C3"
 
-[node name="House B1" type="Node3D" parent="kitchen"]
-transform = Transform3D(0.642788, 0, -3.83022, 0, 1, 0, 0.766044, 0, 3.21394, -10.0402, 0, 23.2938)
+[node name="House B1" type="Node3D" parent="kitchen/houses"]
+transform = Transform3D(0.642788, 0, -3.83022, 0, 1, 0, 0.766044, 0, 3.21394, -10.0402, -0.2, 23.2938)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/House B1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/houses/House B1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/House B1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/House B1/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0713806, 1.72783, -0.015625)
 shape = SubResource("BoxShape3D_deaom")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/House B1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/houses/House B1"]
 mesh = ExtResource("19_6mti1")
 
-[node name="Label3D" type="Label3D" parent="kitchen/House B1"]
+[node name="Label3D" type="Label3D" parent="kitchen/houses/House B1"]
 transform = Transform3D(-3, 0, 2.62268e-07, 0, 3, 0, -5.24537e-08, 0, -0.6, -0.0551214, 3.11968, -0.253126)
 text = "House B1
 "
 
-[node name="House B2" type="Node3D" parent="kitchen"]
-transform = Transform3D(0.5, 0, 4.33013, 0, 1, 0, -0.866025, 0, 2.5, 15.5873, 0, 19.9698)
+[node name="House B2" type="Node3D" parent="kitchen/houses"]
+transform = Transform3D(0.5, 0, 4.33013, 0, 1, 0, -0.866025, 0, 2.5, 15.5873, -0.2, 19.9698)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/House B2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/houses/House B2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/House B2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/House B2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0713806, 1.72783, -0.015625)
 shape = SubResource("BoxShape3D_deaom")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/House B2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/houses/House B2"]
 mesh = ExtResource("19_6mti1")
 
-[node name="Label3D" type="Label3D" parent="kitchen/House B2"]
+[node name="Label3D" type="Label3D" parent="kitchen/houses/House B2"]
 transform = Transform3D(-3, 0, 2.62268e-07, 0, 3, 0, -5.24537e-08, 0, -0.6, -0.0551214, 3.11968, -0.253126)
 text = "House B2
 "
 
-[node name="House B3" type="Node3D" parent="kitchen"]
-transform = Transform3D(-1, 0, 4.37114e-07, 0, 1, 0, -8.74228e-08, 0, -5, -0.185759, -2.86102e-06, -12.3198)
+[node name="House B3" type="Node3D" parent="kitchen/houses"]
+transform = Transform3D(-1, 0, 4.37114e-07, 0, 1, 0, -8.74228e-08, 0, -5, -0.185759, -0.200003, -12.3198)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/House B3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/houses/House B3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/House B3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/House B3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0713806, 1.72783, -0.015625)
 shape = SubResource("BoxShape3D_deaom")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/House B3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/houses/House B3"]
 mesh = ExtResource("19_6mti1")
 
-[node name="Label3D" type="Label3D" parent="kitchen/House B3"]
+[node name="Label3D" type="Label3D" parent="kitchen/houses/House B3"]
 transform = Transform3D(-3, 0, 2.62268e-07, 0, 3, 0, -5.24537e-08, 0, -0.6, -0.0551214, 3.11968, -0.253126)
 text = "House B3
 
 "
 
-[node name="House C1" type="Node3D" parent="kitchen"]
-transform = Transform3D(-4.37114e-08, 0, 5, 0, 1, 0, -1, 0, -2.18557e-07, 12.461, 0, 7.795)
+[node name="House C1" type="Node3D" parent="kitchen/houses"]
+transform = Transform3D(-4.37114e-08, 0, 5, 0, 1, 0, -1, 0, -2.18557e-07, 12.461, -0.2, 7.795)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/House C1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/houses/House C1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/House C1/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/House C1/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0713806, 1.72783, -0.015625)
 shape = SubResource("BoxShape3D_deaom")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/House C1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/houses/House C1"]
 mesh = ExtResource("19_6mti1")
 
-[node name="Label3D" type="Label3D" parent="kitchen/House C1"]
+[node name="Label3D" type="Label3D" parent="kitchen/houses/House C1"]
 transform = Transform3D(-3, 0, 2.62268e-07, 0, 3, 0, -5.24537e-08, 0, -0.6, -0.0551214, 3.11968, -0.253126)
 text = "House C1
 "
 
-[node name="House C2" type="Node3D" parent="kitchen"]
-transform = Transform3D(-1, 0, 4.37114e-07, 0, 1, 0, -8.74228e-08, 0, -5, -15.5647, 0, -8.36718)
+[node name="House C2" type="Node3D" parent="kitchen/houses"]
+transform = Transform3D(-1, 0, 4.37114e-07, 0, 1, 0, -8.74228e-08, 0, -5, -15.5647, -0.2, -8.36718)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/House C2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/houses/House C2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/House C2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/House C2/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0713806, 1.72783, -0.015625)
 shape = SubResource("BoxShape3D_deaom")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/House C2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/houses/House C2"]
 mesh = ExtResource("19_6mti1")
 
-[node name="Label3D" type="Label3D" parent="kitchen/House C2"]
+[node name="Label3D" type="Label3D" parent="kitchen/houses/House C2"]
 transform = Transform3D(-3, 0, 2.62268e-07, 0, 3, 0, -5.24537e-08, 0, -0.6, -0.0551214, 3.11968, -0.253126)
 text = "House C2
 "
 
-[node name="House C3" type="Node3D" parent="kitchen"]
-transform = Transform3D(-0.766044, 0, 3.21394, 0, 1, 0, -0.642788, 0, -3.83022, 16.9122, 0, -21.4369)
+[node name="House C3" type="Node3D" parent="kitchen/houses"]
+transform = Transform3D(-0.766044, 0, 3.21394, 0, 1, 0, -0.642788, 0, -3.83022, 16.9122, -0.2, -21.4369)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/House C3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/houses/House C3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/House C3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/House C3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0713806, 1.72783, -0.015625)
 shape = SubResource("BoxShape3D_deaom")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/House C3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/houses/House C3"]
 mesh = ExtResource("19_6mti1")
 
-[node name="Label3D" type="Label3D" parent="kitchen/House C3"]
+[node name="Label3D" type="Label3D" parent="kitchen/houses/House C3"]
 transform = Transform3D(-3, 0, 2.62268e-07, 0, 3, 0, -5.24537e-08, 0, -0.6, -0.0551214, 3.11968, -0.253126)
 text = "House C3
 
 "
+
+[node name="kitchen walls" type="Node3D" parent="kitchen"]
+
+[node name="north wall" type="Node3D" parent="kitchen/kitchen walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/kitchen walls/north wall"]
+
+[node name="Collision Bottom" type="CollisionShape3D" parent="kitchen/kitchen walls/north wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180054, 0.627348, 0)
+shape = SubResource("BoxShape3D_gi6id")
+
+[node name="Collision Top" type="CollisionShape3D" parent="kitchen/kitchen walls/north wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120163, 4.17977, 0)
+shape = SubResource("BoxShape3D_bpfb4")
+
+[node name="Collision Left" type="CollisionShape3D" parent="kitchen/kitchen walls/north wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50484, 2.39376, 0)
+shape = SubResource("BoxShape3D_b1m2q")
+
+[node name="Collision Right" type="CollisionShape3D" parent="kitchen/kitchen walls/north wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4868, 2.44064, 0)
+shape = SubResource("BoxShape3D_8bx52")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/kitchen walls/north wall"]
+transform = Transform3D(3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("11_gi6id")
+
+[node name="east wall" type="Node3D" parent="kitchen/kitchen walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 4.879)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/kitchen walls/east wall"]
+
+[node name="Collision Bottom" type="CollisionShape3D" parent="kitchen/kitchen walls/east wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180054, 0.627348, 0)
+shape = SubResource("BoxShape3D_gi6id")
+
+[node name="Collision Top" type="CollisionShape3D" parent="kitchen/kitchen walls/east wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120163, 4.17977, 0)
+shape = SubResource("BoxShape3D_bpfb4")
+
+[node name="Collision Left" type="CollisionShape3D" parent="kitchen/kitchen walls/east wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50484, 2.39376, 0)
+shape = SubResource("BoxShape3D_b1m2q")
+
+[node name="Collision Right" type="CollisionShape3D" parent="kitchen/kitchen walls/east wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4868, 2.44064, 0)
+shape = SubResource("BoxShape3D_8bx52")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/kitchen walls/east wall"]
+transform = Transform3D(3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("11_gi6id")
+
+[node name="west wall" type="Node3D" parent="kitchen/kitchen walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 4.879)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/kitchen walls/west wall"]
+
+[node name="Collision Bottom" type="CollisionShape3D" parent="kitchen/kitchen walls/west wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180054, 0.627348, 0)
+shape = SubResource("BoxShape3D_gi6id")
+
+[node name="Collision Top" type="CollisionShape3D" parent="kitchen/kitchen walls/west wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120163, 4.17977, 0)
+shape = SubResource("BoxShape3D_bpfb4")
+
+[node name="Collision Left" type="CollisionShape3D" parent="kitchen/kitchen walls/west wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50484, 2.39376, 0)
+shape = SubResource("BoxShape3D_b1m2q")
+
+[node name="Collision Right" type="CollisionShape3D" parent="kitchen/kitchen walls/west wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4868, 2.44064, 0)
+shape = SubResource("BoxShape3D_8bx52")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/kitchen walls/west wall"]
+transform = Transform3D(3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("11_gi6id")
+
+[node name="south wall" type="Node3D" parent="kitchen/kitchen walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.1187)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/kitchen walls/south wall"]
+
+[node name="Collision Bottom" type="CollisionShape3D" parent="kitchen/kitchen walls/south wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180054, 0.627348, 0)
+shape = SubResource("BoxShape3D_gi6id")
+
+[node name="Collision Top" type="CollisionShape3D" parent="kitchen/kitchen walls/south wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120163, 4.17977, 0)
+shape = SubResource("BoxShape3D_bpfb4")
+
+[node name="Collision Left" type="CollisionShape3D" parent="kitchen/kitchen walls/south wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50484, 2.39376, 0)
+shape = SubResource("BoxShape3D_b1m2q")
+
+[node name="Collision Right" type="CollisionShape3D" parent="kitchen/kitchen walls/south wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4868, 2.44064, 0)
+shape = SubResource("BoxShape3D_8bx52")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/kitchen walls/south wall"]
+transform = Transform3D(3, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
+mesh = ExtResource("12_bpfb4")
 
 [node name="knife" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, 0.4)
