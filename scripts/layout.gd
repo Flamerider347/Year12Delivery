@@ -2,6 +2,15 @@ extends Node2D
 var editing_bench = null
 var bench_type = null
 var benches_bought = 7
+var bench_type_sprites = {
+	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
+	"bin" : preload("res://assets/Sprint 1 Icons for benches/Bin Crate.png"),
+	"bun_crate" : preload("res://assets/Sprint 1 Icons for benches/Bun Crate.png"),
+	"chopping_board" : preload("res://assets/Sprint 1 Icons for benches/Chopping Board.png"),
+	"fridge" :preload("res://assets/Sprint 1 Icons for benches/Fridge.png"),
+	"stove" : preload("res://assets/Sprint 1 Icons for benches/Stove.png")
+	
+}
 @onready var menu = $"../.."
 var bench_costs = {
 	"bench" : 0,
@@ -34,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 				Global.money -= purchase_cost
 				# Hayden, I would like to change the sprite depending on what the bench type is. I asked Mr O'Sullivan 
 				# on the matter, but he did not know how as the string is not changed.
+				$layout_benches.find_child(str(editing_bench)).find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 				$layout_benches.find_child(str(editing_bench)).find_child("Label").text = str(bench_type)
 				$money.text = "Money: " + str(Global.money)
 				money_bench_check()
