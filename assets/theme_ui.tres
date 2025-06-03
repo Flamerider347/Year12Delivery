@@ -27,7 +27,7 @@ shadow_size = 2
 
 [resource]
 default_font = ExtResource("1_anvu1")
-default_font_size = 20
+default_font_size = 60
 Button/styles/hover = SubResource("StyleBoxFlat_anvu1")
 Button/styles/normal = SubResource("StyleBoxFlat_uiji5")
 Button/styles/pressed = SubResource("StyleBoxFlat_rd0hi")

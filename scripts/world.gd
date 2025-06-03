@@ -136,13 +136,13 @@ func _physics_process(_delta: float) -> void:
 				objectives.erase(objective)
 				var random_success = randi_range(1,4)
 				if random_success == 1:
-					$beautiful.play()
+					$SFX/beautiful.play()
 				if random_success == 2:
-					$yippie.play()
+					$SFX/yippie.play()
 				if random_success == 3:
-					$well_done.play()
+					$SFX/well_done.play()
 				if random_success == 4:
-					$homer_mmmm.play()
+					$SFX/homer_mmmm.play()
 				break
 			else:
 				product_check = false
