@@ -10,6 +10,7 @@ var meat = preload("res://prefabs/meat.tscn")
 var tomato = preload("res://prefabs/tomato.tscn")
 var carrot = preload("res://prefabs/carrot.tscn")
 var lettuce = preload("res://prefabs/lettuce.tscn")
+
 var random_spawn = {
 	"bun":bun,
 	"cheese":cheese,
