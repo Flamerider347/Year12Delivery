@@ -28,40 +28,40 @@ size = Vector3(0.51, 2.5, 2.001)
 
 [node name="fridge" type="Node3D"]
 
-[node name="lettuce_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+[node name="lettuce_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502846, 0.563016, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lettuce_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0334473, 0, 0)
 shape = SubResource("BoxShape3D_bpfb4")
 
-[node name="carrot_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+[node name="carrot_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49425, 0.563016, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="carrot_crate"]
 shape = SubResource("BoxShape3D_gi6id")
 
-[node name="meat_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+[node name="meat_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0587138, 1.18721, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="meat_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.156105)
 shape = SubResource("BoxShape3D_6mti1")
 
-[node name="cheese_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+[node name="cheese_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.433261, 1.8033, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cheese_crate"]
 shape = SubResource("BoxShape3D_deaom")
 
-[node name="tomato_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+[node name="tomato_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59661, 1.79119, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tomato_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0192719, -0.0162048)
 shape = SubResource("BoxShape3D_2a2la")
 
-[node name="potato_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+[node name="potato_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5696, 1.22972, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="potato_crate"]

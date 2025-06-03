@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=49 format=4 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0vlgi3des8jt" path="res://scripts/objective_plates.gd" id="3_u7kri"]
 [ext_resource type="Texture2D" uid="uid://b46jqktnxqbq0" path="res://assets/materials/lave_normal.png" id="4_mrigr"]
 [ext_resource type="ArrayMesh" uid="uid://dnw6ln86toimb" path="res://assets/kitchenassets/knife.obj" id="10_bpfb4"]
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="10_n7i1a"]
 [ext_resource type="Texture2D" uid="uid://dtxutdwarivkd" path="res://assets/Cursor.png" id="11_b1m2q"]
 [ext_resource type="ArrayMesh" uid="uid://iirqhphq2bjw" path="res://assets/kitchenassets/wall_window_open.obj" id="11_gi6id"]
 [ext_resource type="ArrayMesh" uid="uid://b3ulkq0panu7q" path="res://assets/kitchenassets/wall_doorway.obj" id="12_bpfb4"]
@@ -31,12 +32,15 @@ albedo_texture = ExtResource("19_n7i1a")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
 albedo_texture = ExtResource("4_mrigr")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_sxw1y"]
-height = 0.108154
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6ly8"]
+size = Vector3(1, 0.408936, 1.00232)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nwl14"]
 height = 0.999023
 radius = 0.744629
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sxw1y"]
+height = 0.108154
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2a2la"]
 height = 0.705811
@@ -85,6 +89,9 @@ size = Vector3(0.255676, 0.102249, 1.14643)
 [sub_resource type="BoxShape3D" id="BoxShape3D_le6xu"]
 size = Vector3(0.265495, 0.112322, 0.796977)
 
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_8bx52"]
+data = PackedByteArray("//uExAAAEh0nGhT2AAKhJ233K1YCNM62eEcg9AuBLIpyGgaBoFsLgdDpPgAAEEQ8pMzdYsWLFizmzMSAaA0BoTHGzMniQJBg5q9evXniyk3ve91lKTt73usWLHO29701s7Mz9/6L169/2FjlzAwPFnXXr16xzm169f+LzszMz9/FhgTz/2DAwMIjsGgiExxs7Mz/Ds/Xg+D7w+UBAMVh/BD/d5cH30CgUDMdjhdjMUCAQAsAY9T4U6y3wMsA8GwV4WvAYkEvgYcDYGVBUk2AuOQMODYEyygi/AymbQPqkMDWSP94GDw2BhUxgZAEIZ0Q9qH8DIAMAGA4GAQyBggNAKDgCxi17/gBBUOcAUPQEAoO8BYQgsIv/8BIBCxcQIAUCAJAUPxDTgQgn//wTDQW8A1AAeIG5oWwAUCIXyD2BZP//+bmC02MGBAyZd/+5aYA//uExAABkplRQB2HgAJpq+iVh6agjjagnlp4Haq39Y2rVXeFqcopYByC6noWAsJKDxeAp45PC4qiR48QtZP9MrjeMSSRmhXs248uNQFPEjxWujO+xVLwEMY/qa8mIPy/zrU39YbzVMyUj5sxTNjpjZ42Yn2r0tKzwKvGCWPCiocXxDPPAzWkRwgNTrvFRtgVEM62e+1fmsmKS3mzaPLv6x7fvInFSKX3arAwtgky+jrQeJnq1e1Ut7xpZf2GpZymY2B0JISBpMBLLBC0GgWjOiXxyMpfj9Quf09fnwv+xxoC7XVCVoeXt4/ZKJ9zPNsW2lVTSYpDap0mDx6b/svKWGrgmToqTIiogyTBhOtVl0ZGxokEioKjBKIV73fkJKqGTSNVIE0RMQi7Cr08gyRznO/997LJ4gh2f/urzYokSk2ONt03JiCmopmXHJwXGQAA//uExAAAko1XSWw9LcpUKekhh7G4AAjiAAAx6criOZRS/yhscywy+6rN6hFuVCgQ4MdT7lJUwrIugBGhcRuUbIwNxj3+L/+n3R/PhxZ4zaLoh8F8qkLFYyBD8RGwvTJj+CZ8XRPdm/y/h14ChAIURhNE2mvk/sZBsjUFYn5YDIy2Hhxu5mLNJZakzpYz0HBAChORrW7omI6//P/eZflGPSd47ZN3voqkp6ALgALUmlYwUThV1dln/vuNayrvmhJU8Yb8JIfSy2jBLHk7wNQvDhFJG7Y5Zr7/p/WPvuUssyNCPocOoOpZeaApYysZk9UWzA0QHlcba0yllvfmec9l+U1UgvRH8Y4N1uVn1OciL4fiOSBHHdwtJGx5TFTWXW7/faSsUOLLsHmKl6OsUF3UT9nl71LznT/Ll3qe0iW9aYgpqKZlxycFxkAAAAAAAAAA//uExAAAkvVfTYy9jcJaKaoth6ahAAkhAAAAFdxrqqB8EJv8dG7rdLnjuZ37BQrw1eVRLX2lOE3urcP+PphFxK/Xhb/tT/UaWjYOBkySEI8cLxmPRazsbVq0puWjtG3NqNCS+65A387BdldFg7nI/0RCMeN1cXrkS7okRULoNzddBaAyLwiKRKgCuNZtpbdXuro6n65P19YX0Yif5iPu209f5zmZ7dn5i0Hna0gAB0EAOOUyQiIFzW9TXeamMpj8ovduU4GvRu5aS2bSOSlLyV5c7U5EkPYVc/+P/nXvLAiOSmYWd6nTJR2WZZWo87EmWPrku6XjysDHMoTDwOoxZz40ie2jzkJoVFyBMaO2aiRLssERHMEwsAyF4qemIUIsNHic+onSD+0Te2kbdmGZVk86PcRVPcncK+tG8f4uz/uZoe0mIKaimZccnBcZAAAA//uExAAAUiFhVYykd4pVK6q1p6aoAAGYABgAFrdRbYbU/djOP2Letdr/g9GXKw86NH1c2UKEQqPyhqVn8XBnEkYfjvlX/Tn8IQxZiCyA+iJwCGVIlWkHiTKwEIGOkyNSxsAoWjMs1iZ1Cv7WaaZtdEh7KSjRCLNzKjArSpySDwCrYlIAqToGRVaPHsn8QCBkyg3hBFAyC0OCiE97kv+eRASWcvVbuwABQAAKAP1XgA7gRplfCOyCc7rD+8QRq4pWeGPXCzef0lIi3P92brJr1cVSssL1n8r3X1XGsYzEk1i8Lt6nOhnzBZsbmdRl9ePhdv3VkKVD6Eco4IHivd28sZ6usxtGixz6Uw3FkYbQCkgH1FHsVEVBYGXRZaQlxQ8z20kcFqbd7S2pNKxVafHP4Z/e///0lhgAOI9y0xBTUUzLjk4LjIAAAAAAAAAAAAAA//uExAABEgk/VY0hlIpbp6oJvDC4AAGAABgAH3G/LBemmbPc2+Uovbh+nqQQCAI8Zn7TYiy1uo7TttTy3IAvOUwgy3/B/UPZI9cDPvqlPUJcSgYMekMmmlg8k5cXz8dWb+UjxKoo9Rr/mdiOQSLKj4L1tPRtnNbnp+mqnqvhiixshIO8mO+hZRQuu8037+33aMZNnHnlnXpVvyW3f/pqRQN0kr7fWAAHVeGBUDNsnw5bdSX1YF/ChSdULbCOiPPA0sWxqtxgWvIYyp1Y1j4z9qA6pbd+elI5M4PB5+rB3afMRFLRwXS8J6laZI+WHJ4OoLDQPwlxkcyWkEziWrclyaQrHcVm3zbYvl2NMeEoqkkwVQ40tpTVrCr31l1jMVniukStl8nnBbHEvayfOnkWtzkTOte9A0uZozeKyqYgpqKZlxycFxkAAAAAAAAAAAAA//uExAACD/lRWO3hJMLPKylFjbxgAOqACCpjWjqqQAklHpm5Q0eq9MBERoyimBUPSrrKPaBjErFGVCKvr29fav/6GHQos6skbVkgIrhOcW328S+aNETtwjBuSKEN+3Fykaz5//m+vuoIQnV3ayJsKLzUJTRKgQNV6WXVQqugTNDyNW1135OTFw3PHJdVJtCQwsdIdrEAl0OsuMBT2V0HgqMT29hyxDMNmWwBQCRaJ8LTB8zAoZkkaBgDazHb1WytT/c+vq+6Ywf38fRP3GeyQUebNo+SDJZ8pyuYF2nDnXTCniKDOIePU/ZmWGr4ja2R7uL2KvUhWUje+pAvNr2ZYs3hwS+F4gIQsBzpRkguay5sp3Fukhsho6VKuRajYcKc5yBK/Y/EIQ+GpoJ/xkitNsBkb2dyU9qzxZYcGSjhqa0gPOfQzoq6ohTEFNRQAAAA//uExAACEfVdU629JcJJLCnltiaoAAAEAAhAABX5xhnZuUunWqH8zRDTyGoUCVVTirkl8+S3q3ELVOXwEuFLhfVmxhyNz/9NxjB/VxMmbO8ZPtNIiVGMKiJoeZSWWnKakdy1YqOhiCbH/87/v1OchMEn8NiuqOl3z4qRVOKaNMQnUpplQCtCJdQToZaFGFR58nGaPxXaR2lBJpKXVny1FNwoANlZgGAAG7klUUNb4mHTdWbkdDOviIR1kuqr/uLz/oMdVI+NANm5ib7M5TM+D9Xbn/M2e/m792LG6NH51/+m9r3iUOw/GTDL60ZgDFh5tagMaj10lxpIvOHfqBokh53a1tKgq0szNiWT1NE8iXU1xZClA2sjFLmwgyoOwAtGKmRVGTUq1HDd6Af9Ti1t98anCOEnWi6YgpqKZlxycFxkAAAAAAAAAAAAAAAAAAAA//uExAACEblZUS29LUpPKeoNozLRAADA8AB/81gzGK1UGsYxLp+mTQMWApfS6+oLbgN82JQUZD422xQWvaAeLlSs+v7l9vU5TnLfV/Ky87HMxlAyzpE5ALEpMMmHI4lbSlSUkpJ/xyGkwZw/5tpxlIoSPJ0Qkk3V0pFTEJwjELYWioJ1x9ZyZxZll6pMraMEqqyNFCe1isa9eCfBAYz3GFaNdEZAAA1XfwhNnd2L3g6fgCRWofGCxk16FdqO5zmHJJzu2lp6tnrQxNUVBVbBTGGgOOUC036dbhs/zX7+slO1HLePedHBvGXj1LZk2GpYREB+toFl2fbt8/PwxlwrWiT81XKJkZ1TF58m/6S4+W5gLxCH8wZQC/UiF+BL0C9Td78zXa6097Fvtz771/icJQ1rpy1CEBTEFNRTMuOTguMgAAAAAAAAAAAAAAAAAAAA//uExAADUX1JUk2FlopdL2nJoLLJHgAMpl0hECnPBq9Z2GGsyu06YCAhICBII7D808CQ5LbOF+is5qZuxF5qcfdu8O1Q2di025PJrwFmuzRm/auq/cgOLETRILBeKqPZrsNN/Y5mehhctFjDLVfcvz3QrYEOESu6saUtqkowYLY8Hqw+LEfv9AubJEcL9YqzN+s7HBBFsDU93f2eUg2fdTYeXdXgabOoPZM1FTLClvxh/pyHRGCZOkxSOzDkgjbutZdJANEZQyFkTTolbucYkV3ANm4N8r/fRu3s/09a16s4uehWCEWkJAAGHIQju1Lz/TlbfnTBVNGwsuu4yPDh8whYlO6pWnVuJUN1wJIKg3SmKyqlKXmcjWtUeZpDE9a97WXOrOya3gQ0L6P0yszubPTMzb7PWJFOJiCmopmXHJwXGQAAAAAAAAAAAAAAAAAA//uExAAAEk11UMwxJcJwrqnVliV5CABKBbjCl510qss4tFdlaRmEhFqynAawBU/iOTGATABwKuOhoTmEBlooukuou8oGK7F/a9I5wpiTL1Vd6CE28vOm9jZL4lEh3JyyMv4y+7KEO2sTQQqo05kkUqe9MmQoYD5D3JnyYU2iVs2jxYceVRRuGwPRJ5f+aiCWTlk726RNfwnTaPY3OK84W2DKiailKk0CQEHdYhjL9OA88t+z2cmelrbHpWLZiercTH0K5OyWrHjB+h2J6ommlLrg7M4FRorTjvfJwIsb7B9NCUd5znFKDSijJdFFEtG9J0ayCCTpM2VNUGOCZJGYq7TtuD6UJUTIlsqUBNsSHUSgYQo9bICNCeQybH22E5skdJHKz3BSZe1rahkWiETtm4MTklGl5bJXcms7F5hyvH7v/5j0xBTUUzLjk4LjIAAA//uExAAA0PVnVIeZK8KHLOogfDABABkRQFYaGk2VUSDmbCKkzLedZKec24xRfzbi2QiqfQLlr3zDGVyDpEu0RsMyYIzU5wqUFkS97lEiOaBCk1NRgbPHRHFpZE8yY16VkcV+8bPrCfjgnlFGYQNWRJ0RxmgUSNNJLzgwq3ki8blHPVM7E5tx1hHcMaO5mNdO7zEgyFAAHzYVjPZtaAxAEKjgmnkonOc3TrdjUymOHEp3+642T8yssd+V9ZddRFK3zdgxVtBOqVkVPdAPGD24/EwrHa5WrgOkB1WgPWLdLnjOkEtku8bb+iPz6taqYZWD6hMQlU/sS1yomkcpsxNkmxdJElhxg7wnFBeuNFzJeOT8ez0VFMfERytiWGB6a8uVsPOiU1w5tSvfLmLbxasZ2x5err+AOUSEJ2zde3u/iYgpqKZlxycFxkAAAAAAAAAA//uExAAAUn1XUQwxMUJCKmnVlLKwBE4AAOVo8L/g2mlUsu3KLVyJWO2uVbKKgsPcYlDAYkTOvvXnJY6KpbhmGY6nS60G0aeK3nRkB4r2QxoLD0xS+w8uyclBdyEzGNS2yUhjJvZsRTMNJHJLInrTiRNFESMLgm+CDRGti5IsWWQEa6dIRbMRsnjBgRNpKpiKT6Rcnab1EKklOuKlFVH71JIAQiJQCiRbJBAJ+KnR5QsujayEWJ6mhrvInH7lek4+KcaZsNyRplO7632RxgUICKRIj2ezTBomlGH7k3fyzPL4/XGrExO9DUMD810bXgyqokxTM7nFzaaIfkgat8kPtATf2udBkS6UsbFlcio1HLJbDY3KQqUgzSs++tLrh8+yJKqPErJ6uam97x0bho7e/89ZbwRVMez+k2mIKaimZccnBcZAAAAAAAAAAAAAAAAA//uExAAAEVlHUyyllYp5q+lBoTMICNQAJAB7yfAcU1Dqt7Ua9x7OYxiVXJmKzynbKGu07W4rZaoXCcrEF1YBTwUKrzFjV+lbqNbn//+VPeyWa3tZWRTEKjBbG4uxQYdC+nf16GFFquX/9e1WKTEsmxPovaZixp1G2QCuMR7KIFTNrjk/NuYow2Tj1xvcWa3tetnzayFh6HJGxOKrEn//6pZUsKB1DNaYAHZfhHozL6kvu214yFHcwYlOmEtuhRL00zBgl6qOs7fO5DEKpaSBsGIKaUdWbxu3/02BiUspL6spxfJw5MH97rTzCyphOjzJ3rQHlya/zxb6nzOU6FPDhu0WS64KzdK111xWMCsB4ZB+WAeBBsCokAgal0yOHX1BJXppgL6J5YY469uGq/jAtR+/nwVftkACJQSuK2V0JiCmopmXHJwXGQAAAAAAAAAA//uExAADUcFdTkwhlYJfqWmBoLMICQAOU4i4dAzg6EByfqMX8aBwLkOLQuStkkxKnVL4vzLnJYTRKYLeLCYGx5ZI4Gh4NReOY3++/T4/iTJDkhalhUYIoTKHBj2KRAspPSn7b2hZbtF38Ur0LQEgXRZHR8slRyH2FxSqVkZYKt3xiWA4Feue2up2duRV44z7rofbo9ekH2+ce+YAfuScGWr/6dzQIpJrtzFXaPjXFNIfh952C1I04iAgGAQgrATGV6JgOrRS1JgeCubEeS2O0c9Xs6f2Ld3rKMCv2vgukJHUrXP9HEX8XKThIcNqkMdC4pMqqo8+s7N8c3vmct0LUKxddratdCeoV5ebOjgtrT6hySWiOCw9D6eHpmt+rkWuMRY69A8pWO2tkxLWlkvrSTcJ3CVQqJlNsrqSmIKaimZccnBcZAAAAAAAAAAAAAAA//uExAADD+VxWGwwzwq6MqkBp6S4KtRJcypQKa62NasZpHOvyV+ZuaypFMl3BwrZeK9krEBi7tc3JQnfKX4/uBpKqJdONx6hzoIXUWNUavL28NEFla07IM9Att/rfPmt7rP3uO+d/2KT10ehB2BKE0LKXhJOgpJpFiSUl7HLJoj3XndMtMtBIho24pt/uv8cmytJS9pSg4R1Z6DKVrePo64JkpFRocYp/H8WI/lUqdrT0cKlX2JbPJ1rBdtGSNALzAFrCua0G0mG2rmxBRJKKynkotMyS3iN7Da7Scm59+EcydEdk0y1Q8y3WRg2sx7aEpGFzrxUOmUBEC4bxUfFRC22UDBw+ToAqCyEgFIiJHCBH1xQXNEhGYUYLoIkYdeRRtqUC6Mii8MIWZo5wWhkvGEI+WUpDWPU/UrSYcXFxecg/KJiCmopmXHJwXGQAAAA//uExAAA0k2bUgwZI8pFripg8zH5xT+KLs2Ch2oAtkqUVqmMA0btBTsxMku/VGIzOAsjWXrcl98p+e/c8sryqm3TUhWdnwykGKMN7sJxRw32guLGECUyptE3ZG3O8diEaEaFyJk2ZEwoJhBzrLMxAVEjaxgwuRB+FwVZFZS0QURqI8RoT4gLEhASI06QtQXvdijm2UO/yi3rm4azmV/tf5X/YzCfLfyAsGByyGsqlZC3aNXP1bUbTBRjslEgScCocEAzzmw+CrQn53z7ba//pk2M3Vd3Xm08waQatK3q3N3fe9yCnIBw5uUs0uNjxqkTb6eKNDiOyy0FysHo3y86oZH5ESFpdeLpSWa6/0ReSOQj0bHz5Tlcf8sYj9f8Vo0iNScxOMothVX397frZiE16BqgTWXxFEz3aTEFNRTMuOTguMgAAAAAAAAAAAAAAAAA//uExAAAUl2LUQeZkcphs+nlgzE4ANWAgOUQq4EXOq6lhSXeRbYcbyWNxvJgkCNQkUW13hVUjnwtyj9d/ufP57zG6/NLrLOjXr0d7y56czipQrlllij4F6npZxbrZJiIK01Xr4rE4ehCJ5UF60imZ4TlJyTEiFyFAXIC/VuE0Pozw6c2Bh9tdAdN3SGMNaocX/Rppi1/tvbjjl616C33n9xuit3eX0h6AhAgwcfYePHLM5YqUmyLmFHxhuJFHOgQxqDShkX+UeIuVximDHB0WVzdmdh6s5Xv2s020x9bIb2habjlbHGxri9dc4g/PrRqmnt43P+3l+0L6WDSSOqUpMnmJ0qdeqWrTUbHiFE8uJh/C/hid8Xb1Pq0ghYZdZcPmcPF0Dz9FzWI2Wbr3D3Hv7s99//56es7emXrsz2t0OrTEFNRTMuOTguMgAAAAAAA//uExAAA0Sl/UQehMcqWM2jVl7BhAQPAwLGyBSyjnUHwoGpr6ntLGUucIswsSE7MalzyNEQ69lWqGiZr54kVY+tmWP+om7/hiXVdCSh9GzwwiXK0tehQI1Zs0tZgieWeosfDJKhJjBk/C6vWGGy8CsW2BpnUQljBCrJCU/7SYqP2UaFcKtC3L141t4krOWbq0qVu1md88dXaXli0j+9AJWaqchKbL0F48UigagYZc0ctrV216xHDDbGT84JCEelV3F3awsYap87XHDPn6t9S0wXpOs+9SYLreYnb845s3eysS1pc/aKqNhuy1eiP6vK4UNWZL1zlGjV0pXLwNEZaF3+oVoDJFYLIpQBqBszi5184ZsPuYXEa6OuQ2qtWoS51049jc1h52YH039jzNWo2bM2m+bnP161nnn13bSYHnEuNu83JMQU1FMy45OC4yAAA//uExAACUOl5SC0lDVKMr2jVpgswIClfYkhJxOwMkCYJFmR0UgMkSXBKqeB0G6GmFIdxxZGDBJZBkUFlgYYv/eWOM/nn/+L4e1OLFHvmVJFpPPFizSR5kxoZB6pcknHsKKIEDTSBYeWOm4KMHCMSaKGgtkwHw6DUCkPIsokXR5Ex0Mvu3bQbSIOR4rvblt2i/jn6+SXHi7mixJv6RApZUFOiCidJrca0ZUFCTvs9N/pEgb6Ljzjr/buQ/21YnY1JpskEL8hyG6S89MpdhAHF/s/u3A8+i2mz2TMzM0c2KyhuNYQydMLzgXhwkNzAgD4bHCbsP4Fz9XHaWc9hkkRqFzrE6gOwqLNq36qXmwbAbMKrkzxVbiqTWS6m44Rv2donctHaaVyKs995uw1Ez1VDmOKjtI//ww4uo8WuraXsqSmIKaimZccnBcZAAAAAAAAA//uExAACEYVXTK09a4JxsGmdp6Y4AEQO44Szg5YtMwlcIlwwXbe96DbVC5SMVnhq+VNxqUxI6aioBERT5c6KSsQI5q1fnZ4nm03X1x/7+HtHgLEg3QW5XBLNx4UOHAPhQOT66ZRD29uMKlFQyPuK1mlhxM3T59WVEkSk6wvJy9Hoax1cPhc37Yu0eDU8xbnm2XVVw6rZE0/s9mjd3pBcczXQAkAAzKQAVEUWGXGsuC06GUFWGppGztvtAinuQZnuPxajZvEZxencIzUlDvJ1yJcBHiT69njWp49PvN//93+JpbzIpSKppXasn/dK1Rl5frBwIYdEJkXWFfJuJLA8J+o2pSqKTTO5A3U9689lorUfmtb9ftVNX2SNbajYaNngibQs5vlf+/f5XcmpAKeMymian4R3P6yrjk9lKaK0xBTUUzLjk4LjIAAAAAAAAAAA//uExAACEUF3Ty0s2MpnL6klthrxAADAAAHymQSLHlrYDT6BZBMpVPoQmTbsmbwAv/CPZaj+f5f8dx5Q2HijeVerUfVe35/rukDtz8///MZoxRdhJCNqxY3LlqhAlYIIqs3hI8x5rcmvnpIoGDUq3JU1rQ3C804knp6jfsJt3d2b0lv2QnQ4WPh4716Vjaz0+/+j4kqXTZq//b9nKmCQBgEAGrNjFWVQFI8xXjDgVQQIFWZAwZDURkrCELsHo5813CizmYtfmLj0GAAzjcop1uABhKOb/eKEsL2Nma98zM/ne0lRIPqkuvrT9lxABUfQRJT8bG0aUNLKY/lO6loMh+c71h3AVElrKY1vrTBTYYraNRvfO/98xo/dp9KMKDBVGtcO3MxlEtLy1MhDIWBQtO//+2//KaSpyTEFNRTMuOTguMgAAAAAAAAAAAAAAAAA//uExAACEVlbTy09a4KQKmjRzDFwAADAEALsy4OMjQ5G0xXpj6CBSbsmRTgdKpCiZmBG6b1m+9eFusXZRF9RBvxD8clcs2pqfHOkhffsq//ZLIEU8aVGSpMUTo1IjuA0N9knMS1d3tp1bW8U59f0hB60nLOdLlym4Lylx62yf5vqYnPVpnEitQxC5PWXhyh17vc7ZMUog2mKH1rbSIqsXABGL0GDzEr4wYZDhh1BwgEAoUuEQWM4K8FEVyl0xlf1Jditik7d3qkt3HhZTAJRKRtKf50CsNyArtixWuEkRvnNzvmZyZuxYRB1WGKGx79U5Jw7IofDIGKEIYyLV3lZit51qZ6TosrXIopmzSQ0XRJFp7HD60kDpE804Znalt672vPfBRg4jOlTpeWk4VVE7V81y9LXnMiP9x7b5Z02G8Sr+7S5MQU1FMy45OC4yAAA//uExAACUL1TSw2tFwKBKygFx6VwAACAAdbERu7oIjiYbXWDi9xhwiNhEkzn19sb22KTkxvVX8O/QV25iMAZNDcw3RsK430g2ntgquPQv/54aaEgfejh1Lc88TSBSUEo7iCLzA6pR75jmH2peKdcyZQfDp1S0LEyHg6LhoYsSHRBbu37ipEnzLCwfsSojO7cftGnNnGklUWAO5pKyspic1JkGAY4YQAxgEBgZQMTEJiMcgZjYokQA4oS+rHc4zA+3GkhQzfRgroXzYLIWZ0FUXtzjvLrmqoXPz2EEX/++HSeTeaVPfSFgrIwdMkQPtBoqbXlGMWc9we5FYWOISYojPClUj3G4JYk9CE1S5qbY1gXH1I0vOdQPMkotBh0kILPAKKMRbv/9NxPnSYZAeguDh8MC5I+bpf/gB8QJiCmopmXHJwXGQAAAAAAAAAAAAAA//uExAADksVZQk0lmQJlKaeBtDMYAABqNCYeJmWVPvHItqnxLCj2LMGXRRtlVGpU1nGWW7mOdrncI7KIEdl40e0wGuOM+jUZ+m1+OM1Gr+v3P///zRppMp3iWorrmcoRilsKFzxMlTp5n//3q3JsbhqTUH30aofqiI/fgcBKBb3x7XGrzBezFIjsfky1+I4UFwvu8u+Zmbay7tTGzOrT09VWgW8D798qWKnWOyFxIFnYhAD5D8xYBMVWwMGglBEi0aAxZOj4cHNen5Rdxyludzs1n9ZsjJ032ELmZEW8TNTMij/SDLDOkJJmJiJ/7tZQULOaBGoabExoPFBWzguMOWYJiv/Wd06VlpbPu1rlSyvJR+ZmYpXKV7wfEGj6ayhtxmzL+XhKkS+rcrbIclZ6OKZmZ2aP9DayJe0Aw0BX5rvloluzCYgpqKZlxycFxkAA//uExAACUfVDPM2t90KEKeaBwz8YAIBgASwGlZqoICS44dLTKMyLlrGZCiOAIEhIaaa06iyqv1h9SzheuSygi7PU0xoAigKAoCUKcADReQzi+U2vKkG+z9kxuldE3uIiNFHiIf00tTnvpv//fZ6Kl3/oKmKZJHeajrYELKFKnS5wHL3bpmGta1xeFZl24ZgRmyHHnxb0if/5pXEXA1oKIUdF//9ceHUSIgUYFGZ2EnGCC4a+A5gYsJrhQEAJrCICCQSh6Rylk0vpZRGaSrST9meoy6qWoVCAQGhkAEgAC4DDgLAT3wp1ohR5dezVRnz//482hrVeEkqwnbXrMDcc9W7tvft/XtWBTe/j/7meNxfkwejxTNw5SQqDCzZy3Slt5vdbllTzBGVF9bxPJataR6Z3/n/NdbvqHiMDQNOMFvTzwEZErkJiCmopmXHJwXGQ//uExAACECE1OE1hJ8IlKScpt61oL2XJ8Uso1mubBpI8rM3wMBblBDGAFXCfOtSTDvU+FulmLdqnoLXXEtNtKou4SJzXqI0YSQ5KvAa61Pvf//txZbzPU3SgmkUHLj6b0uYa2ev/+f1L/1//L+WwWuDcETQyafcqONO/9p4niplbXkscj69Fnmg+ToZp6FGe0RJ/dnmOJAB1xKGfMEFQhbNlEBEGA+RMEJwgRAA0YCDAZMTiPF4XqItqqyta8S+IzpAqyUOixIdUVZgwEoooO3HBKQfF//8pFD3sfHTC00NSSfHWTTV+41BCPvfL2NchLP5+Prr/iFzrTWqQHlNQ/b5rlnaUboVVgwDZ+xhVK9PJULm1v//5WCCWDDzD/1qTEFNRTMuOTguMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uExAADEpE3Ki5kycIQJiXJvCz4EAhARhxlCwqKVwYMvhsA1mWBAYLFhkUhiBKFM4EKVlDmm2ehpuPYElVp/nFlKyXCHRRCNk7crU5MAUQCJoPMwB0Jbci8nujT86v/9z+2ggUtB7e2ks0JuyfeCqafN46P+/9v0zEIjP/28/eUKChHybMi30+TLFloiDxw5AAautjZ5TCVJGL8BwkBXCY0p0KTbQ5nWpBriH1NRFTEIY3Y7OLHDJlJfxiSQfWgjQVkA4rYXv8uhyehqn7XkOFmLVVcjQpe/a6ZpOlDvAixHOLvXLUSNVqo//zNzBo7pzeXPZS5KOOfcU9hw87lZept9M3QnoF4/Mr+L9vw5fZ8PrdVNc/TYWE9YFyAHiKzsdvhyQMM4oG2VdWK/oTEFNRTMuOTguMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//uExAADEUEfKk29C4JyJiQFszMgAmQI+bwBDPIZsKhLaZZKBQsAAeDDsGCBmw+kKBgIeeSWbl5sfQo1cNp0jdCSgpSCjyIMI8ygKhwIlhaEQtTqOoe1y33jKjcoWsVo2va2ixCRSUxuMyGoujYaji64a3UnOqv//rGFInbTKvljLIuhDJDkBGgiCVTywG1wNgovw0bFud3ueBjI4gduEAwkWO9gTp0oyE9P4BTLXMz1dMEHjGUgmuEhzQxJQFn7TZW9WeLrSJ6X9l1lSouCsM4Tl07kMBLjgJEYY0CG5bfuPZOxAb8kJ3tOjJtAu3JBBQgvbaGuOlEvDr0ZrHwXjbkSV2Mux0W7a1v4eC6YeLPQR1pOVtZtmM6Bu+GJwWoR7JkF4TBOfWrWPIj3htZ0yNl3MaYDsmBUqY4c5MQU1FMy45OC4yAAAAAAAAAAAAAA//uExAACEMkzLUzBiAKAJaOVzKU4AADABWWKAkdPmYboMy00SBCkGxMROW55glhiEDJNJsNGTGDGehQogaiOPahUOQyGICzw1Wx+z1qu98uUye5zICqYI/bXOWbrN/hdz+K6E37R984+ewLGm1jC79v8WLXpzN63Vl+7lkNq1Zmct3T81ZcohtNVdoPYtXPFM4KlLrW4tih1REdIFBhoXn0igHJ46KYjOhVM/qJQUxkITE4zMcgY+RQ9wiUQSuZQQQ40MzksljyS1G4WGFhXaUyYI5DF1plSJzmcOuz3OH3Zh6PuoJCM2TCG2xWT7FO2hlDsYMMMfV9y5zXbqUdnSWKFkWlVYQ+2qsWSjn7OZn24ESxyKlqJMIIYwokvCTCgiYUYNn3zg2yKNnHygwAEYeVUHTnegXw07FtaUxBTUUzLjk4LjIAAAAAAAAAAAAAA//uExAADEaUbHk3gy8J3pGMGt4ADAWQAJAG6Oo8WmSoBmCGZQOAYOJC8QBCqbIDEQlNWbltFAU1DEahqgpYMgJuQ7JCADPTFYimKrgqIKBs5ic9H31wprjq3KHGbs16WQeiFdqZLuacdkukvd7Zuu9mlEjjkiZ5bH663qqllvv/jJ6ucUSalKzIO9mSkrET6N20t1TgtFmhIROoczIOfrtd1hgYlzGmpwZ6mFBCdAYWkw8OhpgJUkusCYcEqei26sxDU3vtLHYzMSlG4xJVIVhSlWjBJIdznBiWEisyyITL6y2bxf1zHOtWbFTG7V7/6/XNcy7f3V3hlS5yevR3d9w/K5/dd7ayufr8u/++f++c3dxxpf5/42KkxKKlJU3TZRqMTG6akuS+U08Tp5fL6eb9kPX6SfFNYea70Cnj8OftMQU1FMy45OC4yAAAAAAAA//uExAAAEoExHtm4AAJ/KSDbN0AAAEAAZAAAAOZgTBAoxiqMbFziCow8MHAF7GjoSUDk8Xvt50zJLg5ozhRHUO8nB2ApCOwxMM4BGIgMAOiD4iFIcICjMksBKH0WhXS+Q1JiJE8RExLxqUHTPmq2KKBaIsudNSOQPHjNMzal9Bk+gg101N1pu+jU/Z3dVi8Zl5Qyo5xepPZR9jZkkXTdzzIPqNat/2K2lABAAIAAAADkfo70giL8/5EsmZL7pTX+HRJkY9Lpn/AybYArFMcAoCAITAUSnKuAaAC9QXvWkvgYYaHQh0gNmg2ZS1L/BYWAUFAMDg2OAKDgBRy1VL/h5xHociKUEAg5IUvVr/4j0PRFwCfg5IWMbIeirXq/4zAzYXSFHE6izRyBPwjoc916tf/4sIhKOYQohMQMdghKOQN8QmHLG8q1VqkxBTUUAAAA//uExAADwAABpBwAACAAADSAAAAETEFNRTMuOTguMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAyMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -97,9 +104,6 @@ background_mode = 2
 sky = SubResource("Sky_xfqyr")
 tonemap_mode = 2
 fog_density = 0.0
-
-[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_8bx52"]
-data = PackedByteArray("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")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fj7yv"]
 radius = 0.49
@@ -153,12 +157,12 @@ size = Vector3(50, 0.195, 50)
 
 [node name="kitchen" type="Node3D" parent="."]
 
-[node name="plates" type="Node3D" parent="kitchen"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, -4, 2.15409, 0)
+[node name="plates" type="Node3D" parent="kitchen" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
 script = ExtResource("14_sxw1y")
 
-[node name="objective_plate1" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+[node name="objective_plate1" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
@@ -166,170 +170,170 @@ mesh = ExtResource("14_q76tg")
 skeleton = NodePath("../../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
 
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate1" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate2" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+[node name="objective_plate2" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate2" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate3" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate2" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate3" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate3" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate4" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate3" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate4" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate4" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate5" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate4" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate5" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate5" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate6" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate5" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate6" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate6" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate7" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate6" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate7" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate7" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate8" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate7" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate8" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate8" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate9" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate8" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate9" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate9" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="objective_plate10" type="StaticBody3D" parent="kitchen/plates"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate9" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="objective_plate10" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
 mesh = ExtResource("14_q76tg")
 skeleton = NodePath("../../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0450439, 0)
-shape = SubResource("CylinderShape3D_sxw1y")
-
 [node name="order_time" type="Timer" parent="kitchen/plates/objective_plate10" groups=["keep"]]
 wait_time = 1000.0
 
 [node name="Label3D" type="Label3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.53)
 
-[node name="delivery_plate_table" type="StaticBody3D" parent="kitchen"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plates/objective_plate10" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="delivery_plate_table" type="StaticBody3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 10)
 
 [node name="TableRoundASmall" type="MeshInstance3D" parent="kitchen/delivery_plate_table"]
@@ -355,8 +359,8 @@ shape = SubResource("CylinderShape3D_sxw1y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
-[node name="plate_stand" type="StaticBody3D" parent="kitchen"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 2.9, 0.267)
+[node name="plate_stand" type="StaticBody3D" parent="kitchen" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 2.823, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="kitchen/plate_stand"]
 material_override = SubResource("StandardMaterial3D_qrdq4")
@@ -365,7 +369,7 @@ size = Vector3(12, 0.4, 1)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/plate_stand"]
 shape = SubResource("BoxShape3D_xfqyr")
 
-[node name="houses" type="Node3D" parent="kitchen"]
+[node name="houses" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="A1" type="Area3D" parent="kitchen/houses"]
@@ -676,6 +680,7 @@ mesh = ExtResource("12_bpfb4")
 [node name="knife" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.1, 0.4)
 mass = 0.6
+script = ExtResource("10_n7i1a")
 
 [node name="Knife" type="MeshInstance3D" parent="knife"]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -692,9 +697,10 @@ shape = SubResource("BoxShape3D_70uel")
 transform = Transform3D(1, 0, -1.59578e-37, 0, 1, 0, 0, 0, 1, -0.0749478, 0, -0.54)
 shape = SubResource("BoxShape3D_le6xu")
 
-[node name="knife2" type="RigidBody3D" parent="." groups=["knife", "pickupable"]]
+[node name="knife2" type="RigidBody3D" parent="." groups=["knife", "look_at", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.1, 0.4)
 mass = 0.6
+script = ExtResource("10_n7i1a")
 
 [node name="Knife" type="MeshInstance3D" parent="knife2"]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -713,6 +719,20 @@ shape = SubResource("BoxShape3D_le6xu")
 
 [node name="delivery_pot" parent="." groups=["deliverable"] instance=ExtResource("22_b1m2q")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 1.1, 10)
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="beautiful" type="AudioStreamPlayer3D" parent="SFX"]
+stream = SubResource("AudioStreamMP3_8bx52")
+
+[node name="yippie" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("22_8bx52")
+
+[node name="well_done" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("23_xfqyr")
+
+[node name="homer_mmmm" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("24_xfqyr")
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tlwt5")
@@ -740,18 +760,19 @@ texture = ExtResource("11_b1m2q")
 offset = Vector2(43, 134)
 
 [node name="Label" type="Label" parent="ui"]
+anchors_preset = -1
+anchor_right = 0.748438
+anchor_bottom = 0.962037
 offset_right = 485.0
 offset_bottom = 43.0
-scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("17_k1hdb")
 text = "Money: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="ui"]
-offset_left = 876.0
-offset_top = -9.0
-offset_right = 1166.0
-offset_bottom = 130.0
-scale = Vector2(3, 3)
+offset_left = 873.0
+offset_right = 1163.0
+offset_bottom = 139.0
 text = "Stars: 5"
 metadata/_edit_use_anchors_ = true
 
@@ -759,30 +780,24 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = -1
 anchor_left = -0.00104167
 anchor_right = -0.00104167
-offset_left = 1700.0
-offset_right = 2185.0
-offset_bottom = 43.0
-scale = Vector2(3, 3)
+offset_left = 1680.0
+offset_right = 2165.0
+offset_bottom = 310.0
 text = "00:00"
 metadata/_edit_use_anchors_ = true
 
-[node name="beautiful" type="AudioStreamPlayer3D" parent="."]
-stream = SubResource("AudioStreamMP3_8bx52")
-
-[node name="yippie" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("22_8bx52")
-
-[node name="well_done" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("23_xfqyr")
-
-[node name="homer_mmmm" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("24_xfqyr")
+[node name="looking_recipe" type="RichTextLabel" parent="ui"]
+offset_left = 1668.0
+offset_top = 312.0
+offset_right = 2174.0
+offset_bottom = 1354.0
+scale = Vector2(0.5, 0.5)
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.1, 4.3)
 current = true
 
 [node name="GridContainer" type="GridContainer" parent="."]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 columns = 2
@@ -795,11 +810,12 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(958, 1080)
-render_target_update_mode = 4
+size = Vector2i(2, 2)
+render_target_update_mode = 0
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941749, 1, 6.1318)
+visible = false
 script = ExtResource("2_le6xu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]
@@ -831,11 +847,12 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(958, 1080)
-render_target_update_mode = 4
+size = Vector2i(2, 2)
+render_target_update_mode = 0
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep", "pickupable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188471, 1, 4)
+visible = false
 script = ExtResource("24_n7i1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2" groups=["hitbox"]]
@@ -859,7 +876,7 @@ wait_time = 0.06
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
 [node name="player_single" type="CharacterBody3D" parent="." groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.1, 4.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 1.1, 5.21)
 script = ExtResource("25_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_single"]
@@ -872,11 +889,13 @@ mesh = SubResource("CapsuleMesh_k1hdb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
 
 [node name="player_camera" type="Camera3D" parent="player_single/head"]
-current = true
 far = 300.0
 
 [node name="seecast" type="RayCast3D" parent="player_single/head/player_camera"]
 target_position = Vector3(0, 0, -5)
+
+[node name="lookcast" type="RayCast3D" parent="player_single/head/player_camera"]
+target_position = Vector3(0, 0, -10)
 
 [node name="pickup_timer" type="Timer" parent="player_single"]
 wait_time = 0.06
@@ -886,6 +905,7 @@ wait_time = 0.06
 [connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
 [connection signal="order_contents" from="." to="delivery_pot" method="_on_world_order_contents"]
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
+[connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
 [connection signal="objective_timeout" from="kitchen/plates" to="." method="_on_objective_plate_timeout"]
 [connection signal="timed_out_timer" from="kitchen/plates/objective_plate1" to="kitchen/plates" method="_on_order_timeout"]
 [connection signal="timeout" from="kitchen/plates/objective_plate1/order_time" to="kitchen/plates/objective_plate1" method="_on_order_time_timeout"]
@@ -938,6 +958,7 @@ wait_time = 0.06
 [connection signal="money_change" from="GridContainer/SubViewportContainer2/SubViewport/player2" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
+[connection signal="looking_recipe" from="player_single" to="." method="looking_recipe"]
 [connection signal="money_change" from="player_single" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]
