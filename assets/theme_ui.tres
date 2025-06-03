@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://b5drpisq6dd6c"]
 
-[ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/Charm Font/Charm-Regular.ttf" id="1_anvu1"]
+[ext_resource type="FontFile" path="res://assets/Charm/Charm-Regular.ttf" id="1_anvu1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anvu1"]
 bg_color = Color(0.281187, 0.281187, 0.281187, 1)
@@ -27,7 +27,7 @@ shadow_size = 2
 
 [resource]
 default_font = ExtResource("1_anvu1")
-default_font_size = 20
+default_font_size = 60
 Button/styles/hover = SubResource("StyleBoxFlat_anvu1")
 Button/styles/normal = SubResource("StyleBoxFlat_uiji5")
 Button/styles/pressed = SubResource("StyleBoxFlat_rd0hi")
