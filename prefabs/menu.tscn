@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
-[ext_resource type="Texture2D" uid="uid://dynfana5geddq" path="res://istockphoto-648352074-612x612-removebg-preview.png" id="3_jfis0"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
 [ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="5_3nfdx"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
@@ -13,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://lli3sl7i6gjf" path="res://assets/Sprint 1 Icons for benches/Bin Crate.png" id="10_0x0nk"]
 [ext_resource type="Texture2D" uid="uid://dlo6qp5p14cqh" path="res://assets/Sprint 1 Icons for benches/Chopping Board.png" id="11_8bmnr"]
 [ext_resource type="Texture2D" uid="uid://b5gkf1cnm1nkr" path="res://assets/Sprint 1 Icons for benches/Bun Crate.png" id="12_dwafa"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
+load_path = "res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-a475054c122f995dca554930f34f2a59.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
 size = Vector2(128, 128)
@@ -160,7 +162,7 @@ script = ExtResource("2_kuqlr")
 [node name="Istockphoto-648352074-612x612-removebg-preview" type="Sprite2D" parent="CanvasLayer/layout"]
 position = Vector2(320, 624)
 scale = Vector2(2.325, 2.325)
-texture = ExtResource("3_jfis0")
+texture = SubResource("CompressedTexture2D_y5qo3")
 
 [node name="layout_benches" type="Node2D" parent="CanvasLayer/layout"]
 
