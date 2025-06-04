@@ -2,7 +2,7 @@ extends Node
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 10
+var money = 500
 var stars = 5
 var day_timer = 20
 var recipes_list = {

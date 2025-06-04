@@ -22,6 +22,7 @@ var bench_costs = {
 }
 @onready var benches = Global.benches
 func _ready() -> void:
+	$money.text = "Money: " + str(Global.money)
 	money_bench_check()
 	hide_benches()
 	assign_layout_names()
@@ -41,8 +42,6 @@ func _physics_process(_delta: float) -> void:
 				purchase_cost += bench_costs[bench_type]
 				benches[editing_bench][0] = bench_type
 				Global.money -= purchase_cost
-				# Hayden, I would like to change the sprite depending on what the bench type is. I asked Mr O'Sullivan 
-				# on the matter, but he did not know how as the string is not changed.
 				$layout_benches.find_child(str(editing_bench)).find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 				$money.text = "Money: " + str(Global.money)
 				money_bench_check()

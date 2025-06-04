@@ -15,6 +15,7 @@ func _on_pressed() -> void:
 			item_cost[item] *= 1.5
 			item_cost[item] = round(item_cost[item])
 		button_money()
+		$"../../money".text = "Money: " + str(Global.money)
 	else:
 		text = "Can't afford!"
 		await get_tree().create_timer(0.5).timeout
