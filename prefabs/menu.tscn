@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtjxhgwfv24sv"]
+[gd_scene load_steps=17 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="5_3nfdx"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
+[ext_resource type="Texture2D" uid="uid://b37lxiul7q6qj" path="res://assets/Sprint 1 Icons for benches/Bench.png" id="7_84sbs"]
+[ext_resource type="Texture2D" uid="uid://b3cfedxfu3p0v" path="res://assets/Sprint 1 Icons for benches/Stove.png" id="8_21bg4"]
+[ext_resource type="Texture2D" uid="uid://2m65fod6bq5h" path="res://assets/Sprint 1 Icons for benches/Fridge.png" id="9_w8pom"]
+[ext_resource type="Texture2D" uid="uid://lli3sl7i6gjf" path="res://assets/Sprint 1 Icons for benches/Bin Crate.png" id="10_0x0nk"]
+[ext_resource type="Texture2D" uid="uid://dlo6qp5p14cqh" path="res://assets/Sprint 1 Icons for benches/Chopping Board.png" id="11_8bmnr"]
+[ext_resource type="Texture2D" uid="uid://b5gkf1cnm1nkr" path="res://assets/Sprint 1 Icons for benches/Bun Crate.png" id="12_dwafa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
 size = Vector2(128, 128)
@@ -169,14 +175,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_1"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_1"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-scale = Vector2(0.5, 0.5)
-text = "Bench"
-
 [node name="bench_2" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1216, 136)
 script = ExtResource("4_d7fan")
@@ -187,14 +185,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_2"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_2"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-scale = Vector2(0.5, 0.5)
-text = "Bench"
 
 [node name="bench_3" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1344, 136)
@@ -207,13 +197,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_3"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_3"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_4" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1472, 136)
 script = ExtResource("4_d7fan")
@@ -224,13 +207,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_4"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_4"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
 
 [node name="bench_5" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1600, 136)
@@ -243,13 +219,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_5"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_5"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_6" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1728, 136)
 script = ExtResource("4_d7fan")
@@ -260,13 +229,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_6"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_6"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
 
 [node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1728, 264)
@@ -279,13 +241,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_8"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_7" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1088, 264)
 script = ExtResource("4_d7fan")
@@ -296,13 +251,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_7"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_7"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
 
 [node name="bench_9" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1088, 392)
@@ -315,13 +263,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_9"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_9"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_10" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1728, 392)
 script = ExtResource("4_d7fan")
@@ -332,13 +273,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_10"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_10"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
 
 [node name="bench_11" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1088, 520)
@@ -351,13 +285,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_11"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_11"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_12" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1728, 520)
 script = ExtResource("4_d7fan")
@@ -368,13 +295,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_12"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_12"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
 
 [node name="bench_13" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1088, 648)
@@ -387,13 +307,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_13"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_13"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_14" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1728, 648)
 script = ExtResource("4_d7fan")
@@ -404,13 +317,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_14"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_14"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
 
 [node name="bench_15" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1088, 776)
@@ -423,13 +329,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_15"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_15"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_16" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1728, 776)
 script = ExtResource("4_d7fan")
@@ -440,13 +339,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_16"]
 texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_16"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
 
 [node name="bench_17" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1216, 776)
@@ -459,13 +351,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_17"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_17"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="bench_18" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1600, 776)
 script = ExtResource("4_d7fan")
@@ -477,13 +362,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_18"]
 texture = ExtResource("5_3nfdx")
 
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_benches/bench_18"]
-offset_left = -25.0
-offset_top = -61.0
-offset_right = 24.0
-offset_bottom = -38.0
-text = "Bench"
-
 [node name="layout_shop" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
@@ -494,15 +372,7 @@ script = ExtResource("6_y5qo3")
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bench"]
-texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/bench"]
-offset_left = -56.0
-offset_top = -56.0
-offset_right = -7.0
-offset_bottom = -33.0
-text = "bench"
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("7_84sbs")
 
 [node name="stove" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1240, 968)
@@ -512,15 +382,7 @@ script = ExtResource("6_y5qo3")
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/stove"]
-texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/stove"]
-offset_left = -56.0
-offset_top = -56.0
-offset_right = -7.0
-offset_bottom = -33.0
-text = "stove"
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("8_21bg4")
 
 [node name="fridge" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1528, 968)
@@ -531,15 +393,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/fridge"]
-texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/fridge"]
-offset_left = -56.0
-offset_top = -56.0
-offset_right = -7.0
-offset_bottom = -33.0
-text = "fridge"
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("9_w8pom")
 
 [node name="bin" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1816, 968)
@@ -550,16 +404,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bin"]
-texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/bin"]
-offset_left = -56.0
-offset_top = -56.0
-offset_right = -7.0
-offset_bottom = -33.0
-scale = Vector2(0.5, 0.5)
-text = "bin"
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("10_0x0nk")
 
 [node name="chopping_board" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1384, 968)
@@ -570,16 +415,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/chopping_board"]
-texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/chopping_board"]
-offset_left = -56.0
-offset_top = -56.0
-offset_right = -7.0
-offset_bottom = -33.0
-scale = Vector2(0.5, 0.5)
-text = "chopping board"
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("11_8bmnr")
 
 [node name="bun_crate" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1672, 968)
@@ -590,15 +426,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
-texture = ExtResource("5_3nfdx")
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/layout_shop/bun_crate"]
-offset_left = -56.0
-offset_top = -56.0
-offset_right = -7.0
-offset_bottom = -33.0
-text = "bun crate"
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("12_dwafa")
 
 [node name="money" type="Label" parent="CanvasLayer/layout"]
 texture_filter = 1

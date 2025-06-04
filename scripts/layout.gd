@@ -44,7 +44,6 @@ func _physics_process(_delta: float) -> void:
 				# Hayden, I would like to change the sprite depending on what the bench type is. I asked Mr O'Sullivan 
 				# on the matter, but he did not know how as the string is not changed.
 				$layout_benches.find_child(str(editing_bench)).find_child("Sprite2D").texture = bench_type_sprites[bench_type]
-				$layout_benches.find_child(str(editing_bench)).find_child("Label").text = str(bench_type)
 				$money.text = "Money: " + str(Global.money)
 				money_bench_check()
 		editing_bench=  null
@@ -66,14 +65,15 @@ func hide_benches():
 func assign_layout_names():
 	for i in benches:
 		if benches[i][2] == true:
-			$layout_benches.find_child(i).find_child("Label").text = benches[i][0]
+			$layout_benches.find_child(i).find_child("Sprite2D").texture = bench_type_sprites[benches[i][0]]
+			$layout_benches.find_child(i).find_child("Sprite2D").rotation_degrees = benches[i][1]
 func _on_bench_name(bench_name) -> void:
 	if bench_name:
 		editing_bench = str(bench_name)
 
 func _on_bench_bench_type(type) -> void:
 	bench_type = str(type)
-	$dragging_bench/Label.text = bench_type
+	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 	$dragging_bench.position = get_local_mouse_position()
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0

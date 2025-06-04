@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=50 format=4 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -13,6 +13,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="16_nwl14"]
 [ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/Charm/Charm-Regular.ttf" id="17_k1hdb"]
 [ext_resource type="Texture2D" uid="uid://rmmlwqdyxuv0" path="res://assets/materials/lave_emissive.png" id="19_n7i1a"]
+[ext_resource type="PackedScene" uid="uid://bk5q2jyy76phw" path="res://prefabs/menu.tscn" id="21_bpfb4"]
 [ext_resource type="AudioStream" uid="uid://bx8v1d3rongx8" path="res://assets/yippee-made-with-Voicemod.mp3" id="22_8bx52"]
 [ext_resource type="PackedScene" uid="uid://1gco46vh5o4v" path="res://prefabs/delivery_pot.tscn" id="22_b1m2q"]
 [ext_resource type="AudioStream" uid="uid://cdtcjsf46c7dv" path="res://assets/CloveCommend3.mp3" id="23_xfqyr"]
@@ -678,6 +679,9 @@ target_position = Vector3(0, 0, -10)
 wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="player_single"]
+
+[node name="menu" parent="." instance=ExtResource("21_bpfb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 
 [connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
 [connection signal="order_contents" from="." to="delivery_pot" method="_on_world_order_contents"]
