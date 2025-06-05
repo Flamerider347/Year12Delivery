@@ -10,7 +10,7 @@ height = 0.500427
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7702b"]
 height = 0.199097
 
-[node name="delivery_pot" type="RigidBody3D" groups=["pickupable"]]
+[node name="delivery_pot" type="RigidBody3D" groups=["deliverable", "pickupable"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_h4rvv")
 
