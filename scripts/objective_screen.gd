@@ -72,6 +72,7 @@ func _process(_delta: float) -> void:
 		elif plate_label.text != "":
 			plate_label.text = ""
 func randomise_objective():
+	plate_contents[making_plate] = []
 	var making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
 	while true:
 		if recipes_list[making_recipe][1] == false:

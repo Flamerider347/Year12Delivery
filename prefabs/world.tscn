@@ -586,6 +586,9 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 script = ExtResource("24_u7kri")
 
+[node name="house" parent="kitchen/houses/B1" instance=ExtResource("10_b1m2q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 2.85366)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/B1"]
 shape = SubResource("BoxShape3D_xky7j")
 
