@@ -10,7 +10,7 @@ height = 0.500427
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7702b"]
 height = 0.199097
 
-[node name="delivery_pot" type="RigidBody3D"]
+[node name="delivery_pot" type="RigidBody3D" groups=["pickupable"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_h4rvv")
 
@@ -23,22 +23,18 @@ mesh = ExtResource("2_841pa")
 
 [node name="LidA" type="MeshInstance3D" parent="." groups=["lid"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
-visible = false
 mesh = ExtResource("3_wmoa5")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." groups=["hitbox", "lid"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5495, 0)
-visible = false
 shape = SubResource("CylinderShape3D_7702b")
 
 [node name="Label3D" type="Label3D" parent="." groups=["lid"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289027, 0.500105)
-visible = false
 text = "1A"
 
 [node name="Label3D2" type="Label3D" parent="." groups=["lid"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826133, 0)
-visible = false
 text = "59"
 
 [node name="Timer" type="Timer" parent="."]

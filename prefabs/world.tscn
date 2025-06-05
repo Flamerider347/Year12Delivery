@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=52 format=4 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://rmmlwqdyxuv0" path="res://assets/materials/lave_emissive.png" id="19_n7i1a"]
 [ext_resource type="PackedScene" uid="uid://bk5q2jyy76phw" path="res://prefabs/menu.tscn" id="21_bpfb4"]
 [ext_resource type="AudioStream" uid="uid://bx8v1d3rongx8" path="res://assets/yippee-made-with-Voicemod.mp3" id="22_8bx52"]
-[ext_resource type="PackedScene" uid="uid://1gco46vh5o4v" path="res://prefabs/delivery_pot.tscn" id="22_b1m2q"]
 [ext_resource type="AudioStream" uid="uid://cdtcjsf46c7dv" path="res://assets/CloveCommend3.mp3" id="23_xfqyr"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
@@ -689,9 +688,6 @@ shape = SubResource("BoxShape3D_70uel")
 transform = Transform3D(1, 0, -1.59578e-37, 0, 1, 0, 0, 0, 1, -0.0749478, 0, -0.54)
 shape = SubResource("BoxShape3D_le6xu")
 
-[node name="delivery_pot" parent="." groups=["deliverable"] instance=ExtResource("22_b1m2q")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 1.1, 10)
-
 [node name="SFX" type="Node3D" parent="."]
 
 [node name="beautiful" type="AudioStreamPlayer3D" parent="SFX"]
@@ -877,8 +873,6 @@ wait_time = 0.06
 [node name="menu" parent="." instance=ExtResource("21_bpfb4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 
-[connection signal="delivered_correctly" from="." to="delivery_pot" method="_on_world_delivered_correctly"]
-[connection signal="order_contents" from="." to="delivery_pot" method="_on_world_order_contents"]
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
 [connection signal="objective_timeout" from="kitchen/plates" to="." method="_on_objective_plate_timeout"]
@@ -922,8 +916,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 [connection signal="item_entered" from="kitchen/houses/C3" to="." method="_on_house_item_entered"]
 [connection signal="body_entered" from="knife/cut_area" to="." method="_on_cut_area_body_entered"]
 [connection signal="body_entered" from="knife2/cut_area" to="." method="_on_cut_area_body_entered"]
-[connection signal="timeout" from="delivery_pot" to="." method="_on_order_timeout"]
-[connection signal="timeout" from="delivery_pot" to="kitchen/plates" method="_on_order_timeout"]
 [connection signal="timeout" from="day_timer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="order_timer" to="." method="_on_order_timer_timeout"]
 [connection signal="money_change" from="GridContainer/SubViewportContainer/SubViewport/player" to="." method="_on_player_money_change"]

@@ -1,12 +1,10 @@
 extends Node3D
-signal order_contents
 signal delivered_correctly
 signal make_order
 var grid_exists = true
 var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
-var product_check = false
 var making_time_left = 0
 var next_spawn_time = 1
 var order = false
@@ -17,6 +15,7 @@ var orders = [0,0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
 var current_map
+@onready var pot = preload("res://prefabs/delivery_pot.tscn")
 var bench_summoning = {
 	"bench_1" : [Vector3(-5,0,0),0],
 	"bench_2" : [Vector3(-3,0,0),0],
@@ -145,7 +144,7 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
 
-func plate_check(contents,body) -> void:
+func plate_check(contents,body,plate_pos) -> void:
 	if body.is_in_group("packageable"):
 		product = contents
 		var sorted_product = product.duplicate()
@@ -155,9 +154,13 @@ func plate_check(contents,body) -> void:
 			sorted_objective.sort()
 			if sorted_product == sorted_objective:
 				var plate_number = objectives[objective][3]
-				product_check = false
 				var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
-				order_contents.emit(product,objectives[objective][2],timer,plate_number)
+				print("spawned")
+				var spawned_box = pot.instantiate()
+				add_child(spawned_box)
+				spawned_box.position = plate_pos
+				spawned_box.time_left_timer.start(timer)
+				spawned_box.timer_number = plate_number
 				emit_signal("make_order","kill",plate_number)
 				orders[int(plate_number)-1] = 0
 				objectives.erase(objective)
@@ -173,7 +176,7 @@ func plate_check(contents,body) -> void:
 				body.queue_free()
 				break
 			else:
-				print("failed")
+				pass
 
 
 func _on_player_money_change() -> void:
@@ -233,7 +236,6 @@ func map_select():
 	$knife2.freeze = false
 	$knife.position = current_map.position + Vector3($knife.position.x,1.1,$knife.position.z)
 	$knife2.position = current_map.position + Vector3($knife2.position.x,1.1,$knife2.position.z)
-	$delivery_pot.position = current_map.position + Vector3(3,1.1,10)
 	$kitchen.position = current_map.position
 	if Global.player_count == 1 :
 		$player_single.position = current_map.position + Vector3(0,1.15,3)
