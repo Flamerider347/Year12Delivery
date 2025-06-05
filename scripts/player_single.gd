@@ -232,9 +232,11 @@ func look_recipe():
 			if collision_item.is_in_group("look_at"):
 				emitting_collision_item = [collision_item.name.replace("_crate","")]
 				looking_recipe.emit(emitting_collision_item)
-			if collision_item.is_in_group("look_at_plates"):
+			elif collision_item.is_in_group("look_at_plates"):
 				emitting_collision_item = $"../kitchen/plates".plate_contents[collision_item.name.replace("objective_plate","plate_")]
 				looking_recipe.emit(emitting_collision_item)
+			else:
+				looking_recipe.emit([])
 		if collision_item is RigidBody3D:
 			if collision_item.is_in_group("look_at"):
 				emitting_collision_item = [collision_item.name]
