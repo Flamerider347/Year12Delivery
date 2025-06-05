@@ -1,15 +1,15 @@
 extends Node2D
 var editing_bench = null
 var bench_type = null
-var benches_bought = 7
+var benches_bought = 8
 var bench_type_sprites = {
 	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
 	"bin" : preload("res://assets/Sprint 1 Icons for benches/Bin Crate.png"),
 	"bun_crate" : preload("res://assets/Sprint 1 Icons for benches/Bun Crate.png"),
 	"chopping_board" : preload("res://assets/Sprint 1 Icons for benches/Chopping Board.png"),
 	"fridge" :preload("res://assets/Sprint 1 Icons for benches/Fridge.png"),
-	"stove" : preload("res://assets/Sprint 1 Icons for benches/Stove.png")
-	
+	"stove" : preload("res://assets/Sprint 1 Icons for benches/Stove.png"),
+	"delivery_table" : preload("res://assets/Sprint 1 Icons for benches/delivery_plate.png")
 }
 @onready var menu = $"../.."
 var bench_costs = {
@@ -19,6 +19,7 @@ var bench_costs = {
 	"fridge": 10,
 	"bun_crate" : 5,
 	"bin" : 5,
+	"delivery_table" : 10
 }
 @onready var benches = Global.benches
 func _ready() -> void:

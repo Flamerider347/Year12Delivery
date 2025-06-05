@@ -20,7 +20,7 @@ var benches = {
 	"bench_5" : ["fridge",0,true],
 	"bench_6" : ["bun_crate",0,true],
 	"bench_7" : ["stove",270,true],
-	"bench_8" : ["bench",90,false],
+	"bench_8" : ["delivery_table",90,true],
 	"bench_9" : ["bench",270,false],
 	"bench_10" : ["bench",90,false],
 	"bench_11" : ["bench",270,false],

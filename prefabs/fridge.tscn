@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgwd0lj8xv61h"]
+[gd_scene load_steps=12 format=3 uid="uid://cf2s322ap3bxw"]
 
 [ext_resource type="ArrayMesh" uid="uid://to15mhx1isw1" path="res://assets/kitchenassets/food_ingredient_potato.obj" id="1_252b1"]
 [ext_resource type="Script" uid="uid://8nrws8bwiprl" path="res://scripts/fridge_door.gd" id="2_252b1"]

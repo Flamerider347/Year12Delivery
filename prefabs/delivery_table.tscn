@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpmawsb3rbdau"]
+
+[ext_resource type="Script" uid="uid://4xvhhdvams68" path="res://scripts/delivery_table.gd" id="1_4wksp"]
+[ext_resource type="ArrayMesh" uid="uid://bnpcdwilyg6p8" path="res://assets/kitchenassets/table_round_A_small.obj" id="1_cmrw4"]
+[ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="2_4wksp"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nwl14"]
+height = 0.999023
+radius = 0.744629
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sxw1y"]
+height = 0.108154
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2a2la"]
+height = 0.705811
+
+[node name="delivery_plate_table" type="StaticBody3D" groups=["keep"]]
+script = ExtResource("1_4wksp")
+
+[node name="TableRoundASmall" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_cmrw4")
+skeleton = NodePath("../../..")
+
+[node name="Plate" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.006, 0)
+mesh = ExtResource("2_4wksp")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501974, 0)
+shape = SubResource("CylinderShape3D_nwl14")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05346, 0)
+shape = SubResource("CylinderShape3D_sxw1y")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.893244, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
+shape = SubResource("CylinderShape3D_2a2la")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

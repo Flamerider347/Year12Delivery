@@ -44,6 +44,7 @@ var bench_summoning = {
 	"fridge" : preload("res://prefabs/fridge.tscn"),
 	"bun_crate" : preload("res://prefabs/bun_crate.tscn"),
 	"bin"    : preload("res://prefabs/bin.tscn"),
+	"delivery_table" : preload("res://prefabs/delivery_table.tscn")
 }
 @onready var maps = {
 	"tutorial" : $dine_in,
@@ -120,32 +121,6 @@ func _physics_process(_delta: float) -> void:
 		$knife.position.y += 1.1
 	if $knife2.position.y < 0.2:
 		$knife2.position.y += 1.1
-	if product_check:
-		var sorted_product = product.duplicate()
-		sorted_product.sort()
-		for objective in objectives:
-			var sorted_objective = objectives[objective][0].duplicate()
-			sorted_objective.sort()
-			if sorted_product == sorted_objective:
-				var plate_number = objectives[objective][3]
-				product_check = false
-				var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
-				order_contents.emit(product,objectives[objective][2],timer,plate_number)
-				emit_signal("make_order","kill",plate_number)
-				orders[int(plate_number)-1] = 0
-				objectives.erase(objective)
-				var random_success = randi_range(1,4)
-				if random_success == 1:
-					$SFX/beautiful.play()
-				if random_success == 2:
-					$SFX/yippie.play()
-				if random_success == 3:
-					$SFX/well_done.play()
-				if random_success == 4:
-					$SFX/homer_mmmm.play()
-				break
-			else:
-				product_check = false
 
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("can_chop"):
@@ -170,12 +145,36 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func plate_check(contents,body) -> void:
 	if body.is_in_group("packageable"):
-		product = body.contents
-		product_check = true
-		body.queue_free()
-		
+		product = contents
+		var sorted_product = product.duplicate()
+		sorted_product.sort()
+		for objective in objectives:
+			var sorted_objective = objectives[objective][0].duplicate()
+			sorted_objective.sort()
+			if sorted_product == sorted_objective:
+				var plate_number = objectives[objective][3]
+				product_check = false
+				var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
+				order_contents.emit(product,objectives[objective][2],timer,plate_number)
+				emit_signal("make_order","kill",plate_number)
+				orders[int(plate_number)-1] = 0
+				objectives.erase(objective)
+				var random_success = randi_range(1,4)
+				if random_success == 1:
+					$SFX/beautiful.play()
+				if random_success == 2:
+					$SFX/yippie.play()
+				if random_success == 3:
+					$SFX/well_done.play()
+				if random_success == 4:
+					$SFX/homer_mmmm.play()
+				body.queue_free()
+				break
+			else:
+				print("failed")
+
 
 func _on_player_money_change() -> void:
 	$ui/Label.text = "Money: " + str(money)
@@ -183,8 +182,7 @@ func _on_player_money_change() -> void:
 func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife") and not body.is_in_group("keep"):
 		body.queue_free()
-	if body.is_in_group("knife"):
-		body.position = Vector3(5.2,1.1,0.4)
+
 
 
 func _on_house_item_entered(address,target_address,time_left) -> void:

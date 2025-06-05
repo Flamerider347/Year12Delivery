@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=18 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://2m65fod6bq5h" path="res://assets/Sprint 1 Icons for benches/Fridge.png" id="9_w8pom"]
 [ext_resource type="Texture2D" uid="uid://lli3sl7i6gjf" path="res://assets/Sprint 1 Icons for benches/Bin Crate.png" id="10_0x0nk"]
 [ext_resource type="Texture2D" uid="uid://dlo6qp5p14cqh" path="res://assets/Sprint 1 Icons for benches/Chopping Board.png" id="11_8bmnr"]
+[ext_resource type="Texture2D" uid="uid://cw5xjsl48vltp" path="res://assets/Sprint 1 Icons for benches/delivery_plate.png" id="12_73aox"]
 [ext_resource type="Texture2D" uid="uid://b5gkf1cnm1nkr" path="res://assets/Sprint 1 Icons for benches/Bun Crate.png" id="12_dwafa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
@@ -430,6 +431,17 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
 texture = ExtResource("12_dwafa")
 
+[node name="delivery_table" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(952, 968)
+script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/delivery_table"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/delivery_table"]
+texture = ExtResource("12_73aox")
+
 [node name="money" type="Label" parent="CanvasLayer/layout"]
 texture_filter = 1
 offset_right = 161.0
@@ -660,6 +672,9 @@ font_size = 128
 [connection signal="bench_type" from="CanvasLayer/layout/layout_shop/bun_crate" to="CanvasLayer/layout" method="_on_bench_bench_type"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/bun_crate" to="CanvasLayer/layout/layout_shop/bun_crate" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/bun_crate" to="CanvasLayer/layout/layout_shop/bun_crate" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout/layout_shop/delivery_table" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout/layout_shop/delivery_table" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_or_level"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout" method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
