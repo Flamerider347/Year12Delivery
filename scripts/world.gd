@@ -67,8 +67,6 @@ func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
-	$knife.freeze = true
-	$knife2.freeze = true
 func _setup():
 	for i in $kitchen.get_children():
 		if not i.is_in_group("keep"):
@@ -116,11 +114,6 @@ func _physics_process(_delta: float) -> void:
 			if orders[i] == 1:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
-	if $knife.position.y < 0.2:
-		$knife.position.y += 1.1
-	if $knife2.position.y < 0.2:
-		$knife2.position.y += 1.1
-
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("can_chop"):
 		if body.type == "bun":
@@ -232,10 +225,6 @@ func map_select():
 	var random_map = map_keys[Global.level-1]
 	current_map = maps[random_map]
 	current_map.show()
-	$knife.freeze = false
-	$knife2.freeze = false
-	$knife.position = current_map.position + Vector3($knife.position.x,1.1,$knife.position.z)
-	$knife2.position = current_map.position + Vector3($knife2.position.x,1.1,$knife2.position.z)
 	$kitchen.position = current_map.position
 	if Global.player_count == 1 :
 		$player_single.position = current_map.position + Vector3(0,1.15,3)

@@ -225,6 +225,7 @@ func look_recipe():
 		var emitting_collision_item = null
 		if collision_item is RigidBody3D:
 			if collision_item.type:
+				print("type")
 				emitting_collision_item = [collision_item.type]
 				looking_recipe.emit(emitting_collision_item)
 		if collision_item is StaticBody3D:
