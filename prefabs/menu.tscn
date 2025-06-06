@@ -60,7 +60,7 @@ offset_right = 1151.0
 offset_bottom = 738.495
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play Multiplayer"
+text = "Play Multiplayer (Work in progress, come back sprint 2)"
 
 [node name="quit" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 860.0

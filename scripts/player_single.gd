@@ -5,7 +5,7 @@ var can_pickup = true
 var controlling = false
 var evil = false
 const WALK_SPEED = 10
-const SPRINT_SPEED = 8.0
+const SPRINT_SPEED = 15
 const JUMP_VELOCITY = 5
 const SENSITIVITY = 0.06
 const GRAVITY = 9.81 #ms^-2
@@ -139,10 +139,10 @@ func movement(delta):
 
 func pickup(object):
 	object.freeze = true
-	seecast.target_position.z = -1.5
+	seecast.target_position.z = -1.6
+	object.rotation_degrees = Vector3.ZERO
 	object.rotation_degrees.y = head.rotation_degrees.y
 	object.linear_velocity = Vector3.ZERO
-	object.position = Vector3(0,-5,0)
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = true
@@ -163,11 +163,18 @@ func drop(object):
 
 func position_held_object():
 	if held_object:
+		if held_object.rotation_degrees.y != head.rotation_degrees.y:
+			held_object.rotation_degrees.y = head.rotation_degrees.y
 		if seecast.is_colliding():
 			collision_point = seecast.get_collision_point()
-			held_object.position = collision_point
+			if held_object.position != collision_point:
+				held_object.position = collision_point
 		else:
-			held_object.position = seecast.to_global(seecast.target_position)
+			if held_object.position != seecast.to_global(seecast.target_position):
+				var target_position = seecast.to_global(seecast.target_position)
+				held_object.position.x = lerp(held_object.position.x, target_position.x,0.3)
+				held_object.position.y = lerp(held_object.position.y, target_position.y,0.3)
+				held_object.position.z = lerp(held_object.position.z, target_position.z,0.3)
 func stack():
 		evil = false
 		var stack_bottom = seecast.get_collider()
@@ -217,7 +224,8 @@ func summon(item):
 	instance.add_to_group("pickupable")
 	instance.add_to_group("choppable")
 	instance.find_child("CollisionShape3D").disabled = true
-	seecast.target_position.z = -1.5
+	instance.freeze = true
+	seecast.target_position.z = -1.7
 
 func look_recipe():
 	if lookcast.is_colliding():
@@ -225,7 +233,6 @@ func look_recipe():
 		var emitting_collision_item = null
 		if collision_item is RigidBody3D:
 			if collision_item.type:
-				print("type")
 				emitting_collision_item = [collision_item.type]
 				looking_recipe.emit(emitting_collision_item)
 		if collision_item is StaticBody3D:

@@ -10,7 +10,8 @@ var recipes_list = {
 	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
 	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],true],
 	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","cheese_chopped","carrot_chopped","bun_top_chopped",],true],
-	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
+	"burger_test" :[["plate","bun_bottom_chopped","bun_top_chopped"],false],
+	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],false]
 }
 var benches = {
 	"bench_1" : ["bin",0,true],

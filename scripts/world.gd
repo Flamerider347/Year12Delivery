@@ -1,12 +1,11 @@
 extends Node3D
-signal delivered_correctly
 signal make_order
 var grid_exists = true
 var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var making_time_left = 0
-var next_spawn_time = 1
+var next_spawn_time = 40
 var order = false
 var action
 var stars = Global.stars
@@ -148,24 +147,17 @@ func plate_check(contents,body,plate_pos) -> void:
 			if sorted_product == sorted_objective:
 				var plate_number = objectives[objective][3]
 				var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
-				print("spawned")
 				var spawned_box = pot.instantiate()
 				add_child(spawned_box)
 				spawned_box.position = plate_pos
 				spawned_box.time_left_timer.start(timer)
 				spawned_box.timer_number = plate_number
+				spawned_box.target_location = objectives[objective][2]
+				spawned_box.find_child("Label3D").text = objectives[objective][2]
 				emit_signal("make_order","kill",plate_number)
 				orders[int(plate_number)-1] = 0
 				objectives.erase(objective)
-				var random_success = randi_range(1,4)
-				if random_success == 1:
-					$SFX/beautiful.play()
-				if random_success == 2:
-					$SFX/yippie.play()
-				if random_success == 3:
-					$SFX/well_done.play()
-				if random_success == 4:
-					$SFX/homer_mmmm.play()
+				$SFX/ding.play()
 				body.queue_free()
 				break
 			else:
@@ -181,13 +173,13 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 
 
 
-func _on_house_item_entered(address,target_address,time_left) -> void:
+func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> void:
 	if address == target_address:
 		making_time_left = round(time_left)
 		money += making_time_left
 		$ui/Label.text = "Money: " + str(money)
-		delivered_correctly.emit()
-		$delivery_pot.position = current_map.position + Vector3(3,1.2,10)
+		$SFX/delivered.play()
+		delivered_pot.queue_free()
 
 func _on_order_timer_timeout() -> void:
 	for i in range(len(orders)):
