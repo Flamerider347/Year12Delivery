@@ -586,9 +586,7 @@ bbcode_enabled = true
 text = "[u]SCORE:
 ORDERS DELIVERED:
 STARS REMAINING:
-TOTAL SCORE:[/u]
-
-"
+TOTAL SCORE:[/u]"
 
 [node name="text_you_lost" type="RichTextLabel" parent="CanvasLayer/lose_screen/Control"]
 layout_mode = 1
@@ -659,7 +657,6 @@ text = "[u]SCORE:
 ORDERS DELIVERED:
 STARS REMAINING:
 TOTAL SCORE:[/u]
-
 "
 
 [node name="text_you_won" type="RichTextLabel" parent="CanvasLayer/win_screen/Control"]

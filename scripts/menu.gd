@@ -154,6 +154,16 @@ func layout():
 	hide_everything()
 	$CanvasLayer/layout.show()
 
+func lose_screen():
+	menu_load()
+	hide_everything()
+	$CanvasLayer/lose_screen.show()
+	
+func win_screen():
+	menu_load()
+	hide_everything()
+	$CanvasLayer/win_screen.show()
+
 func _on_play_level_pressed() -> void:
 	$".."._setup()
 	$"../player_single"._setup()

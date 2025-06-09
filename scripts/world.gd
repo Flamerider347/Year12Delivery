@@ -5,7 +5,7 @@ var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var making_time_left = 0
-var next_spawn_time = 40
+var next_spawn_time = 1
 var order = false
 var action
 var stars = Global.stars
@@ -67,6 +67,9 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func _setup():
+	for i in get_children():
+		if i is RigidBody3D:
+			i.queue_free()
 	for i in $kitchen.get_children():
 		if not i.is_in_group("keep"):
 			i.queue_free()
@@ -196,7 +199,7 @@ func _on_objective_plate_timeout(timer_number) -> void:
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		Global.restart = true
-		$menu.menu_load()
+		$menu.lose_screen()
 		stars = 5
 
 func _on_plates_objective_clear(timer_number) -> void:
@@ -208,7 +211,7 @@ func _on_order_timeout(_number) -> void:
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		Global.restart = true
-		$menu.menu_load()
+		$menu.lose_screen()
 
 func map_select():
 	for i in maps.keys():
