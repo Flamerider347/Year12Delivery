@@ -655,7 +655,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "B3"
 
 [node name="C1" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 28.5232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 36.523)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/C1" instance=ExtResource("10_b1m2q")]
@@ -669,7 +669,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "C1"
 
 [node name="C2" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28.5232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38.523)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/C2" instance=ExtResource("10_b1m2q")]
@@ -683,7 +683,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "C2"
 
 [node name="C3" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 28.5232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 36.523)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/C3" instance=ExtResource("10_b1m2q")]
