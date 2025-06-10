@@ -8,7 +8,14 @@ var ingredient_amount = 0
 var timing = false
 var next_position = 0.1
 var making_plate = "plate_1"
-var recipes_list = Global.recipes_list
+var recipes_list = {
+	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","tomato_chopped","cheese_chopped","lettuce_chopped","bun_top_chopped"],false],
+	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],false],
+	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],false],
+	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","cheese_chopped","carrot_chopped","bun_top_chopped",],false],
+	"burger_test" :[["plate","bun_bottom_chopped","bun_top_chopped"],true],
+	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],false]
+}
 var plate_contents = {
 	"plate_1" : [],
 	"plate_2" : [],
@@ -103,8 +110,8 @@ func update_target(recipe):
 		spawned_item.remove_from_group("pickupable")
 		spawned_item.freeze = true
 		spawned_item.position = Vector3(0,next_position,0)
-		if plate_contents[making_plate][0] in Global.recipes_list.keys():
-			plate_contents[making_plate] = Global.recipes_list[plate_contents[making_plate][0]][0]
+		if plate_contents[making_plate][0] in recipes_list.keys():
+			plate_contents[making_plate] = recipes_list[plate_contents[making_plate][0]][0]
 		if spawned_item_hitbox is BoxShape3D:
 			var item_size = spawned_item_hitbox.size.y
 			next_position += item_size

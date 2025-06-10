@@ -14,7 +14,6 @@ const GRAVITY = 9.81 #ms^-2
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
 @onready var lookcast = $head/player_camera/lookcast
-@onready var money = Global.money
 
 var ingredient_scenes = {
 	"bun":preload("res://prefabs/bun.tscn"),
@@ -33,10 +32,8 @@ var held_object = null  # Stores the object being held
 var collision_point
 
 signal ingredient_added
-signal money_change
 signal looking_recipe
 func _setup():
-	money_change.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	controlling = true
 func _unhandled_input(event):
@@ -62,7 +59,7 @@ func _unhandled_input(event):
 						if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
 							held_object = seecast.get_collider()
 							pickup(held_object)
-						if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
 							var summon_type = seecast.get_collider().name.replace("_crate","")
 							summon(summon_type)
 					if held_object and can_pickup:
@@ -76,8 +73,6 @@ func _physics_process(delta: float):
 	if controlling:
 		if Input.is_action_just_pressed("menu"):
 			$"../menu".menu_load()
-		if money < 0:
-			get_tree().change_scene_to_file("res://prefabs/menu.tscn")
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
 				var door = seecast.get_collider()
@@ -88,7 +83,7 @@ func _physics_process(delta: float):
 				if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
 					held_object = seecast.get_collider()
 					pickup(held_object)
-				if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner") and money > 0:
+				if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
 					var summon_type = seecast.get_collider().name.replace("_crate","")
 					summon(summon_type)
 			if held_object and can_pickup:
@@ -203,9 +198,9 @@ func stack():
 			held_object.remove_from_group("pickupable")
 			held_object.freeze = true
 			held_object = null
-			for i in Global.recipes_list:
+			for i in $"../kitchen/plates".recipes_list:
 				if i[1]:
-					if stack_bottom.contents == Global.recipes_list[i][0]:
+					if stack_bottom.contents == $"../kitchen/plates".recipes_list[i][0]:
 						if i in ingredient_scenes:
 							var spawned_recipe = ingredient_scenes[i].instantiate()
 							$"..".add_child(spawned_recipe)
@@ -214,11 +209,9 @@ func stack():
 		if evil:
 			drop(held_object)
 func summon(item):
-	money_change.emit()
 	var instance = ingredient_scenes[item].instantiate()
 	$"..".add_child(instance)
 	held_object = instance
-	money -= 1
 	instance.type = str(item)
 	instance.position = Vector3(0,-5,0)
 	instance.add_to_group("pickupable")
@@ -253,6 +246,3 @@ func look_recipe():
 
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true
-
-func _on_world_failed_order() -> void:
-	money_change.emit()

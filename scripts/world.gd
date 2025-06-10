@@ -8,12 +8,19 @@ var making_time_left = 0
 var next_spawn_time = 1
 var order = false
 var action
-var stars = Global.stars
-var money = Global.money
 var orders = [0,0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []
 var current_map
+var player_count = 1
+var level = 1
+var level_updates_left = 0
+@onready var money = 500
+var score = 0
+var stars = 5
+var orders_delivered = 0
+var day_timer = 20
+
 @onready var pot = preload("res://prefabs/delivery_pot.tscn")
 var bench_summoning = {
 	"bench_1" : [Vector3(-5,0,0),0],
@@ -50,7 +57,6 @@ var bench_summoning = {
 	"underwater" : $underwater,
 	"siberia" : $siberia,
 	"dine_in" : $dine_in
-
 }
 var ingredients = {
 "potato": preload("res://prefabs/potato_chopped.tscn"),
@@ -61,7 +67,33 @@ var ingredients = {
 "lettuce":preload("res://prefabs/lettuce_chopped.tscn"),
 "meat_cooked" : preload("res://prefabs/meat_cooked_chopped.tscn"),
 }
-
+var benches = {
+	"bench_1" : ["bin",0,true],
+	"bench_2" : ["bench",0,true],
+	"bench_3" : ["chopping_board",0,true],
+	"bench_4" : ["bench",0,true],
+	"bench_5" : ["fridge",0,true],
+	"bench_6" : ["bun_crate",0,true],
+	"bench_7" : ["stove",270,true],
+	"bench_8" : ["delivery_table",90,true],
+	"bench_9" : ["bench",270,false],
+	"bench_10" : ["bench",90,false],
+	"bench_11" : ["bench",270,false],
+	"bench_12" : ["bench",90,false],
+	"bench_13" : ["bench",270,false],
+	"bench_14" : ["bench",90,false],
+	"bench_15" : ["bench",270,false],
+	"bench_16" : ["bench",90,false],
+	"bench_17" : ["bench",180,false],
+	"bench_18" : ["bench",180,false],
+}
+var unlocked_levels = {
+	"level_1" :true,
+	"level_2" : true,
+	"level_3" : false,
+	"level_4" : false,
+	"level_5" : false
+}
 func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
@@ -74,33 +106,37 @@ func _setup():
 		if not i.is_in_group("keep"):
 			i.queue_free()
 	$ui.show()
-	$ui/Label.text = "Money: " + str(money)
+	$ui/Label.text = "Score: " + str(score)
 	$day_timer.start()
 	map_select()
-	if Global.player_count == 1:
+	if player_count == 1:
 		$ui/Sprite2D.show()
 		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
-	if Global.player_count == 2:
+	if player_count == 2:
 		$GridContainer.show()
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
 	$order_timer.start(0.1)
-	for i in Global.benches:
-		if Global.benches[i][2] == true:
+	for i in benches:
+		if benches[i][2] == true:
 			if i in bench_summoning.keys():
-				if Global.benches[i][0] in bench_types:
-					var summoned_bench = bench_types[Global.benches[i][0]].instantiate()
+				if benches[i][0] in bench_types:
+					var summoned_bench = bench_types[benches[i][0]].instantiate()
 					$kitchen.add_child(summoned_bench)
 					summoned_bench.position = bench_summoning[i][0]
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
+	orders_delivered = 0
+	score = 0
+	stars = 5
+	print("ran")
 
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
-		var minutes = round(int(time)) / 60
-		var seconds = int(time) % 60
-		$ui/Label3.text = str(15-minutes).pad_zeros(2) + ":" + str(59-seconds).pad_zeros(2)
+		var hours = round(int(time)) / 60
+		var minutes = int(time) % 60
+		$ui/Label3.text = str(24-hours).pad_zeros(2) + ":" + str(59-minutes).pad_zeros(2)
 	if order:
 		for i in range(len(orders)):
 			if orders[i] == 0:
@@ -139,7 +175,7 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
 
-func plate_check(contents,body,plate_pos) -> void:
+func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 	if body.is_in_group("packageable"):
 		product = contents
 		var sorted_product = product.duplicate()
@@ -153,6 +189,7 @@ func plate_check(contents,body,plate_pos) -> void:
 				var spawned_box = pot.instantiate()
 				add_child(spawned_box)
 				spawned_box.position = plate_pos
+				spawned_box.rotation_degrees.y = plate_rotation
 				spawned_box.time_left_timer.start(timer)
 				spawned_box.timer_number = plate_number
 				spawned_box.target_location = objectives[objective][2]
@@ -167,9 +204,6 @@ func plate_check(contents,body,plate_pos) -> void:
 				pass
 
 
-func _on_player_money_change() -> void:
-	$ui/Label.text = "Money: " + str(money)
-
 func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife") and not body.is_in_group("keep"):
 		body.queue_free()
@@ -179,10 +213,11 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> void:
 	if address == target_address:
 		making_time_left = round(time_left)
-		money += making_time_left
-		$ui/Label.text = "Money: " + str(money)
+		score += making_time_left
+		$ui/Label.text = "Score " + str(score)
 		$SFX/delivered.play()
 		delivered_pot.queue_free()
+		orders_delivered += 1
 
 func _on_order_timer_timeout() -> void:
 	for i in range(len(orders)):
@@ -198,7 +233,6 @@ func _on_objective_plate_timeout(timer_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
-		Global.restart = true
 		$menu.lose_screen()
 		stars = 5
 
@@ -210,32 +244,34 @@ func _on_order_timeout(_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
-		Global.restart = true
 		$menu.lose_screen()
 
 func map_select():
 	for i in maps.keys():
 		maps[i].hide()
 	var map_keys = maps.keys()
-	var random_map = map_keys[Global.level-1]
+	var random_map = map_keys[level-1]
 	current_map = maps[random_map]
 	current_map.show()
 	$kitchen.position = current_map.position
-	if Global.player_count == 1 :
+	if player_count == 1 :
 		$player_single.position = current_map.position + Vector3(0,1.15,3)
-	if Global.player_count == 2:
+	if player_count == 2:
 		$GridContainer/SubViewportContainer/SubViewport/player.position = current_map.position + Vector3(2,1.15,3)
 		$GridContainer/SubViewportContainer2/SubViewport/player2.position = current_map.position + Vector3(0,1.15,3)
 
 
 func _on_day_timer_timeout() -> void:
-	if Global.level < 5:
-		Global.level_updates_left += 1
-		$menu.menu_load()
+	if level < 5:
+		level_updates_left += 1
+		score = score
+		orders_delivered = orders_delivered
+		$menu.win_screen()
+
 
 func looking_recipe(looking_at_list):
-	if looking_at_list.size() == 1 and looking_at_list[0] in Global.recipes_list.keys():
-		looking_at_list = Global.recipes_list[looking_at_list[0]][0]
+	if looking_at_list.size() == 1 and looking_at_list[0] in $kitchen/plates.recipes_list.keys():
+		looking_at_list = $kitchen/plates.recipes_list[looking_at_list[0]][0]
 	$ui/looking_recipe.show()
 	$ui/looking_recipe.text = ""
 	for i in looking_at_list:

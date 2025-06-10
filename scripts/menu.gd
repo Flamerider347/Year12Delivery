@@ -2,7 +2,6 @@ extends Node3D
 var spawn = true
 var menu_toggle = true
 var save_code
-
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
@@ -10,7 +9,6 @@ var meat = preload("res://prefabs/meat.tscn")
 var tomato = preload("res://prefabs/tomato.tscn")
 var carrot = preload("res://prefabs/carrot.tscn")
 var lettuce = preload("res://prefabs/lettuce.tscn")
-
 var random_spawn = {
 	"bun":bun,
 	"cheese":cheese,
@@ -23,7 +21,6 @@ var random_spawn = {
 func _ready() -> void:
 	menu_load()
 func menu_load():
-	Global.stars = 5
 	$"../order_timer".stop()
 	$"../kitchen/plates".clear()
 	$"../player_single".controlling = false
@@ -36,12 +33,13 @@ func menu_load():
 	$"../ui".hide()
 	hide_everything()
 	main_menu()
+	
 	$"CanvasLayer/main_menu/players_1".modulate.a = 0
 	$"CanvasLayer/main_menu/players_2".modulate.a = 0
 	$"CanvasLayer/main_menu/quit".modulate.a = 0
 	for i in $CanvasLayer/level_select.get_children():
-		if str(i.name) in Global.unlocked_levels.keys():
-			if Global.unlocked_levels[str(i.name)] == false:
+		if str(i.name) in $"..".unlocked_levels.keys():
+			if $"..".unlocked_levels[str(i.name)] == false:
 				i.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -92,26 +90,26 @@ func _on_1_player() -> void:
 	$CanvasLayer/main_menu.hide()
 
 func _on_2_players() -> void:
-	Global.player_count = 2
+	$"..".player_count = 2
 
 func _on_level_1() -> void:
-	Global.level = 1
+	$"..".level = 1
 	_on_play_level_pressed()
 
 func _on_level_2() -> void:
-	Global.level = 2
+	$"..".level = 2
 	build_or_level()
 
 func _on_level_3() -> void:
-	Global.level = 3
+	$"..".level = 3
 	build_or_level()
 
 func _on_level_4() -> void:
-	Global.level = 4
+	$"..".level = 4
 	build_or_level()
 	
 func _on_level_5() -> void:
-	Global.level = 5
+	$"..".level = 5
 	build_or_level()
 
 func _on_level_select_return() -> void:
@@ -124,12 +122,12 @@ func _on_quit_pressed() -> void:
 func _on_save_confirm() -> void:
 	save_code = $CanvasLayer/main_menu/LineEdit.text
 	if save_code:
-		Global.save_code = save_code
-		Global.save_update = true
+		$"..".save_code = save_code
+		$"..".save_update = true
 	await get_tree().create_timer(0.1).timeout
 	for i in $CanvasLayer/level_select.get_children():
-		if str(i.name) in Global.unlocked_levels.keys():
-			if Global.unlocked_levels[str(i.name)] == true:
+		if str(i.name) in $"..".unlocked_levels.keys():
+			if $"..".unlocked_levels[str(i.name)] == true:
 				i.show()
 
 func level_select():
@@ -144,11 +142,7 @@ func main_menu():
 func build_or_level():
 	hide_everything()
 	$CanvasLayer/build_or_level_menu.show()
-	$CanvasLayer/build_or_level_menu/play_level.text = "Play Level " + str(Global.level)
-
-func build_menu():
-	hide_everything()
-	$CanvasLayer/build_stuff_menu.show()
+	$CanvasLayer/build_or_level_menu/play_level.text = "Play Level " + str($"..".level)
 
 func layout():
 	hide_everything()
@@ -160,9 +154,19 @@ func lose_screen():
 	$CanvasLayer/lose_screen.show()
 	
 func win_screen():
+	print($"..".score)
+	print($"..".money)
+	print($"..".stars)
 	menu_load()
 	hide_everything()
 	$CanvasLayer/win_screen.show()
+	$"..".money += $"..".score * $"..".stars
+	$CanvasLayer/win_screen/Control/stats.text = "[u]SCORE: " + str($"..".score) +" 
+ORDERS DELIVERED: " + str($"..".orders_delivered) +"
+STARS REMAINING: " + str($"..".stars) + "
+TOTAL SCORE: " + str($"..".stars * $"..".score) + "
+MONEY: " + str($"..".money) + "[/u]"
+
 
 func _on_play_level_pressed() -> void:
 	$".."._setup()
@@ -180,10 +184,9 @@ func hide_everything():
 		i.hide()
 		
 func level_select_1() -> void:
-	Global.player_count = 1
+	$"..".player_count = 1
 	level_select()
 
-
 func level_select_2() -> void:
-	Global.player_count = 2
+	$"..".player_count = 2
 	level_select()

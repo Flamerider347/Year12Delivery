@@ -69,8 +69,6 @@ func _unhandled_input(event):
 					$pickup_timer.start()
 					can_pickup = false
 func _physics_process(delta: float):
-	if money < 0:
-		get_tree().change_scene_to_file("res://prefabs/menu.tscn")
 	if held_object:
 		if seecast.is_colliding():
 			collision_point = seecast.get_collision_point()

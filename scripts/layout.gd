@@ -21,9 +21,9 @@ var bench_costs = {
 	"bin" : 5,
 	"delivery_table" : 10
 }
-@onready var benches = Global.benches
+@onready var benches =$"../../..".benches
 func _ready() -> void:
-	$money.text = "Money: " + str(Global.money)
+	$money.text = "Money: " + str($"../../..".money)
 	money_bench_check()
 	hide_benches()
 	assign_layout_names()
