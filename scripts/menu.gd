@@ -2,6 +2,10 @@ extends Node3D
 var spawn = true
 var menu_toggle = true
 var save_code
+var new_money = 0
+var old_money = 500
+var final_money = 500
+var not_toggled = false
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
@@ -45,6 +49,8 @@ func menu_load():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not_toggled:
+		score_to_money()
 	if Input.is_action_just_pressed("down"):
 		$CanvasLayer/main_menu/LineEdit.show()
 		$CanvasLayer/main_menu/save_confirm.show()
@@ -154,19 +160,26 @@ func lose_screen():
 	$CanvasLayer/lose_screen.show()
 	
 func win_screen():
-	print($"..".score)
-	print($"..".money)
-	print($"..".stars)
 	menu_load()
 	hide_everything()
 	$CanvasLayer/win_screen.show()
-	$"..".money += $"..".score * $"..".stars
+	new_money = int(round($"..".score * (1+$"..".stars/5)))
+	not_toggled =true
+
+func win_text():
 	$CanvasLayer/win_screen/Control/stats.text = "[u]SCORE: " + str($"..".score) +" 
 ORDERS DELIVERED: " + str($"..".orders_delivered) +"
 STARS REMAINING: " + str($"..".stars) + "
-TOTAL SCORE: " + str($"..".stars * $"..".score) + "
+TOTAL SCORE: " + str(new_money) + "
 MONEY: " + str($"..".money) + "[/u]"
 
+func score_to_money():
+	if new_money >0:
+		new_money -= 1
+		$"..".money += 1
+		win_text()
+	else:
+		not_toggled = false
 
 func _on_play_level_pressed() -> void:
 	$".."._setup()

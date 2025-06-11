@@ -15,7 +15,7 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-@onready var money = 500
+var money = 500
 var score = 0
 var stars = 5
 var orders_delivered = 0
@@ -129,14 +129,13 @@ func _setup():
 	orders_delivered = 0
 	score = 0
 	stars = 5
-	print("ran")
 
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
-		var hours = round(int(time)) / 60
-		var minutes = int(time) % 60
-		$ui/Label3.text = str(24-hours).pad_zeros(2) + ":" + str(59-minutes).pad_zeros(2)
+		var hours = round(int(time)) / 30
+		var minutes = round(int(time*2)) % 60
+		$ui/Label3.text = str(11-hours).pad_zeros(2) + ":" + str(59-minutes).pad_zeros(2) + " PM"
 	if order:
 		for i in range(len(orders)):
 			if orders[i] == 0:
@@ -267,6 +266,8 @@ func _on_day_timer_timeout() -> void:
 		score = score
 		orders_delivered = orders_delivered
 		$menu.win_screen()
+		$day_timer.stop()
+		$order_timer.stop()
 
 
 func looking_recipe(looking_at_list):

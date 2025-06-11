@@ -42,9 +42,9 @@ func _physics_process(_delta: float) -> void:
 				purchase_cost -= int(bench_costs[benches[editing_bench][0]])
 				purchase_cost += bench_costs[bench_type]
 				benches[editing_bench][0] = bench_type
-				Global.money -= purchase_cost
+				$"../../..".money -= purchase_cost
 				$layout_benches.find_child(str(editing_bench)).find_child("Sprite2D").texture = bench_type_sprites[bench_type]
-				$money.text = "Money: " + str(Global.money)
+				$money.text = "Money: " + str($"../../..".money)
 				money_bench_check()
 		editing_bench=  null
 		bench_type = null
@@ -53,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 func money_bench_check():
 	for i in $layout_benches.get_children():
 		if str(i.name) in bench_costs.keys():
-			if Global.money < bench_costs[str(i.name)]:
+			if $"../../..".money < bench_costs[str(i.name)]:
 				i.hide()
 			else:
 				i.show()
@@ -97,5 +97,5 @@ func _on_item_purchasable(item,item_cost) -> void:
 		for i in benches:
 			if benches[i][2] == false:
 				$layout_benches.find_child(i).hide()
-		Global.money -= item_cost
+		$"../../..".money -= item_cost
 		assign_layout_names()
