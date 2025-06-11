@@ -571,7 +571,7 @@ shape = SubResource("BoxShape3D_xfqyr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
 [node name="A1" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.00981, 0, 14.5)
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -10, 0, 15.5)
 script = ExtResource("24_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/A1"]
@@ -585,7 +585,7 @@ text = "A1"
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
 
 [node name="A2" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.00981, 0, 20.5)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, 0, 22.5)
 script = ExtResource("24_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/A2"]
@@ -599,7 +599,7 @@ text = "A2"
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
 
 [node name="A3" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.00981, 0, 26.5)
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -11, 0, 30.5)
 script = ExtResource("24_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/houses/A3"]
@@ -613,7 +613,7 @@ text = "A3"
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
 
 [node name="B1" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.17087, 0, 14.5)
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 10, 0, 15.5)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/B1" instance=ExtResource("10_b1m2q")]
@@ -627,7 +627,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "B1"
 
 [node name="B2" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.17087, 0, 20.5)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, 22.5)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/B2" instance=ExtResource("10_b1m2q")]
@@ -641,7 +641,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "B2"
 
 [node name="B3" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.17087, 0, 26.5)
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 11, 0, 30.5)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/B3" instance=ExtResource("10_b1m2q")]
@@ -655,7 +655,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "B3"
 
 [node name="C1" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 36.523)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 8, 0, 37)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/C1" instance=ExtResource("10_b1m2q")]
@@ -669,7 +669,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "C1"
 
 [node name="C2" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38.523)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 39)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/C2" instance=ExtResource("10_b1m2q")]
@@ -683,7 +683,7 @@ transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.7422
 text = "C2"
 
 [node name="C3" type="Area3D" parent="kitchen/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 36.523)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -8, 0, 37)
 script = ExtResource("24_u7kri")
 
 [node name="house" parent="kitchen/houses/C3" instance=ExtResource("10_b1m2q")]
