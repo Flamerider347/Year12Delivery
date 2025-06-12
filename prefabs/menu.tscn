@@ -703,6 +703,8 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "To level select"
 
+[node name="lerp_timer" type="Timer" parent="CanvasLayer/win_screen"]
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
 current = true
@@ -826,6 +828,7 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/win_screen/Control/layout" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/win_screen/Control/level_select" to="." method="level_select"]
+[connection signal="timeout" from="CanvasLayer/win_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]

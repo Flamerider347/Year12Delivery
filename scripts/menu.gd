@@ -3,8 +3,9 @@ var spawn = true
 var menu_toggle = true
 var save_code
 var new_money = 0
-var old_money = 500
-var final_money = 500
+var text_1 = 0
+var text_2 = 0
+var text_3 = 0
 var not_toggled = false
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
@@ -50,7 +51,9 @@ func menu_load():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not_toggled:
-		score_to_money()
+		lerp_text()
+		win_text()
+
 	if Input.is_action_just_pressed("down"):
 		$CanvasLayer/main_menu/LineEdit.show()
 		$CanvasLayer/main_menu/save_confirm.show()
@@ -164,22 +167,30 @@ func win_screen():
 	hide_everything()
 	$CanvasLayer/win_screen.show()
 	new_money = int(round($"..".score * (1+$"..".stars/5)))
-	not_toggled =true
-
-func win_text():
-	$CanvasLayer/win_screen/Control/stats.text = "[u]SCORE: " + str($"..".score) +" 
-ORDERS DELIVERED: " + str($"..".orders_delivered) +"
-STARS REMAINING: " + str($"..".stars) + "
-TOTAL SCORE: " + str(new_money) + "
-MONEY: " + str($"..".money) + "[/u]"
-
-func score_to_money():
-	if new_money >0:
+	$CanvasLayer/win_screen/lerp_timer.start()
+	win_text()
+func lerp_text():
+	var score = float($"..".score)
+	var orders_delivered = float($"..".orders_delivered)
+	var stars = float($"..".stars)
+	var money = float($"..".money) + new_money
+	if round(text_1) != round(score):
+		text_1 = lerp(float(text_1),score,0.1)
+	elif round(text_2) != round(orders_delivered):
+		text_2 = lerp(float(text_2),orders_delivered,0.1)
+	elif round(text_3) != round(stars):
+		text_3 = lerp(float(text_3),stars,0.1)
+	elif round(new_money) != 0:
 		new_money -= 1
 		$"..".money += 1
-		win_text()
 	else:
 		not_toggled = false
+func win_text():
+	$CanvasLayer/win_screen/Control/stats.text = "[u]SCORE: " + str(int(round(text_1))) +" 
+ORDERS DELIVERED: " + str(int(round(text_2))) +"
+STARS REMAINING: " + str(int(round(text_3))) + "
+TOTAL SCORE: " + str(new_money) + "
+MONEY: " + str($"..".money) + "[/u]"
 
 func _on_play_level_pressed() -> void:
 	$".."._setup()
@@ -203,3 +214,7 @@ func level_select_1() -> void:
 func level_select_2() -> void:
 	$"..".player_count = 2
 	level_select()
+
+
+func _on_lerp_timer_timeout() -> void:
+	not_toggled = true
