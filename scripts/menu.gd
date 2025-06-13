@@ -102,7 +102,7 @@ func _on_2_players() -> void:
 	$"..".player_count = 2
 
 func _on_level_1() -> void:
-	$"..".level = 1
+	$"..".level = 0
 	_on_play_level_pressed()
 
 func _on_level_2() -> void:
@@ -193,13 +193,22 @@ TOTAL SCORE: " + str(new_money) + "
 MONEY: " + str($"..".money) + "[/u]"
 
 func _on_play_level_pressed() -> void:
-	$".."._setup()
-	$"../player_single"._setup()
-	$Camera3D.current = false
-	$"../player_single/head/player_camera".current = true
-	hide_everything()
-	spawn = false
-	$Timer.stop()
+	if $"..".level == 0:
+		$"..".tutorial()
+		$"../player_single"._setup()
+		$Camera3D.current = false
+		$"../player_single/head/player_camera".current = true
+		hide_everything()
+		spawn = false
+		$Timer.stop()
+	else:
+		$".."._setup()
+		$"../player_single"._setup()
+		$Camera3D.current = false
+		$"../player_single/head/player_camera".current = true
+		hide_everything()
+		spawn = false
+		$Timer.stop()
 
 
 func hide_everything():

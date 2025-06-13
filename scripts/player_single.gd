@@ -72,7 +72,7 @@ func _unhandled_input(event):
 func _physics_process(delta: float):
 	if controlling:
 		if Input.is_action_just_pressed("menu"):
-			$"../menu".lose_screen()
+			$"../menu".win_screen()
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
 				var door = seecast.get_collider()
@@ -133,6 +133,9 @@ func movement(delta):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func pickup(object):
+	if $"..".is_tutorial:
+		if object.type == "knife":
+			$"../tutorial/plates".pickup_knife()
 	object.freeze = true
 	seecast.target_position.z = -1.6
 	object.rotation_degrees = Vector3.ZERO
@@ -188,6 +191,9 @@ func stack():
 				ingredient_added.emit(held_object.type,item_size)
 			ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
 			if held_object.type == "bun_top_chopped":
+				if $"..".is_tutorial:
+					if stack_bottom.contents == ["plate","bun_bottom_chopped","tomato_chopped","bun_top_chopped"]:
+						$"../tutorial/plates".complete_burger()
 				stack_bottom.add_to_group("packageable")
 				stack_bottom.remove_from_group("stackable")
 			held_object.rotation_degrees.x = 0

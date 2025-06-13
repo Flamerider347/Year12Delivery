@@ -22,6 +22,8 @@ func _on_world_delivered_correctly() -> void:
 
 
 func _on_timer_timeout() -> void:
+	if $"..".is_tutorial:
+		$"../tutorial/plates".randomise_objective()
 	remove_from_group("pickupable")
 	time_left_timer.stop()
 	target_location = null

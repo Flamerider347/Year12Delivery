@@ -2,14 +2,16 @@
 
 [ext_resource type="ArrayMesh" uid="uid://rs6dw7qecvnp" path="res://assets/kitchenassets/crate_buns.obj" id="1_ipbrf"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bejym"]
-size = Vector3(2.00146, 0.804199, 1.99854)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ipbrf"]
+size = Vector3(2.0062, 0.814331, 1.99927)
 
-[node name="bun_crate" type="StaticBody3D" groups=["summoner"]]
+[node name="bun_crate" type="Node3D"]
 
-[node name="CrateBuns" type="MeshInstance3D" parent="."]
+[node name="bun_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bun_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00144958, 0.400855, -0.000854492)
+shape = SubResource("BoxShape3D_ipbrf")
+
+[node name="CrateBuns" type="MeshInstance3D" parent="bun_crate"]
 mesh = ExtResource("1_ipbrf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0.396491, -0.000488281)
-shape = SubResource("BoxShape3D_bejym")
