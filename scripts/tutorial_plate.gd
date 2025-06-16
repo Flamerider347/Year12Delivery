@@ -2,43 +2,20 @@ extends Node3D
 signal objective_timeout
 signal objective
 signal objective_clear
-var delivery_list = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
+var delivery_list = ["A1"]
 var delivery_location
 var ingredient_amount = 0
 var timing = false
 var next_position = 0.1
 var making_plate = "plate_1"
 var recipes_list = {
-	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","lettuce_chopped","bun_top_chopped"],true],
-	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
-	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],true],
-	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","cheese_chopped","carrot_chopped","bun_top_chopped",],false],
-	"burger_test" :[["plate","bun_bottom_chopped","bun_top_chopped"],false],
-	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],false]
+	"burger_test" :[["plate","bun_bottom_chopped","tomato_chopped","bun_top_chopped"],true],
 }
 var plate_contents = {
 	"plate_1" : [],
-	"plate_2" : [],
-	"plate_3" : [],
-	"plate_4" : [],
-	"plate_5" : [],
-	"plate_6" : [],
-	"plate_7" : [],
-	"plate_8" : [],
-	"plate_9" : [],
-	"plate_10" : []
 }
 @onready var plates = {
 	"plate_1" : $objective_plate1,
-	"plate_2" : $objective_plate2,
-	"plate_3" : $objective_plate3,
-	"plate_4" : $objective_plate4,
-	"plate_5" : $objective_plate5,
-	"plate_6" : $objective_plate6,
-	"plate_7" : $objective_plate7,
-	"plate_8" : $objective_plate8,
-	"plate_9" : $objective_plate9,
-	"plate_10" : $objective_plate10
 }
 var ingredient_time = {
 	"plate" : 5,
@@ -64,8 +41,7 @@ var ingredient_list = {
 	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
 	"stew" : preload("res://prefabs/stew.tscn")
 }
-func _ready() -> void:
-	$"../..".connect("make_order", Callable(self, "_on_make_order"))
+
 func _process(_delta: float) -> void:
 	for i in plates:
 		var plate_label = plates[i].find_child("Label3D")
@@ -79,14 +55,17 @@ func _process(_delta: float) -> void:
 		elif plate_label.text != "":
 			plate_label.text = ""
 func randomise_objective():
-	var recipes_list_keys = recipes_list.keys()
-	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
-	while recipes_list[making_recipe][1] == false:
-		making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
-	var make_time = 200
-	delivery_location = delivery_list[randi_range(0,8)]
-	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
-	for i in plate_contents[making_plate]:
+	plate_contents[making_plate] = []
+	var making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
+	while true:
+		if recipes_list[making_recipe][1] == false:
+			making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
+		else:
+			break
+	delivery_location = "A1"
+	var make_time = 50
+	for i in recipes_list[making_recipe][0]:
+		plate_contents[making_plate].append(i)
 		if i in ingredient_time.keys():
 			make_time += ingredient_time[i]
 	var plate_name = making_plate.replace("plate_", "")
@@ -95,7 +74,6 @@ func randomise_objective():
 	timing = true
 	update_target(making_recipe.substr(0,6))
 func update_target(recipe):
-	var recipes_list_keys = recipes_list.keys()
 	if recipe != "burger":
 		plate_contents[making_plate] = ["stew",]
 	next_position = 0.1
@@ -108,7 +86,7 @@ func update_target(recipe):
 		spawned_item.remove_from_group("pickupable")
 		spawned_item.freeze = true
 		spawned_item.position = Vector3(0,next_position,0)
-		if plate_contents[making_plate][0] in recipes_list_keys:
+		if plate_contents[making_plate][0] in recipes_list.keys():
 			plate_contents[making_plate] = recipes_list[plate_contents[making_plate][0]][0]
 		if spawned_item_hitbox is BoxShape3D:
 			var item_size = spawned_item_hitbox.size.y
@@ -141,10 +119,9 @@ func _on_order_timeout(number) -> void:
 		if not child.is_in_group("keep"):
 			child.queue_free()
 	objective_timeout.emit(number)
-	plate_contents[plate] = []
+	plate_contents[plate].clear()
 	plates[plate].find_child("Label3D").text = ""
 	plates[plate].find_child("order_time").stop()
-
 
 func clear():
 	for i in range(10):
@@ -157,3 +134,59 @@ func clear():
 		plate_contents[plate].clear()
 		plates[plate].find_child("Label3D").text = ""
 		plates[plate].find_child("order_time").stop()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		$"../tutorial_text".text = "Cool, Now Look up, you're gonna make that!
+		Get a plate from the plate thing using LEFT CLICK and 
+		put the plate on the bench 
+		"
+		$"../Area3D".queue_free()
+
+func _on_area_3d_2_body_entered(body: Node3D) -> void:
+	if body is RigidBody3D:
+		if body.type == "plate":
+			$"../tutorial_text".text = "Great, now get a bun, Also using LEFT CLICK 
+			and place it on the Chopping board by pressing LEFT CLICK
+			"
+			$"../Area3D2".queue_free()
+
+
+func _on_area_3d_3_body_entered(body: Node3D) -> void:
+	if body is RigidBody3D:
+		if body.type == "bun":
+			$"../tutorial_text".text = "Great, now pick up the KNIFE using LEFT CLICK
+			"
+			$"../Area3D3".queue_free()
+	
+func pickup_knife():
+	$"../tutorial_text".text = "Great, now SWING the KNIFE into the BUN to cut it
+			"
+func cut_bun():
+	$"../tutorial_text".text = "Now open the fridge using LEFT CLICK, and prepare the tomato.
+	(Looking at the recipies tell you what's in them.)
+			"
+func cut_tomato():
+	$"../tutorial_text".text = "Amazing, now assemble the burger using LEFT CLICK, you must
+	start with a plate, then a bottom bun and finish
+	with a top bun, but the filling order doesn't matter.
+	Make sure you're looking at the existing item stack, not above it when stacking.
+			"
+
+func complete_burger():
+	$"../tutorial_text".text = "You're really getting this!
+	Put the completed burger on the plate behind you.
+			"
+func delivered():
+	$"../tutorial_text".position = Vector3(4,2,10.3)
+	$"../tutorial_text".rotation_degrees.y = 180
+	$"../tutorial_text".text = "Now pickup the pot using LEFT CLICK
+	and deliver it to the house on the pot (A1)
+	(There will be more than one house outside)
+			"
+func delivered_to_house():
+		$"../tutorial_text".position = Vector3(0,2,10.3)
+		$"../tutorial_text".text = "You Beat the tutorial!
+		Press ESCAPE to return to menu at any time
+			"

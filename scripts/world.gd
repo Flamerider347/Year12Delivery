@@ -5,7 +5,7 @@ var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var making_time_left = 0
-var next_spawn_time = 1
+var next_spawn_time = 50
 var order = false
 var action
 var orders = [0,0,0,0,0,0,0,0,0,0]
@@ -15,12 +15,12 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 500
+var money = 500000000
 var score = 0
 var stars = 5
 var orders_delivered = 0
 var day_timer = 20
-
+var is_tutorial = false
 @onready var pot = preload("res://prefabs/delivery_pot.tscn")
 var bench_summoning = {
 	"bench_1" : [Vector3(-5,0,0),0],
@@ -75,7 +75,7 @@ var benches = {
 	"bench_5" : ["fridge",0,true],
 	"bench_6" : ["bun_crate",0,true],
 	"bench_7" : ["stove",270,true],
-	"bench_8" : ["delivery_table",90,true],
+	"bench_8" : ["bench",90,false],
 	"bench_9" : ["bench",270,false],
 	"bench_10" : ["bench",90,false],
 	"bench_11" : ["bench",270,false],
@@ -85,7 +85,7 @@ var benches = {
 	"bench_15" : ["bench",270,false],
 	"bench_16" : ["bench",90,false],
 	"bench_17" : ["bench",180,false],
-	"bench_18" : ["bench",180,false],
+	"bench_18" : ["delivery_table",180,true],
 }
 var unlocked_levels = {
 	"level_1" :true,
@@ -98,7 +98,42 @@ func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
+func tutorial():
+	$ui.show()
+	$player_single.position = Vector3(0,31.65,5.3)
+	is_tutorial = true
+	for i in get_children():
+		if i is RigidBody3D:
+			i.queue_free()
+	for i in $tutorial.get_children():
+		if not i.is_in_group("keep"):
+			i.queue_free()
+	if player_count == 1:
+		$ui/Label.text = ""
+		$ui/Label2.text = ""
+		$ui/Label3.text = ""
+		$ui/Sprite2D.show()
+		$GridContainer.hide()
+		$ui/Sprite2D.position.x = 960
+	if player_count == 2:
+		$GridContainer.show()
+		$ui/Sprite2D.show()
+		$ui/Sprite2D2.show()
+	for i in benches:
+		if benches[i][2] == true:
+			if i in bench_summoning.keys():
+				if benches[i][0] in bench_types:
+					var summoned_bench = bench_types[benches[i][0]].instantiate()
+					$tutorial.add_child(summoned_bench)
+					summoned_bench.position = bench_summoning[i][0]
+					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
+	orders_delivered = 0
+	score = 0
+	stars = 5
+	$tutorial/plates.randomise_objective()
+
 func _setup():
+	is_tutorial = false
 	for i in get_children():
 		if i is RigidBody3D:
 			i.queue_free()
@@ -106,7 +141,6 @@ func _setup():
 		if not i.is_in_group("keep"):
 			i.queue_free()
 	$ui.show()
-	$ui/Label.text = "Score: " + str(score)
 	$day_timer.start()
 	map_select()
 	if player_count == 1:
@@ -129,6 +163,8 @@ func _setup():
 	orders_delivered = 0
 	score = 0
 	stars = 5
+	$ui/Label.text = "Score: " + str(score)
+	$ui/Label2.text = "Stars: " + str(stars)
 
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:
@@ -154,6 +190,8 @@ func _physics_process(_delta: float) -> void:
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("can_chop"):
 		if body.type == "bun":
+			if is_tutorial:
+				$tutorial/plates.cut_bun()
 			var instance = bun_chopped_bottom.instantiate()
 			var instance2 = bun_chopped_top.instantiate()
 			add_child(instance)
@@ -164,6 +202,9 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 			instance2.position = body.position + Vector3(0,0.1,0)
 			body.queue_free()
 		elif body.type in ingredients:
+			if is_tutorial:
+				if body.type == "tomato":
+					$tutorial/plates.cut_tomato()
 			var instance = ingredients[body.type].instantiate()
 			instance.type = body.type + "_chopped"
 			instance.position = body.position
@@ -184,12 +225,16 @@ func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 			sorted_objective.sort()
 			if sorted_product == sorted_objective:
 				var plate_number = objectives[objective][3]
-				var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
 				var spawned_box = pot.instantiate()
 				add_child(spawned_box)
+				if is_tutorial:
+					var timer = $tutorial/plates.find_child(objective.name).find_child("order_time").time_left
+					spawned_box.time_left_timer.start(timer)
+				else:
+					var timer = $kitchen/plates.find_child(objective.name).find_child("order_time").time_left
+					spawned_box.time_left_timer.start(timer)
 				spawned_box.position = plate_pos
 				spawned_box.rotation_degrees.y = plate_rotation
-				spawned_box.time_left_timer.start(timer)
 				spawned_box.timer_number = plate_number
 				spawned_box.target_location = objectives[objective][2]
 				spawned_box.find_child("Label3D").text = objectives[objective][2]
@@ -198,6 +243,8 @@ func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 				objectives.erase(objective)
 				$SFX/ding.play()
 				body.queue_free()
+				if is_tutorial:
+					$tutorial/plates.delivered()
 				break
 			else:
 				pass
@@ -211,12 +258,18 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 
 func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> void:
 	if address == target_address:
-		making_time_left = round(time_left)
-		score += making_time_left
-		$ui/Label.text = "Score " + str(score)
-		$SFX/delivered.play()
-		delivered_pot.queue_free()
-		orders_delivered += 1
+		if not is_tutorial:
+			making_time_left = round(time_left)
+			score += making_time_left
+			$ui/Label.text = "Score " + str(score)
+			$SFX/delivered.play()
+			delivered_pot.queue_free()
+			orders_delivered += 1
+		else:
+			$tutorial/plates.delivered_to_house()
+			delivered_pot.queue_free()
+			$SFX/delivered.play()
+			$tutorial/plates.randomise_objective()
 
 func _on_order_timer_timeout() -> void:
 	for i in range(len(orders)):
@@ -252,7 +305,7 @@ func map_select():
 	var random_map = map_keys[level-1]
 	current_map = maps[random_map]
 	current_map.show()
-	$kitchen.position = current_map.position
+	$kitchen.position = current_map.position + Vector3(0,0.15,0)
 	if player_count == 1 :
 		$player_single.position = current_map.position + Vector3(0,1.15,3)
 	if player_count == 2:
@@ -272,7 +325,7 @@ func _on_day_timer_timeout() -> void:
 
 func looking_recipe(looking_at_list):
 	if looking_at_list.size() == 1 and looking_at_list[0] in $kitchen/plates.recipes_list.keys():
-		looking_at_list = $kitchen/plates.recipes_list[looking_at_list[0]][0]
+		looking_at_list = $kitchen/plates.recipes_list[looking_at_list[0]]
 	$ui/looking_recipe.show()
 	$ui/looking_recipe.text = ""
 	for i in looking_at_list:

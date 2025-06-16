@@ -1,7 +1,7 @@
 extends Node2D
 var editing_bench = null
 var bench_type = null
-var benches_bought = 8
+var benches_bought = 0
 var bench_type_sprites = {
 	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
 	"bin" : preload("res://assets/Sprint 1 Icons for benches/Bin Crate.png"),
@@ -23,12 +23,22 @@ var bench_costs = {
 }
 @onready var benches =$"../../..".benches
 func _ready() -> void:
+	setup()
+func setup():
 	$money.text = "Money: " + str($"../../..".money)
 	money_bench_check()
 	hide_benches()
 	assign_layout_names()
 	$upgrades.show()
 	$recipes.hide()
+	benches_bought = 0
+	for i in $"../../..".benches.keys():
+		if $"../../..".benches[i][2] == true:
+			benches_bought += 1
+		else:
+			break
+	if benches_bought == 18:
+		$upgrades/buy_bench.text = "MAX LEVEL!"
 func _physics_process(_delta: float) -> void:
 	if $dragging_bench.visible:
 		$dragging_bench.position = get_local_mouse_position()
