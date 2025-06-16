@@ -9,12 +9,12 @@ var timing = false
 var next_position = 0.1
 var making_plate = "plate_1"
 var recipes_list = {
-	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","tomato_chopped","cheese_chopped","lettuce_chopped","bun_top_chopped"],false],
-	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],false],
-	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],false],
+	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","lettuce_chopped","bun_top_chopped"],true],
+	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
+	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],true],
 	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","cheese_chopped","carrot_chopped","bun_top_chopped",],false],
-	"burger_test" :[["plate","bun_bottom_chopped","bun_top_chopped"],true],
-	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],false]
+	"burger_test" :[["plate","bun_bottom_chopped","bun_top_chopped"],false],
+	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
 }
 var plate_contents = {
 	"plate_1" : [],
@@ -79,17 +79,14 @@ func _process(_delta: float) -> void:
 		elif plate_label.text != "":
 			plate_label.text = ""
 func randomise_objective():
-	plate_contents[making_plate] = []
-	var making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
-	while true:
-		if recipes_list[making_recipe][1] == false:
-			making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
-		else:
-			break
+	var recipes_list_keys = recipes_list.keys()
+	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
+	while recipes_list[making_recipe][1] == false:
+		making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
+	var make_time = 200
 	delivery_location = delivery_list[randi_range(0,8)]
-	var make_time = 100
-	for i in recipes_list[making_recipe][0]:
-		plate_contents[making_plate].append(i)
+	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
+	for i in plate_contents[making_plate]:
 		if i in ingredient_time.keys():
 			make_time += ingredient_time[i]
 	var plate_name = making_plate.replace("plate_", "")
@@ -98,6 +95,7 @@ func randomise_objective():
 	timing = true
 	update_target(making_recipe.substr(0,6))
 func update_target(recipe):
+	var recipes_list_keys = recipes_list.keys()
 	if recipe != "burger":
 		plate_contents[making_plate] = ["stew",]
 	next_position = 0.1
@@ -110,7 +108,7 @@ func update_target(recipe):
 		spawned_item.remove_from_group("pickupable")
 		spawned_item.freeze = true
 		spawned_item.position = Vector3(0,next_position,0)
-		if plate_contents[making_plate][0] in recipes_list.keys():
+		if plate_contents[making_plate][0] in recipes_list_keys:
 			plate_contents[making_plate] = recipes_list[plate_contents[making_plate][0]][0]
 		if spawned_item_hitbox is BoxShape3D:
 			var item_size = spawned_item_hitbox.size.y
@@ -143,9 +141,10 @@ func _on_order_timeout(number) -> void:
 		if not child.is_in_group("keep"):
 			child.queue_free()
 	objective_timeout.emit(number)
-	plate_contents[plate].clear()
+	plate_contents[plate] = []
 	plates[plate].find_child("Label3D").text = ""
 	plates[plate].find_child("order_time").stop()
+
 
 func clear():
 	for i in range(10):

@@ -156,6 +156,7 @@ func build_or_level():
 func layout():
 	hide_everything()
 	$CanvasLayer/layout.show()
+	$CanvasLayer/layout.setup()
 
 func lose_screen():
 	menu_load()

@@ -5,7 +5,7 @@ var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
 var bun_chopped_bottom = preload("res://prefabs/bun_bottom_chopped.tscn")
 var making_time_left = 0
-var next_spawn_time = 1
+var next_spawn_time = 50
 var order = false
 var action
 var orders = [0,0,0,0,0,0,0,0,0,0]
@@ -15,7 +15,7 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 500
+var money = 500000000
 var score = 0
 var stars = 5
 var orders_delivered = 0
@@ -99,6 +99,7 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
+	$ui.show()
 	$player_single.position = Vector3(0,31.65,5.3)
 	is_tutorial = true
 	for i in get_children():
@@ -108,6 +109,9 @@ func tutorial():
 		if not i.is_in_group("keep"):
 			i.queue_free()
 	if player_count == 1:
+		$ui/Label.text = ""
+		$ui/Label2.text = ""
+		$ui/Label3.text = ""
 		$ui/Sprite2D.show()
 		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
@@ -137,7 +141,6 @@ func _setup():
 		if not i.is_in_group("keep"):
 			i.queue_free()
 	$ui.show()
-	$ui/Label.text = "Score: " + str(score)
 	$day_timer.start()
 	map_select()
 	if player_count == 1:
@@ -160,6 +163,8 @@ func _setup():
 	orders_delivered = 0
 	score = 0
 	stars = 5
+	$ui/Label.text = "Score: " + str(score)
+	$ui/Label2.text = "Stars: " + str(stars)
 
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:
@@ -320,7 +325,7 @@ func _on_day_timer_timeout() -> void:
 
 func looking_recipe(looking_at_list):
 	if looking_at_list.size() == 1 and looking_at_list[0] in $kitchen/plates.recipes_list.keys():
-		looking_at_list = $kitchen/plates.recipes_list[looking_at_list[0]][0]
+		looking_at_list = $kitchen/plates.recipes_list[looking_at_list[0]]
 	$ui/looking_recipe.show()
 	$ui/looking_recipe.text = ""
 	for i in looking_at_list:
