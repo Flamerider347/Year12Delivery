@@ -15,7 +15,7 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 500000000
+var money = 100
 var score = 0
 var stars = 5
 var orders_delivered = 0
@@ -162,7 +162,7 @@ func _setup():
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 	orders_delivered = 0
 	score = 0
-	stars = 5
+	stars = 2
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
 

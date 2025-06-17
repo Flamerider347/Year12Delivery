@@ -159,7 +159,7 @@ text = "Return to Level Select
 visible = false
 script = ExtResource("2_kuqlr")
 
-[node name="Istockphoto-648352074-612x612-removebg-preview" type="Sprite2D" parent="CanvasLayer/layout"]
+[node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
 position = Vector2(320, 624)
 scale = Vector2(2.325, 2.325)
 texture = SubResource("CompressedTexture2D_y5qo3")
@@ -540,16 +540,15 @@ text = "[center][u]Burguire[/u]
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="lose_screen" type="Node2D" parent="CanvasLayer"]
-visible = false
+[node name="end_screen" type="Node2D" parent="CanvasLayer"]
 
-[node name="Control" type="Control" parent="CanvasLayer/lose_screen"]
+[node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1919.0
 offset_bottom = 1081.0
 
-[node name="text_score_tally" type="RichTextLabel" parent="CanvasLayer/lose_screen/Control"]
+[node name="stats" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -557,77 +556,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -413.5
-offset_top = -189.5
-offset_right = 413.5
-offset_bottom = 189.5
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[u]SCORE:
-ORDERS DELIVERED:
-STARS REMAINING:
-TOTAL SCORE:[/u]"
-
-[node name="text_you_lost" type="RichTextLabel" parent="CanvasLayer/lose_screen/Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -106.0
-offset_right = 106.0
-offset_bottom = 114.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-bbcode_enabled = true
-text = "[shake rate=20.0 level=5 connected=1][b]You lost![/b]"
-
-[node name="return_menu" type="Button" parent="CanvasLayer/lose_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = 360.0
-offset_right = 62.0
-offset_bottom = 454.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Menu"
-
-[node name="return_level" type="Button" parent="CanvasLayer/lose_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = 260.0
-offset_right = 62.0
-offset_bottom = 354.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "retry"
-
-[node name="win_screen" type="Node2D" parent="CanvasLayer"]
-
-[node name="Control" type="Control" parent="CanvasLayer/win_screen"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1919.0
-offset_bottom = 1081.0
-
-[node name="stats" type="RichTextLabel" parent="CanvasLayer/win_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -413.5
-offset_top = -284.5
+offset_top = -375.5
 offset_right = 416.5
 offset_bottom = 189.5
 grow_horizontal = 2
@@ -636,11 +565,26 @@ bbcode_enabled = true
 text = "[u]SCORE:
 ORDERS DELIVERED:
 STARS REMAINING:
+SCORE MULTIPLYER:
 TOTAL SCORE:
 MONEY: [/u]
 "
 
-[node name="text_you_won" type="RichTextLabel" parent="CanvasLayer/win_screen/Control"]
+[node name="text_you_lost" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -178.5
+offset_right = 33.5
+offset_bottom = 114.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[shake rate=20.0 level=5 connected=1][b]You lost![/b]"
+
+[node name="text_you_won" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -653,7 +597,7 @@ scale = Vector2(1.5, 1.5)
 bbcode_enabled = true
 text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][b]Day Complete![/b][/pulse]"
 
-[node name="layout" type="Button" parent="CanvasLayer/win_screen/Control"]
+[node name="layout" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -668,7 +612,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "To build menu"
 
-[node name="level_select" type="Button" parent="CanvasLayer/win_screen/Control"]
+[node name="level_select" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -683,7 +627,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "To level select"
 
-[node name="lerp_timer" type="Timer" parent="CanvasLayer/win_screen"]
+[node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -806,9 +750,9 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
 [connection signal="item_purchasable" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout" method="_on_item_purchasable"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
-[connection signal="pressed" from="CanvasLayer/win_screen/Control/layout" to="." method="layout"]
-[connection signal="pressed" from="CanvasLayer/win_screen/Control/level_select" to="." method="level_select"]
-[connection signal="timeout" from="CanvasLayer/win_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
+[connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]

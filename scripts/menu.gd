@@ -6,6 +6,7 @@ var new_money = 0
 var text_1 = 0
 var text_2 = 0
 var text_3 = 0
+var score_multiplyer = 0
 var not_toggled = false
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
@@ -161,14 +162,22 @@ func layout():
 func lose_screen():
 	menu_load()
 	hide_everything()
-	$CanvasLayer/lose_screen.show()
-	
+	$CanvasLayer/end_screen.show()
+	$CanvasLayer/end_screen/Control/text_you_lost.show()
+	$CanvasLayer/end_screen/Control/text_you_won.hide()
+	new_money = int(round($"..".score * ($"..".stars/5)))
+	score_multiplyer = float(($"..".stars/5.0))
+	$CanvasLayer/end_screen/lerp_timer.start()
+	win_text()
 func win_screen():
 	menu_load()
 	hide_everything()
-	$CanvasLayer/win_screen.show()
+	$CanvasLayer/end_screen.show()
+	$CanvasLayer/end_screen/Control/text_you_lost.hide()
+	$CanvasLayer/end_screen/Control/text_you_won.show()
 	new_money = int(round($"..".score * (1+$"..".stars/5)))
-	$CanvasLayer/win_screen/lerp_timer.start()
+	$CanvasLayer/end_screen/lerp_timer.start()
+	score_multiplyer = float((1+$"..".stars/5))
 	win_text()
 func lerp_text():
 	var score = float($"..".score)
@@ -187,9 +196,10 @@ func lerp_text():
 	else:
 		not_toggled = false
 func win_text():
-	$CanvasLayer/win_screen/Control/stats.text = "[u]SCORE: " + str(int(round(text_1))) +" 
+	$CanvasLayer/end_screen/Control/stats.text = "[u]SCORE: " + str(int(round(text_1))) +" 
 ORDERS DELIVERED: " + str(int(round(text_2))) +"
 STARS REMAINING: " + str(int(round(text_3))) + "
+SCORE MULTIPLYER: x" + str(score_multiplyer) + "
 TOTAL SCORE: " + str(new_money) + "
 MONEY: " + str($"..".money) + "[/u]"
 

@@ -74,7 +74,7 @@ func _physics_process(delta: float):
 	crosshair_change()
 	if controlling:
 		if Input.is_action_just_pressed("menu"):
-			$"../menu".win_screen()
+			$"../menu".lose_screen()
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
 				var door = seecast.get_collider()
