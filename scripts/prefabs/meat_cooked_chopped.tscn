@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6cu4aybdc3lg"]
+
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_7nnsw"]
+[ext_resource type="ArrayMesh" uid="uid://bxvk5slyxjx36" path="res://assets/kitchenassets/food_ingredient_steak_pieces.obj" id="1_27bxv"]
+[ext_resource type="Texture2D" uid="uid://kbccb3s4q7hh" path="res://assets/kitchenassets/restaurantbits_texture.png" id="3_m3maq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4acsc"]
+albedo_texture = ExtResource("3_m3maq")
+uv1_offset = Vector3(0.1, -1.5, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7nnsw"]
+size = Vector3(0.655212, 0.441345, 0.621582)
+
+[node name="cooked_meat_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
+script = ExtResource("1_7nnsw")
+
+[node name="FoodIngredientSteakPieces" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_27bxv")
+surface_material_override/0 = SubResource("StandardMaterial3D_4acsc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00918579, 0.193512, -0.0114746)
+visible = false
+shape = SubResource("BoxShape3D_7nnsw")

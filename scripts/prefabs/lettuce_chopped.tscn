@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dunhyv1oegiur"]
+
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_f7ufg"]
+[ext_resource type="ArrayMesh" uid="uid://dvmkw7ri5y6u8" path="res://assets/kitchenassets/food_ingredient_lettuce_slice.obj" id="1_wsxhk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f7ufg"]
+height = 0.0863037
+radius = 0.396484
+
+[node name="lettuce_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
+script = ExtResource("1_f7ufg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.045, 0)
+shape = SubResource("CylinderShape3D_f7ufg")
+
+[node name="FoodIngredientLettuceSlice" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.035, 0)
+mesh = ExtResource("1_wsxhk")

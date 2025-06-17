@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://rc53yrb3ioft"
+path="res://.godot/imported/Collect Item Sound Effect - Bee Swarm Simulator Roblox [TubeRipper.com](2).mp3-f7c9bd07eebb163c695514705c1de376.mp3str"
+
+[deps]
+
+source_file="res://assets/Collect Item Sound Effect - Bee Swarm Simulator Roblox [TubeRipper.com](2).mp3"
+dest_files=["res://.godot/imported/Collect Item Sound Effect - Bee Swarm Simulator Roblox [TubeRipper.com](2).mp3-f7c9bd07eebb163c695514705c1de376.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

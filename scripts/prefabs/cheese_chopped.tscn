@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4x8wwi2finud"]
+
+[ext_resource type="ArrayMesh" uid="uid://d0wayyy88wqcv" path="res://assets/kitchenassets/food_ingredient_cheese_slice.obj" id="1_asmgi"]
+[ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_cn6fc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cn6fc"]
+size = Vector3(0.825, 0.0470093, 0.825)
+
+[node name="cheese_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
+script = ExtResource("1_cn6fc")
+
+[node name="FoodIngredientCheeseSlice" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+mesh = ExtResource("1_asmgi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0233508, 0)
+shape = SubResource("BoxShape3D_cn6fc")

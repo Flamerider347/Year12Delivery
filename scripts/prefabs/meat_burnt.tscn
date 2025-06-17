@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1tl4xuca5vhj"]
+
+[ext_resource type="Script" uid="uid://bsjuoy0pb7sw5" path="res://scripts/meat_burnt.gd" id="1_66nok"]
+[ext_resource type="ArrayMesh" uid="uid://c1pdfk8u2620m" path="res://assets/kitchenassets/food_ingredient_burger_trash.obj" id="2_65jgr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mygsi"]
+height = 0.200317
+radius = 0.35
+
+[node name="meat_burnt" type="RigidBody3D" groups=["can_stack", "meat", "pickupable"]]
+script = ExtResource("1_66nok")
+
+[node name="FoodIngredientBurgerTrash" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_65jgr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0997925, 0)
+shape = SubResource("CylinderShape3D_mygsi")

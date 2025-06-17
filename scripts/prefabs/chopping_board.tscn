@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://35lla11a1mb7"]
+
+[ext_resource type="Script" uid="uid://citk7d758gltw" path="res://scripts/chopping_board.gd" id="1_5p1wy"]
+[ext_resource type="ArrayMesh" uid="uid://cn7qtwf1v1psi" path="res://assets/kitchenassets/kitchencounter_straight_A.obj" id="1_5yuo1"]
+[ext_resource type="ArrayMesh" uid="uid://dodfdfkndbmla" path="res://assets/kitchenassets/cuttingboard.obj" id="3_dhrcg"]
+[ext_resource type="PackedScene" uid="uid://bbv7ffhjaohju" path="res://prefabs/knife.tscn" id="4_dhrcg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2tqtf"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j1nd4"]
+size = Vector3(1.49, 0.7, 0.99)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pnses"]
+size = Vector3(1.50104, 0.15033, 1)
+
+[node name="chopping_board" type="StaticBody3D"]
+script = ExtResource("1_5p1wy")
+
+[node name="KitchencounterStraightA" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_5yuo1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_2tqtf")
+
+[node name="chopping_board" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 3
+
+[node name="chopping_board" type="Area3D" parent="chopping_board"]
+
+[node name="Cuttingboard" type="MeshInstance3D" parent="chopping_board/chopping_board"]
+mesh = ExtResource("3_dhrcg")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chopping_board/chopping_board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+shape = SubResource("BoxShape3D_j1nd4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chopping_board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
+shape = SubResource("BoxShape3D_pnses")
+
+[node name="knife" parent="." instance=ExtResource("4_dhrcg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1.2, 0.35)
+
+[connection signal="body_entered" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]
+[connection signal="body_exited" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_exited"]

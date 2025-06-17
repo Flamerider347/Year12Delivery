@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlo177jjo3d14"]
+
+[ext_resource type="ArrayMesh" uid="uid://bt5fqusd0i7s8" path="res://assets/kitchenassets/pan_A.obj" id="1_jdkrk"]
+[ext_resource type="Script" uid="uid://dha0i03srgpsi" path="res://scripts/stove.gd" id="1_lrai8"]
+[ext_resource type="ArrayMesh" uid="uid://d3hkf5s5qkh65" path="res://assets/kitchenassets/stove_single.obj" id="2_lrai8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v22ig"]
+size = Vector3(2, 1, 2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7kf0k"]
+height = 0.1
+radius = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lrai8"]
+height = 1.13159
+
+[node name="stove" type="StaticBody3D"]
+script = ExtResource("1_lrai8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_v22ig")
+
+[node name="stove" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="PanA" type="MeshInstance3D" parent="stove"]
+mesh = ExtResource("1_jdkrk")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stove"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0630493, 0)
+shape = SubResource("CylinderShape3D_7kf0k")
+
+[node name="stove_timer" type="Label3D" parent="stove"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0.78665, 0)
+
+[node name="StoveSingle" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_lrai8")
+skeleton = NodePath("../../..")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.688397, 0)
+shape = SubResource("CylinderShape3D_lrai8")
+
+[connection signal="body_entered" from="stove" to="." method="_on_stove_body_entered"]
+[connection signal="body_exited" from="stove" to="." method="_on_stove_body_exited"]
