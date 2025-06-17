@@ -17,12 +17,12 @@ shape = SubResource("BoxShape3D_o8sle")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 12.048, 0, 0, 0)
+visible = false
 mesh = ExtResource("1_25t6t")
 
 [node name="Wall2" type="MeshInstance3D" parent="."]
-visible = false
 mesh = ExtResource("2_o8sle")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, -2.0225, 2.86605, 0.0473952)
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, -2.29264, 3.33626, 0.0473952)
 text = "House"
