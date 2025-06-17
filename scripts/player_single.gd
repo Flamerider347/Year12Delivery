@@ -14,6 +14,7 @@ const GRAVITY = 9.81 #ms^-2
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
 @onready var lookcast = $head/player_camera/lookcast
+@onready var stackcast = $head/player_camera/stackcast
 
 var ingredient_scenes = {
 	"bun":preload("res://prefabs/bun.tscn"),
@@ -88,7 +89,7 @@ func _physics_process(delta: float):
 					var summon_type = seecast.get_collider().name.replace("_crate","")
 					summon(summon_type)
 			if held_object and can_pickup:
-				if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
 					stack()
 				else:
 					drop(held_object)
@@ -176,7 +177,7 @@ func position_held_object():
 				held_object.position.z = lerp(held_object.position.z, target_position.z,0.3)
 func stack():
 		evil = false
-		var stack_bottom = seecast.get_collider()
+		var stack_bottom = stackcast.get_collider()
 		var item_shape = held_object.find_child("CollisionShape3D").shape
 		if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 2 and held_object.type != "bun_bottom_chopped":
 			evil = true
@@ -205,6 +206,7 @@ func stack():
 			held_object.remove_from_group("pickupable")
 			held_object.freeze = true
 			held_object = null
+			seecast.target_position.z = -3
 			for i in $"../kitchen/plates".recipes_list:
 				if i[1]:
 					if stack_bottom.contents == $"../kitchen/plates".recipes_list[i][0]:
@@ -228,8 +230,8 @@ func summon(item):
 	seecast.target_position.z = -1.7
 
 func crosshair_change():
-	if seecast.is_colliding():
-		if not held_object:
+	if not held_object:
+		if seecast.get_collider() != null:
 			if seecast.get_collider().is_in_group("pickupable"):
 				$"../ui/Sprite2D".play("pickup")
 			elif seecast.get_collider().is_in_group("summoner"):
@@ -238,12 +240,15 @@ func crosshair_change():
 				$"../ui/Sprite2D".play("pickup")
 			else:
 				$"../ui/Sprite2D".play("default")
-		if held_object:
-			if seecast.get_collider().is_in_group("stackable"):
+	if held_object:
+		if stackcast.get_collider() != null:
+			if stackcast.get_collider().is_in_group("stackable"):
 				$"../ui/Sprite2D".play("stacking")
 			else:
 				$"../ui/Sprite2D".play("default")
-	else:
+		else:
+			$"../ui/Sprite2D".play("default")
+	if not stackcast.is_colliding():
 		$"../ui/Sprite2D".play("default")
 func look_recipe():
 	if lookcast.is_colliding():
