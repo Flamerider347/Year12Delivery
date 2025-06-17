@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
-[ext_resource type="Texture2D" uid="uid://bspsjv2nr5iun" path="res://assets/icon.svg" id="5_3nfdx"]
+[ext_resource type="Texture2D" path="res://assets/icon.svg" id="5_3nfdx"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
 [ext_resource type="Texture2D" uid="uid://b37lxiul7q6qj" path="res://assets/Sprint 1 Icons for benches/Bench.png" id="7_84sbs"]

@@ -70,6 +70,7 @@ func _unhandled_input(event):
 						$pickup_timer.start()
 						can_pickup = false
 func _physics_process(delta: float):
+	crosshair_change()
 	if controlling:
 		if Input.is_action_just_pressed("menu"):
 			$"../menu".win_screen()
@@ -226,6 +227,24 @@ func summon(item):
 	instance.freeze = true
 	seecast.target_position.z = -1.7
 
+func crosshair_change():
+	if seecast.is_colliding():
+		if not held_object:
+			if seecast.get_collider().is_in_group("pickupable"):
+				$"../ui/Sprite2D".play("pickup")
+			elif seecast.get_collider().is_in_group("summoner"):
+				$"../ui/Sprite2D".play("pickup")
+			elif seecast.get_collider().is_in_group("door"):
+				$"../ui/Sprite2D".play("pickup")
+			else:
+				$"../ui/Sprite2D".play("default")
+		if held_object:
+			if seecast.get_collider().is_in_group("stackable"):
+				$"../ui/Sprite2D".play("stacking")
+			else:
+				$"../ui/Sprite2D".play("default")
+	else:
+		$"../ui/Sprite2D".play("default")
 func look_recipe():
 	if lookcast.is_colliding():
 		var collision_item = lookcast.get_collider()
