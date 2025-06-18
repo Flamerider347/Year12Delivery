@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbj4i32tgpa6q"]
 
-[ext_resource type="Theme" uid="uid://b5drpisq6dd6c" path="res://assets/theme_ui.tres" id="1_nsxd1"]
+[ext_resource type="Theme" uid="uid://b5drpisq6dd6c" path="res://assets/materials/theme_ui.tres" id="1_nsxd1"]
 
 [node name="THEME UI" type="Node2D"]
 texture_filter = 1
