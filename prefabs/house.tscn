@@ -1,7 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvyhf3kno28cu"]
 
+House-and-fence-models-with-textures
 [ext_resource type="ArrayMesh" uid="uid://4nvscnvqlnf2" path="res://assets/createdassets/house1.obj" id="2_o8sle"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_upbwm"]
+main
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8sle"]
 size = Vector3(4.025, 3.98541, 5.99402)
