@@ -162,7 +162,7 @@ func _setup():
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 	orders_delivered = 0
 	score = 0
-	stars = 2
+	stars = 5
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
 
@@ -305,7 +305,7 @@ func map_select():
 	var random_map = map_keys[level-1]
 	current_map = maps[random_map]
 	current_map.show()
-	$kitchen.position = current_map.position + Vector3(0,0.15,0)
+	$kitchen.position = current_map.position + Vector3(0,0.2,0)
 	if player_count == 1 :
 		$player_single.position = current_map.position + Vector3(0,1.15,3)
 	if player_count == 2:
@@ -330,3 +330,8 @@ func looking_recipe(looking_at_list):
 	$ui/looking_recipe.text = ""
 	for i in looking_at_list:
 		$ui/looking_recipe.text = $ui/looking_recipe.text + "\n" + str(i).replacen("_"," ") 
+
+
+func _on_volcano_lava_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		body.bounce()

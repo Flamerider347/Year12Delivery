@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=62 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -15,6 +15,7 @@
 [ext_resource type="MeshLibrary" uid="uid://dyxo1mu8s8dbr" path="res://assets/materials/fence mesh library.tres" id="13_k1hdb"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
+[ext_resource type="ArrayMesh" uid="uid://dia33cbe5c1yt" path="res://assets/kitchenassets/table_round_B.obj" id="16_k1hdb"]
 [ext_resource type="Texture2D" uid="uid://dhkb7f0r3w6lj" path="res://assets/Cooking_crosshairs/crosshair001.png" id="17_8bx52"]
 [ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/fonts_and_themes/Charm-Regular.ttf" id="17_k1hdb"]
 [ext_resource type="Texture2D" uid="uid://bre88583x4q1e" path="res://assets/Cooking_crosshairs/crosshair007.png" id="18_n7i1a"]
@@ -70,6 +71,13 @@ albedo_texture = ExtResource("2_xky7j")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0am5"]
 albedo_texture = ExtResource("19_n7i1a")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xky7j"]
+height = 0.34021
+radius = 1.48926
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
 albedo_texture = ExtResource("4_mrigr")
@@ -376,32 +384,6 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 
 depth = 0.499
 polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
 
-[node name="wall13" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall13"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall13/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall13"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall14" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall14"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall14/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall14"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
 [node name="plates" type="Node3D" parent="tutorial" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
 script = ExtResource("7_k1hdb")
@@ -451,10 +433,10 @@ text = "A1"
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
 
 [node name="floor" type="CSGBox3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18116, -0.293111, 5.95567)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 use_collision = true
 collision_layer = 3
-size = Vector3(20, 0.195, 20)
+size = Vector3(12, 0.195, 12)
 
 [node name="tutorial_text" type="Label3D" parent="tutorial" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
@@ -482,6 +464,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360718, 1.28512, 0)
 shape = SubResource("BoxShape3D_vjo16")
 
 [node name="kitchen" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 128)
 
 [node name="Fences_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -712,32 +695,6 @@ skeleton = NodePath("../../../..")
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 depth = 0.499
 polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
-
-[node name="wall13" type="Node3D" parent="kitchen/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/kitchen_walls/wall13"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/kitchen_walls/wall13/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="kitchen/kitchen_walls/wall13"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall14" type="Node3D" parent="kitchen/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/kitchen_walls/wall14"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/kitchen_walls/wall14/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="kitchen/kitchen_walls/wall14"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
 
 [node name="plates" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
@@ -1055,6 +1012,12 @@ shape = SubResource("BoxShape3D_qrdq4")
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
 text = "C3"
 
+[node name="floor" type="CSGBox3D" parent="kitchen" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 5)
+use_collision = true
+collision_layer = 3
+size = Vector3(12, 0.2, 12)
+
 [node name="dine_in" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, -128)
 
@@ -1080,6 +1043,79 @@ material_override = SubResource("StandardMaterial3D_l0am5")
 use_collision = true
 collision_layer = 3
 size = Vector3(100, 0.195, 100)
+
+[node name="volcano_lava" type="Area3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/volcano_lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
+shape = SubResource("BoxShape3D_h6gec")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_xky7j")
+
+[node name="TableRoundB" type="MeshInstance3D" parent="volcano/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81, 0)
+mesh = ExtResource("16_k1hdb")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.165581, 0, 16.8781)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_xky7j")
+
+[node name="TableRoundB" type="MeshInstance3D" parent="volcano/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81, 0)
+mesh = ExtResource("16_k1hdb")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.18736, 0, 17.0234)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_xky7j")
+
+[node name="TableRoundB" type="MeshInstance3D" parent="volcano/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81, 0)
+mesh = ExtResource("16_k1hdb")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.65578, 0, 21.1418)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_xky7j")
+
+[node name="TableRoundB" type="MeshInstance3D" parent="volcano/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81, 0)
+mesh = ExtResource("16_k1hdb")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.69713, 0, 15.5679)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_xky7j")
+
+[node name="TableRoundB" type="MeshInstance3D" parent="volcano/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81, 0)
+mesh = ExtResource("16_k1hdb")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7471, 0, 22.3488)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_xky7j")
+
+[node name="TableRoundB" type="MeshInstance3D" parent="volcano/StaticBody3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81, 0)
+mesh = ExtResource("16_k1hdb")
 
 [node name="underwater" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
@@ -1188,7 +1224,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 180.0
 
 [node name="order_timer" type="Timer" parent="."]
 
@@ -1319,6 +1355,7 @@ wait_time = 0.06
 [connection signal="item_entered" from="kitchen/houses/C2" to="." method="_on_house_item_entered"]
 [connection signal="body_entered" from="kitchen/houses/C3" to="kitchen/houses/C3" method="_on_body_entered"]
 [connection signal="item_entered" from="kitchen/houses/C3" to="." method="_on_house_item_entered"]
+[connection signal="body_entered" from="volcano/volcano_lava" to="." method="_on_volcano_lava_body_entered"]
 [connection signal="looking_recipe" from="player_single" to="." method="looking_recipe"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]

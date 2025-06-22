@@ -6,7 +6,7 @@ var controlling = false
 var evil = false
 const WALK_SPEED = 10
 const SPRINT_SPEED = 15
-const JUMP_VELOCITY = 5
+const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.06
 const GRAVITY = 9.81 #ms^-2
 @export var controller_id: int = 0
@@ -276,3 +276,11 @@ func look_recipe():
 
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true
+
+func bounce():
+	velocity.y = 8
+	if held_object:
+		if held_object.type  == "delivery_pot":
+			print(held_object.time_left_timer.time_left)
+			held_object.find_child("Timer").start(round(held_object.time_left_timer.time_left * 0.9))
+			print(held_object.time_left_timer.time_left)
