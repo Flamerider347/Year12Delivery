@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_shd0e"]
 [ext_resource type="ArrayMesh" uid="uid://bxvk5slyxjx36" path="res://assets/kitchenassets/food_ingredient_steak_pieces.obj" id="2_x8wlh"]
-[ext_resource type="Texture2D" uid="uid://kbccb3s4q7hh" path="res://assets/kitchenassets/restaurantbits_texture.png" id="3_yavsd"]
+[ext_resource type="Texture2D" uid="uid://kbccb3s4q7hh" path="res://assets/materials/restaurantbits_texture.png" id="3_yavsd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sfgnt"]
 size = Vector3(0.647095, 0.43811, 0.621704)

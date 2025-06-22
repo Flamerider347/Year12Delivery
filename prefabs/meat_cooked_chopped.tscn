@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfk3ak2xyiqs5" path="res://scripts/ingredients.gd" id="1_7nnsw"]
 [ext_resource type="ArrayMesh" uid="uid://bxvk5slyxjx36" path="res://assets/kitchenassets/food_ingredient_steak_pieces.obj" id="1_27bxv"]
-[ext_resource type="Texture2D" uid="uid://kbccb3s4q7hh" path="res://assets/kitchenassets/restaurantbits_texture.png" id="3_m3maq"]
+[ext_resource type="Texture2D" uid="uid://kbccb3s4q7hh" path="res://assets/materials/restaurantbits_texture.png" id="3_m3maq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4acsc"]
 albedo_texture = ExtResource("3_m3maq")
