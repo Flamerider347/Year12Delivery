@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvyhf3kno28cu"]
 
-[ext_resource type="ArrayMesh" uid="uid://dy7fogl7n2mo5" path="res://assets/kitchenassets/wall.obj" id="1_25t6t"]
-[ext_resource type="ArrayMesh" uid="uid://nmtn85mpggmb" path="res://assets/createdassets/house1.obj" id="2_o8sle"]
+House-and-fence-models-with-textures
+[ext_resource type="ArrayMesh" uid="uid://4nvscnvqlnf2" path="res://assets/createdassets/house1.obj" id="2_o8sle"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_upbwm"]
+main
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8sle"]
 size = Vector3(4.025, 3.98541, 5.99402)
 
 [node name="house" type="Node3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -15,14 +16,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8735e-15, 2.00351, 0.00421143)
 shape = SubResource("BoxShape3D_o8sle")
 
-[node name="Wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 12.048, 0, 0, 0)
-mesh = ExtResource("1_25t6t")
-
-[node name="Wall2" type="MeshInstance3D" parent="."]
-visible = false
+[node name="house_mesh" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_o8sle")
+surface_material_override/0 = ExtResource("2_upbwm")
 
 [node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, -2.0225, 2.86605, 0.0473952)
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, -2.29264, 3.33626, 0.0473952)
 text = "House"
