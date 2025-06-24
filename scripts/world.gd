@@ -166,7 +166,6 @@ func _setup():
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
 	if level == 3:
-		print("work")
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:

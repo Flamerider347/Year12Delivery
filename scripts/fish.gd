@@ -55,8 +55,5 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 
 func _doorway_entered(body: Node3D) -> void:
-	print("worked")
 	if body.name == "fish":
-		look_at(nav.target_position)
-		rotation_degrees.x = 0
-		rotation_degrees.z = 0
+		look_at(target_rigid.global_position)

@@ -70,8 +70,7 @@ agent_max_climb = 2.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
 albedo_texture = ExtResource("4_mrigr")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_guuop"]
-size = Vector3(0.490173, 1.8291, 4.8)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0am5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6knb"]
 size = Vector3(1, 2.09375, 6.50854)
@@ -758,7 +757,7 @@ surface_material_override/0 = ExtResource("15_l0am5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/fish"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0224457, 0.658203, 0.359985)
-shape = SubResource("BoxShape3D_guuop")
+shape = SubResource("CapsuleShape3D_l0am5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="underwater/fish"]
 
@@ -774,6 +773,8 @@ max_distance = 1184.55
 
 [node name="Area3D" type="Area3D" parent="underwater"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103424, 1.77061, 10.8807)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10849, 0.17532, 0)
