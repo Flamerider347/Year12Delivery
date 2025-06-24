@@ -281,6 +281,4 @@ func bounce():
 	velocity.y = 8
 	if held_object:
 		if held_object.type  == "delivery_pot":
-			print(held_object.time_left_timer.time_left)
 			held_object.find_child("Timer").start(round(held_object.time_left_timer.time_left * 0.9))
-			print(held_object.time_left_timer.time_left)

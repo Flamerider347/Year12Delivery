@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=68 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -14,8 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://cvyhf3kno28cu" path="res://prefabs/house.tscn" id="10_b1m2q"]
 [ext_resource type="MeshLibrary" uid="uid://dyxo1mu8s8dbr" path="res://assets/materials/fence mesh library.tres" id="13_k1hdb"]
 [ext_resource type="Script" path="res://scripts/fish.gd" id="13_mrigr"]
+[ext_resource type="ArrayMesh" uid="uid://dp8fdximd6trr" path="res://assets/SharkV1.obj" id="14_1iobq"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
+[ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="15_l0am5"]
 [ext_resource type="ArrayMesh" uid="uid://dia33cbe5c1yt" path="res://assets/kitchenassets/table_round_B.obj" id="16_k1hdb"]
 [ext_resource type="Texture2D" uid="uid://dhkb7f0r3w6lj" path="res://assets/Cooking_crosshairs/crosshair001.png" id="17_8bx52"]
 [ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/fonts_and_themes/Charm-Regular.ttf" id="17_k1hdb"]
@@ -59,8 +61,6 @@ size = Vector3(12, 0.4, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrdq4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xky7j"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mrigr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mrigr"]
 height = 2.20142
@@ -736,12 +736,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20894, 1.72348, 21.3453)
 script = ExtResource("13_mrigr")
 
+[node name="SharkV1" type="MeshInstance3D" parent="underwater/fish"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+mesh = ExtResource("14_1iobq")
+surface_material_override/0 = ExtResource("15_l0am5")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/fish"]
 shape = SubResource("CapsuleShape3D_xky7j")
-
-[node name="Bacon" type="MeshInstance3D" parent="underwater/fish"]
-mesh = SubResource("CapsuleMesh_mrigr")
-skeleton = NodePath("../../..")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="underwater/fish"]
 
