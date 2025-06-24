@@ -90,7 +90,7 @@ var benches = {
 var unlocked_levels = {
 	"level_1" :true,
 	"level_2" : true,
-	"level_3" : false,
+	"level_3" : true,
 	"level_4" : false,
 	"level_5" : false
 }
@@ -165,6 +165,9 @@ func _setup():
 	stars = 5
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
+	if level == 3:
+		print("work")
+		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
 	if $day_timer.time_left >0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=69 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -13,9 +13,13 @@
 [ext_resource type="ArrayMesh" uid="uid://b3ulkq0panu7q" path="res://assets/kitchenassets/wall_doorway.obj" id="9_k1hdb"]
 [ext_resource type="PackedScene" uid="uid://cvyhf3kno28cu" path="res://prefabs/house.tscn" id="10_b1m2q"]
 [ext_resource type="MeshLibrary" uid="uid://dyxo1mu8s8dbr" path="res://assets/materials/fence mesh library.tres" id="13_k1hdb"]
+[ext_resource type="Script" uid="uid://ebqitybuyxfv" path="res://scripts/fish.gd" id="13_mrigr"]
+[ext_resource type="ArrayMesh" uid="uid://dp8fdximd6trr" path="res://assets/SharkV1.obj" id="14_1iobq"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
+[ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="15_l0am5"]
 [ext_resource type="ArrayMesh" uid="uid://dia33cbe5c1yt" path="res://assets/kitchenassets/table_round_B.obj" id="16_k1hdb"]
+[ext_resource type="AudioStream" uid="uid://sao0gpmjg6r1" path="res://assets/SFX/Jaws-theme-song.mp3" id="16_l0am5"]
 [ext_resource type="Texture2D" uid="uid://dhkb7f0r3w6lj" path="res://assets/Cooking_crosshairs/crosshair001.png" id="17_8bx52"]
 [ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/fonts_and_themes/Charm-Regular.ttf" id="17_k1hdb"]
 [ext_resource type="Texture2D" uid="uid://bre88583x4q1e" path="res://assets/Cooking_crosshairs/crosshair007.png" id="18_n7i1a"]
@@ -27,6 +31,12 @@
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_mrigr"]
+vertices = PackedVector3Array(78.5, 0.4025, 128.25, 121, 0.4025, 128.25, 121, 0.4025, 126.25, 123.25, 0.4025, 126, 123.25, 0.4025, 78.5, 78.5, 0.4025, 78.5, 133, 0.4025, 126, 133, 0.4025, 78.5, 135, 0.4025, 126, 135.25, 0.4025, 127.75, 177.5, 0.4025, 127.5, 177.5, 0.4025, 78.5, 135.25, 0.4025, 138.25, 177.5, 0.4025, 138.5, 127.75, 0.4025, 139.25, 128.25, 0.4025, 139.25, 128.25, 0.4025, 138.75, 127.5, 0.4025, 138.5, 129.25, 0.4025, 138.25, 133.5, 0.4025, 138.5, 133.5, 0.4025, 127.75, 126.75, 0.4025, 138.25, 122.75, 0.4025, 127.75, 122.75, 0.4025, 138.5, 78.5, 0.4025, 138, 121, 0.4025, 138, 128.75, 0.4025, 140.25, 127.25, 0.4025, 140.25, 130.25, 0.4025, 146.25, 121.25, 0.4025, 140.25, 131, 0.4025, 146, 131, 0.4025, 140.25, 131, 0.4025, 177.5, 131, 0.4025, 152.75, 130.5, 0.4025, 152.5, 129.75, 0.4025, 148.25, 78.5, 0.4025, 177.5, 132.25, 0.4025, 146.5, 134.75, 0.4025, 140.25, 135.25, 0.4025, 139.75, 132.25, 0.4025, 150, 177.5, 0.4025, 150.25, 132, 0.4025, 152.25, 177.5, 0.4025, 177.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(4, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 7), PackedInt32Array(8, 6, 7), PackedInt32Array(9, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(20, 19, 18), PackedInt32Array(18, 16, 17), PackedInt32Array(17, 21, 18), PackedInt32Array(18, 21, 22), PackedInt32Array(18, 22, 20), PackedInt32Array(21, 23, 22), PackedInt32Array(0, 1, 24), PackedInt32Array(24, 1, 25), PackedInt32Array(15, 26, 14), PackedInt32Array(14, 26, 27), PackedInt32Array(27, 26, 28), PackedInt32Array(29, 24, 25), PackedInt32Array(30, 28, 31), PackedInt32Array(31, 28, 26), PackedInt32Array(32, 34, 33), PackedInt32Array(35, 34, 29), PackedInt32Array(29, 34, 32), PackedInt32Array(29, 32, 24), PackedInt32Array(24, 32, 36), PackedInt32Array(28, 35, 27), PackedInt32Array(27, 35, 29), PackedInt32Array(30, 31, 37), PackedInt32Array(37, 31, 38), PackedInt32Array(39, 12, 13), PackedInt32Array(38, 39, 37), PackedInt32Array(37, 39, 40), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 13), PackedInt32Array(32, 33, 42), PackedInt32Array(42, 40, 32), PackedInt32Array(32, 40, 41), PackedInt32Array(32, 41, 43)]
+agent_height = 2.0
+agent_max_climb = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(3.99, 3.99, 0.499)
@@ -40,15 +50,6 @@ size = Vector3(1, 0.408936, 1.00232)
 size = Vector3(12, 0.4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7kri"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hpiwi"]
-size = Vector3(10.9962, 3.08154, 2.104)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_obwhl"]
-size = Vector3(10.8106, 0.305573, 11.618)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vjo16"]
-size = Vector3(1.56824, 0.651474, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n7i1a"]
 
@@ -66,6 +67,15 @@ size = Vector3(1.56824, 0.651474, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrdq4"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hpiwi"]
+size = Vector3(10.9962, 3.08154, 2.104)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_obwhl"]
+size = Vector3(10.8106, 0.305573, 11.618)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjo16"]
+size = Vector3(1.56824, 0.651474, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iobq"]
 albedo_texture = ExtResource("2_xky7j")
 
@@ -78,6 +88,12 @@ albedo_texture = ExtResource("19_n7i1a")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_guuop"]
+size = Vector3(0.490173, 2.5, 4.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6knb"]
+size = Vector3(1, 2.09375, 6.50854)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
 albedo_texture = ExtResource("4_mrigr")
@@ -159,323 +175,14 @@ height = 1.99
 [node name="world" type="Node3D"]
 script = ExtResource("1_k40i2")
 
-[node name="tutorial" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
-
-[node name="kitchen_walls" type="Node3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
-
-[node name="pillars" type="Node3D" parent="tutorial/kitchen_walls"]
-
-[node name="PillarA" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA2" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA3" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA4" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA5" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 3.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA6" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 7.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA7" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 7.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA8" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 3.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA9" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 11.65)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA10" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 11.65)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA11" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 11.65)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA12" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 11.6502)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="wall" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall2" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.8)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall2"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall3" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.8)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall3"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall3/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall4" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.25, 0, 1.45)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall4"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall4/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall5" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 1.45)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall5"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall5/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall6" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 5.45)
-
-[node name="WallOrderwindowDecorated" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall6"]
-mesh = ExtResource("7_n7i1a")
-skeleton = NodePath("../../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall6/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall7" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 5.45)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall7/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall7"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall8" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 9.45)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall8"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall8/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall8"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall9" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 9.45)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall9"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall9/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall9"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall10" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall10"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall10/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall10"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall11" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall11"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall11/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall11"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall12" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.7)
-
-[node name="WallDoorway" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall12"]
-mesh = ExtResource("9_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall12"]
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="tutorial/kitchen_walls/wall12/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
-depth = 0.499
-polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
-
-[node name="plates" type="Node3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
-script = ExtResource("7_k1hdb")
-
-[node name="objective_plate1" type="StaticBody3D" parent="tutorial/plates" groups=["look_at_plates"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45245, 0, 0)
-
-[node name="Plate" type="MeshInstance3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-mesh = ExtResource("14_q76tg")
-skeleton = NodePath("../../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
-shape = SubResource("BoxShape3D_w6ly8")
-
-[node name="order_time" type="Timer" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-wait_time = 1000.0
-
-[node name="Label3D" type="Label3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -0.1, 0.53)
-
-[node name="plate_stand" type="StaticBody3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 2.823, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="tutorial/plate_stand"]
-transform = Transform3D(1, 0, 0, 0, 0.999997, 1.49012e-08, 0, -1.49012e-08, 0.999997, 0, 0, -0.237305)
-material_override = SubResource("StandardMaterial3D_qrdq4")
-size = Vector3(12, 0.4, 1.47461)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plate_stand"]
-shape = SubResource("BoxShape3D_xfqyr")
-
-[node name="houses" type="Node3D" parent="tutorial" groups=["keep"]]
-
-[node name="A1" type="Area3D" parent="tutorial/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.74744)
-script = ExtResource("24_u7kri")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/houses/A1"]
-shape = SubResource("BoxShape3D_u7kri")
-
-[node name="Label3D" type="Label3D" parent="tutorial/houses/A1"]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
-text = "A1"
-
-[node name="house" parent="tutorial/houses/A1" instance=ExtResource("10_b1m2q")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
-
-[node name="floor" type="CSGBox3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-use_collision = true
-collision_layer = 3
-size = Vector3(12, 0.195, 12)
-
-[node name="tutorial_text" type="Label3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
-text = "Let's play a game, come a
- little closer with WASD and SPACE"
-
-[node name="Area3D" type="Area3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95656)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 1.04077, -0.552002)
-shape = SubResource("BoxShape3D_hpiwi")
-
-[node name="Area3D2" type="Area3D" parent="tutorial" groups=["keep"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.380768, 0.969254, 4.78852)
-shape = SubResource("BoxShape3D_obwhl")
-
-[node name="Area3D3" type="Area3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.979594, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360718, 1.28512, 0)
-shape = SubResource("BoxShape3D_vjo16")
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_mrigr")
 
 [node name="kitchen" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 128)
-
-[node name="Fences_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh_library = ExtResource("13_k1hdb")
-data = {
-"cells": PackedInt32Array(9, 7, 1048576, 9, 8, 1048576, 9, 9, 1048576, 9, 10, 1048576, 9, 11, 1048576, 9, 12, 1048576, 9, 13, 1048576, 9, 14, 1048576, 9, 15, 1048576, 9, 16, 1048576, 0, 23, 0, 1, 23, 0, 2, 23, 0, 3, 23, 0, 4, 23, 0, 5, 23, 0, 6, 23, 0, 7, 23, 0, 65535, 23, 0, 65534, 23, 0, 65533, 23, 0, 65532, 23, 0, 65531, 23, 0, 65530, 23, 0, 65529, 23, 0, 65528, 23, 0, 65527, 23, 0, 9, 17, 1048576, 9, 18, 1048576, 9, 19, 1048576, 9, 20, 1048576, 9, 21, 1048576, 9, 22, 1048576, 65526, 9, 1441792, 65526, 10, 1441792, 65526, 11, 1441792, 65526, 12, 1441792, 65526, 13, 1441792, 65526, 14, 1441792, 65526, 16, 1441792, 65526, 17, 1441792, 65526, 18, 1441792, 65526, 19, 1441792, 65526, 20, 1441792, 65526, 21, 1441792, 65526, 6, 1441792, 65526, 7, 1441792, 65526, 8, 1441792, 65526, 15, 1441792, 9, 6, 1048576, 9, 23, 1048576, 8, 23, 0, 65526, 23, 0, 65526, 22, 1441792, 65526, 4, 1441792, 65527, 4, 655360, 65528, 4, 655360, 65529, 4, 655360, 65530, 4, 655360, 65531, 4, 655360, 5, 4, 655360, 6, 4, 655360, 7, 4, 655360, 8, 4, 655360, 9, 4, 655360, 65526, 5, 1441792, 9, 5, 1048576, 65532, 4, 655360)
-}
-metadata/_editor_floor_ = Vector3(0, -8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
 
 [node name="kitchen_walls" type="Node3D" parent="kitchen" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.449997)
 
 [node name="pillars" type="Node3D" parent="kitchen/kitchen_walls"]
 
@@ -695,6 +402,14 @@ skeleton = NodePath("../../../..")
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 depth = 0.499
 polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
+
+[node name="Fences_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh_library = ExtResource("13_k1hdb")
+data = {
+"cells": PackedInt32Array(9, 7, 1048576, 9, 8, 1048576, 9, 9, 1048576, 9, 10, 1048576, 9, 11, 1048576, 9, 12, 1048576, 9, 13, 1048576, 9, 14, 1048576, 9, 15, 1048576, 9, 16, 1048576, 0, 23, 0, 1, 23, 0, 2, 23, 0, 3, 23, 0, 4, 23, 0, 5, 23, 0, 6, 23, 0, 7, 23, 0, 65535, 23, 0, 65534, 23, 0, 65533, 23, 0, 65532, 23, 0, 65531, 23, 0, 65530, 23, 0, 65529, 23, 0, 65528, 23, 0, 65527, 23, 0, 9, 17, 1048576, 9, 18, 1048576, 9, 19, 1048576, 9, 20, 1048576, 9, 21, 1048576, 9, 22, 1048576, 65526, 9, 1441792, 65526, 10, 1441792, 65526, 11, 1441792, 65526, 12, 1441792, 65526, 13, 1441792, 65526, 14, 1441792, 65526, 16, 1441792, 65526, 17, 1441792, 65526, 18, 1441792, 65526, 19, 1441792, 65526, 20, 1441792, 65526, 21, 1441792, 65526, 6, 1441792, 65526, 7, 1441792, 65526, 8, 1441792, 65526, 15, 1441792, 9, 6, 1048576, 9, 23, 1048576, 8, 23, 0, 65526, 23, 0, 65526, 22, 1441792, 65526, 4, 1441792, 65527, 4, 655360, 65528, 4, 655360, 65529, 4, 655360, 65530, 4, 655360, 65531, 4, 655360, 5, 4, 655360, 6, 4, 655360, 7, 4, 655360, 8, 4, 655360, 9, 4, 655360, 65526, 5, 1441792, 9, 5, 1048576, 65532, 4, 655360)
+}
+metadata/_editor_floor_ = Vector3(0, -8, 0)
 
 [node name="plates" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
@@ -1018,6 +733,310 @@ use_collision = true
 collision_layer = 3
 size = Vector3(12, 0.2, 12)
 
+[node name="tutorial" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="kitchen_walls" type="Node3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
+
+[node name="pillars" type="Node3D" parent="tutorial/kitchen_walls"]
+
+[node name="PillarA" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA2" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA3" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA4" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA5" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 3.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA6" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 7.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA7" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 7.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA8" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 3.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA9" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 11.65)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA10" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 11.65)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA11" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 11.65)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA12" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 11.6502)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="wall" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall2" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.8)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall2"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall3" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.8)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall3"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall4" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.25, 0, 1.45)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall4"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall5" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 1.45)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall5"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall6" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 5.45)
+
+[node name="WallOrderwindowDecorated" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall6"]
+mesh = ExtResource("7_n7i1a")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall7" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 5.45)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall7"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall8" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 9.45)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall8"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall9" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 9.45)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall9"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall10" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 11.7)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall10/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall10"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall11" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 11.7)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall11/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall11"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall12" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.7)
+
+[node name="WallDoorway" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall12"]
+mesh = ExtResource("9_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall12"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="tutorial/kitchen_walls/wall12/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+depth = 0.499
+polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
+
+[node name="plates" type="Node3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
+script = ExtResource("7_k1hdb")
+
+[node name="objective_plate1" type="StaticBody3D" parent="tutorial/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45245, 0, 0)
+
+[node name="Plate" type="MeshInstance3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+mesh = ExtResource("14_q76tg")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="order_time" type="Timer" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+wait_time = 1000.0
+
+[node name="Label3D" type="Label3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -0.1, 0.53)
+
+[node name="plate_stand" type="StaticBody3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 2.823, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="tutorial/plate_stand"]
+transform = Transform3D(1, 0, 0, 0, 0.999997, 1.49012e-08, 0, -1.49012e-08, 0.999997, 0, 0, -0.237305)
+material_override = SubResource("StandardMaterial3D_qrdq4")
+size = Vector3(12, 0.4, 1.47461)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plate_stand"]
+shape = SubResource("BoxShape3D_xfqyr")
+
+[node name="houses" type="Node3D" parent="tutorial" groups=["keep"]]
+
+[node name="A1" type="Area3D" parent="tutorial/houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.74744)
+script = ExtResource("24_u7kri")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/houses/A1"]
+shape = SubResource("BoxShape3D_u7kri")
+
+[node name="Label3D" type="Label3D" parent="tutorial/houses/A1"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
+text = "A1"
+
+[node name="house" parent="tutorial/houses/A1" instance=ExtResource("10_b1m2q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
+
+[node name="floor" type="CSGBox3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+use_collision = true
+collision_layer = 3
+size = Vector3(12, 0.195, 12)
+
+[node name="tutorial_text" type="Label3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
+text = "Let's play a game, come a
+ little closer with WASD and SPACE"
+
+[node name="Area3D" type="Area3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95656)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 1.04077, -0.552002)
+shape = SubResource("BoxShape3D_hpiwi")
+
+[node name="Area3D2" type="Area3D" parent="tutorial" groups=["keep"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.380768, 0.969254, 4.78852)
+shape = SubResource("BoxShape3D_obwhl")
+
+[node name="Area3D3" type="Area3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.979594, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360718, 1.28512, 0)
+shape = SubResource("BoxShape3D_vjo16")
+
 [node name="dine_in" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, -128)
 
@@ -1122,6 +1141,32 @@ shape = SubResource("BoxShape3D_h6gec")
 [node name="underwater" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
 
+[node name="fish" type="CharacterBody3D" parent="underwater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20894, 1.72348, 21.3453)
+collision_mask = 0
+script = ExtResource("13_mrigr")
+
+[node name="SharkV1" type="MeshInstance3D" parent="underwater/fish"]
+transform = Transform3D(-4.37114e-10, 0, 0.01, 0, 0.01, 0, -0.01, 0, -4.37114e-10, 0, 0.4, 0)
+mesh = ExtResource("14_1iobq")
+surface_material_override/0 = ExtResource("15_l0am5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/fish"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0224457, 0.322754, 0.359985)
+shape = SubResource("BoxShape3D_guuop")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="underwater/fish"]
+
+[node name="Area3D" type="Area3D" parent="underwater/fish"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/fish/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.546875, -0.309204)
+shape = SubResource("BoxShape3D_f6knb")
+
+[node name="jaws_theme" type="AudioStreamPlayer3D" parent="underwater/fish"]
+stream = ExtResource("16_l0am5")
+max_distance = 1184.55
+
 [node name="floor" type="CSGBox3D" parent="underwater"]
 material_override = SubResource("StandardMaterial3D_v44qx")
 use_collision = true
@@ -1208,6 +1253,10 @@ wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="player_single"]
 
+[node name="AudioListener3D" type="AudioListener3D" parent="player_single"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.0207927, -25.3274, -4.24918)
+current = true
+
 [node name="SFX" type="Node3D" parent="."]
 
 [node name="ding" type="AudioStreamPlayer3D" parent="SFX"]
@@ -1215,9 +1264,6 @@ stream = ExtResource("20_b1m2q")
 
 [node name="delivered" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("20_b1m2q")
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-current = true
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tlwt5")
@@ -1309,13 +1355,6 @@ wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
-[connection signal="objective" from="tutorial/plates" to="." method="_on_objective_plate_objective"]
-[connection signal="timeout" from="tutorial/plates/objective_plate1/order_time" to="tutorial/plates/objective_plate1" method="_on_order_time_timeout"]
-[connection signal="body_entered" from="tutorial/houses/A1" to="tutorial/houses/A1" method="_on_body_entered"]
-[connection signal="item_entered" from="tutorial/houses/A1" to="." method="_on_house_item_entered"]
-[connection signal="body_entered" from="tutorial/Area3D" to="tutorial/plates" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="tutorial/Area3D2" to="tutorial/plates" method="_on_area_3d_2_body_entered"]
-[connection signal="body_entered" from="tutorial/Area3D3" to="tutorial/plates" method="_on_area_3d_3_body_entered"]
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
 [connection signal="objective_timeout" from="kitchen/plates" to="." method="_on_objective_plate_timeout"]
@@ -1357,7 +1396,15 @@ wait_time = 0.06
 [connection signal="item_entered" from="kitchen/houses/C2" to="." method="_on_house_item_entered"]
 [connection signal="body_entered" from="kitchen/houses/C3" to="kitchen/houses/C3" method="_on_body_entered"]
 [connection signal="item_entered" from="kitchen/houses/C3" to="." method="_on_house_item_entered"]
+[connection signal="objective" from="tutorial/plates" to="." method="_on_objective_plate_objective"]
+[connection signal="timeout" from="tutorial/plates/objective_plate1/order_time" to="tutorial/plates/objective_plate1" method="_on_order_time_timeout"]
+[connection signal="body_entered" from="tutorial/houses/A1" to="tutorial/houses/A1" method="_on_body_entered"]
+[connection signal="item_entered" from="tutorial/houses/A1" to="." method="_on_house_item_entered"]
+[connection signal="body_entered" from="tutorial/Area3D" to="tutorial/plates" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="tutorial/Area3D2" to="tutorial/plates" method="_on_area_3d_2_body_entered"]
+[connection signal="body_entered" from="tutorial/Area3D3" to="tutorial/plates" method="_on_area_3d_3_body_entered"]
 [connection signal="body_entered" from="volcano/volcano_lava" to="." method="_on_volcano_lava_body_entered"]
+[connection signal="body_entered" from="underwater/fish/Area3D" to="underwater/fish" method="_on_area_3d_body_entered"]
 [connection signal="looking_recipe" from="player_single" to="." method="looking_recipe"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]
