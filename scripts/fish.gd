@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		if global_position.x > 120 and global_position.z > 150:
 			get_target()
+			rotation_degrees.y += 5
 			if held_rigid:
 				held_rigid.queue_free()
 				held_rigid = null

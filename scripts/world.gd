@@ -166,7 +166,34 @@ func _setup():
 	stars = 5
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
+	if level == 1:
+		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
+
+Neighbourhood level
+Difficulty level: SAFE
+Dangers & Modifications:
+-Timers on food, more score means more money
+-If a timer runs out, you lose a star
+-Losing all 5 stars restarts level, no money is rewarded"
+	if level == 2:
+		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
+
+Volcano level
+Difficulty level: C
+Dangers & Modifications:
+-LAVA!!!
+-Touching lava will make you bounce around
+-Lava burns delivery pots (-10% of the score/bounce)"
 	if level == 3:
+		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
+
+Underwater level
+Difficulty level: B
+Dangers:
+-Shark can steal your ingredients if you aren't watching
+-Pickup the ingredient the Shark is going for to scare him
+-Nothing can stop the Shark
+-Gravity is weird because underwater"
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
@@ -257,8 +284,6 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife") and not body.is_in_group("keep"):
 		body.queue_free()
 
-
-
 func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> void:
 	if address == target_address:
 		if not is_tutorial:
@@ -308,7 +333,8 @@ func map_select():
 	var random_map = map_keys[level-1]
 	current_map = maps[random_map]
 	current_map.show()
-	$kitchen.position = current_map.position + Vector3(0,0.1,0)
+	$kitchen.position = current_map.position
+	$kitchen.position.y = 0.099
 	if player_count == 1 :
 		$player_single.position = current_map.position + Vector3(0,1.15,3)
 	if player_count == 2:

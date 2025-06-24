@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=70 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -75,9 +75,6 @@ albedo_texture = ExtResource("4_mrigr")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6knb"]
 size = Vector3(1, 2.09375, 6.50854)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1k5bn"]
-size = Vector3(1.82037, 3.03732, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hpiwi"]
 size = Vector3(10.9962, 3.08154, 2.104)
@@ -179,7 +176,6 @@ height = 1.99
 script = ExtResource("1_k40i2")
 
 [node name="kitchen" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0.1, 128)
 
 [node name="kitchen_walls" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.449997)
@@ -733,7 +729,7 @@ use_collision = true
 collision_layer = 3
 size = Vector3(12, 0.2, 12)
 
-[node name="billboard" type="Node3D" parent="kitchen"]
+[node name="billboard" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.79742, 1.5999, 10.9346)
 
 [node name="OvenDoor" type="MeshInstance3D" parent="kitchen/billboard"]
@@ -742,15 +738,15 @@ mesh = ExtResource("13_v44qx")
 skeleton = NodePath("../../..")
 
 [node name="Label3D" type="Label3D" parent="kitchen/billboard"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.0351, 2.20322, -0.149994)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.0351, 2.20322, -0.00834656)
 text = "Todays weather:         Cloudy with a chance of meatballs
 
-Underwater level
-Difficulty level: B
-Dangers:
--Shark can steal your ingredients if you aren't watching
--Pickup the ingredient the Shark is going for to scare him
--Nothing can stop the Shark"
+Volcano level
+Difficulty level: C
+Dangers & Modifications:
+-LAVA!!!
+-Touching lava will make you bounce around
+-Lava burns delivery pots (-10% of the score/bounce)"
 horizontal_alignment = 0
 vertical_alignment = 0
 
@@ -792,15 +788,6 @@ shape = SubResource("BoxShape3D_f6knb")
 [node name="jaws_theme" type="AudioStreamPlayer3D" parent="underwater/fish"]
 stream = ExtResource("16_l0am5")
 max_distance = 1184.55
-
-[node name="Area3D" type="Area3D" parent="underwater"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103424, 1.77061, 10.8807)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10849, 0.17532, 0)
-shape = SubResource("BoxShape3D_1k5bn")
 
 [node name="tutorial" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
@@ -1124,7 +1111,7 @@ collision_layer = 3
 size = Vector3(100, 0.195, 100)
 
 [node name="volcano" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, -0.09, 128)
 
 [node name="parkour_tables" type="Node3D" parent="volcano"]
 
@@ -1431,7 +1418,6 @@ wait_time = 0.06
 [connection signal="body_entered" from="kitchen/houses/C3" to="kitchen/houses/C3" method="_on_body_entered"]
 [connection signal="item_entered" from="kitchen/houses/C3" to="." method="_on_house_item_entered"]
 [connection signal="body_entered" from="underwater/fish/Area3D" to="underwater/fish" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="underwater/Area3D" to="underwater/fish" method="_doorway_entered"]
 [connection signal="objective" from="tutorial/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="timeout" from="tutorial/plates/objective_plate1/order_time" to="tutorial/plates/objective_plate1" method="_on_order_time_timeout"]
 [connection signal="body_entered" from="tutorial/houses/A1" to="tutorial/houses/A1" method="_on_body_entered"]
