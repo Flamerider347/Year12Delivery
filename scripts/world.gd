@@ -8,6 +8,7 @@ var making_time_left = 0
 var next_spawn_time = 50
 var order = false
 var action
+var objective_toggle = true
 var orders = [0,0,0,0,0,0,0,0,0,0]
 var objectives = {}
 var product = []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=71 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cvyhf3kno28cu" path="res://prefabs/house.tscn" id="10_b1m2q"]
 [ext_resource type="MeshLibrary" uid="uid://dyxo1mu8s8dbr" path="res://assets/materials/fence mesh library.tres" id="13_k1hdb"]
 [ext_resource type="Script" uid="uid://ebqitybuyxfv" path="res://scripts/fish.gd" id="13_mrigr"]
+[ext_resource type="ArrayMesh" uid="uid://ch57621gqlvcg" path="res://assets/kitchenassets/oven_door.obj" id="13_v44qx"]
 [ext_resource type="ArrayMesh" uid="uid://dp8fdximd6trr" path="res://assets/SharkV1.obj" id="14_1iobq"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
@@ -371,9 +372,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 11.7)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_w1n2x")
 
-[node name="WallWindowClosed" type="MeshInstance3D" parent="kitchen/kitchen_walls/wall10"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
+[node name="Wall" type="MeshInstance3D" parent="kitchen/kitchen_walls/wall10"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
 
 [node name="wall11" type="Node3D" parent="kitchen/kitchen_walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 11.7)
@@ -732,6 +733,27 @@ use_collision = true
 collision_layer = 3
 size = Vector3(12, 0.2, 12)
 
+[node name="billboard" type="Node3D" parent="kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.79742, 1.5999, 10.9346)
+
+[node name="OvenDoor" type="MeshInstance3D" parent="kitchen/billboard"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.07, -2.44, -2.7)
+mesh = ExtResource("13_v44qx")
+skeleton = NodePath("../../..")
+
+[node name="Label3D" type="Label3D" parent="kitchen/billboard"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.0351, 2.20322, -0.149994)
+text = "Todays weather:         Cloudy with a chance of meatballs
+
+Underwater level
+Difficulty level: B
+Dangers:
+-Shark can steal your ingredients if you aren't watching
+-Pickup the ingredient the Shark is going for to scare him
+-Nothing can stop the Shark"
+horizontal_alignment = 0
+vertical_alignment = 0
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_mrigr")
 
@@ -751,12 +773,12 @@ collision_mask = 2
 script = ExtResource("13_mrigr")
 
 [node name="SharkV1" type="MeshInstance3D" parent="underwater/fish"]
-transform = Transform3D(-4.37114e-10, 0, 0.01, 0, 0.01, 0, -0.01, 0, -4.37114e-10, 0, 0.4, 0)
+transform = Transform3D(1.19249e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, 1.19249e-10, 0, 0.4, 0)
 mesh = ExtResource("14_1iobq")
 surface_material_override/0 = ExtResource("15_l0am5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/fish"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0224457, 0.658203, 0.359985)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0224457, 0.38386, 0.359985)
 shape = SubResource("CapsuleShape3D_l0am5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="underwater/fish"]

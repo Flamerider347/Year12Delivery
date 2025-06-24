@@ -6,6 +6,7 @@ var speed = 5
 var accel = 10
 var target_rigid = null
 var target_position = null
+var held_rigid
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 
@@ -19,10 +20,16 @@ func _physics_process(delta: float) -> void:
 			direction = direction.normalized()
 			
 			velocity = velocity.lerp(direction*speed, accel*delta)
+			if velocity.length() > 0.1:
+				var angle = atan2(velocity.x, velocity.z)
+				rotation.y = lerp_angle(rotation.y, angle, 5 * delta)
 
 			move_and_slide()
 		if global_position.x > 120 and global_position.z > 150:
 			get_target()
+			if held_rigid:
+				held_rigid.queue_free()
+				held_rigid = null
 			if not target_rigid:
 				target = false
 
@@ -49,11 +56,12 @@ func run_away():
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == target_rigid:
-		body.queue_free()
+		body.reparent($".")
+		body.position = Vector3(0,0.065,2.67)
+		body.freeze = true
+		body.remove_from_group("pickupable")
+		body.collision_layer = 2
+		body.collision_mask = 2
+		held_rigid = body
 		target_rigid = null
 		run_away()
-
-
-func _doorway_entered(body: Node3D) -> void:
-	if body.name == "fish":
-		look_at(target_rigid.global_position)
