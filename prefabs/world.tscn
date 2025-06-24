@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=67 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -13,6 +13,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b3ulkq0panu7q" path="res://assets/kitchenassets/wall_doorway.obj" id="9_k1hdb"]
 [ext_resource type="PackedScene" uid="uid://cvyhf3kno28cu" path="res://prefabs/house.tscn" id="10_b1m2q"]
 [ext_resource type="MeshLibrary" uid="uid://dyxo1mu8s8dbr" path="res://assets/materials/fence mesh library.tres" id="13_k1hdb"]
+[ext_resource type="Script" path="res://scripts/fish.gd" id="13_mrigr"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
 [ext_resource type="ArrayMesh" uid="uid://dia33cbe5c1yt" path="res://assets/kitchenassets/table_round_B.obj" id="16_k1hdb"]
@@ -41,15 +42,6 @@ size = Vector3(12, 0.4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7kri"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hpiwi"]
-size = Vector3(10.9962, 3.08154, 2.104)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_obwhl"]
-size = Vector3(10.8106, 0.305573, 11.618)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vjo16"]
-size = Vector3(1.56824, 0.651474, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_n7i1a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k1hdb"]
@@ -66,6 +58,32 @@ size = Vector3(1.56824, 0.651474, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qrdq4"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xky7j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mrigr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mrigr"]
+height = 2.20142
+radius = 0.544922
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
+albedo_texture = ExtResource("4_mrigr")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_mrigr"]
+vertices = PackedVector3Array(107.5, 0.55, 136.25, 121, 0.55, 136.25, 121, 0.55, 126.25, 78.5, 0.55, 137, 107.25, 0.55, 137, 123.25, 0.55, 78.5, 78.5, 0.55, 78.5, 123.25, 0.55, 126, 133, 0.55, 126, 133, 0.55, 78.5, 135.25, 0.55, 136.5, 146.25, 0.55, 136.25, 146.5, 0.55, 135.25, 135.25, 0.55, 126.25, 147.5, 0.55, 135.25, 147.75, 0.55, 137, 177.5, 0.55, 136.75, 177.5, 0.55, 78.5, 127.75, 0.55, 139.25, 128.25, 0.55, 139.25, 128.25, 0.55, 138.75, 127.5, 0.55, 138.5, 129.25, 0.55, 138.25, 133.5, 0.55, 138.5, 133.5, 0.55, 127.75, 126.75, 0.55, 138.25, 122.75, 0.55, 127.75, 122.75, 0.55, 138.5, 122.75, 3.55, 127.75, 122.75, 3.3, 128.25, 133.5, 3.3, 128.25, 133.5, 3.55, 127.75, 148.75, 0.55, 175.5, 146.75, 0.55, 175.75, 147, 0.55, 177.5, 177.5, 0.55, 177.5, 147.75, 0.55, 174.25, 148.75, 0.55, 174.5, 107.5, 0.55, 137.75, 78.5, 0.55, 177.5, 107.75, 0.55, 177.5, 108.25, 0.55, 176.25, 108.25, 0.55, 137.75, 109.75, 0.55, 147.5, 110.25, 0.55, 147.5, 110.5, 0.55, 146.75, 110.5, 0.55, 154, 110.25, 0.55, 153.25, 109.75, 0.55, 153.25, 146.25, 0.55, 153.5, 145.75, 0.55, 153.5, 145.5, 0.55, 154.25, 145.25, 0.55, 156.5, 145.25, 0.55, 157.25, 146.25, 0.55, 157.5, 117.5, 0.55, 162, 116.75, 0.55, 162.5, 117, 0.55, 163, 117.75, 0.55, 163, 117.5, 0.55, 161, 124.5, 0.55, 167.25, 131.25, 0.55, 167.25, 138.25, 0.55, 163, 139, 0.55, 163, 139.25, 0.55, 162.5, 138.5, 0.55, 162, 111, 0.55, 142.75, 111, 0.55, 141.75, 109.75, 0.55, 137.75, 140.25, 0.55, 147.25, 141, 0.55, 147, 140.75, 0.55, 146.25, 139.5, 0.55, 145.75, 127.25, 0.55, 140.25, 128.75, 0.55, 140.25, 115.75, 0.55, 153.75, 111.5, 0.55, 156, 115.75, 0.55, 155.25, 116.5, 0.55, 145.75, 115.75, 0.55, 147, 136.75, 0.55, 141, 122, 0.55, 167.25, 124.25, 0.55, 168, 138.5, 0.55, 161, 134, 0.55, 167.25, 122, 0.55, 167.75, 115, 0.55, 146.25, 131.5, 0.55, 167.75, 134, 0.55, 167.75, 140.25, 0.55, 155.25, 140.25, 0.55, 154, 137.25, 0.55, 139.5, 140.25, 0.55, 137.75, 135.25, 0.55, 137.5, 135.25, 0.55, 139.75, 121.25, 0.55, 140.25, 119.25, 0.55, 141, 134.75, 0.55, 140.25, 112, 0.55, 144.5, 121, 0.55, 137.75, 115.75, 0.55, 137.75, 118.75, 0.55, 139.5, 144.5, 0.55, 156, 109.75, 0.55, 157.5, 113.5, 0.55, 137.75, 145.5, 0.55, 147, 145.75, 0.55, 147.75, 146.25, 0.55, 147.75, 144, 0.55, 144.5, 146.25, 0.55, 137.75, 145, 0.55, 141.75, 145, 0.55, 143, 142.75, 0.55, 137.75, 117.75, 4.8, 140.5, 117.25, 4.8, 140, 116.75, 5.55, 140.75, 116.5, 6.3, 141.5, 114.5, 6.3, 140.5, 112.5, 5.05, 142.75, 112.5, 4.55, 143.5, 115.25, 5.55, 143.75, 115.875, 6.55, 142.625, 113.833, 6.55, 141.25, 111.75, 5.3, 142, 111.75, 5.05, 142.5, 114.25, 5.05, 138.75, 113.75, 5.05, 138.5, 113.083, 6.05, 139.667, 112.417, 6.3, 140.833, 115.25, 4.8, 144.75, 140.75, 5.55, 143.75, 140.75, 4.8, 144.75, 141.25, 4.8, 144.75, 141.5, 6.3, 142.5, 139, 5.3, 140.75, 142.5, 6.3, 142, 142.25, 5.3, 138.75, 140.25, 4.55, 139, 140.667, 6.8, 141.917, 142.417, 6.8, 140.917, 138, 4.55, 140.5, 139.583, 6.3, 141.75, 140.167, 6.55, 142.75, 144.25, 5.05, 142.5, 143.583, 6.05, 141.25, 142.917, 6.3, 140, 140.75, 0.55, 142.75, 142, 0.55, 142.25, 141.25, 0.55, 140.25, 139.75, 0.55, 140.75, 115, 0.55, 143.25, 116, 0.55, 141.5, 114.5, 0.55, 140.75, 113.5, 0.55, 142.5, 114, 4.8, 148, 114.75, 4.55, 147.75, 113.5, 4.55, 147.75, 112.75, 6.05, 149.5, 114, 4.8, 152.75, 114, 6.8, 150.375, 113.167, 6.55, 150.583, 111, 6.05, 149.5, 110, 5.05, 148.25, 110, 4.8, 152.75, 110.667, 6.55, 150.583, 110, 6.55, 150.5, 114.75, 4.55, 153, 142, 4.8, 153, 141.25, 4.55, 153.25, 142.5, 4.55, 153.25, 143.25, 6.05, 151.5, 142, 4.8, 148.25, 142, 6.8, 150.625, 142.833, 6.55, 150.417, 145, 6.05, 151.5, 146, 5.05, 152.75, 146, 4.8, 148.25, 145.333, 6.55, 150.417, 146, 6.8, 150.5, 143.975, 6.55, 149.975, 141.25, 4.55, 148, 142.75, 0.55, 149, 142.75, 0.55, 151.5, 144.5, 0.55, 151.5, 144.5, 0.55, 149, 111.5, 0.55, 149.5, 111.5, 0.55, 152, 113.25, 0.55, 152, 113.25, 0.55, 149.5, 114.5, 4.8, 156.5, 114, 4.55, 156.5, 114, 6.05, 158, 115.25, 5.3, 160.75, 115, 6.55, 159.333, 114.417, 6.55, 158.917, 113.5, 4.55, 162.25, 116.25, 4.55, 161.5, 111.75, 5.05, 162, 113.5, 6.3, 158.5, 111.5, 6.05, 158.75, 111.583, 6.8, 159.833, 114.375, 6.55, 159.625, 110.75, 5.3, 158, 111.083, 6.3, 159.333, 111.417, 6.3, 160.667, 140.5, 5.05, 161.25, 139.75, 4.55, 161.25, 140.75, 4.55, 161.75, 141.5, 5.8, 160.5, 141.5, 6.05, 158, 141.167, 6.8, 159.083, 141.5, 6.8, 159.25, 145.25, 6.05, 159, 145.25, 5.05, 158, 144, 4.55, 157, 143, 6.3, 160.5, 144.125, 6.8, 159.75, 144.25, 5.05, 162.25, 144.917, 6.8, 160.083, 141, 4.55, 156.5, 141.5, 4.8, 156.75, 142, 0.55, 157.75, 141.5, 0.55, 159.5, 141.5, 0.55, 160.25, 143, 0.55, 160.5, 143.5, 0.55, 158.75, 143.25, 0.55, 158, 112.5, 0.55, 163.25, 112.25, 0.55, 162.75, 111.25, 0.55, 163, 109.75, 0.55, 168.75, 113.5, 0.55, 168.25, 113.75, 0.55, 166, 114, 0.55, 163.25, 109.75, 0.55, 158.5, 114, 0.55, 168.75, 113, 0.55, 160.75, 114.75, 0.55, 160.75, 114, 0.55, 158.5, 112.75, 0.55, 158.75, 142, 0.55, 163.25, 142.25, 0.55, 166, 146.25, 0.55, 169, 146.25, 0.55, 158.5, 144.75, 0.55, 163, 142.5, 0.55, 168.5, 142, 0.55, 168.75, 136.25, 5.3, 168, 135.5, 4.8, 168, 135.75, 4.8, 168.5, 137.75, 6.3, 168, 136.25, 5.8, 167.5, 138.75, 5.3, 165.25, 137.917, 6.3, 166, 137.083, 6.55, 166.75, 138.25, 6.3, 166.625, 141.25, 4.55, 166.5, 138.75, 4.55, 164.25, 138.75, 6.3, 169, 141.75, 5.3, 168, 139.75, 6.55, 168.667, 138.5, 4.8, 171, 139.583, 6.05, 170, 140.667, 6.55, 169, 117, 5.3, 165.25, 117, 4.8, 164.5, 116.5, 4.8, 164.75, 117, 6.3, 166.75, 117.5, 5.8, 165.25, 119.75, 5.3, 167.75, 119, 6.3, 166.917, 118.25, 6.55, 166.083, 118.375, 6.3, 167.25, 118.5, 4.55, 170.25, 120.75, 4.55, 168, 116, 6.3, 167.75, 117, 5.3, 170.75, 116.333, 6.55, 168.75, 114, 4.8, 167.5, 115, 6.05, 168.583, 116, 6.3, 169.667, 140, 0.55, 167.25, 139.25, 0.55, 166, 138.75, 0.55, 166, 137.25, 0.55, 167.5, 138.75, 0.55, 168.5, 116.5, 0.55, 167.25, 117.75, 0.55, 169, 119, 0.55, 168.25, 117.5, 0.55, 166.25, 125.25, 0.55, 173.75, 125, 0.55, 172.75, 124.25, 0.55, 172.5, 119, 0.55, 171.25, 117.5, 0.55, 171.5, 117.5, 0.55, 174.25, 122, 0.55, 168.25, 128, 0.55, 174.25, 128, 0.55, 173.75, 131.5, 0.55, 172.5, 130.75, 0.55, 172.75, 130.5, 0.55, 173.75, 138.5, 0.55, 174.25, 138.5, 0.55, 171.5, 137, 0.55, 171.25, 134, 0.55, 168.25, 125.5, 4.8, 169, 125.25, 4.55, 168.25, 125.25, 4.55, 169.5, 127, 6.05, 170.25, 130.25, 4.8, 169, 127.875, 6.8, 169, 128.083, 6.55, 169.833, 130.5, 4.55, 172, 130.5, 4.55, 168.25, 127, 6.05, 172, 125.75, 5.05, 173, 130.25, 4.8, 173, 128.083, 6.55, 172.333, 128, 6.55, 173, 116.5, 0.55, 171.5, 109.75, 0.55, 174.25, 139.25, 0.55, 171.5, 146.25, 0.55, 174.25, 127, 0.55, 169.75, 127, 0.55, 171.5, 129.5, 0.55, 171.5, 129.5, 0.55, 169.75, 108.5, 0.55, 176.75, 109.5, 0.55, 176.75, 109.75, 0.55, 175.75)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(5, 7, 2), PackedInt32Array(5, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(9, 13, 8), PackedInt32Array(14, 12, 13), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 13, 16), PackedInt32Array(16, 13, 9), PackedInt32Array(16, 9, 17), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(24, 23, 22), PackedInt32Array(22, 20, 21), PackedInt32Array(21, 25, 22), PackedInt32Array(22, 25, 26), PackedInt32Array(22, 26, 24), PackedInt32Array(25, 27, 26), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 29), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(37, 36, 35), PackedInt32Array(35, 36, 15), PackedInt32Array(35, 15, 16), PackedInt32Array(35, 32, 37), PackedInt32Array(4, 38, 3), PackedInt32Array(3, 38, 41), PackedInt32Array(3, 41, 40), PackedInt32Array(3, 40, 39), PackedInt32Array(38, 42, 41), PackedInt32Array(45, 44, 43), PackedInt32Array(48, 47, 46), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(52, 49, 53), PackedInt32Array(53, 49, 54), PackedInt32Array(57, 56, 58), PackedInt32Array(58, 56, 55), PackedInt32Array(61, 60, 59), PackedInt32Array(63, 62, 64), PackedInt32Array(64, 62, 65), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 43), PackedInt32Array(70, 69, 71), PackedInt32Array(71, 69, 72), PackedInt32Array(19, 74, 18), PackedInt32Array(18, 74, 73), PackedInt32Array(77, 76, 75), PackedInt32Array(75, 76, 46), PackedInt32Array(79, 78, 75), PackedInt32Array(75, 78, 59), PackedInt32Array(73, 74, 80), PackedInt32Array(55, 59, 58), PackedInt32Array(58, 59, 81), PackedInt32Array(81, 59, 60), PackedInt32Array(81, 60, 82), PackedInt32Array(65, 62, 83), PackedInt32Array(83, 62, 84), PackedInt32Array(82, 85, 81), PackedInt32Array(79, 86, 78), PackedInt32Array(84, 88, 87), PackedInt32Array(87, 61, 84), PackedInt32Array(84, 61, 83), PackedInt32Array(83, 61, 89), PackedInt32Array(89, 61, 90), PackedInt32Array(94, 93, 91), PackedInt32Array(91, 93, 92), PackedInt32Array(96, 95, 78), PackedInt32Array(78, 95, 73), PackedInt32Array(97, 94, 80), PackedInt32Array(80, 94, 91), PackedInt32Array(86, 79, 98), PackedInt32Array(98, 79, 45), PackedInt32Array(95, 101, 99), PackedInt32Array(99, 101, 100), PackedInt32Array(59, 77, 75), PackedInt32Array(96, 101, 95), PackedInt32Array(45, 43, 98), PackedInt32Array(98, 43, 66), PackedInt32Array(72, 69, 80), PackedInt32Array(80, 69, 90), PackedInt32Array(51, 52, 102), PackedInt32Array(46, 76, 48), PackedInt32Array(48, 76, 103), PackedInt32Array(74, 97, 80), PackedInt32Array(68, 104, 67), PackedInt32Array(89, 90, 102), PackedInt32Array(102, 90, 51), PackedInt32Array(80, 90, 73), PackedInt32Array(73, 90, 78), PackedInt32Array(78, 90, 59), PackedInt32Array(59, 90, 61), PackedInt32Array(107, 106, 105), PackedInt32Array(71, 108, 70), PackedInt32Array(70, 108, 105), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 107), PackedInt32Array(105, 108, 107), PackedInt32Array(107, 108, 111), PackedInt32Array(110, 112, 109), PackedInt32Array(114, 113, 115), PackedInt32Array(115, 113, 116), PackedInt32Array(116, 121, 115), PackedInt32Array(115, 121, 120), PackedInt32Array(115, 120, 117), PackedInt32Array(117, 120, 122), PackedInt32Array(122, 120, 118), PackedInt32Array(118, 120, 119), PackedInt32Array(124, 123, 118), PackedInt32Array(118, 123, 128), PackedInt32Array(118, 128, 122), PackedInt32Array(122, 128, 127), PackedInt32Array(122, 127, 117), PackedInt32Array(117, 127, 125), PackedInt32Array(125, 127, 126), PackedInt32Array(120, 129, 119), PackedInt32Array(131, 130, 132), PackedInt32Array(132, 130, 133), PackedInt32Array(133, 138, 135), PackedInt32Array(135, 138, 139), PackedInt32Array(139, 138, 134), PackedInt32Array(139, 134, 137), PackedInt32Array(139, 137, 136), PackedInt32Array(134, 140, 137), PackedInt32Array(130, 142, 133), PackedInt32Array(133, 142, 138), PackedInt32Array(138, 142, 141), PackedInt32Array(138, 141, 134), PackedInt32Array(143, 135, 144), PackedInt32Array(144, 135, 139), PackedInt32Array(144, 139, 145), PackedInt32Array(145, 139, 136), PackedInt32Array(147, 146, 148), PackedInt32Array(148, 146, 149), PackedInt32Array(153, 152, 150), PackedInt32Array(150, 152, 151), PackedInt32Array(155, 154, 156), PackedInt32Array(156, 154, 157), PackedInt32Array(157, 154, 160), PackedInt32Array(160, 154, 159), PackedInt32Array(160, 159, 158), PackedInt32Array(161, 164, 162), PackedInt32Array(162, 164, 165), PackedInt32Array(165, 164, 163), PackedInt32Array(161, 157, 164), PackedInt32Array(164, 157, 160), PackedInt32Array(164, 160, 163), PackedInt32Array(163, 160, 158), PackedInt32Array(158, 166, 163), PackedInt32Array(168, 167, 169), PackedInt32Array(169, 167, 170), PackedInt32Array(170, 167, 173), PackedInt32Array(173, 167, 172), PackedInt32Array(173, 172, 171), PackedInt32Array(174, 177, 175), PackedInt32Array(175, 177, 178), PackedInt32Array(178, 177, 176), PackedInt32Array(176, 179, 171), PackedInt32Array(171, 179, 173), PackedInt32Array(173, 179, 170), PackedInt32Array(170, 179, 174), PackedInt32Array(174, 179, 177), PackedInt32Array(177, 179, 176), PackedInt32Array(171, 180, 176), PackedInt32Array(184, 183, 181), PackedInt32Array(181, 183, 182), PackedInt32Array(188, 187, 185), PackedInt32Array(185, 187, 186), PackedInt32Array(190, 189, 191), PackedInt32Array(191, 189, 194), PackedInt32Array(194, 189, 193), PackedInt32Array(194, 193, 192), PackedInt32Array(192, 196, 195), PackedInt32Array(199, 198, 200), PackedInt32Array(200, 198, 201), PackedInt32Array(200, 201, 192), PackedInt32Array(200, 192, 195), PackedInt32Array(200, 195, 197), PackedInt32Array(191, 194, 198), PackedInt32Array(198, 194, 201), PackedInt32Array(201, 194, 192), PackedInt32Array(202, 199, 203), PackedInt32Array(203, 199, 200), PackedInt32Array(203, 200, 204), PackedInt32Array(204, 200, 197), PackedInt32Array(207, 206, 205), PackedInt32Array(209, 211, 210), PackedInt32Array(210, 211, 208), PackedInt32Array(210, 208, 205), PackedInt32Array(205, 208, 207), PackedInt32Array(212, 216, 213), PackedInt32Array(213, 216, 214), PackedInt32Array(214, 216, 215), PackedInt32Array(214, 215, 209), PackedInt32Array(209, 215, 211), PackedInt32Array(211, 215, 208), PackedInt32Array(212, 218, 216), PackedInt32Array(216, 218, 215), PackedInt32Array(215, 218, 217), PackedInt32Array(220, 219, 214), PackedInt32Array(209, 220, 214), PackedInt32Array(226, 225, 221), PackedInt32Array(221, 225, 222), PackedInt32Array(222, 225, 223), PackedInt32Array(223, 225, 224), PackedInt32Array(228, 227, 229), PackedInt32Array(229, 227, 232), PackedInt32Array(229, 232, 231), PackedInt32Array(229, 231, 230), PackedInt32Array(56, 57, 233), PackedInt32Array(233, 57, 232), PackedInt32Array(234, 229, 230), PackedInt32Array(227, 233, 232), PackedInt32Array(230, 231, 235), PackedInt32Array(239, 238, 236), PackedInt32Array(236, 238, 237), PackedInt32Array(64, 240, 63), PackedInt32Array(63, 240, 241), PackedInt32Array(244, 243, 242), PackedInt32Array(242, 246, 245), PackedInt32Array(240, 244, 241), PackedInt32Array(241, 244, 245), PackedInt32Array(245, 244, 242), PackedInt32Array(249, 248, 247), PackedInt32Array(250, 249, 247), PackedInt32Array(251, 254, 247), PackedInt32Array(247, 254, 250), PackedInt32Array(250, 254, 255), PackedInt32Array(255, 254, 253), PackedInt32Array(255, 253, 252), PackedInt32Array(252, 257, 256), PackedInt32Array(258, 250, 260), PackedInt32Array(260, 250, 255), PackedInt32Array(260, 255, 252), PackedInt32Array(260, 252, 256), PackedInt32Array(260, 256, 259), PackedInt32Array(259, 263, 260), PackedInt32Array(260, 263, 262), PackedInt32Array(260, 262, 258), PackedInt32Array(258, 262, 261), PackedInt32Array(266, 265, 264), PackedInt32Array(267, 266, 264), PackedInt32Array(268, 271, 264), PackedInt32Array(264, 271, 267), PackedInt32Array(267, 271, 272), PackedInt32Array(272, 271, 270), PackedInt32Array(272, 270, 269), PackedInt32Array(269, 274, 273), PackedInt32Array(275, 267, 277), PackedInt32Array(277, 267, 272), PackedInt32Array(277, 272, 269), PackedInt32Array(277, 269, 273), PackedInt32Array(277, 273, 276), PackedInt32Array(276, 280, 277), PackedInt32Array(277, 280, 279), PackedInt32Array(277, 279, 275), PackedInt32Array(275, 279, 278), PackedInt32Array(282, 281, 283), PackedInt32Array(283, 281, 285), PackedInt32Array(283, 285, 284), PackedInt32Array(287, 286, 288), PackedInt32Array(288, 286, 289), PackedInt32Array(291, 290, 292), PackedInt32Array(292, 290, 293), PackedInt32Array(293, 290, 294), PackedInt32Array(294, 290, 295), PackedInt32Array(296, 85, 82), PackedInt32Array(298, 297, 290), PackedInt32Array(290, 297, 295), PackedInt32Array(82, 292, 296), PackedInt32Array(296, 292, 293), PackedInt32Array(300, 299, 301), PackedInt32Array(301, 299, 304), PackedInt32Array(301, 304, 303), PackedInt32Array(301, 303, 302), PackedInt32Array(87, 88, 305), PackedInt32Array(298, 301, 297), PackedInt32Array(297, 301, 302), PackedInt32Array(87, 305, 299), PackedInt32Array(299, 305, 304), PackedInt32Array(307, 306, 308), PackedInt32Array(308, 306, 309), PackedInt32Array(309, 306, 312), PackedInt32Array(312, 306, 311), PackedInt32Array(312, 311, 310), PackedInt32Array(310, 314, 313), PackedInt32Array(315, 318, 316), PackedInt32Array(316, 318, 319), PackedInt32Array(319, 318, 317), PackedInt32Array(315, 309, 318), PackedInt32Array(318, 309, 312), PackedInt32Array(318, 312, 317), PackedInt32Array(317, 312, 313), PackedInt32Array(313, 312, 310), PackedInt32Array(320, 294, 295), PackedInt32Array(320, 295, 235), PackedInt32Array(235, 295, 230), PackedInt32Array(230, 295, 321), PackedInt32Array(302, 303, 322), PackedInt32Array(322, 246, 302), PackedInt32Array(302, 246, 242), PackedInt32Array(302, 242, 323), PackedInt32Array(327, 326, 324), PackedInt32Array(324, 326, 325), PackedInt32Array(328, 40, 41), PackedInt32Array(40, 328, 329), PackedInt32Array(329, 330, 33), PackedInt32Array(33, 34, 329), PackedInt32Array(329, 34, 40)]
+agent_height = 2.0
+agent_max_climb = 500.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hpiwi"]
+size = Vector3(10.9962, 3.08154, 2.104)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_obwhl"]
+size = Vector3(10.8106, 0.305573, 11.618)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vjo16"]
+size = Vector3(1.56824, 0.651474, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iobq"]
 albedo_texture = ExtResource("2_xky7j")
 
@@ -78,9 +96,6 @@ albedo_texture = ExtResource("19_n7i1a")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
-albedo_texture = ExtResource("4_mrigr")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrigr"]
 atlas = ExtResource("17_8bx52")
@@ -159,312 +174,8 @@ height = 1.99
 [node name="world" type="Node3D"]
 script = ExtResource("1_k40i2")
 
-[node name="tutorial" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
-
-[node name="kitchen_walls" type="Node3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
-
-[node name="pillars" type="Node3D" parent="tutorial/kitchen_walls"]
-
-[node name="PillarA" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA2" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA3" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA4" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.75)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA5" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 3.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA6" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 7.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA7" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 7.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA8" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 3.45)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA9" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 11.65)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA10" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 11.65)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA11" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 11.65)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="PillarA12" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 11.6502)
-mesh = ExtResource("6_xfqyr")
-skeleton = NodePath("../..")
-
-[node name="wall" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall2" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.8)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall2"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall2/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall3" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.8)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall3"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall3/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall4" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.25, 0, 1.45)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall4"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall4/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall5" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 1.45)
-
-[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall5"]
-mesh = ExtResource("5_8bx52")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall5/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall6" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 5.45)
-
-[node name="WallOrderwindowDecorated" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall6"]
-mesh = ExtResource("7_n7i1a")
-skeleton = NodePath("../../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall6/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="wall7" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 5.45)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall7/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall7"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall8" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 9.45)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall8"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall8/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall8"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall9" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 9.45)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall9"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall9/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall9"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall10" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall10"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall10/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall10"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall11" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 11.7)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall11"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall11/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-shape = SubResource("BoxShape3D_w1n2x")
-
-[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall11"]
-mesh = ExtResource("8_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="wall12" type="Node3D" parent="tutorial/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.7)
-
-[node name="WallDoorway" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall12"]
-mesh = ExtResource("9_k1hdb")
-skeleton = NodePath("../../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall12"]
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="tutorial/kitchen_walls/wall12/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
-depth = 0.499
-polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
-
-[node name="plates" type="Node3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
-script = ExtResource("7_k1hdb")
-
-[node name="objective_plate1" type="StaticBody3D" parent="tutorial/plates" groups=["look_at_plates"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45245, 0, 0)
-
-[node name="Plate" type="MeshInstance3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-mesh = ExtResource("14_q76tg")
-skeleton = NodePath("../../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
-shape = SubResource("BoxShape3D_w6ly8")
-
-[node name="order_time" type="Timer" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-wait_time = 1000.0
-
-[node name="Label3D" type="Label3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -0.1, 0.53)
-
-[node name="plate_stand" type="StaticBody3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 2.823, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="tutorial/plate_stand"]
-transform = Transform3D(1, 0, 0, 0, 0.999997, 1.49012e-08, 0, -1.49012e-08, 0.999997, 0, 0, -0.237305)
-material_override = SubResource("StandardMaterial3D_qrdq4")
-size = Vector3(12, 0.4, 1.47461)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plate_stand"]
-shape = SubResource("BoxShape3D_xfqyr")
-
-[node name="houses" type="Node3D" parent="tutorial" groups=["keep"]]
-
-[node name="A1" type="Area3D" parent="tutorial/houses"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.74744)
-script = ExtResource("24_u7kri")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/houses/A1"]
-shape = SubResource("BoxShape3D_u7kri")
-
-[node name="Label3D" type="Label3D" parent="tutorial/houses/A1"]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
-text = "A1"
-
-[node name="house" parent="tutorial/houses/A1" instance=ExtResource("10_b1m2q")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
-
-[node name="floor" type="CSGBox3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-use_collision = true
-collision_layer = 3
-size = Vector3(12, 0.195, 12)
-
-[node name="tutorial_text" type="Label3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
-text = "Let's play a game, come a
- little closer with WASD and SPACE"
-
-[node name="Area3D" type="Area3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95656)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 1.04077, -0.552002)
-shape = SubResource("BoxShape3D_hpiwi")
-
-[node name="Area3D2" type="Area3D" parent="tutorial" groups=["keep"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.380768, 0.969254, 4.78852)
-shape = SubResource("BoxShape3D_obwhl")
-
-[node name="Area3D3" type="Area3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.979594, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360718, 1.28512, 0)
-shape = SubResource("BoxShape3D_vjo16")
-
 [node name="kitchen" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
 
 [node name="Fences_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -1018,6 +729,342 @@ use_collision = true
 collision_layer = 3
 size = Vector3(12, 0.2, 12)
 
+[node name="underwater" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
+
+[node name="fish" type="CharacterBody3D" parent="underwater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20894, 1.72348, 21.3453)
+script = ExtResource("13_mrigr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/fish"]
+shape = SubResource("CapsuleShape3D_xky7j")
+
+[node name="Bacon" type="MeshInstance3D" parent="underwater/fish"]
+mesh = SubResource("CapsuleMesh_mrigr")
+skeleton = NodePath("../../..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="underwater/fish"]
+
+[node name="Area3D" type="Area3D" parent="underwater/fish"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="underwater/fish/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0494385, 0)
+shape = SubResource("CylinderShape3D_mrigr")
+
+[node name="floor" type="CSGBox3D" parent="underwater"]
+material_override = SubResource("StandardMaterial3D_v44qx")
+use_collision = true
+collision_layer = 3
+size = Vector3(100, 0.195, 100)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="underwater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
+navigation_mesh = SubResource("NavigationMesh_mrigr")
+
+[node name="tutorial" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="kitchen_walls" type="Node3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
+
+[node name="pillars" type="Node3D" parent="tutorial/kitchen_walls"]
+
+[node name="PillarA" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA2" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA3" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA4" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -0.75)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA5" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 3.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA6" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 7.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA7" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 7.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA8" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 3.45)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA9" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 11.65)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA10" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 11.65)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA11" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 11.65)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="PillarA12" type="MeshInstance3D" parent="tutorial/kitchen_walls/pillars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 11.6502)
+mesh = ExtResource("6_xfqyr")
+skeleton = NodePath("../..")
+
+[node name="wall" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall2" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -0.8)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall2"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall3" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -0.8)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall3"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall4" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.25, 0, 1.45)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall4"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall5" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 1.45)
+
+[node name="Wall" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall5"]
+mesh = ExtResource("5_8bx52")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall6" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 5.45)
+
+[node name="WallOrderwindowDecorated" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall6"]
+mesh = ExtResource("7_n7i1a")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="wall7" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 5.45)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall7"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall8" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 9.45)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall8"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall9" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 9.45)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall9"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall10" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 11.7)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall10/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall10"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall11" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 11.7)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall11/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall11"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="wall12" type="Node3D" parent="tutorial/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.7)
+
+[node name="WallDoorway" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall12"]
+mesh = ExtResource("9_k1hdb")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall12"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="tutorial/kitchen_walls/wall12/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+depth = 0.499
+polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
+
+[node name="plates" type="Node3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
+script = ExtResource("7_k1hdb")
+
+[node name="objective_plate1" type="StaticBody3D" parent="tutorial/plates" groups=["look_at_plates"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45245, 0, 0)
+
+[node name="Plate" type="MeshInstance3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+mesh = ExtResource("14_q76tg")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0849619, 0.0236208)
+shape = SubResource("BoxShape3D_w6ly8")
+
+[node name="order_time" type="Timer" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+wait_time = 1000.0
+
+[node name="Label3D" type="Label3D" parent="tutorial/plates/objective_plate1" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, 0, -0.1, 0.53)
+
+[node name="plate_stand" type="StaticBody3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 2.823, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="tutorial/plate_stand"]
+transform = Transform3D(1, 0, 0, 0, 0.999997, 1.49012e-08, 0, -1.49012e-08, 0.999997, 0, 0, -0.237305)
+material_override = SubResource("StandardMaterial3D_qrdq4")
+size = Vector3(12, 0.4, 1.47461)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/plate_stand"]
+shape = SubResource("BoxShape3D_xfqyr")
+
+[node name="houses" type="Node3D" parent="tutorial" groups=["keep"]]
+
+[node name="A1" type="Area3D" parent="tutorial/houses"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.74744)
+script = ExtResource("24_u7kri")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/houses/A1"]
+shape = SubResource("BoxShape3D_u7kri")
+
+[node name="Label3D" type="Label3D" parent="tutorial/houses/A1"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
+text = "A1"
+
+[node name="house" parent="tutorial/houses/A1" instance=ExtResource("10_b1m2q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
+
+[node name="floor" type="CSGBox3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+use_collision = true
+collision_layer = 3
+size = Vector3(12, 0.195, 12)
+
+[node name="tutorial_text" type="Label3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
+text = "Let's play a game, come a
+ little closer with WASD and SPACE"
+
+[node name="Area3D" type="Area3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95656)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 1.04077, -0.552002)
+shape = SubResource("BoxShape3D_hpiwi")
+
+[node name="Area3D2" type="Area3D" parent="tutorial" groups=["keep"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.380768, 0.969254, 4.78852)
+shape = SubResource("BoxShape3D_obwhl")
+
+[node name="Area3D3" type="Area3D" parent="tutorial" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.979594, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/Area3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0360718, 1.28512, 0)
+shape = SubResource("BoxShape3D_vjo16")
+
 [node name="dine_in" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, -128)
 
@@ -1118,15 +1165,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/volcano_lava"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
 shape = SubResource("BoxShape3D_h6gec")
-
-[node name="underwater" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
-
-[node name="floor" type="CSGBox3D" parent="underwater"]
-material_override = SubResource("StandardMaterial3D_v44qx")
-use_collision = true
-collision_layer = 3
-size = Vector3(100, 0.195, 100)
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -1309,13 +1347,6 @@ wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
-[connection signal="objective" from="tutorial/plates" to="." method="_on_objective_plate_objective"]
-[connection signal="timeout" from="tutorial/plates/objective_plate1/order_time" to="tutorial/plates/objective_plate1" method="_on_order_time_timeout"]
-[connection signal="body_entered" from="tutorial/houses/A1" to="tutorial/houses/A1" method="_on_body_entered"]
-[connection signal="item_entered" from="tutorial/houses/A1" to="." method="_on_house_item_entered"]
-[connection signal="body_entered" from="tutorial/Area3D" to="tutorial/plates" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="tutorial/Area3D2" to="tutorial/plates" method="_on_area_3d_2_body_entered"]
-[connection signal="body_entered" from="tutorial/Area3D3" to="tutorial/plates" method="_on_area_3d_3_body_entered"]
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
 [connection signal="objective_timeout" from="kitchen/plates" to="." method="_on_objective_plate_timeout"]
@@ -1357,6 +1388,14 @@ wait_time = 0.06
 [connection signal="item_entered" from="kitchen/houses/C2" to="." method="_on_house_item_entered"]
 [connection signal="body_entered" from="kitchen/houses/C3" to="kitchen/houses/C3" method="_on_body_entered"]
 [connection signal="item_entered" from="kitchen/houses/C3" to="." method="_on_house_item_entered"]
+[connection signal="body_entered" from="underwater/fish/Area3D" to="underwater/fish" method="_on_area_3d_body_entered"]
+[connection signal="objective" from="tutorial/plates" to="." method="_on_objective_plate_objective"]
+[connection signal="timeout" from="tutorial/plates/objective_plate1/order_time" to="tutorial/plates/objective_plate1" method="_on_order_time_timeout"]
+[connection signal="body_entered" from="tutorial/houses/A1" to="tutorial/houses/A1" method="_on_body_entered"]
+[connection signal="item_entered" from="tutorial/houses/A1" to="." method="_on_house_item_entered"]
+[connection signal="body_entered" from="tutorial/Area3D" to="tutorial/plates" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="tutorial/Area3D2" to="tutorial/plates" method="_on_area_3d_2_body_entered"]
+[connection signal="body_entered" from="tutorial/Area3D3" to="tutorial/plates" method="_on_area_3d_3_body_entered"]
 [connection signal="body_entered" from="volcano/volcano_lava" to="." method="_on_volcano_lava_body_entered"]
 [connection signal="looking_recipe" from="player_single" to="." method="looking_recipe"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
