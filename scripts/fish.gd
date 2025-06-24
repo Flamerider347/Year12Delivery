@@ -23,13 +23,15 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		if global_position.x > 120 and global_position.z > 150:
 			get_target()
+			if not target_rigid:
+				target = false
 
 func get_target():
 	$jaws_theme.play()
 	speed = 5
 	var rigid_list = []
 	for i in $"../..".get_children():
-		if is_instance_valid(i) and i is RigidBody3D and i.type != "knife":
+		if is_instance_valid(i) and i is RigidBody3D and i.type != "knife" and i != $"../../player_single".held_object:
 			rigid_list.append(i)
 
 	if rigid_list.size() > 0:
@@ -50,3 +52,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		body.queue_free()
 		target_rigid = null
 		run_away()
+
+
+func _doorway_entered(body: Node3D) -> void:
+	print("worked")
+	if body.name == "fish":
+		look_at(nav.target_position)
+		rotation_degrees.x = 0
+		rotation_degrees.z = 0

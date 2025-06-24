@@ -308,7 +308,7 @@ func map_select():
 	var random_map = map_keys[level-1]
 	current_map = maps[random_map]
 	current_map.show()
-	$kitchen.position = current_map.position + Vector3(0,0.2,0)
+	$kitchen.position = current_map.position + Vector3(0,0.1,0)
 	if player_count == 1 :
 		$player_single.position = current_map.position + Vector3(0,1.15,3)
 	if player_count == 2:

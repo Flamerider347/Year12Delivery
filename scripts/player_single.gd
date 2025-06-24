@@ -114,7 +114,6 @@ func movement(delta):
 	var joy_input = Vector2(
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_X),
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_Y),)
-
 	if joy_input.length() < 0.1:
 		joy_input = Vector2.ZERO
 
