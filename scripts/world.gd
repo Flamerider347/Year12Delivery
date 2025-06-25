@@ -219,6 +219,8 @@ func _physics_process(_delta: float) -> void:
 				orders[i] = 2
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("can_chop"):
+		$"SFX/knife chopping".global_position = body.global_position
+		$"SFX/knife chopping".play()
 		if body.type == "bun":
 			if is_tutorial:
 				$tutorial/plates.cut_bun()

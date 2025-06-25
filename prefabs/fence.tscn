@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_31vgw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yl6jf"]
-size = Vector3(3.26196, 2.96246, 0.163086)
+size = Vector3(4.54254, 4.00868, 0.163086)
 
 [node name="fence" type="Node3D"]
 
@@ -16,5 +16,5 @@ surface_material_override/0 = ExtResource("2_31vgw")
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45056, 1.47221, -0.0268555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34683, 1.33506, -0.0268555)
 shape = SubResource("BoxShape3D_yl6jf")
