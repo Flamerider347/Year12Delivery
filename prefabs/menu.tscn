@@ -88,14 +88,20 @@ text = "Enter
 "
 
 [node name="level_select" type="Node2D" parent="CanvasLayer"]
-visible = false
+
+[node name="level_0" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 860.0
+offset_top = 330.39
+offset_right = 1060.0
+offset_bottom = 424.39
+text = "Tutorial"
 
 [node name="level_1" type="Button" parent="CanvasLayer/level_select"]
 offset_left = 860.0
 offset_top = 430.0
 offset_right = 1060.0
 offset_bottom = 480.0
-text = "Tutorial"
+text = "Level 1"
 
 [node name="level_2" type="Button" parent="CanvasLayer/level_select"]
 offset_left = 860.0
@@ -542,6 +548,7 @@ text = "[center][u]Burguire[/u]
 metadata/_edit_use_anchors_ = true
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -662,6 +669,7 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
 [connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
+[connection signal="pressed" from="CanvasLayer/level_select/level_0" to="." method="_on_level_0"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_2" to="." method="_on_level_2"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_3" to="." method="_on_level_3"]

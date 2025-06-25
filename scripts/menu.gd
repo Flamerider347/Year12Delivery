@@ -102,8 +102,11 @@ func _on_1_player() -> void:
 func _on_2_players() -> void:
 	$"..".player_count = 2
 
-func _on_level_1() -> void:
+func _on_level_0() -> void:
 	$"..".level = 0
+	_on_play_level_pressed()
+func _on_level_1() -> void:
+	$"..".level = 1
 	_on_play_level_pressed()
 
 func _on_level_2() -> void:

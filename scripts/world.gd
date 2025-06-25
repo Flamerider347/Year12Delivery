@@ -54,10 +54,10 @@ var bench_summoning = {
 }
 @onready var maps = {
 	"tutorial" : $dine_in,
+	"dine_in" : $dine_in,
 	"volcano" : $volcano,
 	"underwater" : $underwater,
 	"siberia" : $siberia,
-	"dine_in" : $dine_in
 }
 var ingredients = {
 "potato": preload("res://prefabs/potato_chopped.tscn"),
@@ -330,7 +330,7 @@ func map_select():
 	for i in maps.keys():
 		maps[i].hide()
 	var map_keys = maps.keys()
-	var random_map = map_keys[level-1]
+	var random_map = map_keys[level]
 	current_map = maps[random_map]
 	current_map.show()
 	$kitchen.position = current_map.position
