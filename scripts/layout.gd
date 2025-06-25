@@ -22,7 +22,7 @@ var bench_costs = {
 	"bin" : 5,
 	"delivery_table" : 10
 }
-@onready var benches =$"../../..".benches
+@onready var benches = $"../../..".benches
 func _ready() -> void:
 	setup()
 func setup():
@@ -62,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 		$dragging_bench.hide()
 
 func money_bench_check():
-	for i in $layout_benches.get_children():
+	for i in $layout_shop.get_children():
 		if str(i.name) in bench_costs.keys():
 			if $"../../..".money < bench_costs[str(i.name)]:
 				i.hide()
@@ -112,17 +112,32 @@ func _on_item_purchasable(item,item_cost) -> void:
 		assign_layout_names()
 
 
+
+func tutorial_text():
+		if tutorial_step == 1:
+			$layout_tutorial/tutorial_text.text = "The upgrades menu allows you to buy benches and more (just benches rn) with money (in the top left)."
+		if tutorial_step == 2:
+			$layout_tutorial/tutorial_text.text = "Recipes show you your recipes (next sprint you'll be able to select recipes to make)."
+		if tutorial_step == 3:
+			$layout_tutorial/tutorial_text.text = "Drag the icons in the bottom right above any tile to replace the tile, but building costs money."
+		if tutorial_step == 4:
+			$layout_tutorial/tutorial_text.text = "If you can't afford a tile, it'll disappear."
+		if tutorial_step == 5:
+			$layout_tutorial/tutorial_text.text = "The ? in the top right can reopen the tutorial if you get stuck."
+
 func _on_open_tutorial() -> void:
 	$layout_tutorial.show()
 	tutorial_step = 1
-
-
+	tutorial_text()
+	
 func _on_back_pressed() -> void:
 	if tutorial_step > 1:
 		tutorial_step -= 1
+		tutorial_text()
 
 func _on_next_pressed() -> void:
-	if tutorial_step < 8:
+	if tutorial_step < 5:
 		tutorial_step += 1
+		tutorial_text()
 func _on_close_pressed() -> void:
 	$layout_tutorial.hide()
