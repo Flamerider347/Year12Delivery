@@ -718,29 +718,24 @@ text = "Options menu"
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
 
 [node name="credits" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/credits"]
-offset_left = 616.0
-offset_top = 29.0
-offset_right = 1566.0
-offset_bottom = 1455.0
-scale = Vector2(0.725, 0.725)
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 1723.0
+offset_bottom = 1427.0
 text = "Lead Programmer - Hayden Clemence
 Lead Designer - Benjamin Blakie
 Lead Artist - Aine O'Connor
-
 Assistant Programmer - Benjamin Wray
 Assistant Designer - Minjun Cho
 
 Special thanks to playtesters:
 Oliver Grace
-Benjamin Gorman
-Finn Tan
+Benjamin Gorman      
 Mathew Thomas
-Cullen & Katrina Lai
-Mr. Rodkiss
-Mr O'Sullivan"
+Cullen & Katrina Lai             
+"
 
 [node name="return" type="Button" parent="CanvasLayer/credits"]
 offset_left = 1421.0
@@ -749,7 +744,18 @@ offset_right = 1907.0
 offset_bottom = 104.0
 text = "Return to main menu"
 
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/credits"]
+offset_left = 610.065
+offset_top = 658.0
+offset_right = 1407.06
+offset_bottom = 1039.0
+text = "Jess Wiliams
+Finn Tan
+Mr. Rodkiss
+Mr O'Sullivan"
+
 [node name="options" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="return" type="Button" parent="CanvasLayer/options"]
 offset_left = 1421.0
