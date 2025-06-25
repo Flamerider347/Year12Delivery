@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvyhf3kno28cu"]
 
-[ext_resource type="ArrayMesh" uid="uid://nmtn85mpggmb" path="res://assets/createdassets/house1.obj" id="2_o8sle"]
+[ext_resource type="ArrayMesh" path="res://assets/createdassets/housetrial.obj" id="1_o8sle"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_upbwm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8sle"]
@@ -16,7 +16,7 @@ shape = SubResource("BoxShape3D_o8sle")
 
 [node name="house_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
-mesh = ExtResource("2_o8sle")
+mesh = ExtResource("1_o8sle")
 surface_material_override/0 = ExtResource("2_upbwm")
 
 [node name="Label3D" type="Label3D" parent="."]
