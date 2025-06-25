@@ -2,6 +2,7 @@ extends Node2D
 var editing_bench = null
 var bench_type = null
 var benches_bought = 0
+var tutorial_step = 1
 var bench_type_sprites = {
 	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
 	"bin" : preload("res://assets/Sprint 1 Icons for benches/Bin Crate.png"),
@@ -109,3 +110,20 @@ func _on_item_purchasable(item,item_cost) -> void:
 				$layout_benches.find_child(i).hide()
 		$"../../..".money -= item_cost
 		assign_layout_names()
+
+
+func _on_open_tutorial() -> void:
+	$layout_tutorial.show()
+	tutorial_step = 1
+
+
+func _on_back_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_next_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_close_pressed() -> void:
+	pass # Replace with function body.

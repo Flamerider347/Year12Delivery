@@ -4,14 +4,14 @@
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_upbwm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8sle"]
-size = Vector3(4.025, 3.98541, 5.99402)
+size = Vector3(4.71214, 3.98541, 5.18962)
 
 [node name="house" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8735e-15, 2.00351, 0.00421143)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09965, 2.00351, 0.0762408)
 shape = SubResource("BoxShape3D_o8sle")
 
 [node name="house_mesh" type="MeshInstance3D" parent="."]
