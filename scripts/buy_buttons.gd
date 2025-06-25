@@ -11,7 +11,7 @@ func _on_pressed() -> void:
 	$"../..".setup()
 	var item = self.name.replace("buy_","")
 	if $"../..".benches_bought < 18:
-		if item_cost[item] < $"../../../../..".money:
+		if item_cost[item] <= $"../../../../..".money:
 			item_purchasable.emit(item,item_cost[item])
 			if item == "bench":
 				item_cost[item] *= 1.5
