@@ -9,11 +9,12 @@ var timing = false
 var next_position = 0.1
 var making_plate = "plate_1"
 var recipes_list = {
-	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","lettuce_chopped","bun_top_chopped"],false],
-	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],false],
-	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],false],
-	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","cheese_chopped","carrot_chopped","bun_top_chopped",],false],
 	"burger_test" :[["plate","bun_bottom_chopped","bun_top_chopped"],false],
+	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","lettuce_chopped","bun_top_chopped"],true],
+	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
+	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],true],
+	"burger_cullen" : [["plate","bun_bottom_chopped","tomato_chopped","tomato_chopped","tomato_chopped","bun_top_chopped"],true],
+	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","carrot_chopped","bun_top_chopped",],true],
 	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
 }
 var plate_contents = {
@@ -109,7 +110,7 @@ func update_target(recipe):
 		spawned_item.freeze = true
 		spawned_item.position = Vector3(0,next_position,0)
 		if plate_contents[making_plate][0] in recipes_list_keys:
-			plate_contents[making_plate] = recipes_list[plate_contents[making_plate][0]][0]
+			plate_contents[making_plate] = recipes_list[plate_contents[making_plate][0]][0].duplicate()
 		if spawned_item_hitbox is BoxShape3D:
 			var item_size = spawned_item_hitbox.size.y
 			next_position += item_size

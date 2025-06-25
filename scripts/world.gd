@@ -1,5 +1,6 @@
 extends Node3D
 signal make_order
+var sens_multiplyer = 50
 var grid_exists = true
 var player_exists = true
 var bun_chopped_top = preload("res://prefabs/bun_top_chopped.tscn")
@@ -72,12 +73,32 @@ var benches = {
 	"bench_1" : ["bin",0,true],
 	"bench_2" : ["bench",0,true],
 	"bench_3" : ["chopping_board",0,true],
-	"bench_4" : ["bench",0,true],
+	"bench_4" : ["bun_crate",0,true],
 	"bench_5" : ["fridge",0,true],
-	"bench_6" : ["bun_crate",0,true],
+	"bench_6" : ["bench",0,true],
 	"bench_7" : ["stove",270,true],
 	"bench_8" : ["bench",90,false],
 	"bench_9" : ["bench",270,false],
+	"bench_10" : ["bench",90,false],
+	"bench_11" : ["bench",270,false],
+	"bench_12" : ["bench",90,false],
+	"bench_13" : ["bench",270,false],
+	"bench_14" : ["bench",90,false],
+	"bench_15" : ["bench",270,false],
+	"bench_16" : ["bench",90,false],
+	"bench_17" : ["bench",180,false],
+	"bench_18" : ["delivery_table",180,true],
+	}
+var tutorial_benches = {
+	"bench_1" : ["bin",0,true],
+	"bench_2" : ["bench",0,true],
+	"bench_3" : ["chopping_board",0,true],
+	"bench_4" : ["bench",0,true],
+	"bench_5" : ["fridge",0,true],
+	"bench_6" : ["bench",0,false],
+	"bench_7" : ["stove",270,true],
+	"bench_8" : ["bun_crate",90,false],
+	"bench_9" : ["bun_crate",270,true],
 	"bench_10" : ["bench",90,false],
 	"bench_11" : ["bench",270,false],
 	"bench_12" : ["bench",90,false],
@@ -93,7 +114,6 @@ var unlocked_levels = {
 	"level_2" : true,
 	"level_3" : true,
 	"level_4" : false,
-	"level_5" : false
 }
 func _ready() -> void:
 	$GridContainer.hide()
@@ -120,18 +140,25 @@ func tutorial():
 		$GridContainer.show()
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
-	for i in benches:
-		if benches[i][2] == true:
+	for i in tutorial_benches:
+		if tutorial_benches[i][2] == true:
 			if i in bench_summoning.keys():
-				if benches[i][0] in bench_types:
-					var summoned_bench = bench_types[benches[i][0]].instantiate()
+				if tutorial_benches[i][0] in bench_types:
+					var summoned_bench = bench_types[tutorial_benches[i][0]].instantiate()
 					$tutorial.add_child(summoned_bench)
 					summoned_bench.position = bench_summoning[i][0]
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 	orders_delivered = 0
 	score = 0
 	stars = 5
+	$tutorial/plates.step = 1
+	$tutorial/tutorial_text.text = "Let's play a game, come a
+ little closer with WASD and SPACE"
+	$tutorial/tutorial_text.position = Vector3(-0.5,2.0,0)
+	$tutorial/tutorial_text.rotation_degrees = Vector3.ZERO
 	$tutorial/plates.randomise_objective()
+	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
+	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 
 func _setup():
 	is_tutorial = false
@@ -166,6 +193,8 @@ func _setup():
 	stars = 5
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
+	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
+	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 	if level == 1:
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
@@ -197,6 +226,7 @@ Dangers:
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
+	print($player_single.SENSITIVITY)
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
 		var hours = round(int(time)) / 30
@@ -355,8 +385,6 @@ func _on_day_timer_timeout() -> void:
 
 
 func looking_recipe(looking_at_list):
-	if looking_at_list.size() == 1 and looking_at_list[0] in $kitchen/plates.recipes_list.keys():
-		looking_at_list = $kitchen/plates.recipes_list[looking_at_list[0]]
 	$ui/looking_recipe.show()
 	$ui/looking_recipe.text = ""
 	for i in looking_at_list:

@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://b3cfedxfu3p0v" path="res://assets/Sprint 1 Icons for benches/Stove.png" id="8_21bg4"]
 [ext_resource type="Texture2D" uid="uid://2m65fod6bq5h" path="res://assets/Sprint 1 Icons for benches/Fridge.png" id="9_w8pom"]
 [ext_resource type="Texture2D" uid="uid://lli3sl7i6gjf" path="res://assets/Sprint 1 Icons for benches/Bin Crate.png" id="10_0x0nk"]
+[ext_resource type="Texture2D" uid="uid://d03jmotv4dh77" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-06-25 192059.png" id="10_y5qo3"]
 [ext_resource type="Texture2D" uid="uid://dlo6qp5p14cqh" path="res://assets/Sprint 1 Icons for benches/Chopping Board.png" id="11_8bmnr"]
 [ext_resource type="Texture2D" uid="uid://cw5xjsl48vltp" path="res://assets/Sprint 1 Icons for benches/delivery_plate.png" id="12_73aox"]
-[ext_resource type="Texture2D" uid="uid://b5gkf1cnm1nkr" path="res://assets/Sprint 1 Icons for benches/Bun Crate.png" id="12_dwafa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
 load_path = "res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-a475054c122f995dca554930f34f2a59.ctex"
@@ -39,13 +39,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 860.0
-offset_top = 562.0
-offset_right = 1060.0
-offset_bottom = 622.0
+offset_left = 758.0
+offset_top = 540.0
+offset_right = 958.0
+offset_bottom = 634.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play"
+text = "1 player"
 metadata/_edit_use_anchors_ = true
 
 [node name="players_2" type="Button" parent="CanvasLayer/main_menu"]
@@ -55,19 +55,34 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 769.0
-offset_top = 644.495
-offset_right = 1151.0
-offset_bottom = 738.495
+offset_left = 965.0
+offset_top = 538.0
+offset_right = 1164.0
+offset_bottom = 632.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play Multiplayer (Work in progress, come back sprint 2)"
+text = "2 player"
+
+[node name="options" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 759.0
+offset_top = 640.0
+offset_right = 959.0
+offset_bottom = 734.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options"
+metadata/_edit_use_anchors_ = true
 
 [node name="quit" type="Button" parent="CanvasLayer/main_menu"]
-offset_left = 860.0
-offset_top = 744.475
-offset_right = 1060.0
-offset_bottom = 838.475
+offset_left = 964.0
+offset_top = 542.0
+offset_right = 1164.0
+offset_bottom = 636.0
 text = "Quit"
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/main_menu"]
@@ -87,7 +102,23 @@ offset_bottom = 875.0
 text = "Enter
 "
 
+[node name="credits" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 966.0
+offset_top = 640.0
+offset_right = 1166.0
+offset_bottom = 734.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits"
+metadata/_edit_use_anchors_ = true
+
 [node name="level_select" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="level_0" type="Button" parent="CanvasLayer/level_select"]
 offset_left = 860.0
@@ -124,13 +155,6 @@ offset_right = 1060.0
 offset_bottom = 780.0
 text = "level 4"
 
-[node name="level_5" type="Button" parent="CanvasLayer/level_select"]
-offset_left = 860.0
-offset_top = 830.0
-offset_right = 1060.0
-offset_bottom = 880.0
-text = "level 5"
-
 [node name="return" type="Button" parent="CanvasLayer/level_select"]
 offset_left = 1421.0
 offset_top = 10.0
@@ -163,6 +187,7 @@ text = "Return to Level Select
 "
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -416,7 +441,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
-texture = ExtResource("12_dwafa")
+texture = ExtResource("10_y5qo3")
 
 [node name="delivery_table" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(952, 968)
@@ -675,7 +700,95 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "To level select"
 
+[node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = 161.5
+offset_right = 163.5
+offset_bottom = 255.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options menu"
+
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
+
+[node name="credits" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/credits"]
+offset_left = 616.0
+offset_top = 29.0
+offset_right = 1566.0
+offset_bottom = 1455.0
+scale = Vector2(0.725, 0.725)
+text = "Lead Programmer - Hayden Clemence
+Lead Designer - Benjamin Blakie
+Lead Artist - Aine O'Connor
+
+Assistant Programmer - Benjamin Wray
+Assistant Designer - Minjun Cho
+
+Special thanks to playtesters:
+Oliver Grace
+Benjamin Gorman
+Finn Tan
+Mathew Thomas
+Cullen & Katrina Lai
+Mr. Rodkiss
+Mr O'Sullivan"
+
+[node name="return" type="Button" parent="CanvasLayer/credits"]
+offset_left = 1421.0
+offset_top = 10.0
+offset_right = 1907.0
+offset_bottom = 104.0
+text = "Return to main menu"
+
+[node name="options" type="Node2D" parent="CanvasLayer"]
+
+[node name="return" type="Button" parent="CanvasLayer/options"]
+offset_left = 1421.0
+offset_top = 10.0
+offset_right = 1907.0
+offset_bottom = 104.0
+text = "Return to main menu"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/options"]
+offset_left = 757.0
+offset_top = 487.0
+offset_right = 1164.0
+offset_bottom = 503.0
+min_value = 0.01
+max_value = 10.0
+step = 0.01
+value = 5.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/options"]
+offset_left = 775.0
+offset_top = 369.0
+offset_right = 1146.0
+offset_bottom = 478.0
+text = "Sensitivity: 5.0"
+
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/options"]
+offset_left = 760.0
+offset_top = 614.0
+offset_right = 1167.0
+offset_bottom = 630.0
+min_value = 1.0
+value = 50.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/options"]
+offset_left = 578.0
+offset_top = 506.0
+offset_right = 1342.0
+offset_bottom = 615.0
+text = "Time between burger spawns: 50"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -707,14 +820,15 @@ font_size = 128
 
 [connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
+[connection signal="pressed" from="CanvasLayer/main_menu/options" to="." method="options"]
 [connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
+[connection signal="pressed" from="CanvasLayer/main_menu/credits" to="." method="credits"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_0" to="." method="_on_level_0"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_2" to="." method="_on_level_2"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_3" to="." method="_on_level_3"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_4" to="." method="_on_level_4"]
-[connection signal="pressed" from="CanvasLayer/level_select/level_5" to="." method="_on_level_5"]
 [connection signal="pressed" from="CanvasLayer/level_select/return" to="." method="main_menu"]
 [connection signal="pressed" from="CanvasLayer/build_or_level_menu/play_level" to="." method="_on_play_level_pressed"]
 [connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="layout"]
@@ -805,7 +919,12 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout" method="_on_open_tutorial"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
 [connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/credits/return" to="." method="main_menu"]
+[connection signal="pressed" from="CanvasLayer/options/return" to="." method="main_menu"]
+[connection signal="value_changed" from="CanvasLayer/options/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/options/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]

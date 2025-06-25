@@ -4,10 +4,10 @@ var speed = 0
 var can_pickup = true
 var controlling = false
 var evil = false
+var SENSITIVITY = 0.1
 const WALK_SPEED = 10
 const SPRINT_SPEED = 15
 const JUMP_VELOCITY = 4.5
-const SENSITIVITY = 0.06
 const GRAVITY = 9.81 #ms^-2
 @export var controller_id: int = 0
 @onready var head = $head
@@ -40,8 +40,8 @@ func _setup():
 func _unhandled_input(event):
 	if controlling:
 		if event is InputEventMouseMotion:
-			head.rotate_y(-event.relative.x * SENSITIVITY/20)
-			camera.rotate_x(-event.relative.y * SENSITIVITY/20)
+			head.rotate_y(-event.relative.x * SENSITIVITY/200)
+			camera.rotate_x(-event.relative.y * SENSITIVITY/200)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 			look_recipe()
 		if event.device == controller_id:
@@ -71,6 +71,8 @@ func _unhandled_input(event):
 						$pickup_timer.start()
 						can_pickup = false
 func _physics_process(delta: float):
+	if position.y < -10:
+		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
 	if controlling:
 		if Input.is_action_just_pressed("menu"):
@@ -258,7 +260,10 @@ func look_recipe():
 		var collision_item = lookcast.get_collider()
 		var emitting_collision_item = null
 		if collision_item is RigidBody3D:
-			if collision_item.type:
+			if collision_item.is_in_group("packageable") or collision_item.is_in_group("stackable"):
+				emitting_collision_item = collision_item.contents
+				looking_recipe.emit(emitting_collision_item)
+			elif collision_item.type:
 				emitting_collision_item = [collision_item.type]
 				looking_recipe.emit(emitting_collision_item)
 		if collision_item is StaticBody3D:

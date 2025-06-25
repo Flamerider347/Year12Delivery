@@ -1,17 +1,93 @@
-[gd_scene load_steps=3 format=3 uid="uid://c78jtgxi0ld1l"]
+[gd_scene load_steps=10 format=3 uid="uid://c78jtgxi0ld1l"]
 
-[ext_resource type="ArrayMesh" uid="uid://rs6dw7qecvnp" path="res://assets/kitchenassets/crate_buns.obj" id="1_ipbrf"]
+[ext_resource type="ArrayMesh" uid="uid://bov75hve7me6q" path="res://assets/createdassets/pantry.obj" id="1_3bn08"]
+[ext_resource type="Texture2D" uid="uid://bif4m57k6k2ll" path="res://assets/createdassets/createdtexture.png" id="2_snfhu"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="3_d1g0f"]
+[ext_resource type="ArrayMesh" uid="uid://dqilw3fr8gysy" path="res://assets/createdassets/pantry-leftdoor.obj" id="4_5laas"]
+[ext_resource type="ArrayMesh" uid="uid://bn8du0jl83qml" path="res://assets/createdassets/pantry-rightdoor.obj" id="5_f1jfn"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ipbrf"]
-size = Vector3(2.0062, 0.814331, 1.99927)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enlog"]
+albedo_texture = ExtResource("2_snfhu")
+uv1_scale = Vector3(-0.035, 0.145, 0.015)
+uv1_offset = Vector3(0.71, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s7e28"]
+size = Vector3(1.49757, 0.671875, 1.41711)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ws1ja"]
+size = Vector3(0.813477, 0.923174, 1.49475)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ukro"]
+size = Vector3(0.75769, 0.954803, 1.48499)
 
 [node name="bun_crate" type="Node3D"]
 
-[node name="bun_crate" type="StaticBody3D" parent="." groups=["summoner"]]
+[node name="Pantry" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_3bn08")
+surface_material_override/0 = SubResource("StandardMaterial3D_enlog")
+surface_material_override/1 = SubResource("StandardMaterial3D_enlog")
+surface_material_override/2 = ExtResource("3_d1g0f")
+surface_material_override/3 = ExtResource("3_d1g0f")
+surface_material_override/4 = ExtResource("3_d1g0f")
+surface_material_override/5 = ExtResource("3_d1g0f")
+surface_material_override/6 = ExtResource("3_d1g0f")
+surface_material_override/7 = ExtResource("3_d1g0f")
+surface_material_override/8 = ExtResource("3_d1g0f")
+surface_material_override/9 = ExtResource("3_d1g0f")
+surface_material_override/10 = ExtResource("3_d1g0f")
+surface_material_override/11 = ExtResource("3_d1g0f")
+surface_material_override/12 = ExtResource("3_d1g0f")
+surface_material_override/13 = ExtResource("3_d1g0f")
+surface_material_override/14 = ExtResource("3_d1g0f")
+surface_material_override/15 = ExtResource("3_d1g0f")
+surface_material_override/16 = ExtResource("3_d1g0f")
+surface_material_override/17 = ExtResource("3_d1g0f")
+surface_material_override/18 = ExtResource("3_d1g0f")
+surface_material_override/19 = ExtResource("3_d1g0f")
+surface_material_override/20 = ExtResource("3_d1g0f")
+surface_material_override/21 = ExtResource("3_d1g0f")
+surface_material_override/22 = ExtResource("3_d1g0f")
+surface_material_override/23 = ExtResource("3_d1g0f")
+surface_material_override/24 = ExtResource("3_d1g0f")
+surface_material_override/25 = ExtResource("3_d1g0f")
+surface_material_override/26 = ExtResource("3_d1g0f")
+surface_material_override/27 = ExtResource("3_d1g0f")
+surface_material_override/28 = ExtResource("3_d1g0f")
+
+[node name="bun_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bun_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00144958, 0.400855, -0.000854492)
-shape = SubResource("BoxShape3D_ipbrf")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000928998, 1.91319, -0.209534)
+visible = false
+shape = SubResource("BoxShape3D_s7e28")
 
-[node name="CrateBuns" type="MeshInstance3D" parent="bun_crate"]
-mesh = ExtResource("1_ipbrf")
+[node name="Pantry-leftdoor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0183914, 0, 0.0287138)
+visible = false
+mesh = ExtResource("4_5laas")
+surface_material_override/0 = ExtResource("3_d1g0f")
+
+[node name="Pantry-rightdoor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0969697, 0, 0.00767498)
+visible = false
+mesh = ExtResource("5_f1jfn")
+surface_material_override/0 = ExtResource("3_d1g0f")
+
+[node name="bowl_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.589822, 0.617761, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bowl_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23877, 0.0905008, -0.186096)
+visible = false
+shape = SubResource("BoxShape3D_ws1ja")
+
+[node name="plate_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.573202, 1.07084, 0)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="plate_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131287, -0.37529, -0.190613)
+visible = false
+shape = SubResource("BoxShape3D_5ukro")

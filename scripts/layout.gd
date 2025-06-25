@@ -6,7 +6,7 @@ var tutorial_step = 1
 var bench_type_sprites = {
 	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
 	"bin" : preload("res://assets/Sprint 1 Icons for benches/Bin Crate.png"),
-	"bun_crate" : preload("res://assets/Sprint 1 Icons for benches/Bun Crate.png"),
+	"bun_crate" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-06-25 192059.png"),
 	"chopping_board" : preload("res://assets/Sprint 1 Icons for benches/Chopping Board.png"),
 	"fridge" :preload("res://assets/Sprint 1 Icons for benches/Fridge.png"),
 	"stove" : preload("res://assets/Sprint 1 Icons for benches/Stove.png"),

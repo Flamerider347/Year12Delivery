@@ -38,11 +38,12 @@ func menu_load():
 	$"../GridContainer".hide()
 	$"../ui".hide()
 	hide_everything()
-	main_menu()
-	
+	$name.show()
 	$"CanvasLayer/main_menu/players_1".modulate.a = 0
 	$"CanvasLayer/main_menu/players_2".modulate.a = 0
 	$"CanvasLayer/main_menu/quit".modulate.a = 0
+	$"CanvasLayer/main_menu/options".modulate.a = 0
+	$"CanvasLayer/main_menu/credits".modulate.a = 0
 	for i in $CanvasLayer/level_select.get_children():
 		if str(i.name) in $"..".unlocked_levels.keys():
 			if $"..".unlocked_levels[str(i.name)] == false:
@@ -73,6 +74,8 @@ func _process(delta: float) -> void:
 			$"CanvasLayer/main_menu/players_1".modulate.a += delta
 			$"CanvasLayer/main_menu/players_2".modulate.a += delta
 			$"CanvasLayer/main_menu/quit".modulate.a += delta
+			$"CanvasLayer/main_menu/options".modulate.a += delta
+			$"CanvasLayer/main_menu/credits".modulate.a += delta
 	if spawn:
 		_spawn()
 func _spawn():
@@ -149,6 +152,8 @@ func level_select():
 
 func main_menu():
 	hide_everything()
+	$CanvasLayer/main_menu/LineEdit.hide()
+	$CanvasLayer/main_menu/save_confirm.hide()
 	$name.show()
 	$CanvasLayer/main_menu.show()
 
@@ -241,3 +246,22 @@ func level_select_2() -> void:
 
 func _on_lerp_timer_timeout() -> void:
 	not_toggled = true
+
+
+func credits() -> void:
+	hide_everything()
+	$CanvasLayer/credits.show()
+
+
+func options() -> void:
+	hide_everything()
+	$CanvasLayer/options.show()
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	$CanvasLayer/options/RichTextLabel.text = "Sensitivity: " + str(value)
+
+
+func _on_h_slider_2_value_changed(value:int) -> void:
+	$CanvasLayer/options/RichTextLabel2.text = "Time between burger spawns: " + str(value)
+	$"..".next_spawn_time = value

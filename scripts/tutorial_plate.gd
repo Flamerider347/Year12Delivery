@@ -6,6 +6,7 @@ var delivery_list = ["A1"]
 var delivery_location
 var ingredient_amount = 0
 var timing = false
+var step = 1
 var next_position = 0.1
 var making_plate = "plate_1"
 var recipes_list = {
@@ -137,56 +138,72 @@ func clear():
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body is CharacterBody3D:
-		$"../tutorial_text".text = "Cool, Now Look up, you're gonna make that!
-		Get a plate from the plate thing using LEFT CLICK and 
-		put the plate on the bench 
-		"
-		$"../Area3D".queue_free()
+	if step == 1:
+		if body is CharacterBody3D:
+			$"../tutorial_text".text = "Cool, Now Look up, you're gonna make that!
+			Get a plate from the pantry to your left using LEFT CLICK and 
+			put the plate on the bench 
+			"
+			step = 2
 
 func _on_area_3d_2_body_entered(body: Node3D) -> void:
-	if body is RigidBody3D:
-		if body.type == "plate":
-			$"../tutorial_text".text = "Great, now get a bun, Also using LEFT CLICK 
-			and place it on the Chopping board by pressing LEFT CLICK
-			"
-			$"../Area3D2".queue_free()
+	if step <= 2:
+		if body is RigidBody3D:
+			if body.type == "plate":
+				$"../tutorial_text".text = "Great, now get a bun, Also using LEFT CLICK 
+				and place it on the Chopping board by pressing LEFT CLICK
+				"
+				step = 3
 
 
 func _on_area_3d_3_body_entered(body: Node3D) -> void:
-	if body is RigidBody3D:
-		if body.type == "bun":
-			$"../tutorial_text".text = "Great, now pick up the KNIFE using LEFT CLICK
-			"
-			$"../Area3D3".queue_free()
+	if step <= 3:
+		if body is RigidBody3D:
+			if body.type == "bun":
+				$"../tutorial_text".text = "Great, now pick up the KNIFE using LEFT CLICK
+				"
+				step = 4
 	
 func pickup_knife():
-	$"../tutorial_text".text = "Great, now SWING the KNIFE into the BUN to cut it
+	if step <= 4:
+		$"../tutorial_text".text = "Great, now SWING the KNIFE into the BUN to cut it
 			"
+		step = 5
 func cut_bun():
-	$"../tutorial_text".text = "Now open the fridge using LEFT CLICK, and prepare the tomato.
-	(Looking at the recipies tell you what's in them.)
-			"
+	if step <= 5:
+		$"../tutorial_text".text = "Now open the fridge using LEFT CLICK, and prepare the tomato.
+		(Looking at the recipies above will tell you what's in them.)
+				"
+		step = 6
 func cut_tomato():
-	$"../tutorial_text".text = "Amazing, now assemble the burger using LEFT CLICK, you must
-	start with a plate, then a bottom bun and finish
-	with a top bun, but the filling order doesn't matter.
-	Make sure you're looking at the existing item stack, not above it when stacking.
-			"
+	if step <= 6:
+		$"../tutorial_text".text = "Amazing, now pick up the bottom bun and assemble the 
+		burger on the plate using LEFT CLICK, you must look at the plate.
+		Your crosshair will change to arrows when you can stack something.
+				"
+		step = 7
 
 func complete_burger():
-	$"../tutorial_text".text = "You're really getting this!
-	Put the completed burger on the plate behind you.
-			"
+	if step <= 7:
+		$"../tutorial_text".text = "You're really getting this!
+		Put the completed burger on the plate behind you.
+		recipes don't need things placed in a specific order, but you always start 
+		with a plate or bowl (then a bottom bun for burgers, finishing with top bun)
+				"
+		step = 8
 func delivered():
-	$"../tutorial_text".position = Vector3(4,2,10.3)
-	$"../tutorial_text".rotation_degrees.y = 180
-	$"../tutorial_text".text = "Now pickup the pot using LEFT CLICK
-	and deliver it to the house on the pot (A1)
-	(There will be more than one house outside)
-			"
+	if step <= 8:
+		$"../tutorial_text".position = Vector3(4,2,10.3)
+		$"../tutorial_text".rotation_degrees.y = 180
+		$"../tutorial_text".text = "Now pickup the pot using LEFT CLICK
+		and deliver it to the house on the pot (A1)
+		(There will be more than one house outside)
+				"
+		step = 9
 func delivered_to_house():
+	if step <= 9:
 		$"../tutorial_text".position = Vector3(0,2,10.3)
 		$"../tutorial_text".text = "You Beat the tutorial!
 		Press ESCAPE to return to menu at any time
 			"
+		step = 1

@@ -24,7 +24,7 @@ size = Vector3(1, 0.646027, 0.649841)
 size = Vector3(0.600586, 0.777466, 0.678955)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_56ary"]
-size = Vector3(0.51, 2.5, 2.001)
+size = Vector3(0.5, 2.5, 2.001)
 
 [node name="fridge" type="Node3D"]
 
@@ -80,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00318, 0, 0.49724)
 script = ExtResource("2_252b1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="fridge_door"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.00611, 1.25239, 0.320662)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.006, 1.252, 0.251)
 shape = SubResource("BoxShape3D_56ary")
 
 [node name="FridgeBDoor" type="MeshInstance3D" parent="fridge_door"]

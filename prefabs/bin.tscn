@@ -1,18 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://yspicyt461rh"]
+[gd_scene load_steps=4 format=3 uid="uid://yspicyt461rh"]
 
 [ext_resource type="Script" uid="uid://b2diqkkrnlhvt" path="res://scripts/bin.gd" id="1_7ksbf"]
 [ext_resource type="ArrayMesh" uid="uid://s6dxpx2ietsv" path="res://assets/kitchenassets/crate.obj" id="2_b5cwr"]
-[ext_resource type="ArrayMesh" uid="uid://dku845kqwnd76" path="res://assets/kitchenassets/bowl.obj" id="3_p60on"]
-[ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="4_pe1ra"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8bx52"]
 size = Vector3(1, 1, 1.12305)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h245e"]
-size = Vector3(1, 0.299942, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cn0c2"]
-size = Vector3(1, 0.101013, 1)
 
 [node name="bin" type="StaticBody3D"]
 script = ExtResource("1_7ksbf")
@@ -39,26 +31,5 @@ shape = SubResource("BoxShape3D_8bx52")
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0.11, 0)
 text = "Bin"
-
-[node name="bowl_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="bowl_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14991, 0)
-shape = SubResource("BoxShape3D_h245e")
-
-[node name="Bowl" type="MeshInstance3D" parent="bowl_crate"]
-mesh = ExtResource("3_p60on")
-
-[node name="plate_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.503, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="plate_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0516052, 0)
-shape = SubResource("BoxShape3D_cn0c2")
-
-[node name="Plate" type="MeshInstance3D" parent="plate_crate"]
-mesh = ExtResource("4_pe1ra")
-skeleton = NodePath("../..")
 
 [connection signal="body_entered" from="incinerator" to="." method="_on_incinerator_body_entered"]
