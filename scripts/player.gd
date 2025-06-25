@@ -114,6 +114,14 @@ func movement(delta):
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_X),
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_Y),)
 
+# The walking - current bug with the sound, it will not stop playing.
+	#if velocity.length() < 0.1:
+		#$"../../../../SFX/player walking".stop()
+		#
+	#if velocity.length() > 0.1:
+		#if not $"../../../../SFX/player walking".is_playing():
+			#$"../../../../SFX/player walking".play()
+
 	if joy_input.length() < 0.2:
 		joy_input = Vector2.ZERO
 

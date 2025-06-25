@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkpp5s0p8gyth"]
+
+[ext_resource type="ArrayMesh" uid="uid://38pv6eb2bv2b" path="res://assets/kitchenassets/floor_kitchen_small.obj" id="1_vdglm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_siebr"]
+size = Vector3(2.03078, 0.506348, 2.00238)
+
+[node name="kitchen floor" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vdglm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00130463, 0.246826, -0.00131226)
+shape = SubResource("BoxShape3D_siebr")
