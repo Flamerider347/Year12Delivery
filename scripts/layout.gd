@@ -118,12 +118,11 @@ func _on_open_tutorial() -> void:
 
 
 func _on_back_pressed() -> void:
-	pass # Replace with function body.
-
+	if tutorial_step > 1:
+		tutorial_step -= 1
 
 func _on_next_pressed() -> void:
-	pass # Replace with function body.
-
-
+	if tutorial_step < 8:
+		tutorial_step += 1
 func _on_close_pressed() -> void:
-	pass # Replace with function body.
+	$layout_tutorial.hide()

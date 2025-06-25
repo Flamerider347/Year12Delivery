@@ -163,7 +163,6 @@ text = "Return to Level Select
 "
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -547,6 +546,41 @@ text = "[center][u]Burguire[/u]
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
+
+[node name="Bench" type="Sprite2D" parent="CanvasLayer/layout/layout_tutorial"]
+position = Vector2(427.75, 867)
+scale = Vector2(6.4845, 3)
+texture = ExtResource("7_84sbs")
+
+[node name="back" type="Button" parent="CanvasLayer/layout/layout_tutorial"]
+offset_left = 13.0
+offset_top = 965.0
+offset_right = 120.0
+offset_bottom = 1059.0
+text = "Back"
+
+[node name="next" type="Button" parent="CanvasLayer/layout/layout_tutorial"]
+offset_left = 156.0
+offset_top = 963.0
+offset_right = 263.0
+offset_bottom = 1057.0
+text = "Next"
+
+[node name="close" type="Button" parent="CanvasLayer/layout/layout_tutorial"]
+offset_left = 323.0
+offset_top = 960.0
+offset_right = 430.0
+offset_bottom = 1054.0
+text = "Close"
+
+[node name="show_tutorial" type="Button" parent="CanvasLayer/layout"]
+offset_left = 1646.0
+offset_top = 7.0
+offset_right = 1686.0
+offset_bottom = 101.0
+text = "?"
+
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
 visible = false
 
@@ -759,6 +793,10 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
 [connection signal="item_purchasable" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout" method="_on_item_purchasable"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout" method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout" method="_on_next_pressed"]
+[connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout" method="_on_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout" method="_on_open_tutorial"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
 [connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
