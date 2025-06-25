@@ -208,7 +208,11 @@ func stack():
 			seecast.target_position.z = -3
 			for i in $"../kitchen/plates".recipes_list:
 				if i[1]:
-					if stack_bottom.contents == $"../kitchen/plates".recipes_list[i][0]:
+					var sorted_list = $"../kitchen/plates".recipes_list[i][0].duplicate()
+					sorted_list.sort()
+					var sorted_contents = stack_bottom.contents.duplicate()
+					sorted_contents.sort()
+					if sorted_list == sorted_contents:
 						if i in ingredient_scenes:
 							var spawned_recipe = ingredient_scenes[i].instantiate()
 							$"..".add_child(spawned_recipe)
