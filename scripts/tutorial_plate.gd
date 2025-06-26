@@ -136,7 +136,12 @@ func clear():
 		plates[plate].find_child("Label3D").text = ""
 		plates[plate].find_child("order_time").stop()
 
-
+func start():
+	$"../tutorial_text".position = Vector3(-0.5,2.0,0)
+	$"../tutorial_text".rotation_degrees = Vector3.ZERO
+	$"../tutorial_text".text = "Let's play a game, come a
+ little closer with WASD and SPACE
+			"
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if step == 1:
 		if body is CharacterBody3D:
@@ -144,10 +149,12 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			Get a plate from the pantry to your left using LEFT CLICK and 
 			put the plate on the bench 
 			"
+			$"../tutorial_text".position = Vector3(-0.5,2.0,0)
+			$"../tutorial_text".rotation_degrees = Vector3.ZERO
 			step = 2
 
 func _on_area_3d_2_body_entered(body: Node3D) -> void:
-	if step <= 2:
+	if step == 2:
 		if body is RigidBody3D:
 			if body.type == "plate":
 				$"../tutorial_text".text = "Great, now get a bun, Also using LEFT CLICK 
@@ -157,7 +164,7 @@ func _on_area_3d_2_body_entered(body: Node3D) -> void:
 
 
 func _on_area_3d_3_body_entered(body: Node3D) -> void:
-	if step <= 3:
+	if step == 3:
 		if body is RigidBody3D:
 			if body.type == "bun":
 				$"../tutorial_text".text = "Great, now pick up the KNIFE using LEFT CLICK
@@ -165,18 +172,18 @@ func _on_area_3d_3_body_entered(body: Node3D) -> void:
 				step = 4
 	
 func pickup_knife():
-	if step <= 4:
+	if step == 4:
 		$"../tutorial_text".text = "Great, now SWING the KNIFE into the BUN to cut it
 			"
 		step = 5
 func cut_bun():
-	if step <= 5:
+	if step == 5:
 		$"../tutorial_text".text = "Now open the fridge using LEFT CLICK, and prepare the tomato.
 		(Looking at the recipies above will tell you what's in them.)
 				"
 		step = 6
 func cut_tomato():
-	if step <= 6:
+	if step == 6:
 		$"../tutorial_text".text = "Amazing, now pick up the bottom bun and assemble the 
 		burger on the plate using LEFT CLICK, you must look at the plate.
 		Your crosshair will change to arrows when you can stack something.
@@ -184,7 +191,7 @@ func cut_tomato():
 		step = 7
 
 func complete_burger():
-	if step <= 7:
+	if step == 7:
 		$"../tutorial_text".text = "You're really getting this!
 		Put the completed burger on the plate behind you.
 		recipes don't need things placed in a specific order, but you always start 
@@ -192,7 +199,7 @@ func complete_burger():
 				"
 		step = 8
 func delivered():
-	if step <= 8:
+	if step == 8:
 		$"../tutorial_text".position = Vector3(4,2,10.3)
 		$"../tutorial_text".rotation_degrees.y = 180
 		$"../tutorial_text".text = "Now pickup the pot using LEFT CLICK
@@ -201,7 +208,7 @@ func delivered():
 				"
 		step = 9
 func delivered_to_house():
-	if step <= 9:
+	if step == 9:
 		$"../tutorial_text".position = Vector3(0,2,10.3)
 		$"../tutorial_text".text = "You Beat the tutorial!
 		Press ESCAPE to return to menu at any time

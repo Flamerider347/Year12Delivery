@@ -7,7 +7,7 @@
 height = 0.200317
 radius = 0.35
 
-[node name="meat_burnt" type="RigidBody3D" groups=["can_stack", "meat", "pickupable"]]
+[node name="meat_burnt" type="RigidBody3D" groups=["meat", "pickupable"]]
 script = ExtResource("1_66nok")
 
 [node name="FoodIngredientBurgerTrash" type="MeshInstance3D" parent="."]

@@ -91,7 +91,7 @@ func _physics_process(delta: float):
 					var summon_type = seecast.get_collider().name.replace("_crate","")
 					summon(summon_type)
 			if held_object and can_pickup:
-				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
+				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 					stack()
 				else:
 					drop(held_object)
@@ -247,7 +247,7 @@ func crosshair_change():
 				$"../ui/Sprite2D".play("default")
 	if held_object:
 		if stackcast.get_collider() != null:
-			if stackcast.get_collider().is_in_group("stackable"):
+			if held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 				$"../ui/Sprite2D".play("stacking")
 			else:
 				$"../ui/Sprite2D".play("default")

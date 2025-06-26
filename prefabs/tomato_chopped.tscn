@@ -7,7 +7,7 @@
 height = 0.06
 radius = 0.38
 
-[node name="tomato_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
+[node name="tomato_chopped" type="RigidBody3D" groups=["can_stack_plate", "pickupable"]]
 script = ExtResource("1_ak4ju")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

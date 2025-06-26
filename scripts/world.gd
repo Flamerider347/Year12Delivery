@@ -151,11 +151,7 @@ func tutorial():
 	orders_delivered = 0
 	score = 0
 	stars = 5
-	$tutorial/plates.step = 1
-	$tutorial/tutorial_text.text = "Let's play a game, come a
- little closer with WASD and SPACE"
-	$tutorial/tutorial_text.position = Vector3(-0.5,2.0,0)
-	$tutorial/tutorial_text.rotation_degrees = Vector3.ZERO
+	$tutorial/plates.start()
 	$tutorial/plates.randomise_objective()
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1

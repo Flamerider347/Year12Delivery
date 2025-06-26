@@ -11,7 +11,7 @@ size = Vector3(0.647095, 0.43811, 0.621704)
 albedo_texture = ExtResource("3_yavsd")
 uv1_offset = Vector3(1.625, 0, 0)
 
-[node name="potato_chopped" type="RigidBody3D" groups=["can_stack", "pickupable"]]
+[node name="potato_chopped" type="RigidBody3D" groups=["can_stack_bowl", "pickupable"]]
 script = ExtResource("1_shd0e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

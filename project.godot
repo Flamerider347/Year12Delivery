@@ -34,7 +34,6 @@ can_chop=""
 summoner=""
 stackable=""
 hitbox=""
-can_stack=""
 knife=""
 keep=""
 cookable=""
@@ -45,6 +44,8 @@ deliverable=""
 packageable=""
 look_at=""
 look_at_plates=""
+can_stack_bowl=""
+can_stack_plate=""
 
 [gui]
 

@@ -159,7 +159,7 @@ height = 1.99
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tlwt5"]
 
-[node name="world" type="Node3D"]
+[node name="world" type="Node3D" groups=["can_stack_plate"]]
 script = ExtResource("1_k40i2")
 
 [node name="kitchen" type="Node3D" parent="."]

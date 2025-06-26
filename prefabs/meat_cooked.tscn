@@ -7,7 +7,7 @@
 height = 0.200317
 radius = 0.35
 
-[node name="meat_cooked" type="RigidBody3D" groups=["can_stack", "choppable", "cookable", "meat", "pickupable"]]
+[node name="meat_cooked" type="RigidBody3D" groups=["can_stack_plate", "choppable", "cookable", "meat", "pickupable"]]
 script = ExtResource("1_1gbyy")
 
 [node name="FoodIngredientBurgerCooked" type="MeshInstance3D" parent="."]
