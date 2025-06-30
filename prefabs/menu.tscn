@@ -498,6 +498,7 @@ text = "recipes"
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
+visible = false
 
 [node name="buy_bench" type="Button" parent="CanvasLayer/layout/upgrades"]
 offset_left = 55.0
@@ -517,6 +518,13 @@ scale = Vector2(0.705, 0.705)
 text = "Buy bench 8
 -Adds another customisable bench!"
 metadata/_edit_use_anchors_ = true
+
+[node name="buy_star" type="Button" parent="CanvasLayer/layout/upgrades"]
+offset_left = 53.0
+offset_top = 556.0
+offset_right = 245.0
+offset_bottom = 632.0
+script = ExtResource("7_73aox")
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
 visible = false
@@ -571,6 +579,7 @@ text = "[center][u]Burguire[/u]
 metadata/_edit_use_anchors_ = true
 
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
+visible = false
 
 [node name="Bench" type="Sprite2D" parent="CanvasLayer/layout/layout_tutorial"]
 position = Vector2(427.75, 866.5)
@@ -613,7 +622,6 @@ offset_bottom = 101.0
 text = "?"
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -631,14 +639,15 @@ anchor_bottom = 0.5
 offset_left = -413.5
 offset_top = -375.5
 offset_right = 416.5
-offset_bottom = 189.5
+offset_bottom = 288.5
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[u]SCORE:
 ORDERS DELIVERED:
 STARS REMAINING:
-SCORE MULTIPLYER:
+SCORE MULTIPLIER:
+DIFFICULTY MULTIPIER:
 TOTAL SCORE:
 MONEY: [/u]
 "
@@ -657,7 +666,23 @@ scale = Vector2(1.5, 1.5)
 bbcode_enabled = true
 text = "[shake rate=20.0 level=5 connected=1][b]You lost![/b]"
 
+[node name="text_you_exited" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -202.5
+offset_top = 1.0
+offset_right = 67.5
+offset_bottom = 115.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[shake rate=20.0 level=5 connected=1][b]Day Exited![/b]"
+
 [node name="text_you_won" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -677,28 +702,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = 260.0
-offset_right = 62.0
-offset_bottom = 354.0
+offset_left = 307.5
+offset_top = 350.5
+offset_right = 629.5
+offset_bottom = 444.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "To build menu"
-
-[node name="level_select" type="Button" parent="CanvasLayer/end_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.0
-offset_top = 360.0
-offset_right = 62.0
-offset_bottom = 454.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "To level select"
 
 [node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -707,17 +717,48 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -158.5
-offset_top = 161.5
-offset_right = 163.5
-offset_bottom = 255.5
+offset_left = -338.5
+offset_top = 350.5
+offset_right = -16.5
+offset_bottom = 444.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Options menu"
 
+[node name="level_select" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = 351.5
+offset_right = 293.5
+offset_bottom = 445.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "To level select"
+
+[node name="main_menu" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -675.5
+offset_top = 348.5
+offset_right = -353.5
+offset_bottom = 442.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main menu"
+
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
 
 [node name="credits" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/credits"]
 offset_left = 11.0
@@ -728,7 +769,7 @@ text = "Lead Programmer - Hayden Clemence
 Lead Designer - Benjamin Blakie
 Lead Artist - Aine O'Connor
 Assistant Programmer - Benjamin Wray
-Assistant Designer - Minjun Cho
+Assistant Designer - Finn Tan
 
 Special thanks to playtesters:
 Oliver Grace
@@ -750,7 +791,7 @@ offset_top = 658.0
 offset_right = 1407.06
 offset_bottom = 1039.0
 text = "Jess Wiliams
-Finn Tan
+Minjun Cho
 Mr. Rodkiss
 Mr O'Sullivan"
 
@@ -917,15 +958,16 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_or_level"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout" method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
-[connection signal="item_purchasable" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout" method="_on_item_purchasable"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_star" to="CanvasLayer/layout/upgrades/buy_star" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout" method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout" method="_on_next_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout" method="_on_close_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout" method="_on_open_tutorial"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
-[connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu" to="." method="main_menu"]
 [connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/credits/return" to="." method="main_menu"]
 [connection signal="pressed" from="CanvasLayer/options/return" to="." method="main_menu"]

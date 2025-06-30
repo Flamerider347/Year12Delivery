@@ -71,13 +71,20 @@ func _unhandled_input(event):
 						$pickup_timer.start()
 						can_pickup = false
 func _physics_process(delta: float):
+	if not $interaction_timer.is_stopped():
+		$"../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+	else:
+		$"../kitchen/sign_out/interact_time_left".text = ""
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
+	if Input.is_action_just_released("pickup_p1"):
+		if not $interaction_timer.is_stopped():
+			$interaction_timer.stop()
 	if controlling:
-		if Input.is_action_just_pressed("menu"):
-			$"../menu".lose_screen()
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
+			if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
+				$interaction_timer.start(2)
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
 				var door = seecast.get_collider()
 				door.swinging = true
@@ -91,16 +98,18 @@ func _physics_process(delta: float):
 					var summon_type = seecast.get_collider().name.replace("_crate","")
 					summon(summon_type)
 			if held_object and can_pickup:
-				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
-					stack()
-				else:
-					drop(held_object)
+				drop(held_object)
 				$pickup_timer.start()
 				can_pickup = false
-
+		if Input.is_action_just_pressed("stack") and can_pickup:
+			if held_object and can_pickup:
+				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
+					stack()
 		position_held_object()
 		movement(delta)
 		move_and_slide()
+	else:
+		$interaction_timer.stop()
 
 func movement(delta):
 	if not is_on_floor():
@@ -180,7 +189,7 @@ func stack():
 		evil = false
 		var stack_bottom = stackcast.get_collider()
 		var item_shape = held_object.find_child("CollisionShape3D").shape
-		if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 2 and held_object.type != "bun_bottom_chopped":
+		if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 3 and held_object.type != "bun_bottom_chopped":
 			evil = true
 		if not evil:
 			held_object.reparent(stack_bottom)
@@ -290,3 +299,15 @@ func bounce():
 	if held_object:
 		if held_object.type  == "delivery_pot":
 			held_object.find_child("Timer").start(round(held_object.time_left_timer.time_left * 0.9))
+
+
+func _on_interaction_timer_timeout() -> void:
+	if $"../day_timer".is_stopped():
+		$"../menu".win_screen()
+	else:
+		if $"..".level == 0:
+			$"../menu".menu_toggle = true
+			$"../menu".menu_load()
+		else:
+			$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
+			$"../menu".lose_screen()

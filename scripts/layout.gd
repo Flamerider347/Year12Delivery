@@ -2,6 +2,7 @@ extends Node2D
 var editing_bench = null
 var bench_type = null
 var benches_bought = 0
+var stars_bought = 1
 var tutorial_step = 1
 var bench_type_sprites = {
 	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
@@ -98,18 +99,6 @@ func _on_recipes_button_pressed() -> void:
 func _on_upgrades_button_pressed() -> void:
 	$upgrades.show()
 	$recipes.hide()
-
-func _on_item_purchasable(item,item_cost) -> void:
-	if item == "bench":
-		if benches_bought < 18:
-			benches_bought += 1
-		benches["bench_"+str(benches_bought)][2] = true
-		$layout_benches.find_child("bench_"+str(benches_bought)).show()
-		for i in benches:
-			if benches[i][2] == false:
-				$layout_benches.find_child(i).hide()
-		$"../../..".money -= item_cost
-		assign_layout_names()
 
 
 

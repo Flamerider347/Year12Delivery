@@ -2,11 +2,14 @@ extends Node3D
 var spawn = true
 var menu_toggle = true
 var save_code
-var new_money = 0
-var text_1 = 0
-var text_2 = 0
-var text_3 = 0
-var score_multiplyer = 0
+var new_money = 0.0
+var text_1 = 0.0
+var text_2 = 0.0
+var text_3 = 0.0
+var difficulty_multiplier
+var score_multiplier = 0.0
+var visual_money = 0.0
+var visual_score = 0.0
 var not_toggled = false
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
@@ -170,48 +173,69 @@ func layout():
 func lose_screen():
 	menu_load()
 	hide_everything()
+	reset_text()
 	$CanvasLayer/end_screen.show()
-	$CanvasLayer/end_screen/Control/text_you_lost.show()
+	$CanvasLayer/end_screen/Control/text_you_lost.hide()
+	if not $CanvasLayer/end_screen/Control/text_you_exited.is_visible_in_tree():
+		$CanvasLayer/end_screen/Control/text_you_lost.show()
 	$CanvasLayer/end_screen/Control/text_you_won.hide()
-	new_money = int(round($"..".score * ($"..".stars/5)))
-	score_multiplyer = float(($"..".stars/5.0))
-	$CanvasLayer/end_screen/lerp_timer.start()
+	score_multiplier = ($"..".stars/5.0)
+	difficulty_multiplier = $"..".level
+	visual_money = $"..".money
+	new_money = int(round($"..".score * difficulty_multiplier * score_multiplier))
+	$CanvasLayer/end_screen/lerp_timer.start(0.5)
 	win_text()
+
 func win_screen():
 	menu_load()
 	hide_everything()
+	reset_text()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
 	$CanvasLayer/end_screen/Control/text_you_won.show()
-	new_money = int(round($"..".score * (1+$"..".stars/5)))
-	$CanvasLayer/end_screen/lerp_timer.start()
-	score_multiplyer = float((1+$"..".stars/5))
+	score_multiplier = (1+$"..".stars/5.0)
+	difficulty_multiplier = $"..".level
+	visual_money = $"..".money
+	new_money = int(round($"..".score * difficulty_multiplier * score_multiplier))
+	$CanvasLayer/end_screen/lerp_timer.start(0.5)
+	$"..".money += new_money
 	win_text()
+
 func lerp_text():
 	var score = float($"..".score)
 	var orders_delivered = float($"..".orders_delivered)
 	var stars = float($"..".stars)
-	var money = float($"..".money) + new_money
+	var money = float($"..".money)
 	if round(text_1) != round(score):
-		text_1 = lerp(float(text_1),score,0.1)
+		text_1 = lerp(float(text_1),score,0.05)
 	elif round(text_2) != round(orders_delivered):
-		text_2 = lerp(float(text_2),orders_delivered,0.1)
+		text_2 = lerp(float(text_2),orders_delivered,0.05)
 	elif round(text_3) != round(stars):
-		text_3 = lerp(float(text_3),stars,0.1)
-	elif round(new_money) != 0:
-		new_money -= 1
-		$"..".money += 1
+		text_3 = lerp(float(text_3),stars,0.05)
+	elif round(visual_score) != round(new_money):
+		visual_score = lerp(float(visual_score),float(new_money),0.05)
+	elif round(visual_money) != money:
+		visual_money = lerp(float(visual_money), float(money),0.05)
 	else:
 		not_toggled = false
+
 func win_text():
 	$CanvasLayer/end_screen/Control/stats.text = "[u]SCORE: " + str(int(round(text_1))) +" 
 ORDERS DELIVERED: " + str(int(round(text_2))) +"
 STARS REMAINING: " + str(int(round(text_3))) + "
-SCORE MULTIPLYER: x" + str(score_multiplyer) + "
-TOTAL SCORE: " + str(new_money) + "
-MONEY: " + str($"..".money) + "[/u]"
+SCORE MULTIPLIER: x" + str(score_multiplier) + "
+DIFFICULTY MULTIPLIER: x" + str(difficulty_multiplier) + "
+TOTAL SCORE: " + str(int(round(new_money))) + "
+MONEY: " + str(int(round(visual_money))) + "[/u]"
+func reset_text():
+	text_1 = 0.0
+	text_2 = 0.0
+	text_3 = 0.0
+	visual_score = 0.0
+	visual_money = 0.0
 
 func _on_play_level_pressed() -> void:
+	$CanvasLayer/end_screen/Control/text_you_exited.hide()
 	if $"..".level == 0:
 		$"..".tutorial()
 		$"../player_single"._setup()
@@ -220,6 +244,7 @@ func _on_play_level_pressed() -> void:
 		hide_everything()
 		spawn = false
 		$Timer.stop()
+
 	else:
 		$".."._setup()
 		$"../player_single"._setup()
@@ -228,7 +253,6 @@ func _on_play_level_pressed() -> void:
 		hide_everything()
 		spawn = false
 		$Timer.stop()
-
 
 func hide_everything():
 	$name.hide()

@@ -9,7 +9,8 @@ signal timeout
 @onready var time_left_timer = $Timer
 
 func _physics_process(_delta: float) -> void:
-	time_left_text.text = str(round(time_left_timer.time_left*10)/10)
+	time_left_text.text = "Deliver in:
+		" + str(round(time_left_timer.time_left*10)/10)
 
 func _on_world_delivered_correctly() -> void:
 	remove_from_group("pickupable")

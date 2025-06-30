@@ -17,7 +17,7 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 100
+var money = 1000000
 var score = 0
 var stars = 5
 var orders_delivered = 0
@@ -120,6 +120,7 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
+	$tutorial.show()
 	$ui.show()
 	$player_single.position = Vector3(0,31.65,5.3)
 	is_tutorial = true
@@ -150,10 +151,11 @@ func tutorial():
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 	orders_delivered = 0
 	score = 0
-	stars = 5
+	stars = $menu/CanvasLayer/layout.stars_bought
 	$tutorial/plates.start()
 	$tutorial/plates.randomise_objective()
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
+	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day incomplete)"
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 
 func _setup():
@@ -165,6 +167,7 @@ func _setup():
 		if not i.is_in_group("keep"):
 			i.queue_free()
 	$ui.show()
+	$tutorial.hide()
 	$day_timer.start()
 	map_select()
 	if player_count == 1:
@@ -186,10 +189,12 @@ func _setup():
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 	orders_delivered = 0
 	score = 0
-	stars = 5
+	stars = $menu/CanvasLayer/layout.stars_bought
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
+	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK
+	 to End the day (Day incomplete)"
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 	if level == 1:
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
@@ -222,7 +227,6 @@ Dangers:
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
-	print($player_single.SENSITIVITY)
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
 		var hours = round(int(time)) / 30
@@ -373,9 +377,8 @@ func map_select():
 func _on_day_timer_timeout() -> void:
 	if level < 5:
 		level_updates_left += 1
-		score = score
-		orders_delivered = orders_delivered
-		$menu.win_screen()
+		$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
+		$ui/Label3.text = "OVERTIME"
 		$day_timer.stop()
 		$order_timer.stop()
 

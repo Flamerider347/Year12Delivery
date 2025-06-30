@@ -84,7 +84,7 @@ func randomise_objective():
 	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
 	while recipes_list[making_recipe][1] == false:
 		making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
-	var make_time = 200
+	var make_time = 120
 	delivery_location = delivery_list[randi_range(0,8)]
 	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
 	for i in plate_contents[making_plate]:
