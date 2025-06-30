@@ -409,7 +409,7 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 
 script = ExtResource("14_sxw1y")
 
 [node name="objective_plate1" type="StaticBody3D" parent="kitchen/plates" groups=["look_at_plates"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 1.49012e-08, 0, -1.49012e-08, 1, -0.5, 0, 0)
 script = ExtResource("3_u7kri")
 
 [node name="Plate" type="MeshInstance3D" parent="kitchen/plates/objective_plate1" groups=["keep"]]
@@ -1079,9 +1079,11 @@ text = "A1"
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 3)
 
 [node name="tutorial_text" type="Label3D" parent="tutorial" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2, 0)
-text = "Let's play a game, come a
- little closer with WASD and SPACE"
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.7, 2.3, 10.9)
+text = "Now pickup the POT using LEFT CLICK
+and deliver it to the HOUSE stated on the
+POT by dropping it on the DOORSTEP."
+horizontal_alignment = 2
 
 [node name="Area3D" type="Area3D" parent="tutorial" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.95656)
@@ -1125,6 +1127,31 @@ text = "This will tell you the environmental hazards of each
 level, MAKE SURE TO READ IT BEFORE STARTING!"
 horizontal_alignment = 0
 vertical_alignment = 0
+
+[node name="sign_out" type="Node3D" parent="tutorial" groups=["interactable", "keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.16393, 1.5999, 10.9346)
+
+[node name="OvenDoor" type="MeshInstance3D" parent="tutorial/sign_out"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.870607, 1.0725, 0.12787)
+mesh = SubResource("BoxMesh_l0am5")
+skeleton = NodePath("../../..")
+
+[node name="Label3D" type="Label3D" parent="tutorial/sign_out"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.983567, 2.32351, -0.00856495)
+text = " Look at me and hold LEFT CLICK to End the day
+(Day incomplete)"
+vertical_alignment = 0
+
+[node name="Area3D" type="Area3D" parent="tutorial/sign_out" groups=["interactable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/sign_out/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.988953, 1.08636, 0.218506)
+shape = SubResource("BoxShape3D_guuop")
+
+[node name="interact_time_left" type="Label3D" parent="tutorial/sign_out"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815294, 0.947081, 0)
+text = "2.0
+"
 
 [node name="dine_in" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, -128)
@@ -1255,13 +1282,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label3" type="Label" parent="ui"]
 anchors_preset = -1
-anchor_left = -0.00104167
-anchor_right = -0.00104167
-offset_left = 1668.0
-offset_top = -9.0
-offset_right = 2153.0
-offset_bottom = 301.0
+anchor_left = -0.207292
+anchor_right = -0.125
+offset_left = 1658.0
+offset_right = 2143.0
+offset_bottom = 310.0
 text = "00:00 PM"
+horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="looking_recipe" type="RichTextLabel" parent="ui"]
@@ -1292,7 +1319,6 @@ far = 300.0
 
 [node name="seecast" type="RayCast3D" parent="player_single/head/player_camera"]
 target_position = Vector3(0, 0, -5)
-collide_with_areas = true
 
 [node name="lookcast" type="RayCast3D" parent="player_single/head/player_camera"]
 target_position = Vector3(0, 0, -8)
@@ -1335,7 +1361,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 20.0
 
 [node name="order_timer" type="Timer" parent="."]
 

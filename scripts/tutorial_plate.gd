@@ -2,7 +2,6 @@ extends Node3D
 signal objective_timeout
 signal objective
 signal objective_clear
-var delivery_list = ["A1"]
 var delivery_location
 var ingredient_amount = 0
 var timing = false
@@ -55,18 +54,16 @@ func _process(_delta: float) -> void:
 			plate_label.modulate = Color(1, 0, 0)
 		elif plate_label.text != "":
 			plate_label.text = ""
+
 func randomise_objective():
-	plate_contents[making_plate] = []
-	var making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
-	while true:
-		if recipes_list[making_recipe][1] == false:
-			making_recipe = recipes_list.keys()[randi_range(0,recipes_list.keys().size()-1)]
-		else:
-			break
+	var recipes_list_keys = recipes_list.keys()
+	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
+	while recipes_list[making_recipe][1] == false:
+		making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
+	var make_time = 120
 	delivery_location = "A1"
-	var make_time = 50
-	for i in recipes_list[making_recipe][0]:
-		plate_contents[making_plate].append(i)
+	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
+	for i in plate_contents[making_plate]:
 		if i in ingredient_time.keys():
 			make_time += ingredient_time[i]
 	var plate_name = making_plate.replace("plate_", "")
@@ -74,7 +71,10 @@ func randomise_objective():
 	objective.emit(plate_contents[making_plate],plate_name,plates[making_plate].find_child("order_time").time_left,delivery_location,plates[making_plate])
 	timing = true
 	update_target(making_recipe.substr(0,6))
+	
+	
 func update_target(recipe):
+	var recipes_list_keys = recipes_list.keys()
 	if recipe != "burger":
 		plate_contents[making_plate] = ["stew",]
 	next_position = 0.1
@@ -87,8 +87,8 @@ func update_target(recipe):
 		spawned_item.remove_from_group("pickupable")
 		spawned_item.freeze = true
 		spawned_item.position = Vector3(0,next_position,0)
-		if plate_contents[making_plate][0] in recipes_list.keys():
-			plate_contents[making_plate] = recipes_list[plate_contents[making_plate][0]][0]
+		if plate_contents[making_plate][0] in recipes_list_keys:
+			plate_contents[making_plate] = recipes_list[plate_contents[making_plate][0]][0].duplicate()
 		if spawned_item_hitbox is BoxShape3D:
 			var item_size = spawned_item_hitbox.size.y
 			next_position += item_size
@@ -145,9 +145,8 @@ func start():
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if step == 1:
 		if body is CharacterBody3D:
-			$"../tutorial_text".text = "Cool, Now Look up, you're gonna make that!
-			Get a plate from the pantry to your left using LEFT CLICK and 
-			put the plate on the bench 
+			$"../tutorial_text".text = "Get a PLATE from the PANTRY to your right
+		 using LEFT CLICK and put it on the BENCH
 			"
 			$"../tutorial_text".position = Vector3(-0.5,2.0,0)
 			$"../tutorial_text".rotation_degrees = Vector3.ZERO
@@ -157,8 +156,9 @@ func _on_area_3d_2_body_entered(body: Node3D) -> void:
 	if step == 2:
 		if body is RigidBody3D:
 			if body.type == "plate":
-				$"../tutorial_text".text = "Great, now get a bun, Also using LEFT CLICK 
-				and place it on the Chopping board by pressing LEFT CLICK
+				$"../tutorial_text".text = "Great, now get a bun and put it on the chopping board.
+				(If you don't know the recipe contents, it tells you when you look up at it.)
+				(On the right side of screen.)
 				"
 				step = 3
 
@@ -167,7 +167,7 @@ func _on_area_3d_3_body_entered(body: Node3D) -> void:
 	if step == 3:
 		if body is RigidBody3D:
 			if body.type == "bun":
-				$"../tutorial_text".text = "Great, now pick up the KNIFE using LEFT CLICK
+				$"../tutorial_text".text = "Great, now pick up the KNIFE
 				"
 				step = 4
 	
@@ -178,39 +178,36 @@ func pickup_knife():
 		step = 5
 func cut_bun():
 	if step == 5:
-		$"../tutorial_text".text = "Now open the fridge using LEFT CLICK, and prepare the tomato.
-		(Looking at the recipies above will tell you what's in them.)
+		$"../tutorial_text".text = "Now open the fridge using LEFT CLICK, and chop up a TOMATO.
 				"
 		step = 6
 func cut_tomato():
 	if step == 6:
-		$"../tutorial_text".text = "Amazing, now pick up the bottom bun and assemble the 
-		burger on the plate using LEFT CLICK, you must look at the plate.
+		$"../tutorial_text".text = "Pick up the BOTTOM BUN and assemble the 
+		BURGER on the PLATE using RIGHT CLICK.
 		Your crosshair will change to arrows when you can stack something.
 				"
 		step = 7
 
 func complete_burger():
 	if step == 7:
-		$"../tutorial_text".text = "You're really getting this!
-		Put the completed burger on the plate behind you.
-		recipes don't need things placed in a specific order, but you always start 
-		with a plate or bowl (then a bottom bun for burgers, finishing with top bun)
+		$"../tutorial_text".text = "
+		Put the completed burger on the plate behind you for inspection.
+		You must match the ORDER exactly, but the ingredient order is irrelevant.
 				"
 		step = 8
 func delivered():
 	if step == 8:
-		$"../tutorial_text".position = Vector3(4,2,10.3)
+		$"../tutorial_text".position = Vector3(2.7,2.3,10.9)
 		$"../tutorial_text".rotation_degrees.y = 180
-		$"../tutorial_text".text = "Now pickup the pot using LEFT CLICK
-		and deliver it to the house on the pot (A1)
-		(There will be more than one house outside)
+		$"../tutorial_text".text = "Now pickup the POT using LEFT CLICK
+		and deliver it to the HOUSE stated on the POT by dropping it on the DOORSTEP.
 				"
 		step = 9
 func delivered_to_house():
 	if step == 9:
-		$"../tutorial_text".position = Vector3(0,2,10.3)
 		$"../tutorial_text".text = "You Beat the tutorial!
-		Press ESCAPE to return to menu at any time
+		Hold ESCAPE to return to menu at any time.
+		You can also hold LEFT CLICK on the sign out board to your right
 			"
 		step = 1

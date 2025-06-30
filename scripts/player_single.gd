@@ -73,15 +73,19 @@ func _unhandled_input(event):
 func _physics_process(delta: float):
 	if not $interaction_timer.is_stopped():
 		$"../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+		$"../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
 	else:
 		$"../kitchen/sign_out/interact_time_left".text = ""
+		$"../tutorial/sign_out/interact_time_left".text = ""
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
-	if Input.is_action_just_released("pickup_p1"):
+	if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
 		if not $interaction_timer.is_stopped():
 			$interaction_timer.stop()
 	if controlling:
+		if Input.is_action_just_pressed("menu"):
+			$interaction_timer.start(2)
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
 				$interaction_timer.start(2)
@@ -280,7 +284,10 @@ func look_recipe():
 				emitting_collision_item = [collision_item.name.replace("_crate","")]
 				looking_recipe.emit(emitting_collision_item)
 			elif collision_item.is_in_group("look_at_plates"):
-				emitting_collision_item = $"../kitchen/plates".plate_contents[collision_item.name.replace("objective_plate","plate_")]
+				if $"..".level == 0:
+					emitting_collision_item = $"../tutorial/plates".plate_contents["plate_1"]
+				else:
+					emitting_collision_item = $"../kitchen/plates".plate_contents[collision_item.name.replace("objective_plate","plate_")]
 				looking_recipe.emit(emitting_collision_item)
 			else:
 				looking_recipe.emit([])
