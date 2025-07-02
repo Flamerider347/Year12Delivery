@@ -777,6 +777,11 @@ use_collision = true
 collision_layer = 3
 size = Vector3(100, 0.195, 100)
 
+[node name="Label3D" type="Label3D" parent="underwater"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.000991821, 1.93739, 32.3728)
+modulate = Color(0.795295, 0.0440018, 0.0245159, 1)
+text = "Frank"
+
 [node name="fish" type="CharacterBody3D" parent="underwater"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 32)
 collision_layer = 2
@@ -1325,6 +1330,9 @@ target_position = Vector3(0, 0, -8)
 
 [node name="stackcast" type="RayCast3D" parent="player_single/head/player_camera"]
 target_position = Vector3(0, 0, -3)
+
+[node name="knife_offset" type="Marker3D" parent="player_single/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
 
 [node name="pickup_timer" type="Timer" parent="player_single"]
 wait_time = 0.06

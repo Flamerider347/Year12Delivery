@@ -43,6 +43,7 @@ func get_target():
 
 	if rigid_list.size() > 0:
 		target_rigid = rigid_list[randi_range(0, rigid_list.size() - 1)]
+		$"../Label3D".global_position = target_rigid.global_position + Vector3(0,0.5,0)
 		if is_instance_valid(target_rigid):
 			nav.target_position = target_rigid.global_position
 			target = true

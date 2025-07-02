@@ -47,6 +47,7 @@ look_at_plates=""
 can_stack_bowl=""
 can_stack_plate=""
 interactable=""
+clear=""
 
 [gui]
 
