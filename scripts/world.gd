@@ -231,12 +231,6 @@ Dangers:
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
-	print(Input.get_mouse_mode())
-	# Animation which plays when transitioning between menus. Thank you to Hayden for the techniqial coding aspects.
-	#if Input.is_action_just_pressed("jump_p1"):
-		#$"transition animation/transition animation".play("fade_transition")
-		#await get_tree().create_timer(1.0).timeout
-		#$"transition animation/transition animation".play("fade_transition_reverse")
 
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left

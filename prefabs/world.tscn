@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=72 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -32,10 +32,10 @@
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
+[ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/transition/transition_horizontal.gdshader" id="28_w6ly8"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
-[ext_resource type="PackedScene" uid="uid://dbwrdkrq478k" path="res://assets/transition/transition_animation_test.tscn" id="36_w6ly8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(3.99, 3.99, 0.499)
@@ -88,6 +88,101 @@ albedo_texture = ExtResource("19_n7i1a")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48uca"]
+shader = ExtResource("28_w6ly8")
+shader_parameter/progress = 0.0
+shader_parameter/reverse = false
+
+[sub_resource type="Animation" id="Animation_nv7oe"]
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition colour:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("transition colour:material:shader_parameter/reverse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3ekbl"]
+resource_name = "fade_transition"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition colour:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("transition colour:material:shader_parameter/reverse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_48uca"]
+resource_name = "fade_transition_reverse"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition colour:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("transition colour:material:shader_parameter/reverse")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nek0r"]
+_data = {
+&"RESET": SubResource("Animation_nv7oe"),
+&"fade_transition": SubResource("Animation_3ekbl"),
+&"fade_transition_reverse": SubResource("Animation_48uca")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrigr"]
 atlas = ExtResource("17_8bx52")
@@ -1252,8 +1347,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
 shape = SubResource("BoxShape3D_h6gec")
 
-[node name="transition animation" parent="." instance=ExtResource("36_w6ly8")]
-script = null
+[node name="transition animation" type="CanvasLayer" parent="."]
+
+[node name="transition colour" type="ColorRect" parent="transition animation"]
+material = SubResource("ShaderMaterial_48uca")
+offset_right = 1920.0
+offset_bottom = 1088.0
+metadata/_edit_use_anchors_ = true
+
+[node name="transition animation" type="AnimationPlayer" parent="transition animation"]
+libraries = {
+&"": SubResource("AnimationLibrary_nek0r")
+}
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -1510,5 +1615,3 @@ wait_time = 0.06
 [connection signal="money_change" from="GridContainer/SubViewportContainer2/SubViewport/player2" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
-
-[editable path="transition animation"]

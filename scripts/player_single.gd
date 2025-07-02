@@ -41,8 +41,7 @@ func _unhandled_input(event):
 	if controlling:
 		if event is InputEventMouseMotion:
 			head.rotate_y(-event.relative.x * SENSITIVITY/200)
-			camera.rotate_x(-event.relative.y * SENSITIVITY/200)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+			camera.rotation.x = clamp(camera.rotation.x - event.relative.y * SENSITIVITY/200, deg_to_rad(-60), deg_to_rad(60))
 			look_recipe()
 		if event.device == controller_id:
 			if event is InputEventJoypadButton:

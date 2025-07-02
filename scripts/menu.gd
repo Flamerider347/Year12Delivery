@@ -172,6 +172,10 @@ func layout():
 	$CanvasLayer/layout.setup()
 
 func lose_screen():
+	$"../transition animation".show()
+	$"../transition animation/transition animation".play("fade_transition")
+	await get_tree().create_timer(1.0).timeout
+
 	menu_load()
 	hide_everything()
 	reset_text()
@@ -185,9 +189,15 @@ func lose_screen():
 	visual_money = $"..".money
 	new_money = int(round($"..".score * difficulty_multiplier * score_multiplier))
 	$CanvasLayer/end_screen/lerp_timer.start(0.5)
+	$"../transition animation/transition animation".play("fade_transition_reverse")
+	await get_tree().create_timer(1.0).timeout
 	win_text()
 
 func win_screen():
+	$"../transition animation".show()
+	$"../transition animation/transition animation".play("fade_transition")
+	await get_tree().create_timer(1.0).timeout
+
 	menu_load()
 	hide_everything()
 	reset_text()
@@ -200,6 +210,8 @@ func win_screen():
 	new_money = int(round($"..".score * difficulty_multiplier * score_multiplier))
 	$CanvasLayer/end_screen/lerp_timer.start(0.5)
 	$"..".money += new_money
+	$"../transition animation/transition animation".play("fade_transition_reverse")
+	await get_tree().create_timer(1.0).timeout
 	win_text()
 
 func lerp_text():
@@ -238,9 +250,10 @@ func reset_text():
 func _on_play_level_pressed() -> void:
 	$CanvasLayer/end_screen/Control/text_you_exited.hide()
 	if $"..".level == 0:
+		$"../transition animation".show()
 		$"../transition animation/transition animation".play("fade_transition")
 		await get_tree().create_timer(1.0).timeout
-		$"../transition animation/transition animation".play("fade_transition_reverse")
+		$"../transition animation".hide()
 		$"..".tutorial()
 		$"../player_single"._setup()
 		$Camera3D.current = false
@@ -248,8 +261,11 @@ func _on_play_level_pressed() -> void:
 		hide_everything()
 		spawn = false
 		$Timer.stop()
+		$"../transition animation/transition animation".play("fade_transition_reverse")
+		await get_tree().create_timer(1.0).timeout
 
 	else:
+		$"../transition animation".show()
 		$"../transition animation/transition animation".play("fade_transition")
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation/transition animation".play("fade_transition_reverse")
@@ -260,7 +276,8 @@ func _on_play_level_pressed() -> void:
 		hide_everything()
 		spawn = false
 		$Timer.stop()
-
+		await get_tree().create_timer(1.0).timeout
+		$"../transition animation".hide()
 func hide_everything():
 	$name.hide()
 	for i in $CanvasLayer.get_children():
