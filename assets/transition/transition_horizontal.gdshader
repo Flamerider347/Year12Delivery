@@ -9,5 +9,7 @@ void fragment() {
 			discard;
 		}
 	}
-	else if ()
+	else if(reverse){
+		discard;
+	}
 }

@@ -111,6 +111,7 @@ func _on_2_players() -> void:
 func _on_level_0() -> void:
 	$"..".level = 0
 	_on_play_level_pressed()
+	
 func _on_level_1() -> void:
 	$"..".level = 1
 	_on_play_level_pressed()
@@ -237,6 +238,9 @@ func reset_text():
 func _on_play_level_pressed() -> void:
 	$CanvasLayer/end_screen/Control/text_you_exited.hide()
 	if $"..".level == 0:
+		$"../transition animation/transition animation".play("fade_transition")
+		await get_tree().create_timer(1.0).timeout
+		$"../transition animation/transition animation".play("fade_transition_reverse")
 		$"..".tutorial()
 		$"../player_single"._setup()
 		$Camera3D.current = false
@@ -246,6 +250,9 @@ func _on_play_level_pressed() -> void:
 		$Timer.stop()
 
 	else:
+		$"../transition animation/transition animation".play("fade_transition")
+		await get_tree().create_timer(1.0).timeout
+		$"../transition animation/transition animation".play("fade_transition_reverse")
 		$".."._setup()
 		$"../player_single"._setup()
 		$Camera3D.current = false
