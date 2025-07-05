@@ -23,6 +23,10 @@ var stars = 5
 var orders_delivered = 0
 var day_timer = 20
 var is_tutorial = false
+
+# Defines the animation player for when the player moves between menus.
+@onready var animation: AnimationPlayer = $"transition animation/transition animation"
+
 @onready var pot = preload("res://prefabs/delivery_pot.tscn")
 var bench_summoning = {
 	"bench_1" : [Vector3(-5,0,0),0],
@@ -230,6 +234,7 @@ Dangers:
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
+
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
 		var hours = round(int(time)) / 30
