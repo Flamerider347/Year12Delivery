@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbwrdkrq478k"]
 
-[ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/transition/transition_horizontal.gdshader" id="2_nek0r"]
+[ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="1_lxa3n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_48uca"]
-shader = ExtResource("2_nek0r")
+shader = ExtResource("1_lxa3n")
 shader_parameter/progress = 0.0
 shader_parameter/reverse = false
 

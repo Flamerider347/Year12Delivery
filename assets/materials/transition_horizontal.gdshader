@@ -4,7 +4,7 @@ uniform float progress: hint_range(0.0, 1.0);
 uniform bool reverse = true;
 
 void fragment() {
-	if(UV.x > progress){
+	if(UV.x + UV.y > progress * 2.0){
 		if(!reverse){
 			discard;
 		}

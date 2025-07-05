@@ -263,6 +263,7 @@ func _on_play_level_pressed() -> void:
 		$Timer.stop()
 		$"../transition animation/transition animation".play("fade_transition_reverse")
 		await get_tree().create_timer(1.0).timeout
+		$"../transition animation".hide()
 
 	else:
 		$"../transition animation".show()
