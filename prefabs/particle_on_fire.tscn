@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhxi1c7vowdmn"]
+
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="1_lwctb"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hhmeu"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 4, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.499998
+
+[sub_resource type="PrismMesh" id="PrismMesh_hawkk"]
+material = ExtResource("1_lwctb")
+
+[node name="particle_on_fire" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 16
+preprocess = 2.0
+speed_scale = 0.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hhmeu")
+draw_pass_1 = SubResource("PrismMesh_hawkk")
