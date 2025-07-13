@@ -15,6 +15,8 @@ radius = 0.1
 height = 1.13159
 
 [node name="stove" type="StaticBody3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_lrai8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

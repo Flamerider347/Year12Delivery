@@ -11,6 +11,7 @@ var score_multiplier = 0.0
 var visual_money = 0.0
 var visual_score = 0.0
 var not_toggled = false
+var mouse_speed := 1200.0  # Pixels per second
 @onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
@@ -28,6 +29,12 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$"..".controllers = 0
+	for i in Input.get_connected_joypads():
+		if $"..".controllers < 2:
+			$"..".controllers += 1
+
 	menu_load()
 func menu_load():
 	$"../order_timer".stop()
@@ -54,7 +61,23 @@ func menu_load():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		var hovered = get_viewport().gui_get_hovered_control()
+		if hovered and hovered is Button:
+			hovered.emit_signal("pressed")
 func _process(delta: float) -> void:
+	# Get left stick vector using your input actions
+	var left_stick_vector = Input.get_vector("left", "right", "up", "down")  # Vector2
+	var current_mouse_pos = get_viewport().get_mouse_position()
+	var new_mouse_pos = current_mouse_pos + left_stick_vector * mouse_speed * delta
+	var screen_size = get_viewport().get_visible_rect().size
+	new_mouse_pos = new_mouse_pos.clamp(Vector2.ZERO, screen_size)
+
+
+	# Move (warp) the mouse cursor to the new position
+	get_viewport().warp_mouse(new_mouse_pos)
+
 	if not_toggled:
 		lerp_text()
 		win_text()
@@ -62,10 +85,12 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("down"):
 		$CanvasLayer/main_menu/LineEdit.show()
 		$CanvasLayer/main_menu/save_confirm.show()
+
 	if Input.is_action_just_pressed("enter"):
 		_on_save_confirm()
 	if Input.is_action_just_released("pickup_p1"):
 		name_thing.position.y = -2
+
 	if name_thing.position.y > -2:
 		name_thing.position.y -= delta
 	else:
@@ -73,12 +98,13 @@ func _process(delta: float) -> void:
 			hide_everything()
 			main_menu()
 			menu_toggle = false
-		if $"CanvasLayer/main_menu/players_1".modulate.a <1:
+		if $"CanvasLayer/main_menu/players_1".modulate.a < 1:
 			$"CanvasLayer/main_menu/players_1".modulate.a += delta
 			$"CanvasLayer/main_menu/players_2".modulate.a += delta
 			$"CanvasLayer/main_menu/quit".modulate.a += delta
 			$"CanvasLayer/main_menu/options".modulate.a += delta
 			$"CanvasLayer/main_menu/credits".modulate.a += delta
+
 	if spawn:
 		_spawn()
 func _spawn():
@@ -255,9 +281,7 @@ func _on_play_level_pressed() -> void:
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
 		$"..".tutorial()
-		$"../player_single"._setup()
 		$Camera3D.current = false
-		$"../player_single/head/player_camera".current = true
 		hide_everything()
 		spawn = false
 		$Timer.stop()
@@ -271,9 +295,6 @@ func _on_play_level_pressed() -> void:
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation/transition animation".play("fade_transition_reverse")
 		$".."._setup()
-		$"../player_single"._setup()
-		$Camera3D.current = false
-		$"../player_single/head/player_camera".current = true
 		hide_everything()
 		spawn = false
 		$Timer.stop()

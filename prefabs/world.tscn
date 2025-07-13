@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=71 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -229,9 +229,6 @@ animations = [{
 "name": &"stacking",
 "speed": 2.0
 }]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w1n2x"]
-load_path = "res://.godot/imported/crosshair001.png-4d409068298bf2a3aeeac1cf005ad3ad.ctex"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7i1a"]
 radius = 0.49
@@ -1353,6 +1350,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.04
 shape = SubResource("BoxShape3D_h6gec")
 
 [node name="transition animation" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="transition colour" type="ColorRect" parent="transition animation"]
 material = SubResource("ShaderMaterial_48uca")
@@ -1369,13 +1367,12 @@ libraries = {
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="ui"]
-position = Vector2(0, 540)
+position = Vector2(318.63, 540)
 sprite_frames = SubResource("SpriteFrames_qrdq4")
 
-[node name="Sprite2D2" type="Sprite2D" parent="ui"]
-position = Vector2(1450, 540)
-scale = Vector2(0.2, 0.2)
-texture = SubResource("CompressedTexture2D_w1n2x")
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="ui"]
+position = Vector2(1399, 551)
+sprite_frames = SubResource("SpriteFrames_qrdq4")
 
 [node name="Label" type="Label" parent="ui"]
 anchors_preset = -1
@@ -1424,6 +1421,7 @@ script = ExtResource("25_u7kri")
 shape = SubResource("CapsuleShape3D_n7i1a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player_single"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.217245, 0)
 mesh = SubResource("CapsuleMesh_k1hdb")
 
 [node name="head" type="Node3D" parent="player_single"]
@@ -1500,9 +1498,8 @@ handle_input_locally = false
 size = Vector2i(2, 2)
 render_target_update_mode = 0
 
-[node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep", "pickupable"]]
+[node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941749, 1, 6.1318)
-visible = false
 script = ExtResource("2_le6xu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]
@@ -1521,10 +1518,21 @@ far = 500.0
 [node name="seecast" type="RayCast3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head/player_camera"]
 target_position = Vector3(0, 0, -5)
 
+[node name="lookcast" type="RayCast3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head/player_camera"]
+target_position = Vector3(0, 0, -8)
+
+[node name="stackcast" type="RayCast3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head/player_camera"]
+target_position = Vector3(0, 0, -3)
+
 [node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
 wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+
+[node name="interaction_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+
+[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -1537,9 +1545,8 @@ handle_input_locally = false
 size = Vector2i(2, 2)
 render_target_update_mode = 0
 
-[node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep", "pickupable"]]
+[node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188471, 1, 4)
-visible = false
 script = ExtResource("24_n7i1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2" groups=["hitbox"]]
@@ -1557,10 +1564,21 @@ current = true
 [node name="seecast" type="RayCast3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head/player_camera"]
 target_position = Vector3(0, 0, -5)
 
+[node name="lookcast" type="RayCast3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head/player_camera"]
+target_position = Vector3(0, 0, -8)
+
+[node name="stackcast" type="RayCast3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head/player_camera"]
+target_position = Vector3(0, 0, -3)
+
 [node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 wait_time = 0.06
 
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+
+[node name="interaction_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+
+[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
 
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
@@ -1618,9 +1636,9 @@ wait_time = 0.06
 [connection signal="timeout" from="player_single/interaction_timer" to="player_single" method="_on_interaction_timer_timeout"]
 [connection signal="timeout" from="day_timer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="order_timer" to="." method="_on_order_timer_timeout"]
-[connection signal="money_change" from="GridContainer/SubViewportContainer/SubViewport/player" to="." method="_on_player_money_change"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/pickup_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/swap_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_swap_timer_timeout"]
-[connection signal="money_change" from="GridContainer/SubViewportContainer2/SubViewport/player2" to="." method="_on_player_money_change"]
+[connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/interaction_timer" to="player_single" method="_on_interaction_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
+[connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/interaction_timer" to="player_single" method="_on_interaction_timer_timeout"]

@@ -84,10 +84,10 @@ func _physics_process(delta: float):
 			$interaction_timer.stop()
 	if controlling:
 		if Input.is_action_just_pressed("menu"):
-			$interaction_timer.start(2)
+			$interaction_timer.start(1)
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
-				$interaction_timer.start(2)
+				$interaction_timer.start(1)
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
 				var door = seecast.get_collider()
 				door.swinging = true
@@ -151,8 +151,8 @@ func movement(delta):
 	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
 
 	if cam_input.length() > 0.1:
-		head.rotate_y(-cam_input.x * SENSITIVITY)
-		camera.rotate_x(-cam_input.y * SENSITIVITY)
+		head.rotate_y(-cam_input.x * SENSITIVITY/10)
+		camera.rotate_x(-cam_input.y * SENSITIVITY/10)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func pickup(object):
@@ -270,26 +270,27 @@ func summon(item):
 	seecast.target_position.z = -1.6
 
 func crosshair_change():
-	if not held_object:
-		if seecast.get_collider() != null:
-			if seecast.get_collider().is_in_group("pickupable"):
-				$"../ui/Sprite2D".play("pickup")
-			elif seecast.get_collider().is_in_group("summoner"):
-				$"../ui/Sprite2D".play("pickup")
-			elif seecast.get_collider().is_in_group("door"):
-				$"../ui/Sprite2D".play("pickup")
+	if controlling:
+		if not held_object:
+			if seecast.get_collider() != null:
+				if seecast.get_collider().is_in_group("pickupable"):
+					$"../ui/Sprite2D".play("pickup")
+				elif seecast.get_collider().is_in_group("summoner"):
+					$"../ui/Sprite2D".play("pickup")
+				elif seecast.get_collider().is_in_group("door"):
+					$"../ui/Sprite2D".play("pickup")
+				else:
+					$"../ui/Sprite2D".play("default")
+		if held_object:
+			if stackcast.get_collider() != null:
+				if held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
+					$"../ui/Sprite2D".play("stacking")
+				else:
+					$"../ui/Sprite2D".play("default")
 			else:
 				$"../ui/Sprite2D".play("default")
-	if held_object:
-		if stackcast.get_collider() != null:
-			if held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
-				$"../ui/Sprite2D".play("stacking")
-			else:
-				$"../ui/Sprite2D".play("default")
-		else:
+		if not stackcast.is_colliding():
 			$"../ui/Sprite2D".play("default")
-	if not stackcast.is_colliding():
-		$"../ui/Sprite2D".play("default")
 func look_recipe():
 	if lookcast.is_colliding():
 		var collision_item = lookcast.get_collider()

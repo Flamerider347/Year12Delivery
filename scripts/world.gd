@@ -1,5 +1,6 @@
 extends Node3D
 signal make_order
+var controllers = 0
 var sens_multiplyer = 50
 var grid_exists = true
 var player_exists = true
@@ -178,11 +179,15 @@ func _setup():
 	$day_timer.start()
 	map_select()
 	if player_count == 1:
+		$player_single._setup()
+		$player_single/head/player_camera.current = true
 		$ui/Sprite2D.show()
 		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
 	if player_count == 2:
 		$GridContainer.show()
+		$GridContainer/SubViewportContainer/SubViewport/player._setup()
+		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
 	$order_timer.start(0.1)
@@ -234,7 +239,6 @@ Dangers:
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
-
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
 		var hours = round(int(time)) / 30
