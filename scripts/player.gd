@@ -190,13 +190,6 @@ func pickup(object):
 	position_held_object()
 
 func drop(object):
-	if object.type == "knife":
-		seecast.target_position.z = -1.8
-		object.get_parent().find_child("AnimationPlayer").play("RESET")
-		if not seecast.is_colliding():
-			object.global_position = seecast.to_global(seecast.target_position)
-
-
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = false
@@ -211,21 +204,15 @@ func position_held_object():
 		if held_object.rotation_degrees.y != head.rotation_degrees.y:
 			held_object.rotation_degrees.y = head.rotation_degrees.y
 		if seecast.is_colliding():
-			if held_object.type == "knife":
-				held_object.get_parent().find_child("AnimationPlayer").play("RESET")
 			collision_point = seecast.get_collision_point()
 			if held_object.global_position != collision_point:
 				held_object.global_position = collision_point
 		else:
 			if held_object.global_position != seecast.to_global(seecast.target_position):
 				var target_position = seecast.to_global(seecast.target_position)
-				if held_object.type == "knife":
-					target_position = $head/knife_offset.global_position
-					if not held_object.get_parent().find_child("AnimationPlayer").is_playing():
-						held_object.get_parent().find_child("AnimationPlayer").play("hold")
-				held_object.global_position.x = lerp(held_object.global_position.x, target_position.x,0.5)
-				held_object.global_position.y = lerp(held_object.global_position.y, target_position.y,0.5)
-				held_object.global_position.z = lerp(held_object.global_position.z, target_position.z,0.5)
+				held_object.global_position.x = lerp(held_object.global_position.x, target_position.x,0.8)
+				held_object.global_position.y = lerp(held_object.global_position.y, target_position.y,0.8)
+				held_object.global_position.z = lerp(held_object.global_position.z, target_position.z,0.8)
 func stack():
 		evil = false
 		var stack_bottom = stackcast.get_collider()
@@ -244,9 +231,9 @@ func stack():
 				ingredient_added.emit(held_object.type,item_size)
 			ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
 			if held_object.type == "bun_top_chopped":
-				if $"..".is_tutorial:
+				if $"../../../..".is_tutorial:
 					if stack_bottom.contents == ["plate","bun_bottom_chopped","tomato_chopped","bun_top_chopped"]:
-						$"../tutorial/plates".complete_burger()
+						$"../../../../tutorial/plates".complete_burger()
 				stack_bottom.add_to_group("packageable")
 				stack_bottom.remove_from_group("stackable")
 			held_object.rotation_degrees.x = 0
@@ -258,9 +245,9 @@ func stack():
 			held_object.freeze = true
 			held_object = null
 			seecast.target_position.z = -3
-			for i in $"../kitchen/plates".recipes_list:
+			for i in $"../../../../kitchen/plates".recipes_list:
 				if i[1]:
-					var sorted_list = $"../kitchen/plates".recipes_list[i][0].duplicate()
+					var sorted_list = $"../../../../kitchen/plates".recipes_list[i][0].duplicate()
 					sorted_list.sort()
 					var sorted_contents = stack_bottom.contents.duplicate()
 					sorted_contents.sort()
@@ -299,7 +286,7 @@ func crosshair_change():
 		if held_object:
 			if stackcast.get_collider() != null:
 				if held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
-					$"../../../../../../../ui/Sprite2D".play("stacking")
+					$"../../../../ui/Sprite2D".play("stacking")
 				else:
 					$"../../../../ui/Sprite2D".play("default")
 			else:

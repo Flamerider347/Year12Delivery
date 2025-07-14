@@ -271,32 +271,31 @@ func _physics_process(_delta: float) -> void:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
 func _on_cut_area_body_entered(body: Node3D) -> void:
-	if $player_single.held_object and $player_single.held_object.type == "knife":
-		if $player_single.held_object.get_parent().find_child("AnimationPlayer").is_playing() and $player_single.held_object.get_parent().find_child("AnimationPlayer").current_animation == "swing_knife":
-			if body.is_in_group("can_chop"):
-				$"SFX/knife chopping".global_position = body.global_position
-				$"SFX/knife chopping".play()
-				if body.type == "bun":
-					if is_tutorial:
-						$tutorial/plates.cut_bun()
-					var instance = bun_chopped_bottom.instantiate()
-					var instance2 = bun_chopped_top.instantiate()
-					add_child(instance)
-					add_child(instance2)
-					instance.type = "bun_bottom_chopped"
-					instance2.type = "bun_top_chopped"
-					instance.position = body.position
-					instance2.position = body.position + Vector3(0,0.1,0)
-					body.queue_free()
-				elif body.type in ingredients:
-					if is_tutorial:
-						if body.type == "tomato":
-							$tutorial/plates.cut_tomato()
-					var instance = ingredients[body.type].instantiate()
-					instance.type = body.type + "_chopped"
-					instance.position = body.position
-					add_child(instance)
-					body.queue_free()
+	if $player_single.held_object and $player_single.held_object.type == "knife" or $GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife" or $GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife":
+		if body.is_in_group("can_chop"):
+			$"SFX/knife chopping".global_position = body.global_position
+			$"SFX/knife chopping".play()
+			if body.type == "bun":
+				if is_tutorial:
+					$tutorial/plates.cut_bun()
+				var instance = bun_chopped_bottom.instantiate()
+				var instance2 = bun_chopped_top.instantiate()
+				add_child(instance)
+				add_child(instance2)
+				instance.type = "bun_bottom_chopped"
+				instance2.type = "bun_top_chopped"
+				instance.position = body.position
+				instance2.position = body.position + Vector3(0,0.1,0)
+				body.queue_free()
+			elif body.type in ingredients:
+				if is_tutorial:
+					if body.type == "tomato":
+						$tutorial/plates.cut_tomato()
+				var instance = ingredients[body.type].instantiate()
+				instance.type = body.type + "_chopped"
+				instance.position = body.position
+				add_child(instance)
+				body.queue_free()
 
 
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:

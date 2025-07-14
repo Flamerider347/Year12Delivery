@@ -121,14 +121,6 @@ func _physics_process(delta: float):
 				$pickup_timer.start()
 				can_pickup = false
 		if Input.is_action_just_pressed("stack"):
-			if held_object and held_object.type == "knife":
-				held_object.get_parent().find_child("AnimationPlayer").stop()
-				held_object.get_parent().find_child("AnimationPlayer").play("swing_knife")
-				seecast.target_position.z = -0.1
-				await held_object.get_parent().find_child("AnimationPlayer").animation_finished
-				if held_object:
-					held_object.get_parent().find_child("AnimationPlayer").play_backwards("swing_knife")
-					seecast.target_position.z = -1.8
 			if held_object and can_pickup:
 				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 					stack()
@@ -191,13 +183,6 @@ func pickup(object):
 	position_held_object()
 
 func drop(object):
-	if object.type == "knife":
-		seecast.target_position.z = -1.8
-		object.get_parent().find_child("AnimationPlayer").play("RESET")
-		if not seecast.is_colliding():
-			object.global_position = seecast.to_global(seecast.target_position)
-
-
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = false
@@ -212,21 +197,15 @@ func position_held_object():
 		if held_object.rotation_degrees.y != head.rotation_degrees.y:
 			held_object.rotation_degrees.y = head.rotation_degrees.y
 		if seecast.is_colliding():
-			if held_object.type == "knife":
-				held_object.get_parent().find_child("AnimationPlayer").play("RESET")
 			collision_point = seecast.get_collision_point()
 			if held_object.global_position != collision_point:
 				held_object.global_position = collision_point
 		else:
 			if held_object.global_position != seecast.to_global(seecast.target_position):
 				var target_position = seecast.to_global(seecast.target_position)
-				if held_object.type == "knife":
-					target_position = $head/knife_offset.global_position
-					if not held_object.get_parent().find_child("AnimationPlayer").is_playing():
-						held_object.get_parent().find_child("AnimationPlayer").play("hold")
-				held_object.global_position.x = lerp(held_object.global_position.x, target_position.x,0.5)
-				held_object.global_position.y = lerp(held_object.global_position.y, target_position.y,0.5)
-				held_object.global_position.z = lerp(held_object.global_position.z, target_position.z,0.5)
+				held_object.global_position.x = lerp(held_object.global_position.x, target_position.x,0.8)
+				held_object.global_position.y = lerp(held_object.global_position.y, target_position.y,0.8)
+				held_object.global_position.z = lerp(held_object.global_position.z, target_position.z,0.8)
 func stack():
 		evil = false
 		var stack_bottom = stackcast.get_collider()
