@@ -34,6 +34,7 @@ func _ready() -> void:
 	for i in Input.get_connected_joypads():
 		if $"..".controllers < 2:
 			$"..".controllers += 1
+	print($"..".controllers)
 
 	menu_load()
 func menu_load():

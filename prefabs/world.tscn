@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=72 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -39,6 +39,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(3.99, 3.99, 0.499)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w6ly8"]
+size = Vector3(12.755, 0.07, 23.63)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6ly8"]
 size = Vector3(1, 0.408936, 1.00232)
@@ -481,6 +484,10 @@ skeleton = NodePath("../../../..")
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
 depth = 0.499
 polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/kitchen_walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.03653, 0)
+mesh = SubResource("BoxMesh_w6ly8")
 
 [node name="Fences_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

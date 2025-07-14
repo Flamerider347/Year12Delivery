@@ -41,9 +41,11 @@ func _setup():
 		controller_id = 0
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	controlling = true
+
 func _unhandled_input(event):
 	if controlling:
 		if event.device == controller_id:
+			print("hello")
 			if event is InputEventJoypadMotion:
 				if event.axis == JOY_BUTTON_PADDLE3:
 					if event.axis_value > 0.5:
@@ -81,6 +83,37 @@ func _unhandled_input(event):
 			if event is InputEventJoypadButton:
 				if event.button_index == JOY_BUTTON_A and is_on_floor():
 					velocity.y = JUMP_VELOCITY
+
+func movement(delta):
+	if not is_on_floor():
+		velocity.y -= GRAVITY * delta * 1.5
+		# Handle Jump.
+		# Handle Sprint.
+	if Input.is_action_pressed("sprint"):
+		speed = SPRINT_SPEED
+	else:
+		speed = WALK_SPEED
+	var joy_input = Vector2(
+	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_X),
+	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_Y),)
+	if joy_input.length() < 0.1:
+		joy_input = Vector2.ZERO
+
+	var direction = (head.transform.basis * transform.basis * Vector3(joy_input.x, 0, joy_input.y)).normalized()
+	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7)
+	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7)
+	# Get the input direction and handle the movement/deceleration.
+	if joy_input.length() < 0.1:
+		var input_dir = Input.get_vector("left", "right", "up", "down")
+		direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
+
+	if cam_input.length() > 0.1:
+		head.rotate_y(-cam_input.x * SENSITIVITY)
+		camera.rotate_x(-cam_input.y * SENSITIVITY)
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
 	if not $interaction_timer.is_stopped():
@@ -135,36 +168,6 @@ func _physics_process(delta: float):
 	else:
 		$interaction_timer.stop()
 
-func movement(delta):
-	if not is_on_floor():
-		velocity.y -= GRAVITY * delta * 1.5
-		# Handle Jump.
-		# Handle Sprint.
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
-	else:
-		speed = WALK_SPEED
-	var joy_input = Vector2(
-	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_X),
-	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_Y),)
-	if joy_input.length() < 0.1:
-		joy_input = Vector2.ZERO
-
-	var direction = (head.transform.basis * transform.basis * Vector3(joy_input.x, 0, joy_input.y)).normalized()
-	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7)
-	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7)
-	# Get the input direction and handle the movement/deceleration.
-	if joy_input.length() < 0.1:
-		var input_dir = Input.get_vector("left", "right", "up", "down")
-		direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
-	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
-
-	if cam_input.length() > 0.1:
-		head.rotate_y(-cam_input.x * SENSITIVITY)
-		camera.rotate_x(-cam_input.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func pickup(object):
 	if object.type == "knife":
