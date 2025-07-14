@@ -24,7 +24,7 @@ var stars = 5
 var orders_delivered = 0
 var day_timer = 20
 var is_tutorial = false
-
+var world_toggle = false
 # Defines the animation player for when the player moves between menus.
 @onready var animation: AnimationPlayer = $"transition animation/transition animation"
 
@@ -125,6 +125,7 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
+	world_toggle = true
 	$tutorial.show()
 	$ui.show()
 	$player_single.position = Vector3(0,31.65,5.3)
@@ -164,6 +165,7 @@ func tutorial():
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 
 func _setup():
+	world_toggle = true
 	is_tutorial = false
 	for i in get_children():
 		if i.is_in_group("clear"):

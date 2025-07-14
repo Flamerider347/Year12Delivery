@@ -4,6 +4,7 @@ var speed = 0
 var can_pickup = true
 var controlling = false
 var evil = false
+var controller_let_go = true
 var SENSITIVITY = 0.1
 const WALK_SPEED = 10
 const SPRINT_SPEED = 15
@@ -45,6 +46,8 @@ func _unhandled_input(event):
 	if controlling:
 			if event is InputEventJoypadMotion:
 				if event.device == controller_id:
+					if event.axis == 4 and event.axis_value < 0.05:
+						controller_let_go = true
 					if event.axis == 5 and can_pickup:
 						if event.axis_value > 0.1:
 							if held_object and can_pickup:
@@ -54,22 +57,29 @@ func _unhandled_input(event):
 						if event.axis_value > 0.5:
 							if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
 								$interaction_timer.start(1)
-							if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+							if seecast.is_colliding() and seecast.get_collider().is_in_group("door") and can_pickup and controller_let_go:
+								controller_let_go = false
 								var door = seecast.get_collider()
 								door.swinging = true
-							if not held_object and can_pickup:
 								$pickup_timer.start()
 								can_pickup = false
+							if not held_object and can_pickup and controller_let_go:
+								$pickup_timer.start()
+								can_pickup = false
+								controller_let_go = false
 								if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
 									held_object = seecast.get_collider()
 									pickup(held_object)
 								if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
 									var summon_type = seecast.get_collider().name.replace("_crate","")
 									summon(summon_type)
+						else:
 							if held_object and can_pickup:
 								drop(held_object)
 								$pickup_timer.start()
 								can_pickup = false
+
+
 
 			if event is InputEventJoypadButton:
 				if event.device == controller_id:
@@ -289,12 +299,14 @@ func bounce():
 
 
 func _on_interaction_timer_timeout() -> void:
-	if $"../day_timer".is_stopped():
-		$"../menu".win_screen()
-	else:
-		if $"..".level == 0:
-			$"../menu".menu_toggle = true
-			$"../menu".menu_load()
+	if $"../../../..".world_toggle:
+		$"../../../..".world_toggle = false
+		if $"../day_timer".is_stopped():
+			$"../menu".win_screen()
 		else:
-			$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
-			$"../menu".lose_screen()
+			if $"..".level == 0:
+				$"../menu".menu_toggle = true
+				$"../menu".menu_load()
+			else:
+				$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
+				$"../menu".lose_screen()

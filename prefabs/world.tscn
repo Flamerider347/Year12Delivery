@@ -855,15 +855,15 @@ text = " Look at me and hold LEFT CLICK to End the day
 (Day incomplete)"
 vertical_alignment = 0
 
-[node name="Area3D" type="Area3D" parent="kitchen/sign_out" groups=["interactable"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/sign_out/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.988953, 1.08636, 0.218506)
-shape = SubResource("BoxShape3D_guuop")
-
 [node name="interact_time_left" type="Label3D" parent="kitchen/sign_out"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815294, 0.947081, 0)
 text = "2"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchen/sign_out" groups=["interactable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/sign_out/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.988953, 1.08636, 0.218506)
+shape = SubResource("BoxShape3D_guuop")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_mrigr")
@@ -1581,7 +1581,7 @@ target_position = Vector3(0, 0, -8)
 target_position = Vector3(0, 0, -3)
 
 [node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
-wait_time = 0.06
+wait_time = 0.1
 
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 

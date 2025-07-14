@@ -327,12 +327,14 @@ func bounce():
 
 
 func _on_interaction_timer_timeout() -> void:
-	if $"../day_timer".is_stopped():
-		$"../menu".win_screen()
-	else:
-		if $"..".level == 0:
-			$"../menu".menu_toggle = true
-			$"../menu".menu_load()
+	if $"..".world_toggle:
+		$"..".world_toggle = false
+		if $"../day_timer".is_stopped():
+			$"../menu".win_screen()
 		else:
-			$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
-			$"../menu".lose_screen()
+			if $"..".level == 0:
+				$"../menu".menu_toggle = true
+				$"../menu".menu_load()
+			else:
+				$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
+				$"../menu".lose_screen()
