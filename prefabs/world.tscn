@@ -1489,9 +1489,9 @@ wait_time = 20.0
 [node name="order_timer" type="Timer" parent="."]
 
 [node name="GridContainer" type="GridContainer" parent="."]
-visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
+theme_override_constants/h_separation = 0
 columns = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
@@ -1502,11 +1502,11 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 0
+size = Vector2i(960, 1080)
+render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941749, 1, 6.1318)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 6)
 script = ExtResource("2_le6xu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]
@@ -1517,6 +1517,9 @@ mesh = SubResource("CapsuleMesh_tlwt5")
 
 [node name="head" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
+
+[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.16, -0.75)
 
 [node name="player_camera" type="Camera3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head"]
 current = true
@@ -1538,9 +1541,6 @@ wait_time = 0.06
 
 [node name="interaction_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
 
-[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
-
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1549,11 +1549,11 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 0
+size = Vector2i(960, 1080)
+render_target_update_mode = 4
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.188471, 1, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 6)
 script = ExtResource("24_n7i1a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2" groups=["hitbox"]]
@@ -1564,6 +1564,9 @@ mesh = SubResource("CapsuleMesh_tlwt5")
 
 [node name="head" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
+
+[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.16, -0.75)
 
 [node name="player_camera" type="Camera3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head"]
 current = true
@@ -1583,9 +1586,6 @@ wait_time = 0.06
 [node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 
 [node name="interaction_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
-
-[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
 
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]

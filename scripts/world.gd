@@ -182,14 +182,25 @@ func _setup():
 		$player_single._setup()
 		$player_single/head/player_camera.current = true
 		$ui/Sprite2D.show()
+		$ui/Sprite2D2.hide()
 		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
+		$player_single.show()
+		$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
+		$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
+		$GridContainer/SubViewportContainer/SubViewport/player.hide()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.hide()
 	if player_count == 2:
 		$GridContainer.show()
 		$GridContainer/SubViewportContainer/SubViewport/player._setup()
 		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
+		$player_single.hide()
+		$GridContainer/SubViewportContainer/SubViewport/player.show()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
+		$ui/Sprite2D.position.x = 480
+		$ui/Sprite2D2.position.x = 1440
 	$order_timer.start(0.1)
 	for i in benches:
 		if benches[i][2] == true:

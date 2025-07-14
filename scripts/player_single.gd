@@ -43,32 +43,47 @@ func _unhandled_input(event):
 			head.rotate_y(-event.relative.x * SENSITIVITY/200)
 			camera.rotation.x = clamp(camera.rotation.x - event.relative.y * SENSITIVITY/200, deg_to_rad(-60), deg_to_rad(60))
 			look_recipe()
-		if event.device == controller_id:
-			if event is InputEventJoypadButton:
-				if event.button_index == JOY_BUTTON_A and event.pressed:
-					if is_on_floor():
-						velocity.y += JUMP_VELOCITY
-			if event is InputEventJoypadButton:
-				if event.button_index == JOY_BUTTON_X and can_pickup and event.pressed:
-					if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
-						var door = seecast.get_collider()
-						door.swinging = true
-					if not held_object and can_pickup:
-						$pickup_timer.start()
-						can_pickup = false
-						if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
-							held_object = seecast.get_collider()
-							pickup(held_object)
-						if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
-							var summon_type = seecast.get_collider().name.replace("_crate","")
-							summon(summon_type)
-					if held_object and can_pickup:
-						if seecast.is_colliding() and seecast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack"):
-							stack()
-						else:
+		if event is InputEventJoypadMotion:
+			if event.device == controller_id:
+				if event.axis == 5:
+					if event.axis_value > 0.1 and can_pickup:
+						if held_object and held_object.type == "knife":
+							held_object.get_parent().find_child("AnimationPlayer").stop()
+							held_object.get_parent().find_child("AnimationPlayer").play("swing_knife")
+							seecast.target_position.z = -0.1
+							await held_object.get_parent().find_child("AnimationPlayer").animation_finished
+							if held_object:
+								held_object.get_parent().find_child("AnimationPlayer").play_backwards("swing_knife")
+								seecast.target_position.z = -1.8
+						if held_object and can_pickup:
+							if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
+								stack()
+				if event.axis == 4 and can_pickup:
+					if event.axis_value > 0.5:
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
+							$interaction_timer.start(1)
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+							var door = seecast.get_collider()
+							door.swinging = true
+						if not held_object and can_pickup:
+							$pickup_timer.start()
+							can_pickup = false
+							if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+								held_object = seecast.get_collider()
+								pickup(held_object)
+							if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
+								var summon_type = seecast.get_collider().name.replace("_crate","")
+								summon(summon_type)
+						if held_object and can_pickup:
 							drop(held_object)
-						$pickup_timer.start()
-						can_pickup = false
+							$pickup_timer.start()
+							can_pickup = false
+
+			if event is InputEventJoypadButton:
+				if event.device == controller_id:
+					if event.button_index == JOY_BUTTON_A and is_on_floor():
+						velocity.y = JUMP_VELOCITY
+
 func _physics_process(delta: float):
 	if not $interaction_timer.is_stopped():
 		$"../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
@@ -79,10 +94,11 @@ func _physics_process(delta: float):
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
-	if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
-		if not $interaction_timer.is_stopped():
-			$interaction_timer.stop()
+
 	if controlling:
+		if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
+			if not $interaction_timer.is_stopped():
+				$interaction_timer.stop()
 		if Input.is_action_just_pressed("menu"):
 			$interaction_timer.start(1)
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:

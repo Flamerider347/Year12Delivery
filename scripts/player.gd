@@ -45,9 +45,8 @@ func _setup():
 func _unhandled_input(event):
 	if controlling:
 		if event.device == controller_id:
-			print("hello")
 			if event is InputEventJoypadMotion:
-				if event.axis == JOY_BUTTON_PADDLE3:
+				if event.axis == 4 and can_pickup:
 					if event.axis_value > 0.5:
 						if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
 							$interaction_timer.start(1)
@@ -67,7 +66,7 @@ func _unhandled_input(event):
 							drop(held_object)
 							$pickup_timer.start()
 							can_pickup = false
-				if event.axis == JOY_BUTTON_PADDLE4:
+				if event.axis == 5 and can_pickup:
 						if event.axis_value > 0.5:
 							if held_object and held_object.type == "knife":
 								held_object.get_parent().find_child("AnimationPlayer").stop()
@@ -103,11 +102,12 @@ func movement(delta):
 	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7)
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7)
 	# Get the input direction and handle the movement/deceleration.
-	if joy_input.length() < 0.1:
-		var input_dir = Input.get_vector("left", "right", "up", "down")
-		direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	if controller_id == -1:
+		if joy_input.length() < 0.1:
+			var input_dir = Input.get_vector("left_split", "right_split", "up_split", "down_split")
+			direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
 
 	if cam_input.length() > 0.1:
@@ -116,19 +116,20 @@ func movement(delta):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
-	if not $interaction_timer.is_stopped():
-		$"../../../../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-		$"../../../../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-	else:
-		$"../../../../kitchen/sign_out/interact_time_left".text = ""
-		$"../../../../tutorial/sign_out/interact_time_left".text = ""
-	if position.y < -10:
-		position = $"../kitchen".position + Vector3(0,0.5,5)
+
 	crosshair_change()
 	if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
 		if not $interaction_timer.is_stopped():
 			$interaction_timer.stop()
 	if controlling:
+		if not $interaction_timer.is_stopped():
+			$"../../../../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+			$"../../../../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+		else:
+			$"../../../../kitchen/sign_out/interact_time_left".text = ""
+			$"../../../../tutorial/sign_out/interact_time_left".text = ""
+		if position.y < -10:
+			position = $"../kitchen".position + Vector3(0,0.5,5)
 		if Input.is_action_just_pressed("menu"):
 			$interaction_timer.start(1)
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
@@ -172,8 +173,8 @@ func _physics_process(delta: float):
 func pickup(object):
 	if object.type == "knife":
 		seecast.target_position.z = -1.8
-		if $"..".is_tutorial:
-			$"../tutorial/plates".pickup_knife()
+		if $"../../../..".is_tutorial:
+			$"../../../../tutorial/plates".pickup_knife()
 	else:
 		seecast.target_position.z = -1.6
 	object.freeze = true

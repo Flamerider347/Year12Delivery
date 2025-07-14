@@ -41,16 +41,12 @@ func _setup():
 		controller_id = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	controlling = true
-	print(controller_id)
-
 func _unhandled_input(event):
 	if controlling:
 			if event is InputEventJoypadMotion:
 				if event.device == controller_id:
-					print(event)
-					if event.axis == 5:
+					if event.axis == 5 and can_pickup:
 						if event.axis_value > 0.1:
-							print("I got to here")
 							if held_object and held_object.type == "knife":
 								held_object.get_parent().find_child("AnimationPlayer").stop()
 								held_object.get_parent().find_child("AnimationPlayer").play("swing_knife")
@@ -62,7 +58,7 @@ func _unhandled_input(event):
 							if held_object and can_pickup:
 								if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 									stack()
-					if event.axis == JOY_BUTTON_PADDLE3:
+					if event.axis == 4 and can_pickup:
 						if event.axis_value > 0.5:
 							if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
 								$interaction_timer.start(1)
@@ -108,11 +104,7 @@ func movement(delta):
 	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7)
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7)
 	# Get the input direction and handle the movement/deceleration.
-	if joy_input.length() < 0.1:
-		var input_dir = Input.get_vector("left_controller", "right_controller", "up_controller", "down_controller")
-		direction = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+
 	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
 
 	if cam_input.length() > 0.1:
@@ -144,8 +136,8 @@ func _physics_process(delta: float):
 func pickup(object):
 	if object.type == "knife":
 		seecast.target_position.z = -1.8
-		if $"..".is_tutorial:
-			$"../tutorial/plates".pickup_knife()
+		if $"../../../..".is_tutorial:
+			$"../../../../tutorial/plates".pickup_knife()
 	else:
 		seecast.target_position.z = -1.6
 	object.freeze = true
