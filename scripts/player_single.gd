@@ -85,22 +85,11 @@ func _unhandled_input(event):
 						velocity.y = JUMP_VELOCITY
 
 func _physics_process(delta: float):
-	if not $interaction_timer.is_stopped():
-		$"../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-		$"../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-	else:
-		$"../kitchen/sign_out/interact_time_left".text = ""
-		$"../tutorial/sign_out/interact_time_left".text = ""
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
 
 	if controlling:
-		if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
-			if not $interaction_timer.is_stopped():
-				$interaction_timer.stop()
-		if Input.is_action_just_pressed("menu"):
-			$interaction_timer.start(1)
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
 				$interaction_timer.start(1)
@@ -124,11 +113,24 @@ func _physics_process(delta: float):
 			if held_object and can_pickup:
 				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 					stack()
+		if Input.is_action_pressed("menu"):
+			if not $interaction_timer.is_stopped():
+				$"../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+				$"../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+		if Input.is_action_just_pressed("menu"):
+			$interaction_timer.start(1.0)
+		if Input.is_action_just_released("menu"):
+			if not $interaction_timer.is_stopped():
+				$interaction_timer.stop()
+				$"../kitchen/sign_out/interact_time_left".text = ""
+				$"../tutorial/sign_out/interact_time_left".text = ""
 		position_held_object()
 		movement(delta)
 		move_and_slide()
 	else:
 		$interaction_timer.stop()
+		$"../kitchen/sign_out/interact_time_left".text = ""
+		$"../tutorial/sign_out/interact_time_left".text = ""
 
 func movement(delta):
 	if not is_on_floor():
@@ -329,6 +331,9 @@ func bounce():
 func _on_interaction_timer_timeout() -> void:
 	if $"..".world_toggle:
 		$"..".world_toggle = false
+		controlling = false
+		$"../GridContainer/SubViewportContainer/SubViewport/player".controlling = false
+		$"../GridContainer/SubViewportContainer2/SubViewport/player2".controlling = false
 		if $"../day_timer".is_stopped():
 			$"../menu".win_screen()
 		else:

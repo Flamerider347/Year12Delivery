@@ -115,24 +115,30 @@ func movement(delta):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
-	if not $interaction_timer.is_stopped():
-		$"../../../../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-		$"../../../../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-	else:
-		$"../../../../kitchen/sign_out/interact_time_left".text = ""
-		$"../../../../tutorial/sign_out/interact_time_left".text = ""
+
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
-	if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
-		if not $interaction_timer.is_stopped():
-			$interaction_timer.stop()
+
 	if controlling:
+		if Input.is_action_pressed("menu"):
+			if not $interaction_timer.is_stopped():
+				$"../../../../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+				$"../../../../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
+		if Input.is_action_just_pressed("menu"):
+			$interaction_timer.start(1.0)
+		if Input.is_action_just_released("menu"):
+			if not $interaction_timer.is_stopped():
+				$interaction_timer.stop()
+				$"../../../../kitchen/sign_out/interact_time_left".text = ""
+				$"../../../../tutorial/sign_out/interact_time_left".text = ""
 		position_held_object()
 		movement(delta)
 		move_and_slide()
 	else:
 		$interaction_timer.stop()
+		$"../../../../kitchen/sign_out/interact_time_left".text = ""
+		$"../../../../tutorial/sign_out/interact_time_left".text = ""
 
 
 func pickup(object):

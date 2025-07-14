@@ -115,12 +115,6 @@ func movement(delta):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
-	if not $interaction_timer.is_stopped():
-		$"../../../../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-		$"../../../../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-	else:
-		$"../../../../kitchen/sign_out/interact_time_left".text = ""
-		$"../../../../tutorial/sign_out/interact_time_left".text = ""
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
