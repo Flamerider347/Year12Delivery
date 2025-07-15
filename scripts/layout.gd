@@ -1,5 +1,7 @@
 extends Node2D
+var editing_recipe = null
 var editing_bench = null
+var recipe_type = null
 var bench_type = null
 var benches_bought = 0
 var stars_bought = 1
@@ -48,6 +50,9 @@ func _physics_process(_delta: float) -> void:
 		if bench_type:
 			$dragging_bench.rotation_degrees = benches[editing_bench][1]
 	if Input.is_action_just_released("pickup_p1"):
+		if recipe_type:
+			if editing_recipe:
+				print(recipe_type, " ", editing_recipe)
 		if bench_type:
 			if editing_bench:
 				var purchase_cost = 0
@@ -60,6 +65,7 @@ func _physics_process(_delta: float) -> void:
 				money_bench_check()
 		editing_bench=  null
 		bench_type = null
+		editing_recipe = null
 		$dragging_bench.hide()
 
 func money_bench_check():
@@ -82,7 +88,16 @@ func assign_layout_names():
 func _on_bench_name(bench_name) -> void:
 	if bench_name:
 		editing_bench = str(bench_name)
-
+		
+func _on_recipe_slot_editing_recipe(recipe_slot) -> void:
+	editing_recipe = recipe_slot
+	
+func _on_area_2d_recipe_type(type) -> void:
+	recipe_type = str(type)
+	#$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
+	$dragging_bench.position = get_local_mouse_position()
+	$dragging_bench.show()
+	$dragging_bench.rotation_degrees = 0
 func _on_bench_bench_type(type) -> void:
 	bench_type = str(type)
 	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
