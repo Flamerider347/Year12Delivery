@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=26 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -14,7 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://cw5xjsl48vltp" path="res://assets/Sprint 1 Icons for benches/delivery_plate.png" id="12_73aox"]
 [ext_resource type="Script" uid="uid://cf6prq01f4d01" path="res://scripts/recipe_slot.gd" id="13_73aox"]
 [ext_resource type="Script" uid="uid://7ry5gpnlyjjp" path="res://scripts/recipe.gd" id="14_21bg4"]
+[ext_resource type="Texture2D" uid="uid://cm877xs63r1qq" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png" id="14_dwafa"]
 [ext_resource type="Texture2D" uid="uid://uhwevs5wqbek" path="res://assets/icon.svg" id="15_w8pom"]
+[ext_resource type="Texture2D" uid="uid://bhl7p16gky0l" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png" id="17_dll84"]
+[ext_resource type="Texture2D" uid="uid://dnl1gv48kvb3t" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png" id="18_tcgir"]
+[ext_resource type="Texture2D" uid="uid://bg5ee6sgs0ms3" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png" id="19_1lbl1"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
 load_path = "res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-a475054c122f995dca554930f34f2a59.ctex"
@@ -757,47 +761,97 @@ text = "Selected recipes:"
 
 [node name="selected_recipes" type="Node2D" parent="CanvasLayer/layout/recipes"]
 
-[node name="recipe_slot" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+[node name="recipe_slot1" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(122, 358)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1"]
 shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1"]
+texture = ExtResource("14_dwafa")
 
 [node name="recipe_slot2" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(257, 359)
+script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2"]
 shape = SubResource("RectangleShape2D_y5qo3")
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2"]
+texture = ExtResource("15_w8pom")
+
 [node name="recipe_slot3" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(397, 359)
+script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3"]
 shape = SubResource("RectangleShape2D_y5qo3")
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3"]
+texture = ExtResource("15_w8pom")
+
 [node name="recipe_slot4" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(534, 359)
+script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4"]
 shape = SubResource("RectangleShape2D_y5qo3")
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4"]
+texture = ExtResource("15_w8pom")
+
 [node name="available_recipes" type="Node2D" parent="CanvasLayer/layout/recipes"]
 
-[node name="Area2D" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+[node name="burger_hayden" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 position = Vector2(117, 791)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_hayden"]
 shape = SubResource("RectangleShape2D_0x0nk")
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/Area2D"]
-texture = ExtResource("15_w8pom")
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_hayden"]
+texture = ExtResource("17_dll84")
+
+[node name="burger_ben" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+position = Vector2(259, 789)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_ben"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_ben"]
+texture = ExtResource("19_1lbl1")
+
+[node name="burger_aine" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+position = Vector2(405, 787)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_aine"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_aine"]
+texture = ExtResource("18_tcgir")
+
+[node name="stew" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+visible = false
+position = Vector2(551, 789)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/stew"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/stew"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("14_dwafa")
 
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
 visible = false
@@ -986,12 +1040,26 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_star" to="CanvasLayer/layout/upgrades/buy_star" method="_on_pressed"]
-[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
-[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/Area2D" to="CanvasLayer/layout/recipes/available_recipes/Area2D" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/Area2D" to="CanvasLayer/layout/recipes/available_recipes/Area2D" method="_on_mouse_exited"]
-[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/Area2D" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" method="_on_mouse_entered"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" method="_on_mouse_entered"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" method="_on_mouse_entered"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout/recipes/available_recipes/burger_hayden" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout/recipes/available_recipes/burger_hayden" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/burger_ben" to="CanvasLayer/layout/recipes/available_recipes/burger_ben" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/burger_ben" to="CanvasLayer/layout/recipes/available_recipes/burger_ben" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/burger_ben" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/burger_aine" to="CanvasLayer/layout/recipes/available_recipes/burger_aine" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/burger_aine" to="CanvasLayer/layout/recipes/available_recipes/burger_aine" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/burger_aine" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout/recipes/available_recipes/stew" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout/recipes/available_recipes/stew" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout" method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout" method="_on_next_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout" method="_on_close_pressed"]

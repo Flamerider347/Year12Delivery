@@ -3,6 +3,7 @@ var editing_recipe = null
 var editing_bench = null
 var recipe_type = null
 var bench_type = null
+var replaced_recipe = null
 var benches_bought = 0
 var stars_bought = 1
 var tutorial_step = 1
@@ -13,7 +14,11 @@ var bench_type_sprites = {
 	"chopping_board" : preload("res://assets/Sprint 1 Icons for benches/Chopping Board.png"),
 	"fridge" :preload("res://assets/Sprint 1 Icons for benches/Fridge.png"),
 	"stove" : preload("res://assets/Sprint 1 Icons for benches/Stove.png"),
-	"delivery_table" : preload("res://assets/Sprint 1 Icons for benches/delivery_plate.png")
+	"delivery_table" : preload("res://assets/Sprint 1 Icons for benches/delivery_plate.png"),
+	"burger_hayden" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png"),
+	"burger_ben" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png"),
+	"burger_aine" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png"),
+	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png")
 }
 @onready var menu = $"../.."
 var bench_costs = {
@@ -26,6 +31,8 @@ var bench_costs = {
 	"delivery_table" : 10
 }
 @onready var benches = $"../../..".benches
+@onready var recipe_list = $"../../../kitchen/plates".recipes_list
+var recipe_slots = ["stew",null,null,null]
 func _ready() -> void:
 	setup()
 func setup():
@@ -51,8 +58,16 @@ func _physics_process(_delta: float) -> void:
 			$dragging_bench.rotation_degrees = benches[editing_bench][1]
 	if Input.is_action_just_released("pickup_p1"):
 		if recipe_type:
-			if editing_recipe:
-				print(recipe_type, " ", editing_recipe)
+			if editing_recipe or editing_recipe == 0:
+				if recipe_slots[editing_recipe] in recipe_list.keys():
+					recipe_list[recipe_slots[editing_recipe]][1] = false
+					$recipes/available_recipes.find_child(str(recipe_slots[editing_recipe])).show()
+				recipe_slots[editing_recipe] = recipe_type
+				if recipe_type in recipe_list.keys():
+					recipe_list[recipe_type][1] = true
+					$recipes/selected_recipes.find_child("recipe_slot" + str(editing_recipe+1)).find_child("Sprite2D").texture = bench_type_sprites[recipe_type]
+				recipe_type = null
+				editing_recipe = null
 		if bench_type:
 			if editing_bench:
 				var purchase_cost = 0
@@ -63,7 +78,7 @@ func _physics_process(_delta: float) -> void:
 				$layout_benches.find_child(str(editing_bench)).find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 				$money.text = "Money: " + str($"../../..".money)
 				money_bench_check()
-		editing_bench=  null
+		editing_bench =  null
 		bench_type = null
 		editing_recipe = null
 		$dragging_bench.hide()
@@ -90,11 +105,13 @@ func _on_bench_name(bench_name) -> void:
 		editing_bench = str(bench_name)
 		
 func _on_recipe_slot_editing_recipe(recipe_slot) -> void:
-	editing_recipe = recipe_slot
+	editing_recipe = int(recipe_slot.replace("recipe_slot",""))-1
+
 	
 func _on_area_2d_recipe_type(type) -> void:
+	$recipes/available_recipes.find_child(str(type)).hide()
 	recipe_type = str(type)
-	#$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
+	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[recipe_type]
 	$dragging_bench.position = get_local_mouse_position()
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0

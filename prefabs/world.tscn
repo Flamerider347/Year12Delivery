@@ -1649,3 +1649,5 @@ wait_time = 0.1
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/interaction_timer" to="player_single" method="_on_interaction_timer_timeout"]
+
+[editable path="menu"]
