@@ -1,24 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhxi1c7vowdmn"]
+[gd_scene load_steps=10 format=3 uid="uid://bhxi1c7vowdmn"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hhmeu"]
+[ext_resource type="Material" uid="uid://drsxsbw0f2620" path="res://assets/materials/black_particle_colour.tres" id="1_vl1vx"]
+[ext_resource type="Material" uid="uid://cqpfinmdv88cr" path="res://assets/materials/white_particle_colour.tres" id="2_a7mbu"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufkp0"]
 emission_shape = 1
-emission_sphere_radius = 1.0
+emission_sphere_radius = 0.5
 gravity = Vector3(0, 4, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = 0.499998
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhmeu"]
-albedo_color = Color(0.194893, 2.81264e-07, 2.40654e-08, 1)
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nekil"]
+material = ExtResource("1_vl1vx")
+radius = 0.05
+height = 0.1
 
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_lwctb"]
-material = SubResource("StandardMaterial3D_hhmeu")
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30666"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 4, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.499998
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2rfa1"]
+material = ExtResource("2_a7mbu")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fdvjx"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 4, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 0.499998
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5jio"]
+albedo_color = Color(0.57299, 0.572988, 0.572988, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6rlsf"]
+material = SubResource("StandardMaterial3D_k5jio")
+radius = 0.05
+height = 0.1
 
 [node name="particle_smoke" type="Node3D"]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 16
+[node name="black" type="GPUParticles3D" parent="."]
+amount = 10
+lifetime = 0.5
 preprocess = 2.0
 speed_scale = 0.5
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_hhmeu")
-draw_pass_1 = SubResource("RibbonTrailMesh_lwctb")
+process_material = SubResource("ParticleProcessMaterial_ufkp0")
+draw_pass_1 = SubResource("CapsuleMesh_nekil")
+
+[node name="grey" type="GPUParticles3D" parent="."]
+amount = 10
+lifetime = 0.75
+preprocess = 2.0
+speed_scale = 0.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_30666")
+draw_pass_1 = SubResource("CapsuleMesh_2rfa1")
+
+[node name="white" type="GPUParticles3D" parent="."]
+amount = 10
+preprocess = 2.0
+speed_scale = 0.5
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fdvjx")
+draw_pass_1 = SubResource("CapsuleMesh_6rlsf")
