@@ -4,7 +4,6 @@ var editing_bench = null
 var recipe_type = null
 var bench_type = null
 var replaced_recipe = null
-var entered_unselect_area = false
 var benches_bought = 0
 var stars_bought = 1
 var tutorial_step = 1
@@ -19,8 +18,7 @@ var bench_type_sprites = {
 	"burger_hayden" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png"),
 	"burger_ben" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png"),
 	"burger_aine" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png"),
-	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png"),
-	"unselect" : preload("res://assets/icon.svg")
+	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png")
 }
 @onready var menu = $"../.."
 var bench_costs = {
@@ -88,12 +86,9 @@ func _physics_process(_delta: float) -> void:
 				if recipe_type in recipe_list.keys():
 					recipe_list[recipe_type][1] = true
 					$recipes/selected_recipes.find_child("recipe_slot" + str(editing_recipe+1)).find_child("Sprite2D").texture = bench_type_sprites[recipe_type]
-			else:
-				$recipes/available_recipes.find_child(str(recipe_type)).show()
-			recipe_type = null
-			editing_recipe = null
-
-		elif bench_type:
+				recipe_type = null
+				editing_recipe = null
+		if bench_type:
 			if editing_bench:
 				var purchase_cost = 0
 				purchase_cost -= int(bench_costs[benches[editing_bench][0]])
@@ -128,7 +123,7 @@ func assign_layout_names():
 func _on_bench_name(bench_name) -> void:
 	if bench_name:
 		editing_bench = str(bench_name)
-
+		
 func _on_recipe_slot_editing_recipe(recipe_slot) -> void:
 	editing_recipe = int(recipe_slot.replace("recipe_slot",""))-1
 
@@ -203,12 +198,3 @@ func _on_next_pressed() -> void:
 		tutorial_text()
 func _on_close_pressed() -> void:
 	$layout_tutorial.hide()
-
-
-func _on_unselect_area_mouse_entered() -> void:
-	entered_unselect_area = true
-	
-
-
-func _on_unselect_area_mouse_exited() -> void:
-	entered_unselect_area = false
