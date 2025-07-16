@@ -82,31 +82,14 @@ func _physics_process(_delta: float) -> void:
 			if not entered_unselect_area and editing_recipe or editing_recipe == 0:
 				if recipe_slots[editing_recipe] in recipe_list.keys():
 					recipe_list[recipe_slots[editing_recipe]][1] = false
-					var number = -1
-					print(recipe_type.position)
-					for i in available_recipe_slots:
-						number +=1 
-						if i == null:
-							position_slot = number
-							break
 					$recipes/available_recipes.find_child(str(recipe_type)).show()
-					$recipes/available_recipes.find_child(recipe_type).global_position = available_positions[position_slot]
 					available_recipe_slots[position_slot] = recipe_type
 					recipe_slots[editing_recipe] = recipe_type
-					
 				if recipe_type in recipe_list.keys():
 					recipe_list[recipe_type][1] = true
 					$recipes/selected_recipes.find_child("recipe_slot" + str(editing_recipe+1)).find_child("Sprite2D").texture = bench_type_sprites[recipe_type]
 			else:
-				var number = -1
-				for i in available_recipe_slots:
-					number +=1 
-					if i == null:
-						position_slot = number
-						break
 				$recipes/available_recipes.find_child(str(recipe_type)).show()
-				$recipes/available_recipes.find_child(recipe_type).global_position = available_positions[position_slot]
-				available_recipe_slots[position_slot] = recipe_type
 			recipe_type = null
 			editing_recipe = null
 
