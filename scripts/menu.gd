@@ -216,7 +216,6 @@ func lose_screen():
 	$CanvasLayer/end_screen/lerp_timer.start(0.5)
 	$"../transition animation/transition animation".play("fade_transition_reverse")
 	await get_tree().create_timer(1.0).timeout
-	$"../transition animation/transition animation".hide()
 	win_text()
 
 func win_screen():
@@ -238,7 +237,6 @@ func win_screen():
 	$"..".money += new_money
 	$"../transition animation/transition animation".play("fade_transition_reverse")
 	await get_tree().create_timer(1.0).timeout
-	$"../transition animation/transition animation".hide()
 	win_text()
 
 func lerp_text():
