@@ -912,9 +912,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
 
 [node name="particle_sizzle" parent="tutorial" groups=["keep"] instance=ExtResource("19_obwhl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05238, 1.35505, 1.96495)
+visible = false
 
 [node name="particle_smoke" parent="tutorial" instance=ExtResource("20_obwhl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.12137, 1.28626, 1.96681)
+visible = false
 
 [node name="kitchen_walls" type="Node3D" parent="tutorial" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
