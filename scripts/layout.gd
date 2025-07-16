@@ -7,6 +7,7 @@ var replaced_recipe = null
 var benches_bought = 0
 var stars_bought = 1
 var tutorial_step = 1
+var entered_unselect_area = false
 var bench_type_sprites = {
 	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
 	"bin" : preload("res://assets/Sprint 1 Icons for benches/Bin Crate.png"),
@@ -198,3 +199,11 @@ func _on_next_pressed() -> void:
 		tutorial_text()
 func _on_close_pressed() -> void:
 	$layout_tutorial.hide()
+
+
+func _on_unselect_area_mouse_entered() -> void:
+	entered_unselect_area = true
+
+
+func _on_unselect_area_mouse_exited() -> void:
+	entered_unselect_area = false
