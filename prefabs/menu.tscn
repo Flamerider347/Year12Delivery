@@ -819,7 +819,7 @@ texture = ExtResource("15_w8pom")
 [node name="available_recipes" type="Node2D" parent="CanvasLayer/layout/recipes"]
 
 [node name="burger_hayden" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
-position = Vector2(117, 791)
+position = Vector2(122, 791)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -861,7 +861,6 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_0x0nk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/stew"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_dwafa")
 
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]

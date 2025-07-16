@@ -35,6 +35,9 @@ var bench_costs = {
 @onready var benches = $"../../..".benches
 @onready var recipe_list = $"../../../kitchen/plates".recipes_list
 var recipe_slots = ["stew",null,null,null]
+var available_recipe_slots = ["burger_hayden","burger_ben","burger_aine",null]
+var available_positions = [Vector2(128,800),Vector2(256,800),Vector2(384,800),Vector2(512,800)]
+var position_slot
 func _ready() -> void:
 	setup()
 func setup():
@@ -65,9 +68,11 @@ func _physics_process(_delta: float) -> void:
 					$recipes/selected_recipes.find_child(str(recipe_type)).show()
 					$recipes/selected_recipes.find_child(str(recipe_type)).find_child("Sprite2D").texture = bench_type_sprites["unselect"]
 					$recipes/available_recipes.find_child(str(recipe_slots[int(recipe_type.replace("recipe_slot",""))-1])).show()
-					if recipe_slots[editing_recipe] in recipe_list.keys():
-						recipe_list[recipe_slots[editing_recipe]][1] = false
+					if recipe_slots[int(recipe_type.replace("recipe_slot",""))-1] in recipe_list.keys():
+						recipe_list[recipe_slots[int(recipe_type.replace("recipe_slot",""))-1]][1] = false
 					recipe_slots[int(recipe_type.replace("recipe_slot",""))-1] = null
+					recipe_type = null
+					editing_recipe = null
 			else:
 				$recipes/selected_recipes.find_child(str(recipe_type)).show()
 			recipe_type = null
@@ -77,13 +82,31 @@ func _physics_process(_delta: float) -> void:
 			if not entered_unselect_area and editing_recipe or editing_recipe == 0:
 				if recipe_slots[editing_recipe] in recipe_list.keys():
 					recipe_list[recipe_slots[editing_recipe]][1] = false
-					$recipes/available_recipes.find_child(str(recipe_slots[editing_recipe])).show()
-				recipe_slots[editing_recipe] = recipe_type
+					var number = -1
+					print(recipe_type.position)
+					for i in available_recipe_slots:
+						number +=1 
+						if i == null:
+							position_slot = number
+							break
+					$recipes/available_recipes.find_child(str(recipe_type)).show()
+					$recipes/available_recipes.find_child(recipe_type).global_position = available_positions[position_slot]
+					available_recipe_slots[position_slot] = recipe_type
+					recipe_slots[editing_recipe] = recipe_type
+					
 				if recipe_type in recipe_list.keys():
 					recipe_list[recipe_type][1] = true
 					$recipes/selected_recipes.find_child("recipe_slot" + str(editing_recipe+1)).find_child("Sprite2D").texture = bench_type_sprites[recipe_type]
 			else:
+				var number = -1
+				for i in available_recipe_slots:
+					number +=1 
+					if i == null:
+						position_slot = number
+						break
 				$recipes/available_recipes.find_child(str(recipe_type)).show()
+				$recipes/available_recipes.find_child(recipe_type).global_position = available_positions[position_slot]
+				available_recipe_slots[position_slot] = recipe_type
 			recipe_type = null
 			editing_recipe = null
 
@@ -134,6 +157,7 @@ func _on_recipe_slot_recipe_type_unselect(type) -> void:
 		$dragging_bench.position = get_local_mouse_position()
 		$dragging_bench.show()
 		$dragging_bench.rotation_degrees = 0
+
 func _on_area_2d_recipe_type(type) -> void:
 	$recipes/available_recipes.find_child(str(type)).hide()
 	recipe_type = str(type)
@@ -141,6 +165,14 @@ func _on_area_2d_recipe_type(type) -> void:
 	$dragging_bench.position = get_local_mouse_position()
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0
+	var number = -1
+	for i in available_recipe_slots:
+		number +=1 
+		if i == str(recipe_type):
+			available_recipe_slots[number] = null
+			break
+
+	
 func _on_bench_bench_type(type) -> void:
 	bench_type = str(type)
 	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
