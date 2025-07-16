@@ -19,7 +19,8 @@ var bench_type_sprites = {
 	"burger_hayden" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png"),
 	"burger_ben" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png"),
 	"burger_aine" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png"),
-	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png")
+	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png"),
+	"unselect" : preload("res://assets/icon.svg")
 }
 @onready var menu = $"../.."
 var bench_costs = {
@@ -64,9 +65,9 @@ func _physics_process(_delta: float) -> void:
 					$recipes/selected_recipes.find_child(str(recipe_type)).show()
 					$recipes/selected_recipes.find_child(str(recipe_type)).find_child("Sprite2D").texture = bench_type_sprites["unselect"]
 					$recipes/available_recipes.find_child(str(recipe_slots[int(recipe_type.replace("recipe_slot",""))-1])).show()
-					if recipe_slots[editing_recipe] in recipe_list.keys():
-						recipe_list[recipe_slots[editing_recipe]][1] = false
-					recipe_slots[int(recipe_type.replace("recipe_slot",""))-1] = null
+					if recipe_slots[int(recipe_type.replace("recipe_slot",""))-1] in recipe_list.keys():
+						recipe_list[recipe_slots[int(recipe_type.replace("recipe_slot",""))-1]][1] = false
+						recipe_slots[int(recipe_type.replace("recipe_slot",""))-1] = null
 			else:
 				$recipes/selected_recipes.find_child(str(recipe_type)).show()
 			recipe_type = null

@@ -860,7 +860,6 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_0x0nk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/stew"]
-scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_dwafa")
 
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
@@ -1054,12 +1053,20 @@ font_size = 128
 [connection signal="mouse_exited" from="CanvasLayer/layout/recipes/unselect_area" to="CanvasLayer/layout" method="_on_unselect_area_mouse_exited"]
 [connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
 [connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
 [connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
 [connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout/recipes/available_recipes/burger_hayden" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout/recipes/available_recipes/burger_hayden" method="_on_mouse_exited"]
 [connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
