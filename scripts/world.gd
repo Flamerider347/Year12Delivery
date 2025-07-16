@@ -1,5 +1,6 @@
 extends Node3D
 signal make_order
+var controllers = 0
 var sens_multiplyer = 50
 var grid_exists = true
 var player_exists = true
@@ -23,7 +24,7 @@ var stars = 5
 var orders_delivered = 0
 var day_timer = 20
 var is_tutorial = false
-
+var world_toggle = false
 # Defines the animation player for when the player moves between menus.
 @onready var animation: AnimationPlayer = $"transition animation/transition animation"
 
@@ -124,6 +125,7 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
+	world_toggle = true
 	$tutorial.show()
 	$ui.show()
 	$player_single.position = Vector3(0,31.65,5.3)
@@ -163,6 +165,7 @@ func tutorial():
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 
 func _setup():
+	world_toggle = true
 	is_tutorial = false
 	for i in get_children():
 		if i.is_in_group("clear"):
@@ -178,13 +181,28 @@ func _setup():
 	$day_timer.start()
 	map_select()
 	if player_count == 1:
+		$player_single._setup()
+		$player_single/head/player_camera.current = true
 		$ui/Sprite2D.show()
+		$ui/Sprite2D2.hide()
 		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
+		$player_single.show()
+		$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
+		$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
+		$GridContainer/SubViewportContainer/SubViewport/player.hide()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.hide()
 	if player_count == 2:
 		$GridContainer.show()
+		$GridContainer/SubViewportContainer/SubViewport/player._setup()
+		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
+		$player_single.hide()
+		$GridContainer/SubViewportContainer/SubViewport/player.show()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
+		$ui/Sprite2D.position.x = 480
+		$ui/Sprite2D2.position.x = 1440
 	$order_timer.start(0.1)
 	for i in benches:
 		if benches[i][2] == true:
@@ -234,7 +252,6 @@ Dangers:
 		$underwater/fish.run_away()
 
 func _physics_process(_delta: float) -> void:
-
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left
 		var hours = round(int(time)) / 30
@@ -256,32 +273,31 @@ func _physics_process(_delta: float) -> void:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
 func _on_cut_area_body_entered(body: Node3D) -> void:
-	if $player_single.held_object and $player_single.held_object.type == "knife":
-		if $player_single.held_object.get_parent().find_child("AnimationPlayer").is_playing() and $player_single.held_object.get_parent().find_child("AnimationPlayer").current_animation == "swing_knife":
-			if body.is_in_group("can_chop"):
-				$"SFX/knife chopping".global_position = body.global_position
-				$"SFX/knife chopping".play()
-				if body.type == "bun":
-					if is_tutorial:
-						$tutorial/plates.cut_bun()
-					var instance = bun_chopped_bottom.instantiate()
-					var instance2 = bun_chopped_top.instantiate()
-					add_child(instance)
-					add_child(instance2)
-					instance.type = "bun_bottom_chopped"
-					instance2.type = "bun_top_chopped"
-					instance.position = body.position
-					instance2.position = body.position + Vector3(0,0.1,0)
-					body.queue_free()
-				elif body.type in ingredients:
-					if is_tutorial:
-						if body.type == "tomato":
-							$tutorial/plates.cut_tomato()
-					var instance = ingredients[body.type].instantiate()
-					instance.type = body.type + "_chopped"
-					instance.position = body.position
-					add_child(instance)
-					body.queue_free()
+	if $player_single.held_object and $player_single.held_object.type == "knife" or $GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife" or $GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife":
+		if body.is_in_group("can_chop"):
+			$"SFX/knife chopping".global_position = body.global_position
+			$"SFX/knife chopping".play()
+			if body.type == "bun":
+				if is_tutorial:
+					$tutorial/plates.cut_bun()
+				var instance = bun_chopped_bottom.instantiate()
+				var instance2 = bun_chopped_top.instantiate()
+				add_child(instance)
+				add_child(instance2)
+				instance.type = "bun_bottom_chopped"
+				instance2.type = "bun_top_chopped"
+				instance.position = body.position
+				instance2.position = body.position + Vector3(0,0.1,0)
+				body.queue_free()
+			elif body.type in ingredients:
+				if is_tutorial:
+					if body.type == "tomato":
+						$tutorial/plates.cut_tomato()
+				var instance = ingredients[body.type].instantiate()
+				instance.type = body.type + "_chopped"
+				instance.position = body.position
+				add_child(instance)
+				body.queue_free()
 
 
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:

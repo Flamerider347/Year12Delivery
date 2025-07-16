@@ -49,7 +49,6 @@ text = "1 player"
 metadata/_edit_use_anchors_ = true
 
 [node name="players_2" type="Button" parent="CanvasLayer/main_menu"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -79,10 +78,10 @@ text = "Options"
 metadata/_edit_use_anchors_ = true
 
 [node name="quit" type="Button" parent="CanvasLayer/main_menu"]
-offset_left = 964.0
-offset_top = 542.0
-offset_right = 1164.0
-offset_bottom = 636.0
+offset_left = 863.0
+offset_top = 741.0
+offset_right = 1063.0
+offset_bottom = 835.0
 text = "Quit"
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/main_menu"]
@@ -187,7 +186,6 @@ text = "Return to Level Select
 "
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -527,7 +525,6 @@ offset_bottom = 632.0
 script = ExtResource("7_73aox")
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
-visible = false
 
 [node name="Label" type="RichTextLabel" parent="CanvasLayer/layout/recipes"]
 offset_left = 45.0
@@ -535,47 +532,12 @@ offset_top = 200.0
 offset_right = 609.88
 offset_bottom = 1044.05
 bbcode_enabled = true
-text = "[center][u]Burguire[/u]
-- Sells for 10-30$
-[u]Ingredients[/u]
-- Meat Pattie
-- 	Chopped Bun
-- 	Chopped Lettuce
-- 	Chopped Cheese
-- 	Chopped Tomato
-[u]Needs:[/u]
-- Bun Crate (0)
+text = " [u]Selected recipes:[/u] 0/4
 
-[u]Stew[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Chopped Potato
-- 	Chopped Meat Pattie
-- 	Chopped Carrot
 
-[u]Chips[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Chopped Potato
-[u]Needs:[/u]
-- Deep Fryer (0)
 
-[u]Fish and Chips[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Fish
-- 	Chopped Potato
-[u]Needs:[/u]
-- Deep Fryer (0)
 
-[u]Soup[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Chopped Potato
-- 	Chopped Lettuce
-[u]Needs:[/u]
-- 	Blender (0)
-"
+[u] Available recipes [/u]"
 metadata/_edit_use_anchors_ = true
 
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
@@ -622,6 +584,7 @@ offset_bottom = 101.0
 text = "?"
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
