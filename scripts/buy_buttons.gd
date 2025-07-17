@@ -79,7 +79,7 @@ func _on_pressed() -> void:
 				recipe_slots_bought += 1
 				button_money(item_cost[item][recipe_slots_bought])
 				$"../../recipes/selected_recipes".find_child("recipe_slot"+str(recipe_slots_bought)).show()
-				$"../recipe_slot".text = "Buy Recipe Slot " + str(recipe_slots_bought+1) + "
+				$"../recipe_slot".text = "Buy Slot " + str(recipe_slots_bought+1) + "
 				
 -Cook more recipes at one time
 -Change equipped slots in Recipes"
