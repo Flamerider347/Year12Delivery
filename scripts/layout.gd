@@ -4,9 +4,10 @@ var editing_bench = null
 var recipe_type = null
 var bench_type = null
 var replaced_recipe = null
-var benches_bought = 0
+var benches_bought = 7
 var stars_bought = 1
 var tutorial_step = 1
+var recipe_slots_bought = 0
 var entered_unselect_area = false
 var bench_type_sprites = {
 	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
@@ -34,7 +35,7 @@ var bench_costs = {
 }
 @onready var benches = $"../../..".benches
 @onready var recipe_list = $"../../../kitchen/plates".recipes_list
-var recipe_slots = ["stew",null,null,null]
+var recipe_slots = ["stew",null,null,null,null,null,null,null]
 func _ready() -> void:
 	setup()
 func setup():
@@ -44,14 +45,6 @@ func setup():
 	assign_layout_names()
 	$upgrades.show()
 	$recipes.hide()
-	benches_bought = 0
-	for i in $"../../..".benches.keys():
-		if $"../../..".benches[i][2] == true:
-			benches_bought += 1
-		else:
-			break
-	if benches_bought == 18:
-		$upgrades/buy_bench.text = "MAX LEVEL!"
 func _physics_process(_delta: float) -> void:
 	if $dragging_bench.visible:
 		$dragging_bench.position = get_local_mouse_position()
