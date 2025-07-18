@@ -201,13 +201,15 @@ func delivered():
 		$"../tutorial_text".position = Vector3(2.7,2.3,10.9)
 		$"../tutorial_text".rotation_degrees.y = 180
 		$"../tutorial_text".text = "Now pickup the POT using LEFT CLICK
-		and deliver it to the HOUSE stated on the POT by dropping it on the DOORSTEP.
+		and deliver it to the HOUSE 
+		stated on the POT by dropping it on the DOORSTEP.
 				"
 		step = 9
 func delivered_to_house():
 	if step == 9:
 		$"../tutorial_text".text = "You Beat the tutorial!
 		Hold ESCAPE to return to menu at any time.
-		You can also hold LEFT CLICK on the sign out board to your right
+		You can also hold LEFT CLICK
+		on the sign out board to your right
 			"
 		step = 1

@@ -145,8 +145,17 @@ func tutorial():
 		$ui/Sprite2D.position.x = 960
 	if player_count == 2:
 		$GridContainer.show()
+		$GridContainer/SubViewportContainer/SubViewport/player._setup()
+		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
+		$player_single.hide()
+		$GridContainer/SubViewportContainer/SubViewport/player.show()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
+		$GridContainer/SubViewportContainer/SubViewport/player.position = Vector3(1,31,6)
+		$GridContainer/SubViewportContainer2/SubViewport/player2.position = Vector3(-1,31,6)
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
+		$ui/Sprite2D.position.x = 480
+		$ui/Sprite2D2.position.x = 1440
 	for i in tutorial_benches:
 		if tutorial_benches[i][2] == true:
 			if i in bench_summoning.keys():

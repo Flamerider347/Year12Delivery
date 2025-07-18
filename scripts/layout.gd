@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	if editing_bench:
 		if bench_type:
 			$dragging_bench.rotation_degrees = benches[editing_bench][1]
-	if Input.is_action_just_released("pickup_p1"):
+	if Input.is_action_just_released("interact_menu"):
 		if str(recipe_type).substr(0, str(recipe_type).length() - 1) == "recipe_slot":
 			if entered_unselect_area:
 				if recipe_slots[int(recipe_type.replace("recipe_slot",""))-1]:

@@ -1378,7 +1378,7 @@ position = Vector2(318.63, 540)
 sprite_frames = SubResource("SpriteFrames_qrdq4")
 
 [node name="Sprite2D2" type="AnimatedSprite2D" parent="ui"]
-position = Vector2(1399, 551)
+position = Vector2(1399, 540)
 sprite_frames = SubResource("SpriteFrames_qrdq4")
 
 [node name="Label" type="Label" parent="ui"]
@@ -1484,7 +1484,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 180.0
 
 [node name="order_timer" type="Timer" parent="."]
 
@@ -1506,7 +1506,7 @@ size = Vector2i(960, 1080)
 render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 31.7846, 6)
 script = ExtResource("2_le6xu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]

@@ -5,7 +5,7 @@ var can_edit = false
 var hovering = null
 
 func _physics_process(_delta: float) -> void:
-	if can_edit and Input.is_action_just_pressed("pickup_p1"):
+	if can_edit and Input.is_action_just_pressed("interact_menu"):
 		hovering = self.name
 		recipe_type.emit(hovering)
 func _on_mouse_entered() -> void:
