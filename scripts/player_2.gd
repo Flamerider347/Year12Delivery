@@ -5,7 +5,7 @@ var can_pickup = true
 var controlling = false
 var evil = false
 var controller_let_go = true
-var SENSITIVITY = 0.1
+var SENSITIVITY = 0.01
 const WALK_SPEED = 10
 const SPRINT_SPEED = 15
 const JUMP_VELOCITY = 4.5
@@ -110,18 +110,19 @@ func movement(delta):
 	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
 
 	if cam_input.length() > 0.1:
-		head.rotate_y(-cam_input.x * SENSITIVITY)
-		camera.rotate_x(-cam_input.y * SENSITIVITY)
+		head.rotate_y(-cam_input.x * SENSITIVITY * $"../../../..".sens_multiplyer)
+		camera.rotate_x(-cam_input.y * SENSITIVITY * $"../../../..".sens_multiplyer)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
-	crosshair_change()
+
 	if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
 		if not $interaction_timer.is_stopped():
 			$interaction_timer.stop()
 	if controlling:
+		crosshair_change()
 		position_held_object()
 		movement(delta)
 		move_and_slide()
@@ -220,7 +221,7 @@ func stack():
 			drop(held_object)
 func summon(item):
 	var instance = ingredient_scenes[item].instantiate()
-	$"..".add_child(instance)
+	$"../../../..".add_child(instance)
 	held_object = instance
 	instance.type = str(item)
 	instance.position = Vector3(0,-5,0)

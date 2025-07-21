@@ -236,10 +236,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7i1a"]
-radius = 0.49
 height = 1.99
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k1hdb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w6ly8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -502,6 +503,8 @@ metadata/_editor_floor_ = Vector3(0, -8, 0)
 [node name="kitchen floor_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.475, -0.5)
 mesh_library = ExtResource("8_hpiwi")
+collision_layer = 5
+collision_mask = 5
 data = {
 "cells": PackedInt32Array(0, 3, 1048576, 65535, 3, 1048576, 65533, 5, 1048576, 65534, 5, 1048576, 65535, 5, 1048576, 0, 5, 1048576, 1, 5, 1048576, 2, 5, 1048576, 2, 4, 1048576, 1, 4, 1048576, 0, 4, 1048576, 65535, 4, 1048576, 65534, 4, 1048576, 65533, 4, 1048576, 65532, 4, 1048576, 65533, 3, 1048576, 65534, 3, 1048576, 1, 3, 1048576, 2, 3, 1048576, 2, 2, 1048576, 1, 2, 1048576, 0, 2, 1048576, 65535, 2, 1048576, 65534, 2, 1048576, 65533, 2, 1048576, 65533, 65535, 1048576, 65533, 0, 1048576, 65533, 1, 1048576, 65534, 65535, 1048576, 65534, 0, 1048576, 65534, 1, 1048576, 65535, 65535, 1048576, 65535, 0, 1048576, 65535, 1, 1048576, 0, 65535, 1048576, 0, 0, 1048576, 0, 1, 1048576, 1, 65535, 1048576, 1, 0, 1048576, 1, 1, 1048576, 2, 65535, 1048576, 2, 0, 1048576, 2, 1, 1048576)
 }
@@ -1388,7 +1391,7 @@ position = Vector2(318.63, 540)
 sprite_frames = SubResource("SpriteFrames_qrdq4")
 
 [node name="Sprite2D2" type="AnimatedSprite2D" parent="ui"]
-position = Vector2(1399, 551)
+position = Vector2(1399, 540)
 sprite_frames = SubResource("SpriteFrames_qrdq4")
 
 [node name="Label" type="Label" parent="ui"]
@@ -1432,6 +1435,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 
 [node name="player_single" type="CharacterBody3D" parent="." groups=["keep"]]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0.0259909, 31.6593, 5.31148)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("25_u7kri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_single"]
@@ -1470,6 +1475,14 @@ current = true
 
 [node name="interaction_timer" type="Timer" parent="player_single"]
 
+[node name="StaticBody3D" type="StaticBody3D" parent="player_single"]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="player_single/StaticBody3D"]
+shape = SubResource("CapsuleShape3D_w6ly8")
+
 [node name="SFX" type="Node3D" parent="."]
 
 [node name="ding" type="AudioStreamPlayer3D" parent="SFX"]
@@ -1494,7 +1507,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 180.0
 
 [node name="order_timer" type="Timer" parent="."]
 
@@ -1516,7 +1529,7 @@ size = Vector2i(960, 1080)
 render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 31.7846, 6)
 script = ExtResource("2_le6xu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]
@@ -1659,3 +1672,5 @@ wait_time = 0.1
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/interaction_timer" to="player_single" method="_on_interaction_timer_timeout"]
+
+[editable path="menu"]
