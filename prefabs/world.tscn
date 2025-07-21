@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=72 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -32,10 +32,11 @@
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
-[ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
+[ext_resource type="Shader" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
+[ext_resource type="PackedScene" uid="uid://c4nwcw31tcoen" path="res://prefabs/audio_box_test.tscn" id="37_obwhl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(3.99, 3.99, 0.499)
@@ -1579,6 +1580,9 @@ wait_time = 0.06
 
 [node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
+
+[node name="Audio_Box_Test" parent="." instance=ExtResource("37_obwhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130415, 1.97359, 26.4099)
 
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
