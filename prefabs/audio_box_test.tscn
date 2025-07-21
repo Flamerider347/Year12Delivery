@@ -1,23 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4nwcw31tcoen"]
+[gd_scene load_steps=8 format=3 uid="uid://c4nwcw31tcoen"]
 
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="1_7p2h2"]
+[ext_resource type="Script" uid="uid://busw405b68h0v" path="res://scripts/trigger_body.gd" id="3_d57w0"]
+[ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="3_dobhj"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ui4bh"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3h1vn"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dobhj"]
+[sub_resource type="SphereMesh" id="SphereMesh_6tk15"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d57w0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3h1vn"]
 
 [node name="Audio_Box_Test" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="trigger_body" type="Area3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0, 0)
+script = ExtResource("3_d57w0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_ui4bh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger_body"]
+shape = SubResource("BoxShape3D_3h1vn")
+debug_color = Color(0, 0.6, 0.701961, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_dobhj")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="trigger_body"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_6tk15")
 
-[node name="lava" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("1_7p2h2")
+[node name="knife chopping" type="AudioStreamPlayer" parent="trigger_body"]
+stream = ExtResource("3_dobhj")
 volume_db = -16.0
+
+[node name="postional audio" type="Area3D" parent="."]
+
+[node name="lava_sound_3D" type="AudioStreamPlayer3D" parent="postional audio"]
+stream = ExtResource("1_7p2h2")
 autoplay = true
-max_distance = 5.0
+max_distance = 3.0
+emission_angle_enabled = true
+emission_angle_filter_attenuation_db = -40.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="postional audio"]
+shape = SubResource("BoxShape3D_d57w0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="postional audio"]
+mesh = SubResource("BoxMesh_3h1vn")
+
+[connection signal="body_exited" from="trigger_body" to="trigger_body" method="_on_body_exited"]
+[connection signal="body_shape_entered" from="trigger_body" to="trigger_body" method="_on_body_shape_entered"]
