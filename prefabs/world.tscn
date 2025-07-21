@@ -19,7 +19,6 @@
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
 [ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="15_l0am5"]
-[ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="15_vjo16"]
 [ext_resource type="AudioStream" uid="uid://sao0gpmjg6r1" path="res://assets/SFX/Jaws-theme-song.mp3" id="16_l0am5"]
 [ext_resource type="Texture2D" uid="uid://dhkb7f0r3w6lj" path="res://assets/Cooking_crosshairs/crosshair001.png" id="17_8bx52"]
 [ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/fonts_and_themes/Charm-Regular.ttf" id="17_k1hdb"]
@@ -30,10 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://bcmdeebetuqqt" path="res://assets/Cooking_crosshairs/crosshair021.png" id="20_xky7j"]
 [ext_resource type="PackedScene" uid="uid://bk5q2jyy76phw" path="res://prefabs/menu.tscn" id="21_bpfb4"]
 [ext_resource type="PackedScene" uid="uid://drsdhk6tpv6u3" path="res://prefabs/parkour table.tscn" id="21_w6ly8"]
+[ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="23_vjo16"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
-[ext_resource type="Shader" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
+[ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
@@ -860,15 +860,6 @@ shape = SubResource("BoxShape3D_guuop")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815294, 0.947081, 0)
 text = "2"
 
-[node name="Audio_Box_Test" parent="kitchen" groups=["keep"] instance=ExtResource("37_obwhl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.033, 2.09716, 25.461)
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="kitchen" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.47357)
-stream = ExtResource("15_vjo16")
-autoplay = true
-max_distance = 5.0
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_mrigr")
 
@@ -1360,6 +1351,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
 shape = SubResource("BoxShape3D_h6gec")
 
+[node name="lava_ambience" type="AudioStreamPlayer3D" parent="volcano" groups=["keep"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 25)
+stream = ExtResource("23_vjo16")
+attenuation_model = 2
+autoplay = true
+max_distance = 50.0
+
 [node name="transition animation" type="CanvasLayer" parent="."]
 visible = false
 
@@ -1590,6 +1588,9 @@ wait_time = 0.06
 
 [node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
+
+[node name="Audio_Box_Test" parent="." groups=["keep"] instance=ExtResource("37_obwhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.033, 2.09716, 25.461)
 
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
