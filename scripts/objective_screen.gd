@@ -15,7 +15,8 @@ var recipes_list = {
 	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],false],
 	"burger_cullen" : [["plate","bun_bottom_chopped","tomato_chopped","tomato_chopped","tomato_chopped","bun_top_chopped"],false],
 	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","carrot_chopped","bun_top_chopped",],false],
-	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
+	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true],
+	"bacon_egg_toast" : [["plate","bacon_cooked","bacon_cooked","bun_bottom_chopped","egg_cooked"],false]
 }
 var plate_contents = {
 	"plate_1" : [],
@@ -51,6 +52,8 @@ var ingredient_time = {
 	"lettuce_chopped":10,
 	"bun_bottom_chopped" : 10,
 	"bun_top_chopped" : 10,
+	"bacon_cooked" : 10,
+	"egg_cooked" : 10
 }
 var ingredient_list = {
 	"plate" : preload("res://prefabs/plate.tscn"),
@@ -63,7 +66,8 @@ var ingredient_list = {
 	"lettuce_chopped":preload("res://prefabs/lettuce_chopped.tscn"),
 	"bun_bottom_chopped" : preload("res://prefabs/bun_bottom_chopped.tscn"),
 	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
-	"stew" : preload("res://prefabs/stew.tscn")
+	"stew" : preload("res://prefabs/stew.tscn"),
+	"bacon_egg_toast" :preload("res://prefabs/bacon_egg_toast.tscn")
 }
 func _ready() -> void:
 	$"../..".connect("make_order", Callable(self, "_on_make_order"))

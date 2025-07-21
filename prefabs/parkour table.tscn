@@ -7,6 +7,7 @@ height = 0.34021
 radius = 1.48926
 
 [node name="parkour table" type="StaticBody3D"]
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)

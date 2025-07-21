@@ -6,6 +6,7 @@
 size = Vector3(2, 1, 2)
 
 [node name="bench" type="StaticBody3D"]
+collision_layer = 5
 
 [node name="KitchencounterStraightA" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_byrj6")
