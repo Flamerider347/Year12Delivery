@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=74 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -25,14 +25,16 @@
 [ext_resource type="Texture2D" uid="uid://bre88583x4q1e" path="res://assets/Cooking_crosshairs/crosshair007.png" id="18_n7i1a"]
 [ext_resource type="Texture2D" uid="uid://csaluys53804r" path="res://assets/Cooking_crosshairs/crosshair020.png" id="19_k1hdb"]
 [ext_resource type="Texture2D" uid="uid://rmmlwqdyxuv0" path="res://assets/materials/lave_emissive.png" id="19_n7i1a"]
+[ext_resource type="PackedScene" uid="uid://bjmj5dj16j0mt" path="res://prefabs/particle_sizzle.tscn" id="19_obwhl"]
 [ext_resource type="AudioStream" uid="uid://bi4bkrmahcsiq" path="res://assets/SFX/ChamberUltKill3.mp3" id="20_b1m2q"]
+[ext_resource type="PackedScene" uid="uid://bhxi1c7vowdmn" path="res://prefabs/particle_smoke.tscn" id="20_obwhl"]
 [ext_resource type="Texture2D" uid="uid://bcmdeebetuqqt" path="res://assets/Cooking_crosshairs/crosshair021.png" id="20_xky7j"]
 [ext_resource type="PackedScene" uid="uid://bk5q2jyy76phw" path="res://prefabs/menu.tscn" id="21_bpfb4"]
 [ext_resource type="PackedScene" uid="uid://drsdhk6tpv6u3" path="res://prefabs/parkour table.tscn" id="21_w6ly8"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
-[ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
+[ext_resource type="Shader" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
@@ -914,6 +916,14 @@ max_distance = 50.0
 
 [node name="tutorial" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="particle_sizzle" parent="tutorial" groups=["keep"] instance=ExtResource("19_obwhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.05238, 1.35505, 1.96495)
+visible = false
+
+[node name="particle_smoke" parent="tutorial" instance=ExtResource("20_obwhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.12137, 1.28626, 1.96681)
+visible = false
 
 [node name="kitchen_walls" type="Node3D" parent="tutorial" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45)
