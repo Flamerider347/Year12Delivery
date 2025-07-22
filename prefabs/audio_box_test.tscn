@@ -1,74 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4nwcw31tcoen"]
+[gd_scene load_steps=5 format=3 uid="uid://c4nwcw31tcoen"]
 
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="1_7p2h2"]
 [ext_resource type="Script" uid="uid://busw405b68h0v" path="res://scripts/trigger_body.gd" id="3_d57w0"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3h1vn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ui4bh"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_6tk15"]
+[sub_resource type="BoxMesh" id="BoxMesh_dobhj"]
 
-[sub_resource type="Animation" id="Animation_7p2h2"]
-resource_name = "audio_ramp_up"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("lava_ambience:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-50.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_ui4bh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("lava_ambience:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ui4bh"]
-_data = {
-&"RESET": SubResource("Animation_ui4bh"),
-&"audio_ramp_up": SubResource("Animation_7p2h2")
-}
-
-[node name="Audio_Box_Test" type="Node3D"]
+[node name="Audio_Box_Test" type="Node3D" groups=["keep"]]
 
 [node name="trigger_body" type="Area3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 6.3337, 0)
 script = ExtResource("3_d57w0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger_body"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-shape = SubResource("BoxShape3D_3h1vn")
-debug_color = Color(0, 0.6, 0.701961, 1)
+shape = SubResource("BoxShape3D_ui4bh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="trigger_body"]
-mesh = SubResource("SphereMesh_6tk15")
+mesh = SubResource("BoxMesh_dobhj")
 
-[node name="lava_ambience" type="AudioStreamPlayer3D" parent="trigger_body"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+[node name="Timer" type="Timer" parent="trigger_body"]
+process_callback = 0
+
+[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_7p2h2")
-attenuation_model = 2
-autoplay = true
-bus = &"Ambience"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="trigger_body"]
-libraries = {
-&"": SubResource("AnimationLibrary_ui4bh")
-}
-
-[connection signal="body_exited" from="trigger_body" to="trigger_body" method="_on_body_exited"]
-[connection signal="body_shape_entered" from="trigger_body" to="trigger_body" method="_on_body_shape_entered"]
+max_distance = 2.0

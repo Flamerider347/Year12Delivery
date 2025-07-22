@@ -860,6 +860,9 @@ shape = SubResource("BoxShape3D_guuop")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.815294, 0.947081, 0)
 text = "2"
 
+[node name="Audio_Box_Test" parent="kitchen" instance=ExtResource("37_obwhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54107, 7.59987)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_mrigr")
 
@@ -1588,9 +1591,6 @@ wait_time = 0.06
 
 [node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
-
-[node name="Audio_Box_Test" parent="." groups=["keep"] instance=ExtResource("37_obwhl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.033, 2.09716, 25.461)
 
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
