@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=29 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bhl7p16gky0l" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png" id="17_dll84"]
 [ext_resource type="Texture2D" uid="uid://dnl1gv48kvb3t" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png" id="18_tcgir"]
 [ext_resource type="Texture2D" uid="uid://bg5ee6sgs0ms3" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png" id="19_1lbl1"]
+[ext_resource type="Texture2D" uid="uid://b6aw4hitsyq8s" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png" id="20_dll84"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
 load_path = "res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-a475054c122f995dca554930f34f2a59.ctex"
@@ -34,6 +35,8 @@ size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x0nk"]
 size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcgir"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(20, 1, 20)
@@ -939,6 +942,24 @@ shape = SubResource("RectangleShape2D_0x0nk")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/stew"]
 texture = ExtResource("14_dwafa")
 
+[node name="bacon_egg_toast" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+position = Vector2(546, 788)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast"]
+texture = ExtResource("20_dll84")
+
+[node name="pay_wall" type="Node2D" parent="CanvasLayer/layout/recipes"]
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/layout/recipes/pay_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/pay_wall/Area2D"]
+shape = SubResource("RectangleShape2D_tcgir")
+
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
 visible = false
 
@@ -1173,6 +1194,9 @@ font_size = 128
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout/recipes/available_recipes/stew" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout/recipes/available_recipes/stew" method="_on_mouse_exited"]
 [connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout" method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout" method="_on_next_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout" method="_on_close_pressed"]
