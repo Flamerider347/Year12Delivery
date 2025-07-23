@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyd6ftmmipi5p"]
+
+[ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="1_xf8ol"]
+[ext_resource type="Shader" uid="uid://cjlpmhdomwmrh" path="res://assets/materials/particle_fish_school.gdshader" id="2_74dgg"]
+[ext_resource type="ArrayMesh" uid="uid://0016uqhh7a4f" path="res://assets/Salmon.obj" id="3_c0phv"]
+[ext_resource type="ArrayMesh" uid="uid://c4jhfn88wfwep" path="res://assets/Clown_Fish.obj" id="4_dka1l"]
+[ext_resource type="ArrayMesh" uid="uid://cp6weaio30s5" path="res://assets/Blue_Tang_Fish.obj" id="5_3x1dq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5n1h7"]
+shader = ExtResource("2_74dgg")
+
+[node name="particle_fish" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = ExtResource("1_xf8ol")
+amount = 10
+process_material = SubResource("ShaderMaterial_5n1h7")
+draw_pass_1 = ExtResource("3_c0phv")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.1544, 0, 0)
+mesh = ExtResource("4_dka1l")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.1544, 0, 0)
+mesh = ExtResource("5_3x1dq")

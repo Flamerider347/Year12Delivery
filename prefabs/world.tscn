@@ -883,6 +883,21 @@ text = "2"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.988953, 1.08636, 0.218506)
 shape = SubResource("BoxShape3D_guuop")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen" groups=["keep"]]
+transform = Transform3D(-4.37114e-11, 0, -0.001, 0, 0.001, 0, 0.001, 0, -4.37114e-11, 3.88443, 4.29509, 33.0132)
+mesh = ExtResource("14_1iobq")
+skeleton = NodePath("../../underwater")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="kitchen" groups=["keep"]]
+transform = Transform3D(-8.74228e-11, 0, -0.002, 0, 0.002, 0, 0.002, 0, -8.74228e-11, 2.91822, 5.40408, 33.0132)
+mesh = ExtResource("14_1iobq")
+skeleton = NodePath("../../underwater")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="kitchen" groups=["keep"]]
+transform = Transform3D(-1.31134e-10, 0, -0.003, 0, 0.003, 0, 0.003, 0, -1.31134e-10, 1.71357, 6.45088, 33.0132)
+mesh = ExtResource("14_1iobq")
+skeleton = NodePath("../../underwater")
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_mrigr")
 
