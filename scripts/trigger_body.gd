@@ -37,3 +37,6 @@ func _on_body_exited(body):
 			#tween.tween_property($AudioStreamPlayer3D_frozen, "volume_db", -40, 2)
 	else:
 		pass
+		
+# Add timer which stops the audio from playing one the ramp off has been done.
+# then audio3D.stop()

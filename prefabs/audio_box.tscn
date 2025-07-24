@@ -29,3 +29,5 @@ volume_db = -40.0
 
 [node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="trigger_body"]
 volume_db = -40.0
+
+[node name="Timer" type="Timer" parent="trigger_body"]
