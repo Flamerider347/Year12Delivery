@@ -16,7 +16,7 @@ var recipes_list = {
 	"burger_cullen" : [["plate","bun_bottom_chopped","tomato_chopped","tomato_chopped","tomato_chopped","bun_top_chopped"],false],
 	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","carrot_chopped","bun_top_chopped",],false],
 	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true],
-	"bacon_egg_toast" : [["plate","bacon_cooked","bacon_cooked","bun_bottom_chopped","egg_cooked"],false]
+	"bacon_egg_toast" : [["plate","bun_bottom_chopped"],false]
 }
 var plate_contents = {
 	"plate_1" : [],
