@@ -1,38 +1,39 @@
 extends Area3D
-
-@onready var timer = $Timer
-@onready var audio_player = $"../AudioStreamPlayer3D_lava"
-
-func _ready():
-	self.body_entered.connect(_on_body_entered)
-	timer.timeout.connect(_on_timer_timeout)
+# Audio to be played.
+"res://assets/SFX/lava-bubbling-ambience.mp3"
+"res://assets/SFX/underwater-currents-ambience.mp3"
+"res://assets/SFX/howling-wind-ambience.mp3"
 
 
-func _on_body_entered():
-	#timer.start(2.0)
-	audio_player.play()
+func _on_body_entered(body):
+	# Creates tween variable audio manipulation
+	var tween = get_tree().create_tween()
+	# Checks if the body enter is a player
+	if body.name == "player_single" or body.name == "player" or body.name == "player2":
+		# Checks which level is being played
+		if $"../../..".level == 1:
+			pass
+		elif $"../../..".level == 2:
+			tween.tween_property($AudioStreamPlayer3D_lava, "volume_db", 0, 2)
+		elif $"../../..".level == 3:
+			tween.tween_property($AudioStreamPlayer3D_underwater, "volume_db", 0, 2)
+		# elif $"../../..".level == 4:
+			#tween.tween_property($AudioStreamPlayer3D_frozen, "volume_db", 0, 2)
+	else:
+		pass
 
-
-func _on_timer_timeout():
-	# Plays the ambiences  when the timer completes
-	audio_player.play()
-
-
-#@export var lava_ambience_sound:AudioStreamPlayer3D
-#
-#
-#func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	#lava_ambience_sound.play()
-	#
-#
-#
-#func _on_body_exited(body: Node3D) -> void:
-	#lava_ambience_sound.stop()
-#
-#
-## Player enters the collision shape
-## Play audio ramp up from the animation track
-## when it is done, play the looping audio from auidio 3D
-## Once the player then leaves the collision shape, play the ramp_up animation in reverse
-## Finally, stop playing the audio once the track has finished
-## Animaton Documentation types
+func _on_body_exited(body):
+	var tween = get_tree().create_tween()
+	# Checks if the body enter is a player
+	if body.name == "player_single" or body.name == "player" or body.name == "player2":
+		# Checks which level is being played
+		if $"../../..".level == 1:
+			pass
+		elif $"../../..".level == 2:
+			tween.tween_property($AudioStreamPlayer3D_lava, "volume_db", -40, 2)
+		elif $"../../..".level == 3:
+			tween.tween_property($AudioStreamPlayer3D_underwater, "volume_db", -40, 2)
+		# elif $"../../..".level == 4:
+			#tween.tween_property($AudioStreamPlayer3D_frozen, "volume_db", -40, 2)
+	else:
+		pass
