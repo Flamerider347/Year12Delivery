@@ -14,12 +14,12 @@ radius = 0.487305
 script = ExtResource("1_l5rxw")
 
 [node name="Bacon" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.091, 0.21, -0.131)
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0.120724, 0.21, -0.114995)
 mesh = ExtResource("2_6ratk")
 surface_material_override/0 = ExtResource("3_6ocx3")
 
 [node name="Bacon2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.081, 0.21, 0.15)
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, -0.124784, 0.21, -0.115232)
 mesh = ExtResource("2_6ratk")
 surface_material_override/0 = ExtResource("3_6ocx3")
 

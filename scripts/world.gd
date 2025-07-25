@@ -281,6 +281,8 @@ func _physics_process(_delta: float) -> void:
 			if orders[i] == 1:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
+
+
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if $player_single.held_object and $player_single.held_object.type == "knife" or $GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife" or $GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife":
 		if body.is_in_group("can_chop"):
@@ -298,6 +300,7 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 				instance.position = body.position
 				instance2.position = body.position + Vector3(0,0.1,0)
 				body.queue_free()
+
 			elif body.type in ingredients:
 				if is_tutorial:
 					if body.type == "tomato":
@@ -311,6 +314,7 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
+
 
 func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 	if body.is_in_group("packageable"):
@@ -351,6 +355,7 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife") and not body.is_in_group("keep"):
 		body.queue_free()
 
+
 func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> void:
 	if address == target_address:
 		if not is_tutorial:
@@ -360,11 +365,13 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			$SFX/delivered.play()
 			delivered_pot.queue_free()
 			orders_delivered += 1
+
 		else:
 			$tutorial/plates.delivered_to_house()
 			delivered_pot.queue_free()
 			$SFX/delivered.play()
 			$tutorial/plates.randomise_objective()
+
 
 func _on_order_timer_timeout() -> void:
 	for i in range(len(orders)):
@@ -373,6 +380,7 @@ func _on_order_timer_timeout() -> void:
 			break
 		else:
 			pass
+
 
 func _on_objective_plate_timeout(timer_number) -> void:
 	orders[int(timer_number)-1] = 0
@@ -383,15 +391,18 @@ func _on_objective_plate_timeout(timer_number) -> void:
 		$menu.lose_screen()
 		stars = 5
 
+
 func _on_plates_objective_clear(timer_number) -> void:
 	orders[int(timer_number)-1] = 0
 	objectives.erase(str("plate_" + str(timer_number)))
+
 
 func _on_order_timeout(_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		$menu.lose_screen()
+
 
 func map_select():
 	for i in maps.keys():

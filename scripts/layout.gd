@@ -21,6 +21,7 @@ var bench_type_sprites = {
 	"burger_ben" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png"),
 	"burger_aine" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png"),
 	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png"),
+	"bacon_egg_toast" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png"),
 	"unselect" : preload("res://assets/icon.svg")
 }
 @onready var menu = $"../.."
