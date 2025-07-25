@@ -75,14 +75,15 @@ func _process(_delta: float) -> void:
 	for i in plates:
 		var plate_label = plates[i].find_child("Label3D")
 		var timer = plates[i].find_child("order_time")
-		if timer.is_inside_tree() and timer.time_left > 10:
-			plate_label.text = str(round(timer.time_left)).replace(".0","")
-			plate_label.modulate = Color(1, 1, 1)
-		elif timer.is_inside_tree() and timer.time_left > 0:
-			plate_label.text = str(round(timer.time_left*10)/10)
-			plate_label.modulate = Color(1, 0, 0)
-		elif plate_label.text != "":
-			plate_label.text = ""
+		if timer.is_inside_tree():
+			if timer.time_left > 10:
+				plate_label.text = str(round(timer.time_left)).replace(".0","")
+				plate_label.modulate = Color(1, 1, 1)
+			elif timer.time_left > 0:
+				plate_label.text = str(round(timer.time_left*10)/10)
+				plate_label.modulate = Color(1, 0, 0)
+			elif plate_label.text != "":
+				plate_label.text = ""
 func randomise_objective():
 	var recipes_list_keys = recipes_list.keys()
 	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
@@ -98,11 +99,11 @@ func randomise_objective():
 	plates[making_plate].find_child("order_time").start(make_time)
 	objective.emit(plate_contents[making_plate],plate_name,plates[making_plate].find_child("order_time").time_left,delivery_location,plates[making_plate])
 	timing = true
-	update_target(making_recipe.substr(0,6))
+	update_target(making_recipe)
 func update_target(recipe):
 	var recipes_list_keys = recipes_list.keys()
-	if recipe != "burger":
-		plate_contents[making_plate] = ["stew",]
+	if recipe.substr(0,6) != "burger":
+		plate_contents[making_plate] = [str(recipe)]
 	next_position = 0.1
 	for i in plate_contents[making_plate]:
 		var spawned_item = ingredient_list[i].instantiate()

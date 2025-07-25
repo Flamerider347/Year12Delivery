@@ -37,6 +37,7 @@ signal looking_recipe
 func _setup():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	controlling = true
+
 func _unhandled_input(event):
 	if controlling:
 		if event is InputEventMouseMotion:
@@ -79,15 +80,18 @@ func _unhandled_input(event):
 							$pickup_timer.start()
 							can_pickup = false
 
+
 			if event is InputEventJoypadButton:
 				if event.device == controller_id:
 					if event.button_index == JOY_BUTTON_A and is_on_floor():
 						velocity.y = JUMP_VELOCITY
 
+
 func _physics_process(delta: float):
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 	crosshair_change()
+
 
 	if controlling:
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
@@ -132,6 +136,7 @@ func _physics_process(delta: float):
 		$"../kitchen/sign_out/interact_time_left".text = ""
 		$"../tutorial/sign_out/interact_time_left".text = ""
 
+
 func movement(delta):
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta * 1.5
@@ -149,6 +154,7 @@ func movement(delta):
 	if joy_input.length() < 0.1:
 		joy_input = Vector2.ZERO
 
+
 	var direction = (head.transform.basis * transform.basis * Vector3(joy_input.x, 0, joy_input.y)).normalized()
 	velocity.x = lerp(velocity.x, direction.x * speed, delta * 7)
 	velocity.z = lerp(velocity.z, direction.z * speed, delta * 7)
@@ -160,10 +166,12 @@ func movement(delta):
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
 	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
 
+
 	if cam_input.length() > 0.1:
 		head.rotate_y(-cam_input.x * SENSITIVITY/10)
 		camera.rotate_x(-cam_input.y * SENSITIVITY/10)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+
 
 func pickup(object):
 	if object.type == "knife":
@@ -184,6 +192,7 @@ func pickup(object):
 			seecast.add_exception(child)
 	position_held_object()
 
+
 func drop(object):
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
@@ -193,6 +202,7 @@ func drop(object):
 	seecast.clear_exceptions()
 	seecast.target_position.z = -3
 	object.linear_velocity.y = 0.3
+
 
 func position_held_object():
 	if held_object:
@@ -208,6 +218,8 @@ func position_held_object():
 				held_object.global_position.x = lerp(held_object.global_position.x, target_position.x,0.8)
 				held_object.global_position.y = lerp(held_object.global_position.y, target_position.y,0.8)
 				held_object.global_position.z = lerp(held_object.global_position.z, target_position.z,0.8)
+
+
 func stack():
 		evil = false
 		var stack_bottom = stackcast.get_collider()
@@ -254,6 +266,8 @@ func stack():
 							stack_bottom.queue_free()
 		if evil:
 			drop(held_object)
+
+
 func summon(item):
 	var instance = ingredient_scenes[item].instantiate()
 	$"..".add_child(instance)
@@ -265,6 +279,7 @@ func summon(item):
 	instance.find_child("CollisionShape3D").disabled = true
 	instance.freeze = true
 	seecast.target_position.z = -1.6
+
 
 func crosshair_change():
 	if controlling:
@@ -288,6 +303,8 @@ func crosshair_change():
 				$"../ui/Sprite2D".play("default")
 		if not stackcast.is_colliding():
 			$"../ui/Sprite2D".play("default")
+
+
 func look_recipe():
 	if lookcast.is_colliding():
 		var collision_item = lookcast.get_collider()
@@ -318,8 +335,10 @@ func look_recipe():
 	else:
 		$"../ui/looking_recipe".hide()
 
+
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true
+
 
 func bounce():
 	velocity.y = 8
