@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c78jtgxi0ld1l"]
+[gd_scene load_steps=12 format=3 uid="uid://c78jtgxi0ld1l"]
 
 [ext_resource type="ArrayMesh" uid="uid://bov75hve7me6q" path="res://assets/createdassets/pantry.obj" id="1_3bn08"]
 [ext_resource type="Texture2D" uid="uid://bif4m57k6k2ll" path="res://assets/createdassets/createdtexture.png" id="2_snfhu"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="3_d1g0f"]
 [ext_resource type="ArrayMesh" uid="uid://dqilw3fr8gysy" path="res://assets/createdassets/pantry-leftdoor.obj" id="4_5laas"]
 [ext_resource type="ArrayMesh" uid="uid://bn8du0jl83qml" path="res://assets/createdassets/pantry-rightdoor.obj" id="5_f1jfn"]
+[ext_resource type="ArrayMesh" uid="uid://byh4aw61g6ex1" path="res://assets/createdassets/egg-carton.obj" id="6_d1g0f"]
+[ext_resource type="ArrayMesh" uid="uid://c1xunrift5cbr" path="res://assets/createdassets/egg.obj" id="7_5laas"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enlog"]
 albedo_texture = ExtResource("2_snfhu")
@@ -91,3 +93,16 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131287, -0.37529, -0.190613)
 visible = false
 shape = SubResource("BoxShape3D_5ukro")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Egg-carton" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.15829, 0.724904)
+mesh = ExtResource("6_d1g0f")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+
+[node name="Egg" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.507759, 1.05838, 0.593273)
+mesh = ExtResource("7_5laas")

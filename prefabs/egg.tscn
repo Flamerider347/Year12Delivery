@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://252vmnw05vc0"]
+
+[ext_resource type="ArrayMesh" uid="uid://c1xunrift5cbr" path="res://assets/createdassets/egg.obj" id="1_5nvdk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwfx4"]
+radius = 0.107574
+height = 0.322924
+
+[node name="egg" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fwfx4")
+
+[node name="Egg" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("1_5nvdk")

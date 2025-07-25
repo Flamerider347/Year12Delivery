@@ -1395,6 +1395,8 @@ size = Vector3(100, 0.195, 100)
 
 [node name="volcano_lava" type="Area3D" parent="volcano"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/volcano_lava"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
