@@ -31,7 +31,7 @@ mesh = ExtResource("4_nfu55")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00162137, 0)
 mesh = ExtResource("5_q2uf3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151791, 0)
 shape = SubResource("CylinderShape3D_0omm0")
 

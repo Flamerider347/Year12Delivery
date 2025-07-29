@@ -28,7 +28,8 @@ var ingredient_scenes = {
 	"egg" :preload("res://prefabs/egg.tscn"),
 	"bowl" : preload(("res://prefabs/bowl.tscn")),
 	"plate": preload("res://prefabs/plate.tscn"),
-	"stew" : preload("res://prefabs/stew.tscn")
+	"stew" : preload("res://prefabs/stew.tscn"),
+	"bacon_egg_toast" : preload("res://prefabs/bacon_egg_toast.tscn"),
 }
 
 var held_object = null  # Stores the object being held
@@ -255,19 +256,16 @@ func stack():
 			held_object = null
 			seecast.target_position.z = -3
 			for i in $"../kitchen/plates".recipes_list:
-				if i[1]:
-					var sorted_list = $"../kitchen/plates".recipes_list[i][0].duplicate()
-					sorted_list.sort()
-					print(sorted_list)
-					var sorted_contents = stack_bottom.contents.duplicate()
-					sorted_contents.sort()
-					print(sorted_contents)
-					if sorted_list == sorted_contents:
-						if i in ingredient_scenes:
-							var spawned_recipe = ingredient_scenes[i].instantiate()
-							$"..".add_child(spawned_recipe)
-							spawned_recipe.position = stack_bottom.position
-							stack_bottom.queue_free()
+				var sorted_list = $"../kitchen/plates".recipes_list[i][0].duplicate()
+				sorted_list.sort()
+				var sorted_contents = stack_bottom.contents.duplicate()
+				sorted_contents.sort()
+				if sorted_list == sorted_contents:
+					if i in ingredient_scenes:
+						var spawned_recipe = ingredient_scenes[i].instantiate()
+						$"..".add_child(spawned_recipe)
+						spawned_recipe.position = stack_bottom.position
+						stack_bottom.queue_free()
 		if evil:
 			drop(held_object)
 
