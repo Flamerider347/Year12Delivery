@@ -12,7 +12,7 @@ size = Vector3(0.933105, 0.705566, 0.72998)
 size = Vector3(1, 0.707733, 0.762451)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6mti1"]
-size = Vector3(1, 0.452454, 1.17256)
+size = Vector3(0.403564, 0.452454, 1.17256)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_deaom"]
 size = Vector3(1, 0.641602, 0.836487)
@@ -44,10 +44,18 @@ collision_layer = 5
 shape = SubResource("BoxShape3D_gi6id")
 
 [node name="meat_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0587138, 1.18721, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.286625, 1.18721, 0)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="meat_crate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.310448, 0, -0.156105)
+shape = SubResource("BoxShape3D_6mti1")
+
+[node name="bacon_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.412825, 1.18721, 0)
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bacon_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.156105)
 shape = SubResource("BoxShape3D_6mti1")
 

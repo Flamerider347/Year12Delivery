@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ff8qmif8nscw"]
+[gd_scene load_steps=8 format=3 uid="uid://ff8qmif8nscw"]
 
 [ext_resource type="Script" uid="uid://dtctgk33dcelq" path="res://scripts/bacon_egg_toast.gd" id="1_l5rxw"]
 [ext_resource type="ArrayMesh" uid="uid://c1ns0rgtakoxy" path="res://assets/createdassets/bacon.obj" id="2_6ratk"]
@@ -6,7 +6,6 @@
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="4_nfu55"]
 [ext_resource type="ArrayMesh" uid="uid://drk3np67577f0" path="res://assets/kitchenassets/food_ingredient_bun_bottom.obj" id="5_q2uf3"]
 [ext_resource type="ArrayMesh" uid="uid://crikutfschfvs" path="res://assets/createdassets/cracked-egg_cooked.obj" id="6_nfu55"]
-[ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="7_q2uf3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0omm0"]
 height = 0.299591
@@ -39,4 +38,5 @@ shape = SubResource("CylinderShape3D_0omm0")
 [node name="Cracked-eggCooked" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0198842, 0.201001, 0.147015)
 mesh = ExtResource("6_nfu55")
-surface_material_override/1 = ExtResource("7_q2uf3")
+surface_material_override/0 = ExtResource("3_6ocx3")
+surface_material_override/1 = ExtResource("3_6ocx3")

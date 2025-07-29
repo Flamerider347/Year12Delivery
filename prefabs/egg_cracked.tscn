@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7saxxioh0pu2"]
+
+[ext_resource type="Script" uid="uid://c01osij2gx408" path="res://scripts/egg_cracked.gd" id="1_kw8qq"]
+[ext_resource type="ArrayMesh" uid="uid://nldoa701lkju" path="res://assets/createdassets/cracked-egg_raw.obj" id="2_uyy8u"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="3_ucy46"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ts8n"]
+size = Vector3(0.358948, 0.0331268, 0.325195)
+
+[node name="egg_cracked" type="RigidBody3D" groups=["cookable", "pickupable"]]
+script = ExtResource("1_kw8qq")
+
+[node name="Cracked-eggRaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("2_uyy8u")
+surface_material_override/0 = ExtResource("3_ucy46")
+surface_material_override/1 = ExtResource("3_ucy46")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+shape = SubResource("BoxShape3D_4ts8n")

@@ -24,6 +24,8 @@ var ingredient_scenes = {
 	"lettuce": preload("res://prefabs/lettuce.tscn"),
 	"carrot": preload("res://prefabs/carrot.tscn"),
 	"potato": preload("res://prefabs/potato.tscn"),
+	"bacon" : preload("res://prefabs/bacon.tscn"),
+	"egg" :preload("res://prefabs/egg.tscn"),
 	"bowl" : preload(("res://prefabs/bowl.tscn")),
 	"plate": preload("res://prefabs/plate.tscn"),
 	"stew" : preload("res://prefabs/stew.tscn")

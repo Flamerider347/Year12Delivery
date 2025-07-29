@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cldlu4lgx5yw5"]
+
+[ext_resource type="ArrayMesh" uid="uid://crikutfschfvs" path="res://assets/createdassets/cracked-egg_cooked.obj" id="1_kja4i"]
+[ext_resource type="Script" uid="uid://bv06v821g16dp" path="res://scripts/egg_cracked_cooked.gd" id="1_n8w26"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_n8w26"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dowux"]
+size = Vector3(0.339966, 0.0473022, 0.322021)
+
+[node name="egg_cracked_cooked" type="RigidBody3D" groups=["can_stack_plate", "meat", "pickupable"]]
+script = ExtResource("1_n8w26")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+shape = SubResource("BoxShape3D_dowux")
+
+[node name="Cracked-eggCooked" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("1_kja4i")
+surface_material_override/0 = ExtResource("2_n8w26")
+surface_material_override/1 = ExtResource("2_n8w26")
