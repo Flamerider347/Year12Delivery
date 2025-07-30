@@ -72,6 +72,7 @@ var ingredient_list = {
 func _ready() -> void:
 	$"../..".connect("make_order", Callable(self, "_on_make_order"))
 func _process(_delta: float) -> void:
+	#Assigns all active timers a label below the food
 	for i in plates:
 		var plate_label = plates[i].find_child("Label3D")
 		var timer = plates[i].find_child("order_time")
@@ -84,7 +85,10 @@ func _process(_delta: float) -> void:
 				plate_label.modulate = Color(1, 0, 0)
 			elif plate_label.text != "":
 				plate_label.text = ""
+				
+				
 func randomise_objective():
+	#Randomly selects recipe that is set to "true"
 	var recipes_list_keys = recipes_list.keys()
 	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
 	while recipes_list[making_recipe][1] == false:
@@ -92,6 +96,8 @@ func randomise_objective():
 	var make_time = 120
 	delivery_location = delivery_list[randi_range(0,8)]
 	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
+	
+	#Adds make time for each ingredient
 	for i in plate_contents[making_plate]:
 		if i in ingredient_time.keys():
 			make_time += ingredient_time[i]
@@ -100,7 +106,10 @@ func randomise_objective():
 	objective.emit(plate_contents[making_plate],plate_name,plates[making_plate].find_child("order_time").time_left,delivery_location,plates[making_plate])
 	timing = true
 	update_target(making_recipe)
+	
+	
 func update_target(recipe):
+	#Summons a physical version of the randomised burger
 	var recipes_list_keys = recipes_list.keys()
 	if recipe.substr(0,6) != "burger":
 		plate_contents[making_plate] = [str(recipe)]
@@ -129,6 +138,7 @@ func update_target(recipe):
 			spawned_item.rotation_degrees.x = 0
 
 func _on_make_order(action: String,plate_number) -> void:
+	#Clears plates and makes new orders on command by world's ordertimer
 	making_plate = str("plate_" + str(plate_number))
 	if action == "kill":
 		for child in plates[making_plate].get_children():
@@ -142,6 +152,7 @@ func _on_make_order(action: String,plate_number) -> void:
 		randomise_objective()
 
 func _on_order_timeout(number) -> void:
+	#clears timedout plates when timeout
 	var plate = "plate_" + str(number)
 	for child in plates[plate].get_children():
 		if not child.is_in_group("keep"):
@@ -153,6 +164,7 @@ func _on_order_timeout(number) -> void:
 
 
 func clear():
+	#clears timedout plates when timeout
 	for i in range(10):
 		i = i+1
 		var plate = "plate_" + str(i)

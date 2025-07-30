@@ -50,7 +50,6 @@ script = ExtResource("1_jhrhb")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -103,23 +102,6 @@ offset_right = 1063.0
 offset_bottom = 835.0
 text = "Quit"
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/main_menu"]
-visible = false
-offset_left = 857.0
-offset_top = 806.0
-offset_right = 1246.0
-offset_bottom = 862.0
-placeholder_text = "Typey typey"
-
-[node name="save_confirm" type="Button" parent="CanvasLayer/main_menu"]
-visible = false
-offset_left = 1277.0
-offset_top = 778.0
-offset_right = 1460.0
-offset_bottom = 875.0
-text = "Enter
-"
-
 [node name="credits" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -153,6 +135,7 @@ offset_bottom = 480.0
 text = "Level 1"
 
 [node name="level_2" type="Button" parent="CanvasLayer/level_select"]
+visible = false
 offset_left = 860.0
 offset_top = 530.0
 offset_right = 1060.0
@@ -160,6 +143,7 @@ offset_bottom = 580.0
 text = "level 2"
 
 [node name="level_3" type="Button" parent="CanvasLayer/level_select"]
+visible = false
 offset_left = 860.0
 offset_top = 630.0
 offset_right = 1060.0
@@ -167,6 +151,7 @@ offset_bottom = 680.0
 text = "Level 3"
 
 [node name="level_4" type="Button" parent="CanvasLayer/level_select"]
+visible = false
 offset_left = 860.0
 offset_top = 730.0
 offset_right = 1060.0
@@ -422,6 +407,7 @@ offset_bottom = 615.0
 text = "Time between burger spawns: 50"
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -1047,7 +1033,6 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
 [connection signal="pressed" from="CanvasLayer/main_menu/options" to="." method="options"]
 [connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
 [connection signal="pressed" from="CanvasLayer/main_menu/credits" to="." method="credits"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_0" to="." method="_on_level_0"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]

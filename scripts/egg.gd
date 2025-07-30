@@ -14,11 +14,10 @@ func _physics_process(_delta: float) -> void:
 	if colliding and max_velocity > 2.5:
 		break_egg()
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(_body: Node3D) -> void:
 	colliding = true
-	print(body)
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
+func _on_area_3d_body_exited(_body: Node3D) -> void:
 	colliding = false
 	
 	

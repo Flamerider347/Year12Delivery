@@ -18,7 +18,7 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 1000000
+var money = 100
 var score = 0
 var stars = 5
 var orders_delivered = 0
@@ -116,8 +116,8 @@ var tutorial_benches = {
 }
 var unlocked_levels = {
 	"level_1" :true,
-	"level_2" : true,
-	"level_3" : true,
+	"level_2" : false,
+	"level_3" : false,
 	"level_4" : false,
 }
 func _ready() -> void:
@@ -421,7 +421,7 @@ func map_select():
 
 
 func _on_day_timer_timeout() -> void:
-	if level < 5:
+	if level_updates_left < 5:
 		level_updates_left += 1
 		$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
 		$ui/Label3.text = "OVERTIME"

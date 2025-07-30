@@ -1,7 +1,6 @@
 extends Node3D
 var spawn = true
 var menu_toggle = true
-var save_code
 var new_money = 0.0
 var text_1 = 0.0
 var text_2 = 0.0
@@ -29,13 +28,17 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#gets controller amount
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$"..".controllers = 0
 	for i in Input.get_connected_joypads():
 		if $"..".controllers < 2:
 			$"..".controllers += 1
 	menu_load()
+	
+	
 func menu_load():
+	#loads main menu
 	$"../order_timer".stop()
 	$"../kitchen/plates".clear()
 	$"../player_single".controlling = false
@@ -59,12 +62,16 @@ func menu_load():
 				i.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	#if button pressed, skips menu loading animatation
+	if event.is_action_pressed("interact_menu"):
 		var hovered = get_viewport().gui_get_hovered_control()
 		if hovered and hovered is Button:
 			hovered.emit_signal("pressed")
+			
+			
 func _process(delta: float) -> void:
 	# Get left stick vector using your input actions
 	var left_stick_vector = Input.get_vector("left", "right", "up", "down")  # Vector2
@@ -81,12 +88,6 @@ func _process(delta: float) -> void:
 		lerp_text()
 		win_text()
 
-	if Input.is_action_just_pressed("down"):
-		$CanvasLayer/main_menu/LineEdit.show()
-		$CanvasLayer/main_menu/save_confirm.show()
-
-	if Input.is_action_just_pressed("enter"):
-		_on_save_confirm()
 	if Input.is_action_just_released("pickup_p1"):
 		name_thing.position.y = -2
 
@@ -106,7 +107,10 @@ func _process(delta: float) -> void:
 
 	if spawn:
 		_spawn()
+		
+		
 func _spawn():
+	#spawns random items
 	var list_keys = random_spawn.keys()
 	var list_size = list_keys.size()
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
@@ -164,25 +168,12 @@ func _on_level_select_return() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
-func _on_save_confirm() -> void:
-	save_code = $CanvasLayer/main_menu/LineEdit.text
-	if save_code:
-		$"..".save_code = save_code
-		$"..".save_update = true
-	await get_tree().create_timer(0.1).timeout
-	for i in $CanvasLayer/level_select.get_children():
-		if str(i.name) in $"..".unlocked_levels.keys():
-			if $"..".unlocked_levels[str(i.name)] == true:
-				i.show()
-
 func level_select():
 	hide_everything()
 	$CanvasLayer/level_select.show()
 
 func main_menu():
 	hide_everything()
-	$CanvasLayer/main_menu/LineEdit.hide()
-	$CanvasLayer/main_menu/save_confirm.hide()
 	$name.show()
 	$CanvasLayer/main_menu.show()
 
@@ -240,6 +231,9 @@ func win_screen():
 	await get_tree().create_timer(1.0).timeout
 	$"../transition animation".hide()
 	win_text()
+	for i in $"..".unlocked_levels:
+		if $"..".unlocked_levels[i] == true:
+			$CanvasLayer/level_select.find_child(i).show()
 
 func lerp_text():
 	var score = float($"..".score)
