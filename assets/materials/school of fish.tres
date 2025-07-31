@@ -10,5 +10,5 @@ shader_parameter/side_to_side = 1.0
 shader_parameter/pivot = 1.0
 shader_parameter/wave = 1.0
 shader_parameter/twist = 1.0
-shader_parameter/mask_black = 1.0
-shader_parameter/mask_white = 1.0
+shader_parameter/mask_black = 0.0
+shader_parameter/mask_white = 0.0

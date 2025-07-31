@@ -6,7 +6,6 @@
 [node name="particle_fish" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transparency = 0.74
 mesh = ExtResource("3_c0phv")
 surface_material_override/0 = ExtResource("2_rv8pu")
 surface_material_override/1 = ExtResource("2_rv8pu")
