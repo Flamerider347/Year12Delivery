@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cjg3ysryjmn8s"]
+
+[ext_resource type="Shader" uid="uid://cjlpmhdomwmrh" path="res://assets/materials/particle_fish_school.gdshader" id="1_ewnor"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ewnor")
+shader_parameter/time_scale = 1.0
+shader_parameter/side_to_side = 1.0
+shader_parameter/pivot = 1.0
+shader_parameter/wave = 1.0
+shader_parameter/twist = 1.0
+shader_parameter/mask_black = 1.0
+shader_parameter/mask_white = 1.0
