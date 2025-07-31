@@ -1,17 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctucdctu7wxcr"]
 
-[ext_resource type="Shader" uid="uid://cjlpmhdomwmrh" path="res://assets/materials/particle_fish_school.gdshader" id="2_74dgg"]
+[ext_resource type="Material" uid="uid://6233qxobwsfu" path="res://assets/materials/sizzle_particle.tres" id="2_ifpnf"]
+[ext_resource type="Material" uid="uid://d03ybexng0ac8" path="res://assets/materials/white_particle_colour.tres" id="3_aut1r"]
 [ext_resource type="ArrayMesh" uid="uid://0016uqhh7a4f" path="res://assets/Salmon.obj" id="3_c0phv"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rv8pu"]
-render_priority = 0
-shader = ExtResource("2_74dgg")
-shader_parameter/time_scale = 0.0
-shader_parameter/side_to_side = 0.0
 
 [node name="particle_fish" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_overlay = SubResource("ShaderMaterial_rv8pu")
 mesh = ExtResource("3_c0phv")
+surface_material_override/0 = ExtResource("2_ifpnf")
+surface_material_override/1 = ExtResource("3_aut1r")
+surface_material_override/2 = ExtResource("3_aut1r")
 metadata/_edit_group_ = true
