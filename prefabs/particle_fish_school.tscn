@@ -4,7 +4,10 @@
 [ext_resource type="ArrayMesh" uid="uid://0016uqhh7a4f" path="res://assets/Salmon.obj" id="3_c0phv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rv8pu"]
+render_priority = 0
 shader = ExtResource("2_74dgg")
+shader_parameter/time_scale = 0.0
+shader_parameter/side_to_side = 0.0
 
 [node name="particle_fish" type="Node3D"]
 

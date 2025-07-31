@@ -1,29 +1,22 @@
 // Animating thousands of fish with MultiMeshInstance3D on Godot 4.4 Documents Tutorial
 // Controlling thousands of fish with Particles on Godot 4.4 Documents Tutuorial
-shader_type particles;
+shader_type spatial;
 uniform float time_scale;
-uniform float VERTEX;
-uniform float TIME;
+uniform float side_to_side;
 
-//time_scale is a uniform float
-const float time = TIME  * time_scale;
-
-//side_to_side is a uniform float
-VERTEX.x += cos(time) * side_to_side;
+void vertex(){
+	float time = TIME * time_scale;
+	VERTEX.x += cos(time) * side_to_side;
+}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+//void process(){
+	//VELOCITY.x = cos(TIME*time_scale);
+	//
+//}
+////time_scale is a uniform float
 
 
 
