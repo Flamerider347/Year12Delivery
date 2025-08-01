@@ -1481,7 +1481,7 @@ shape = SubResource("CapsuleShape3D_n7i1a")
 mesh = SubResource("CapsuleMesh_k1hdb")
 
 [node name="head" type="Node3D" parent="player_single"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.445339, 0)
 
 [node name="player_camera" type="Camera3D" parent="player_single/head"]
 far = 300.0

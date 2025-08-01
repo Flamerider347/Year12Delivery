@@ -4,6 +4,8 @@ var speed = 0
 var can_pickup = true
 var controlling = false
 var evil = false
+var head_target_position = 0.445
+var head_moving = false
 var SENSITIVITY = 0.1
 const WALK_SPEED = 10
 const SPRINT_SPEED = 15
@@ -97,6 +99,17 @@ func _physics_process(delta: float):
 
 
 	if controlling:
+		if head_moving:
+			if abs($head.position.y - head_target_position) > 0.05:
+				$head.position.y = lerp($head.position.y, head_target_position, 0.2)
+			else:
+				head_moving = false
+		if Input.is_action_just_pressed("crouch"):
+			head_moving = true
+			head_target_position = 0.0
+		if Input.is_action_just_released("crouch"):
+			head_moving = true
+			head_target_position = 0.445
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
 				$interaction_timer.start(1)
@@ -151,6 +164,8 @@ func movement(delta):
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
+	if Input.is_action_pressed("crouch"):
+		speed *= 0.6
 	var joy_input = Vector2(
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_X),
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_Y),)

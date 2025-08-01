@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c78jtgxi0ld1l"]
+[gd_scene load_steps=10 format=3 uid="uid://c78jtgxi0ld1l"]
 
 [ext_resource type="ArrayMesh" uid="uid://bov75hve7me6q" path="res://assets/createdassets/pantry.obj" id="1_3bn08"]
 [ext_resource type="Texture2D" uid="uid://bif4m57k6k2ll" path="res://assets/createdassets/createdtexture.png" id="2_snfhu"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="3_d1g0f"]
 [ext_resource type="ArrayMesh" uid="uid://dqilw3fr8gysy" path="res://assets/createdassets/pantry-leftdoor.obj" id="4_5laas"]
 [ext_resource type="ArrayMesh" uid="uid://bn8du0jl83qml" path="res://assets/createdassets/pantry-rightdoor.obj" id="5_f1jfn"]
-[ext_resource type="ArrayMesh" uid="uid://byh4aw61g6ex1" path="res://assets/createdassets/egg-carton.obj" id="6_d1g0f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enlog"]
 albedo_texture = ExtResource("2_snfhu")
@@ -20,9 +19,6 @@ size = Vector3(0.813477, 0.666035, 1.49475)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ukro"]
 size = Vector3(0.758606, 0.694694, 1.48499)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_snfhu"]
-size = Vector3(1.52008, 0.460693, 0.547485)
 
 [node name="bun_crate" type="Node3D"]
 
@@ -95,18 +91,3 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="plate_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131745, -0.505344, -0.190613)
 shape = SubResource("BoxShape3D_5ukro")
-
-[node name="egg_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18874, 0.0779926)
-collision_layer = 5
-collision_mask = 5
-
-[node name="Egg-carton" type="MeshInstance3D" parent="egg_crate"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-mesh = ExtResource("6_d1g0f")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_d1g0f")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="egg_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00308228, 0.0316162, 0.00787354)
-shape = SubResource("BoxShape3D_snfhu")
