@@ -44,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000579834, 0.077301, 0)
 shape = SubResource("BoxShape3D_pnses")
 
 [node name="knife" parent="." instance=ExtResource("4_dhrcg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1.2, 0.35)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.38, 1.08, 0.65)
 
 [connection signal="body_entered" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]
 [connection signal="body_exited" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_exited"]

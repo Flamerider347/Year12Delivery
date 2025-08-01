@@ -421,12 +421,13 @@ func map_select():
 
 
 func _on_day_timer_timeout() -> void:
-	if level_updates_left < 5:
-		level_updates_left += 1
-		$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
-		$ui/Label3.text = "OVERTIME"
-		$day_timer.stop()
-		$order_timer.stop()
+	if level < 4:
+		unlocked_levels["level_"+str(level+1)] = true
+		print(unlocked_levels)
+	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
+	$ui/Label3.text = "OVERTIME"
+	$day_timer.stop()
+	$order_timer.stop()
 
 
 func looking_recipe(looking_at_list):
