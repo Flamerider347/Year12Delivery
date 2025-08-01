@@ -59,6 +59,8 @@ surface_material_override/27 = ExtResource("3_d1g0f")
 surface_material_override/28 = ExtResource("3_d1g0f")
 
 [node name="bun_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bun_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000928998, 1.91319, -0.209534)
@@ -78,6 +80,8 @@ surface_material_override/0 = ExtResource("3_d1g0f")
 
 [node name="bowl_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.589822, 0.617761, 0)
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bowl_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23877, -0.0380685, -0.186096)
@@ -85,6 +89,8 @@ shape = SubResource("BoxShape3D_ws1ja")
 
 [node name="plate_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.573202, 1.07084, 0)
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="plate_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131745, -0.505344, -0.190613)
@@ -92,6 +98,8 @@ shape = SubResource("BoxShape3D_5ukro")
 
 [node name="egg_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18874, 0.0779926)
+collision_layer = 5
+collision_mask = 5
 
 [node name="Egg-carton" type="MeshInstance3D" parent="egg_crate"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

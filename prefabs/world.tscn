@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=74 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -8,7 +8,6 @@
 [ext_resource type="ArrayMesh" uid="uid://dy7fogl7n2mo5" path="res://assets/kitchenassets/wall.obj" id="5_8bx52"]
 [ext_resource type="ArrayMesh" uid="uid://clb6b847k0tlf" path="res://assets/kitchenassets/pillar_A.obj" id="6_xfqyr"]
 [ext_resource type="Script" uid="uid://cwndeek72ht6r" path="res://scripts/tutorial_plate.gd" id="7_k1hdb"]
-[ext_resource type="ArrayMesh" uid="uid://bkvqolgv47xd5" path="res://assets/kitchenassets/wall_orderwindow_decorated.obj" id="7_n7i1a"]
 [ext_resource type="MeshLibrary" uid="uid://cfmsvvlyre3ws" path="res://assets/materials/kitchen floor.tres" id="8_hpiwi"]
 [ext_resource type="ArrayMesh" uid="uid://dq53pmy4ph0qm" path="res://assets/kitchenassets/wall_window_closed.obj" id="8_k1hdb"]
 [ext_resource type="ArrayMesh" uid="uid://b3ulkq0panu7q" path="res://assets/kitchenassets/wall_doorway.obj" id="9_k1hdb"]
@@ -405,16 +404,16 @@ shape = SubResource("BoxShape3D_w1n2x")
 [node name="wall6" type="Node3D" parent="kitchen/kitchen_walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 5.45)
 
-[node name="WallOrderwindowDecorated" type="MeshInstance3D" parent="kitchen/kitchen_walls/wall6"]
-mesh = ExtResource("7_n7i1a")
-skeleton = NodePath("../../../..")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="kitchen/kitchen_walls/wall6"]
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="kitchen/kitchen_walls/wall6/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="kitchen/kitchen_walls/wall6"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
 
 [node name="wall7" type="Node3D" parent="kitchen/kitchen_walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 5.45)
@@ -508,10 +507,13 @@ mesh = SubResource("BoxMesh_w6ly8")
 [node name="Fences_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh_library = ExtResource("13_k1hdb")
+cell_size = Vector3(3.215, 2, 3.215)
+collision_layer = 5
+collision_mask = 5
 data = {
-"cells": PackedInt32Array(9, 7, 1048576, 9, 8, 1048576, 9, 9, 1048576, 9, 10, 1048576, 9, 11, 1048576, 9, 12, 1048576, 9, 13, 1048576, 9, 14, 1048576, 9, 15, 1048576, 9, 16, 1048576, 0, 23, 0, 1, 23, 0, 2, 23, 0, 3, 23, 0, 4, 23, 0, 5, 23, 0, 6, 23, 0, 7, 23, 0, 65535, 23, 0, 65534, 23, 0, 65533, 23, 0, 65532, 23, 0, 65531, 23, 0, 65530, 23, 0, 65529, 23, 0, 65528, 23, 0, 65527, 23, 0, 9, 17, 1048576, 9, 18, 1048576, 9, 19, 1048576, 9, 20, 1048576, 9, 21, 1048576, 9, 22, 1048576, 65526, 9, 1441792, 65526, 10, 1441792, 65526, 11, 1441792, 65526, 12, 1441792, 65526, 13, 1441792, 65526, 14, 1441792, 65526, 16, 1441792, 65526, 17, 1441792, 65526, 18, 1441792, 65526, 19, 1441792, 65526, 20, 1441792, 65526, 21, 1441792, 65526, 6, 1441792, 65526, 7, 1441792, 65526, 8, 1441792, 65526, 15, 1441792, 9, 6, 1048576, 9, 23, 1048576, 8, 23, 0, 65526, 23, 0, 65526, 22, 1441792, 65526, 4, 1441792, 65527, 4, 655360, 65528, 4, 655360, 65529, 4, 655360, 65530, 4, 655360, 65531, 4, 655360, 5, 4, 655360, 6, 4, 655360, 7, 4, 655360, 8, 4, 655360, 9, 4, 655360, 65526, 5, 1441792, 9, 5, 1048576, 65532, 4, 655360)
+"cells": PackedInt32Array(9, 7, 1048576, 9, 8, 1048576, 9, 9, 1048576, 9, 10, 1048576, 9, 11, 1048576, 9, 12, 1048576, 9, 13, 1048576, 9, 14, 1048576, 65526, 9, 1441792, 65526, 10, 1441792, 65526, 11, 1441792, 65526, 12, 1441792, 65526, 13, 1441792, 65526, 14, 0, 65526, 6, 1441792, 65526, 7, 1441792, 65526, 8, 1441792, 65526, 4, 1441792, 65526, 5, 1441792, 65532, 4, 655360, 9, 6, 1048576, 9, 5, 1048576, 9, 4, 1048576, 9, 3, 1048576, 9, 2, 1048576, 9, 1, 1048576, 9, 0, 1048576, 9, 65535, 655360, 8, 65535, 655360, 7, 65535, 655360, 6, 65535, 655360, 5, 65535, 655360, 4, 65535, 655360, 3, 65535, 655360, 2, 65535, 655360, 1, 65535, 655360, 0, 65535, 655360, 65535, 65535, 655360, 65534, 65535, 655360, 65533, 65535, 655360, 65532, 65535, 655360, 65531, 65535, 655360, 65530, 65535, 655360, 65529, 65535, 655360, 65528, 65535, 655360, 65527, 65535, 655360, 65526, 65535, 1441792, 65526, 3, 1441792, 65526, 2, 1441792, 65526, 1, 1441792, 65526, 0, 1441792, 8, 14, 0, 7, 14, 0, 6, 14, 0, 5, 14, 0, 4, 14, 0, 3, 14, 0, 2, 14, 0, 1, 14, 0, 0, 14, 0, 65535, 14, 0, 65534, 14, 0, 65533, 14, 0, 65532, 14, 0, 65531, 14, 0, 65530, 14, 0, 65529, 14, 0, 65528, 14, 0, 65527, 14, 0)
 }
-metadata/_editor_floor_ = Vector3(0, -8, 0)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="kitchen floor_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.475, -0.5)
@@ -519,7 +521,7 @@ mesh_library = ExtResource("8_hpiwi")
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PackedInt32Array(0, 3, 1048576, 65535, 3, 1048576, 65533, 5, 1048576, 65534, 5, 1048576, 65535, 5, 1048576, 0, 5, 1048576, 1, 5, 1048576, 2, 5, 1048576, 2, 4, 1048576, 1, 4, 1048576, 0, 4, 1048576, 65535, 4, 1048576, 65534, 4, 1048576, 65533, 4, 1048576, 65532, 4, 1048576, 65533, 3, 1048576, 65534, 3, 1048576, 1, 3, 1048576, 2, 3, 1048576, 2, 2, 1048576, 1, 2, 1048576, 0, 2, 1048576, 65535, 2, 1048576, 65534, 2, 1048576, 65533, 2, 1048576, 65533, 65535, 1048576, 65533, 0, 1048576, 65533, 1, 1048576, 65534, 65535, 1048576, 65534, 0, 1048576, 65534, 1, 1048576, 65535, 65535, 1048576, 65535, 0, 1048576, 65535, 1, 1048576, 0, 65535, 1048576, 0, 0, 1048576, 0, 1, 1048576, 1, 65535, 1048576, 1, 0, 1048576, 1, 1, 1048576, 2, 65535, 1048576, 2, 0, 1048576, 2, 1, 1048576)
+"cells": PackedInt32Array(0, 3, 1048576, 65535, 3, 1048576, 65533, 5, 1048576, 65534, 5, 1048576, 65535, 5, 1048576, 0, 5, 1048576, 1, 5, 1048576, 2, 5, 1048576, 2, 4, 1048576, 1, 4, 1048576, 0, 4, 1048576, 65535, 4, 1048576, 65534, 4, 1048576, 65533, 4, 1048576, 65533, 3, 1048576, 65534, 3, 1048576, 1, 3, 1048576, 2, 3, 1048576, 2, 2, 1048576, 1, 2, 1048576, 0, 2, 1048576, 65535, 2, 1048576, 65534, 2, 1048576, 65533, 2, 1048576, 65533, 65535, 1048576, 65533, 0, 1048576, 65533, 1, 1048576, 65534, 65535, 1048576, 65534, 0, 1048576, 65534, 1, 1048576, 65535, 65535, 1048576, 65535, 0, 1048576, 65535, 1, 1048576, 0, 65535, 1048576, 0, 0, 1048576, 0, 1, 1048576, 1, 65535, 1048576, 1, 0, 1048576, 1, 1, 1048576, 2, 65535, 1048576, 2, 0, 1048576, 2, 1, 1048576)
 }
 
 [node name="plates" type="Node3D" parent="kitchen" groups=["keep"]]
@@ -1202,16 +1204,16 @@ shape = SubResource("BoxShape3D_w1n2x")
 [node name="wall6" type="Node3D" parent="tutorial/kitchen_walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.25, 0, 5.45)
 
-[node name="WallOrderwindowDecorated" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall6"]
-mesh = ExtResource("7_n7i1a")
-skeleton = NodePath("../../../..")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="tutorial/kitchen_walls/wall6"]
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tutorial/kitchen_walls/wall6/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("BoxShape3D_w1n2x")
+
+[node name="WallWindowClosed" type="MeshInstance3D" parent="tutorial/kitchen_walls/wall6"]
+mesh = ExtResource("8_k1hdb")
+skeleton = NodePath("../../../..")
 
 [node name="wall7" type="Node3D" parent="tutorial/kitchen_walls"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.25, 0, 5.45)
@@ -1539,7 +1541,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 180.0
+wait_time = 5.0
 
 [node name="order_timer" type="Timer" parent="."]
 

@@ -197,6 +197,8 @@ func pickup(object):
 
 
 func drop(object):
+	if object.type == "knife":
+		object.move = true
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = false
