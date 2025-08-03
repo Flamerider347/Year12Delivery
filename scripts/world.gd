@@ -423,7 +423,6 @@ func map_select():
 func _on_day_timer_timeout() -> void:
 	if level < 4:
 		unlocked_levels["level_"+str(level+1)] = true
-		print(unlocked_levels)
 	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
 	$ui/Label3.text = "OVERTIME"
 	$day_timer.stop()
