@@ -170,20 +170,47 @@ func _on_quit_pressed() -> void:
 
 func level_select():
 	hide_everything()
+	# Plays animation of the book flipping to the right, same for every time a button going into a submenu is pressed.
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/level_select.show()
 
 func main_menu():
 	hide_everything()
+	# Plays animation of the book flipping to the left every time a return button going out of a submenu is pressed.
+	# Code hidden for now due to the book animation playing when the game is started up, causing ditractions
+	## $CanvasLayer/AnimatedSprite2D.show()
+	## $CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
+	## await get_tree().create_timer(1.5).timeout
+	## $CanvasLayer/AnimatedSprite2D.hide()
+	## $CanvasLayer/book_resting_left.show()
+
 	$name.show()
 	$CanvasLayer/main_menu.show()
 
 func build_or_level():
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/build_or_level_menu.show()
 	$CanvasLayer/build_or_level_menu/play_level.text = "Play Level " + str($"..".level)
 
 func layout():
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/layout.show()
 	$CanvasLayer/layout.setup()
 
@@ -316,11 +343,23 @@ func _on_lerp_timer_timeout() -> void:
 
 func credits() -> void:
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/credits.show()
 
 
 func options() -> void:
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/options.show()
 
 

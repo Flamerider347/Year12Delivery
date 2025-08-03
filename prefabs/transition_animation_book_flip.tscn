@@ -254,16 +254,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="transition_animation_book_flip" type="CanvasLayer"]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_ytcqq")
 animation = &"book_flipping_right"
-frame = 17
-frame_progress = 0.0398311
-
-[node name="book_left_rest" type="Sprite2D" parent="."]
-texture = ExtResource("1_6fud0")
-
-[node name="book_right_rest" type="Sprite2D" parent="."]
-texture = ExtResource("30_ib1lr")
+frame_progress = 0.912016
