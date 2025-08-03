@@ -111,6 +111,8 @@ func randomise_objective():
 func update_target(recipe):
 	#Summons a physical version of the randomised burger
 	var recipes_list_keys = recipes_list.keys()
+	print(plate_contents[making_plate])
+	print(recipe.substr(0,5))
 	if recipe.substr(0,6) != "burger":
 		plate_contents[making_plate] = [str(recipe)]
 	next_position = 0.1
@@ -131,7 +133,7 @@ func update_target(recipe):
 		elif spawned_item_hitbox is CylinderShape3D:
 			var item_size = spawned_item_hitbox.height
 			next_position += item_size
-		if recipe != "burger":
+		if recipe.substr(0,6) != "burger":
 			spawned_item.rotation_degrees.x = 50
 			spawned_item.position = Vector3(0,0.4,-0.25)
 		else:

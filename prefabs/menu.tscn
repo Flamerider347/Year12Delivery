@@ -359,7 +359,7 @@ offset_left = 610.065
 offset_top = 658.0
 offset_right = 1407.06
 offset_bottom = 1039.0
-text = "Jess Wiliams
+text = "Jess Williams
 Minjun Cho
 Mr. Rodkiss
 Mr O'Sullivan"
@@ -765,6 +765,7 @@ text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
+visible = false
 
 [node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/recipes"]
 position = Vector2(316, 847)
@@ -929,7 +930,7 @@ shape = SubResource("RectangleShape2D_0x0nk")
 texture = ExtResource("14_dwafa")
 
 [node name="bacon_egg_toast" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
-position = Vector2(546, 788)
+position = Vector2(118, 926)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
