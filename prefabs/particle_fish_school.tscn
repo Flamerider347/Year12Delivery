@@ -15,3 +15,5 @@ metadata/_edit_group_ = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.586372, -0.339774, 0.735338, 0, 0.907777, 0.419452, -0.810042, -0.245955, 0.532296, 4.69968, 2.41518, 4.50746)
 fov = 53.4039
+
+[node name="School" type="MultiMeshInstance3D" parent="."]

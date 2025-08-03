@@ -6,8 +6,8 @@ uniform float side_to_side;
 uniform float pivot;
 uniform float wave;
 uniform float twist;
-uniform float mask_black;
-uniform float mask_white;
+uniform float mask_black : hint_range(0.0, 1.0);
+uniform float mask_white : hint_range(0.0, 1.0);
 
 void vertex(){
 	float time = TIME * time_scale;
@@ -31,7 +31,6 @@ void vertex(){
 	// Twist motion with mask
 	VERTEX.xy = mix(VERTEX.xy, twist_matrix * VERTEX.xy, mask);
 }
-
 
 //void process(){
 	//VELOCITY.x = cos(TIME*time_scale);
