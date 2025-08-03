@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kd5rdq1spl7i"
-path="res://.godot/imported/tut0010.png-8c6ee7cda67975f5128c1221cdd1e10b.ctex"
+uid="uid://crhtcdn1p46yk"
+path="res://.godot/imported/tut0022.png-15da37cef95b1ad850105a703a279a4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bookanim/tut0010.png"
-dest_files=["res://.godot/imported/tut0010.png-8c6ee7cda67975f5128c1221cdd1e10b.ctex"]
+source_file="res://assets/bookanim_left/tut0022.png"
+dest_files=["res://.godot/imported/tut0022.png-15da37cef95b1ad850105a703a279a4b.ctex"]
 
 [params]
 
