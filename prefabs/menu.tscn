@@ -50,7 +50,6 @@ script = ExtResource("1_jhrhb")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -117,6 +116,36 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Credits"
 metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/main_menu"]
+offset_right = 666.0
+offset_bottom = 94.0
+text = "Sprint 3 Patch notes:
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/main_menu"]
+offset_left = 7.0
+offset_top = 112.0
+offset_right = 935.0
+offset_bottom = 2028.0
+scale = Vector2(0.5, 0.5)
+text = "Please leave your comments in
+Google form or game desc. Thanks!
+
+Added crouching and sprint
+Left Control > Crouch, Left shift > Sprint
+
+Added recipe selection + more upgrades
+(In build menu from level 2 onwards)
+
+Added new \"Bacon & Eggs on toast recipe\"
+
+Added splitscreen with controllers,
+would love feedback on that
+
+Added shark detecting text
+Minor bug fixes & more!
+"
 
 [node name="level_select" type="Node2D" parent="CanvasLayer"]
 visible = false
