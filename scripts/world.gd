@@ -116,7 +116,7 @@ var tutorial_benches = {
 }
 var unlocked_levels = {
 	"level_1" :true,
-	"level_2" : false,
+	"level_2" : true,
 	"level_3" : false,
 	"level_4" : false,
 }

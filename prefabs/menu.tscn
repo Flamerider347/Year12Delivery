@@ -50,6 +50,7 @@ script = ExtResource("1_jhrhb")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -135,7 +136,6 @@ offset_bottom = 480.0
 text = "Level 1"
 
 [node name="level_2" type="Button" parent="CanvasLayer/level_select"]
-visible = false
 offset_left = 860.0
 offset_top = 530.0
 offset_right = 1060.0
