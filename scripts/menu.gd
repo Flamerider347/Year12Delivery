@@ -66,7 +66,7 @@ func menu_load():
 
 func _input(event):
 	#if button pressed, skips menu loading animatation
-	if event.is_action_pressed("interact_menu"):
+	if event.is_action_pressed("interact_menu_controller"):
 		var hovered = get_viewport().gui_get_hovered_control()
 		if hovered and hovered is Button:
 			hovered.emit_signal("pressed")

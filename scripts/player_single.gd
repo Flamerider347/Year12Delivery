@@ -4,7 +4,7 @@ var speed = 0
 var can_pickup = true
 var controlling = false
 var evil = false
-var head_target_position = 0.445
+var head_target_position = 0.525
 var head_moving = false
 var SENSITIVITY = 0.1
 const WALK_SPEED = 10
@@ -21,7 +21,7 @@ const GRAVITY = 9.81 #ms^-2
 var ingredient_scenes = {
 	"bun":preload("res://prefabs/bun.tscn"),
 	"cheese":preload("res://prefabs/cheese.tscn"),
-	"meat" : preload("res://prefabs/meat.tscn"),
+	"meat" : preload("res://prefabs/meat_chopped.tscn"),
 	"tomato": preload("res://prefabs/tomato.tscn"),
 	"lettuce": preload("res://prefabs/lettuce.tscn"),
 	"carrot": preload("res://prefabs/carrot.tscn"),
@@ -109,7 +109,7 @@ func _physics_process(delta: float):
 			head_target_position = 0.0
 		if Input.is_action_just_released("crouch"):
 			head_moving = true
-			head_target_position = 0.445
+			head_target_position = 0.525
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
 				$interaction_timer.start(1)
