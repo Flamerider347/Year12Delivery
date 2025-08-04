@@ -170,20 +170,47 @@ func _on_quit_pressed() -> void:
 
 func level_select():
 	hide_everything()
+	# Plays animation of the book flipping to the right, same for every time a button going into a submenu is pressed.
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/level_select.show()
 
 func main_menu():
 	hide_everything()
+	# Plays animation of the book flipping to the left every time a return button going out of a submenu is pressed.
+	# Code will need to be optimised to have the falling ingrediants show on top of the book + have the code check if the game is loaded for the first time do not play the book flip, just display the open book sprite.
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_left.show()
+
 	$name.show()
 	$CanvasLayer/main_menu.show()
 
 func build_or_level():
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/build_or_level_menu.show()
 	$CanvasLayer/build_or_level_menu/play_level.text = "Play Level " + str($"..".level)
 
 func layout():
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/layout.show()
 	$CanvasLayer/layout.setup()
 
@@ -195,6 +222,7 @@ func lose_screen():
 	menu_load()
 	hide_everything()
 	reset_text()
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
 	if not $CanvasLayer/end_screen/Control/text_you_exited.is_visible_in_tree():
@@ -218,6 +246,7 @@ func win_screen():
 	menu_load()
 	hide_everything()
 	reset_text()
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
 	$CanvasLayer/end_screen/Control/text_you_won.show()
@@ -316,11 +345,23 @@ func _on_lerp_timer_timeout() -> void:
 
 func credits() -> void:
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/credits.show()
 
 
 func options() -> void:
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/options.show()
 
 
