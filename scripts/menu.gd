@@ -222,6 +222,7 @@ func lose_screen():
 	menu_load()
 	hide_everything()
 	reset_text()
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
 	if not $CanvasLayer/end_screen/Control/text_you_exited.is_visible_in_tree():
@@ -245,6 +246,7 @@ func win_screen():
 	menu_load()
 	hide_everything()
 	reset_text()
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
 	$CanvasLayer/end_screen/Control/text_you_won.show()

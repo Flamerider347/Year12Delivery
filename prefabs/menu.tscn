@@ -199,7 +199,6 @@ text = "Return to Level Select
 "
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -279,12 +278,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 307.5
-offset_top = 350.5
-offset_right = 629.5
-offset_bottom = 444.5
+offset_left = 300.5
+offset_top = 348.5
+offset_right = 622.5
+offset_bottom = 442.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 text = "To build menu"
 
 [node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
@@ -294,12 +294,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -338.5
-offset_top = 350.5
-offset_right = -16.5
-offset_bottom = 444.5
+offset_left = -274.5
+offset_top = 348.5
+offset_right = 47.5001
+offset_bottom = 442.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 text = "Options menu"
 
 [node name="level_select" type="Button" parent="CanvasLayer/end_screen/Control"]
@@ -309,12 +310,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = 351.5
-offset_right = 293.5
-offset_bottom = 445.5
+offset_left = 30.5001
+offset_top = 348.5
+offset_right = 329.5
+offset_bottom = 442.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 text = "To level select"
 
 [node name="main_menu" type="Button" parent="CanvasLayer/end_screen/Control"]
@@ -324,12 +326,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -675.5
+offset_left = -548.5
 offset_top = 348.5
-offset_right = -353.5
+offset_right = -226.5
 offset_bottom = 442.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 text = "Main menu"
 
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
