@@ -182,12 +182,12 @@ func level_select():
 func main_menu():
 	hide_everything()
 	# Plays animation of the book flipping to the left every time a return button going out of a submenu is pressed.
-	# Code hidden for now due to the book animation playing when the game is started up, causing ditractions
-	## $CanvasLayer/AnimatedSprite2D.show()
-	## $CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
-	## await get_tree().create_timer(1.5).timeout
-	## $CanvasLayer/AnimatedSprite2D.hide()
-	## $CanvasLayer/book_resting_left.show()
+	# Code will need to be optimised to have the falling ingrediants show on top of the book + have the code check if the game is loaded for the first time do not play the book flip, just display the open book sprite.
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_left.show()
 
 	$name.show()
 	$CanvasLayer/main_menu.show()
