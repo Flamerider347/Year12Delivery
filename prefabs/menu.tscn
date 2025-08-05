@@ -61,6 +61,7 @@ position = Vector2(960, 540)
 texture = ExtResource("3_j5t5k")
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
