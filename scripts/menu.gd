@@ -1,7 +1,6 @@
 extends Node3D
 var spawn = true
 var menu_toggle = true
-var save_code
 var new_money = 0.0
 var text_1 = 0.0
 var text_2 = 0.0
@@ -29,14 +28,17 @@ var random_spawn = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#gets controller amount
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$"..".controllers = 0
 	for i in Input.get_connected_joypads():
 		if $"..".controllers < 2:
 			$"..".controllers += 1
-
 	menu_load()
+	
+	
 func menu_load():
+	#loads main menu
 	$"../order_timer".stop()
 	$"../kitchen/plates".clear()
 	$"../player_single".controlling = false
@@ -60,12 +62,16 @@ func menu_load():
 				i.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	#if button pressed, skips menu loading animatation
+	if event.is_action_pressed("interact_menu_controller"):
 		var hovered = get_viewport().gui_get_hovered_control()
 		if hovered and hovered is Button:
 			hovered.emit_signal("pressed")
+			
+			
 func _process(delta: float) -> void:
 	# Get left stick vector using your input actions
 	var left_stick_vector = Input.get_vector("left", "right", "up", "down")  # Vector2
@@ -82,12 +88,6 @@ func _process(delta: float) -> void:
 		lerp_text()
 		win_text()
 
-	if Input.is_action_just_pressed("down"):
-		$CanvasLayer/main_menu/LineEdit.show()
-		$CanvasLayer/main_menu/save_confirm.show()
-
-	if Input.is_action_just_pressed("enter"):
-		_on_save_confirm()
 	if Input.is_action_just_released("pickup_p1"):
 		name_thing.position.y = -2
 
@@ -107,7 +107,10 @@ func _process(delta: float) -> void:
 
 	if spawn:
 		_spawn()
+		
+		
 func _spawn():
+	#spawns random items
 	var list_keys = random_spawn.keys()
 	var list_size = list_keys.size()
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
@@ -165,35 +168,49 @@ func _on_level_select_return() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
-func _on_save_confirm() -> void:
-	save_code = $CanvasLayer/main_menu/LineEdit.text
-	if save_code:
-		$"..".save_code = save_code
-		$"..".save_update = true
-	await get_tree().create_timer(0.1).timeout
-	for i in $CanvasLayer/level_select.get_children():
-		if str(i.name) in $"..".unlocked_levels.keys():
-			if $"..".unlocked_levels[str(i.name)] == true:
-				i.show()
-
 func level_select():
 	hide_everything()
+	# Plays animation of the book flipping to the right, same for every time a button going into a submenu is pressed.
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/level_select.show()
 
 func main_menu():
 	hide_everything()
-	$CanvasLayer/main_menu/LineEdit.hide()
-	$CanvasLayer/main_menu/save_confirm.hide()
+	# Plays animation of the book flipping to the left every time a return button going out of a submenu is pressed.
+	# Code will need to be optimised to have the falling ingrediants show on top of the book + have the code check if the game is loaded for the first time do not play the book flip, just display the open book sprite.
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_left.show()
+
 	$name.show()
 	$CanvasLayer/main_menu.show()
 
 func build_or_level():
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/build_or_level_menu.show()
 	$CanvasLayer/build_or_level_menu/play_level.text = "Play Level " + str($"..".level)
 
 func layout():
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/layout.show()
 	$CanvasLayer/layout.setup()
 
@@ -205,6 +222,7 @@ func lose_screen():
 	menu_load()
 	hide_everything()
 	reset_text()
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
 	if not $CanvasLayer/end_screen/Control/text_you_exited.is_visible_in_tree():
@@ -217,6 +235,7 @@ func lose_screen():
 	$CanvasLayer/end_screen/lerp_timer.start(0.5)
 	$"../transition animation/transition animation".play("fade_transition_reverse")
 	await get_tree().create_timer(1.0).timeout
+	$"../transition animation".hide()
 	win_text()
 
 func win_screen():
@@ -227,6 +246,7 @@ func win_screen():
 	menu_load()
 	hide_everything()
 	reset_text()
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
 	$CanvasLayer/end_screen/Control/text_you_won.show()
@@ -238,7 +258,11 @@ func win_screen():
 	$"..".money += new_money
 	$"../transition animation/transition animation".play("fade_transition_reverse")
 	await get_tree().create_timer(1.0).timeout
+	$"../transition animation".hide()
 	win_text()
+	for i in $"..".unlocked_levels:
+		if $"..".unlocked_levels[i] == true:
+			$CanvasLayer/level_select.find_child(i).show()
 
 func lerp_text():
 	var score = float($"..".score)
@@ -285,6 +309,7 @@ func _on_play_level_pressed() -> void:
 		hide_everything()
 		spawn = false
 		$Timer.stop()
+		$"../transition animation".show()
 		$"../transition animation/transition animation".play("fade_transition_reverse")
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
@@ -320,11 +345,23 @@ func _on_lerp_timer_timeout() -> void:
 
 func credits() -> void:
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+
+	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/credits.show()
 
 
 func options() -> void:
 	hide_everything()
+	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	await get_tree().create_timer(1.5).timeout
+	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/book_resting_right.show()
+
 	$CanvasLayer/options.show()
 
 

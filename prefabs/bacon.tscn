@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b13f67lqxruqh"]
+
+[ext_resource type="Script" uid="uid://cym2fbnthiuex" path="res://scripts/bacon.gd" id="1_q45tl"]
+[ext_resource type="ArrayMesh" uid="uid://du2a73w8h6c2x" path="res://assets/createdassets/bacon_raw.obj" id="2_2iuip"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="3_0rhax"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oy0vl"]
+size = Vector3(0.748901, 0.123535, 0.276563)
+
+[node name="bacon" type="RigidBody3D" groups=["cookable", "pickupable"]]
+script = ExtResource("1_q45tl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+shape = SubResource("BoxShape3D_oy0vl")
+
+[node name="BaconRaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = ExtResource("2_2iuip")
+surface_material_override/0 = ExtResource("3_0rhax")

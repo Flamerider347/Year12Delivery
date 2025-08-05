@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://252vmnw05vc0"]
+
+[ext_resource type="Script" uid="uid://du0lwlpju0thw" path="res://scripts/egg.gd" id="1_2plfv"]
+[ext_resource type="ArrayMesh" uid="uid://c1xunrift5cbr" path="res://assets/createdassets/egg.obj" id="1_5nvdk"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_fwfx4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwfx4"]
+radius = 0.107574
+height = 0.322924
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2plfv"]
+radius = 0.126257
+height = 0.366868
+
+[node name="egg" type="RigidBody3D" groups=["pickupable"]]
+script = ExtResource("1_2plfv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
+shape = SubResource("CapsuleShape3D_fwfx4")
+
+[node name="Egg" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("1_5nvdk")
+surface_material_override/0 = ExtResource("2_fwfx4")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_2plfv")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

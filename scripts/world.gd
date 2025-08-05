@@ -18,13 +18,13 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 1000000
+var money = 100
 var score = 0
 var stars = 5
 var orders_delivered = 0
 var day_timer = 20
 var is_tutorial = false
-
+var world_toggle = false
 # Defines the animation player for when the player moves between menus.
 @onready var animation: AnimationPlayer = $"transition animation/transition animation"
 
@@ -117,7 +117,7 @@ var tutorial_benches = {
 var unlocked_levels = {
 	"level_1" :true,
 	"level_2" : true,
-	"level_3" : true,
+	"level_3" : false,
 	"level_4" : false,
 }
 func _ready() -> void:
@@ -125,6 +125,7 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
+	world_toggle = true
 	$tutorial.show()
 	$ui.show()
 	$player_single.position = Vector3(0,31.65,5.3)
@@ -144,8 +145,17 @@ func tutorial():
 		$ui/Sprite2D.position.x = 960
 	if player_count == 2:
 		$GridContainer.show()
+		$GridContainer/SubViewportContainer/SubViewport/player._setup()
+		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
+		$player_single.hide()
+		$GridContainer/SubViewportContainer/SubViewport/player.show()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
+		$GridContainer/SubViewportContainer/SubViewport/player.position = Vector3(1,31,6)
+		$GridContainer/SubViewportContainer2/SubViewport/player2.position = Vector3(-1,31,6)
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
+		$ui/Sprite2D.position.x = 480
+		$ui/Sprite2D2.position.x = 1440
 	for i in tutorial_benches:
 		if tutorial_benches[i][2] == true:
 			if i in bench_summoning.keys():
@@ -164,6 +174,7 @@ func tutorial():
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 
 func _setup():
+	world_toggle = true
 	is_tutorial = false
 	for i in get_children():
 		if i.is_in_group("clear"):
@@ -182,14 +193,25 @@ func _setup():
 		$player_single._setup()
 		$player_single/head/player_camera.current = true
 		$ui/Sprite2D.show()
+		$ui/Sprite2D2.hide()
 		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
+		$player_single.show()
+		$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
+		$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
+		$GridContainer/SubViewportContainer/SubViewport/player.hide()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.hide()
 	if player_count == 2:
 		$GridContainer.show()
 		$GridContainer/SubViewportContainer/SubViewport/player._setup()
 		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
+		$player_single.hide()
+		$GridContainer/SubViewportContainer/SubViewport/player.show()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
+		$ui/Sprite2D.position.x = 480
+		$ui/Sprite2D2.position.x = 1440
 	$order_timer.start(0.1)
 	for i in benches:
 		if benches[i][2] == true:
@@ -259,37 +281,40 @@ func _physics_process(_delta: float) -> void:
 			if orders[i] == 1:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
+
+
 func _on_cut_area_body_entered(body: Node3D) -> void:
-	if $player_single.held_object and $player_single.held_object.type == "knife":
-		if $player_single.held_object.get_parent().find_child("AnimationPlayer").is_playing() and $player_single.held_object.get_parent().find_child("AnimationPlayer").current_animation == "swing_knife":
-			if body.is_in_group("can_chop"):
-				$"SFX/knife chopping".global_position = body.global_position
-				$"SFX/knife chopping".play()
-				if body.type == "bun":
-					if is_tutorial:
-						$tutorial/plates.cut_bun()
-					var instance = bun_chopped_bottom.instantiate()
-					var instance2 = bun_chopped_top.instantiate()
-					add_child(instance)
-					add_child(instance2)
-					instance.type = "bun_bottom_chopped"
-					instance2.type = "bun_top_chopped"
-					instance.position = body.position
-					instance2.position = body.position + Vector3(0,0.1,0)
-					body.queue_free()
-				elif body.type in ingredients:
-					if is_tutorial:
-						if body.type == "tomato":
-							$tutorial/plates.cut_tomato()
-					var instance = ingredients[body.type].instantiate()
-					instance.type = body.type + "_chopped"
-					instance.position = body.position
-					add_child(instance)
-					body.queue_free()
+	if $player_single.held_object and $player_single.held_object.type == "knife" or $GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife" or $GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife":
+		if body.is_in_group("can_chop"):
+			$"SFX/knife chopping".global_position = body.global_position
+			$"SFX/knife chopping".play()
+			if body.type == "bun":
+				if is_tutorial:
+					$tutorial/plates.cut_bun()
+				var instance = bun_chopped_bottom.instantiate()
+				var instance2 = bun_chopped_top.instantiate()
+				add_child(instance)
+				add_child(instance2)
+				instance.type = "bun_bottom_chopped"
+				instance2.type = "bun_top_chopped"
+				instance.position = body.position
+				instance2.position = body.position + Vector3(0,0.1,0)
+				body.queue_free()
+
+			elif body.type in ingredients:
+				if is_tutorial:
+					if body.type == "tomato":
+						$tutorial/plates.cut_tomato()
+				var instance = ingredients[body.type].instantiate()
+				instance.type = body.type + "_chopped"
+				instance.position = body.position
+				add_child(instance)
+				body.queue_free()
 
 
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
+
 
 func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 	if body.is_in_group("packageable"):
@@ -330,6 +355,7 @@ func _on_incinerator_body_entered(body: Node3D) -> void:
 	if body.is_in_group("pickupable") and not body.is_in_group("knife") and not body.is_in_group("keep"):
 		body.queue_free()
 
+
 func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> void:
 	if address == target_address:
 		if not is_tutorial:
@@ -339,11 +365,13 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			$SFX/delivered.play()
 			delivered_pot.queue_free()
 			orders_delivered += 1
+
 		else:
 			$tutorial/plates.delivered_to_house()
 			delivered_pot.queue_free()
 			$SFX/delivered.play()
 			$tutorial/plates.randomise_objective()
+
 
 func _on_order_timer_timeout() -> void:
 	for i in range(len(orders)):
@@ -352,6 +380,7 @@ func _on_order_timer_timeout() -> void:
 			break
 		else:
 			pass
+
 
 func _on_objective_plate_timeout(timer_number) -> void:
 	orders[int(timer_number)-1] = 0
@@ -362,15 +391,18 @@ func _on_objective_plate_timeout(timer_number) -> void:
 		$menu.lose_screen()
 		stars = 5
 
+
 func _on_plates_objective_clear(timer_number) -> void:
 	orders[int(timer_number)-1] = 0
 	objectives.erase(str("plate_" + str(timer_number)))
+
 
 func _on_order_timeout(_number) -> void:
 	stars -= 1
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		$menu.lose_screen()
+
 
 func map_select():
 	for i in maps.keys():
@@ -389,12 +421,12 @@ func map_select():
 
 
 func _on_day_timer_timeout() -> void:
-	if level < 5:
-		level_updates_left += 1
-		$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
-		$ui/Label3.text = "OVERTIME"
-		$day_timer.stop()
-		$order_timer.stop()
+	if level < 4:
+		unlocked_levels["level_"+str(level+1)] = true
+	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
+	$ui/Label3.text = "OVERTIME"
+	$day_timer.stop()
+	$order_timer.stop()
 
 
 func looking_recipe(looking_at_list):

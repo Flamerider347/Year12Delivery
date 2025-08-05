@@ -10,12 +10,13 @@ var next_position = 0.1
 var making_plate = "plate_1"
 var recipes_list = {
 	"burger_test" :[["plate","bun_bottom_chopped","bun_top_chopped"],false],
-	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","lettuce_chopped","bun_top_chopped"],true],
-	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],true],
-	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],true],
-	"burger_cullen" : [["plate","bun_bottom_chopped","tomato_chopped","tomato_chopped","tomato_chopped","bun_top_chopped"],true],
-	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","carrot_chopped","bun_top_chopped",],true],
-	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true]
+	"burger_ben" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","lettuce_chopped","bun_top_chopped"],false],
+	"burger_aine" : [["plate","bun_bottom_chopped","meat_cooked","cheese_chopped","meat_cooked","bun_top_chopped"],false],
+	"burger_hayden" : [["plate","bun_bottom_chopped","cheese_chopped","cheese_chopped","cheese_chopped","bun_top_chopped"],false],
+	"burger_cullen" : [["plate","bun_bottom_chopped","tomato_chopped","tomato_chopped","tomato_chopped","bun_top_chopped"],false],
+	"burger_sullivan" : [["plate","bun_bottom_chopped","lettuce_chopped","tomato_chopped","carrot_chopped","bun_top_chopped",],false],
+	"stew" : [["bowl", "carrot_chopped", "meat_cooked_chopped", "potato_chopped"],true],
+	"bacon_egg_toast" : [["plate","bacon_cooked","bacon_cooked","bun_bottom_chopped","egg_cracked_cooked"],false]
 }
 var plate_contents = {
 	"plate_1" : [],
@@ -51,6 +52,8 @@ var ingredient_time = {
 	"lettuce_chopped":10,
 	"bun_bottom_chopped" : 10,
 	"bun_top_chopped" : 10,
+	"bacon_cooked" : 10,
+	"egg_cooked" : 10
 }
 var ingredient_list = {
 	"plate" : preload("res://prefabs/plate.tscn"),
@@ -63,23 +66,29 @@ var ingredient_list = {
 	"lettuce_chopped":preload("res://prefabs/lettuce_chopped.tscn"),
 	"bun_bottom_chopped" : preload("res://prefabs/bun_bottom_chopped.tscn"),
 	"bun_top_chopped" : preload("res://prefabs/bun_top_chopped.tscn"),
-	"stew" : preload("res://prefabs/stew.tscn")
+	"stew" : preload("res://prefabs/stew.tscn"),
+	"bacon_egg_toast" :preload("res://prefabs/bacon_egg_toast.tscn")
 }
 func _ready() -> void:
 	$"../..".connect("make_order", Callable(self, "_on_make_order"))
 func _process(_delta: float) -> void:
+	#Assigns all active timers a label below the food
 	for i in plates:
 		var plate_label = plates[i].find_child("Label3D")
 		var timer = plates[i].find_child("order_time")
-		if timer.is_inside_tree() and timer.time_left > 10:
-			plate_label.text = str(round(timer.time_left)).replace(".0","")
-			plate_label.modulate = Color(1, 1, 1)
-		elif timer.is_inside_tree() and timer.time_left > 0:
-			plate_label.text = str(round(timer.time_left*10)/10)
-			plate_label.modulate = Color(1, 0, 0)
-		elif plate_label.text != "":
-			plate_label.text = ""
+		if timer.is_inside_tree():
+			if timer.time_left > 10:
+				plate_label.text = str(round(timer.time_left)).replace(".0","")
+				plate_label.modulate = Color(1, 1, 1)
+			elif timer.time_left > 0:
+				plate_label.text = str(round(timer.time_left*10)/10)
+				plate_label.modulate = Color(1, 0, 0)
+			elif plate_label.text != "":
+				plate_label.text = ""
+				
+				
 func randomise_objective():
+	#Randomly selects recipe that is set to "true"
 	var recipes_list_keys = recipes_list.keys()
 	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
 	while recipes_list[making_recipe][1] == false:
@@ -87,6 +96,8 @@ func randomise_objective():
 	var make_time = 120
 	delivery_location = delivery_list[randi_range(0,8)]
 	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
+	
+	#Adds make time for each ingredient
 	for i in plate_contents[making_plate]:
 		if i in ingredient_time.keys():
 			make_time += ingredient_time[i]
@@ -94,11 +105,16 @@ func randomise_objective():
 	plates[making_plate].find_child("order_time").start(make_time)
 	objective.emit(plate_contents[making_plate],plate_name,plates[making_plate].find_child("order_time").time_left,delivery_location,plates[making_plate])
 	timing = true
-	update_target(making_recipe.substr(0,6))
+	update_target(making_recipe)
+	
+	
 func update_target(recipe):
+	#Summons a physical version of the randomised burger
 	var recipes_list_keys = recipes_list.keys()
-	if recipe != "burger":
-		plate_contents[making_plate] = ["stew",]
+	print(plate_contents[making_plate])
+	print(recipe.substr(0,5))
+	if recipe.substr(0,6) != "burger":
+		plate_contents[making_plate] = [str(recipe)]
 	next_position = 0.1
 	for i in plate_contents[making_plate]:
 		var spawned_item = ingredient_list[i].instantiate()
@@ -117,13 +133,14 @@ func update_target(recipe):
 		elif spawned_item_hitbox is CylinderShape3D:
 			var item_size = spawned_item_hitbox.height
 			next_position += item_size
-		if recipe != "burger":
+		if recipe.substr(0,6) != "burger":
 			spawned_item.rotation_degrees.x = 50
 			spawned_item.position = Vector3(0,0.4,-0.25)
 		else:
 			spawned_item.rotation_degrees.x = 0
 
 func _on_make_order(action: String,plate_number) -> void:
+	#Clears plates and makes new orders on command by world's ordertimer
 	making_plate = str("plate_" + str(plate_number))
 	if action == "kill":
 		for child in plates[making_plate].get_children():
@@ -137,6 +154,7 @@ func _on_make_order(action: String,plate_number) -> void:
 		randomise_objective()
 
 func _on_order_timeout(number) -> void:
+	#clears timedout plates when timeout
 	var plate = "plate_" + str(number)
 	for child in plates[plate].get_children():
 		if not child.is_in_group("keep"):
@@ -148,6 +166,7 @@ func _on_order_timeout(number) -> void:
 
 
 func clear():
+	#clears timedout plates when timeout
 	for i in range(10):
 		i = i+1
 		var plate = "plate_" + str(i)

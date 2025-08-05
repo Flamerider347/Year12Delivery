@@ -15,10 +15,10 @@ uv1_offset = Vector3(0.71, 0, 0)
 size = Vector3(1.49757, 0.671875, 1.41711)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ws1ja"]
-size = Vector3(0.813477, 0.923174, 1.49475)
+size = Vector3(0.813477, 0.666035, 1.49475)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ukro"]
-size = Vector3(0.75769, 0.954803, 1.48499)
+size = Vector3(0.758606, 0.694694, 1.48499)
 
 [node name="bun_crate" type="Node3D"]
 
@@ -55,11 +55,11 @@ surface_material_override/27 = ExtResource("3_d1g0f")
 surface_material_override/28 = ExtResource("3_d1g0f")
 
 [node name="bun_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-visible = false
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bun_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000928998, 1.91319, -0.209534)
-visible = false
 shape = SubResource("BoxShape3D_s7e28")
 
 [node name="Pantry-leftdoor" type="MeshInstance3D" parent="."]
@@ -76,18 +76,18 @@ surface_material_override/0 = ExtResource("3_d1g0f")
 
 [node name="bowl_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.589822, 0.617761, 0)
-visible = false
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bowl_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23877, 0.0905008, -0.186096)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23877, -0.0380685, -0.186096)
 shape = SubResource("BoxShape3D_ws1ja")
 
 [node name="plate_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.573202, 1.07084, 0)
-visible = false
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="plate_crate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131287, -0.37529, -0.190613)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131745, -0.505344, -0.190613)
 shape = SubResource("BoxShape3D_5ukro")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=32 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
+[ext_resource type="Texture2D" uid="uid://cgpjvgxwv1hbu" path="res://assets/bookanim_left/tut0030.png" id="2_tcgir"]
+[ext_resource type="Texture2D" uid="uid://du5fhr6bwrf4s" path="res://assets/bookanim_left/tut0001.png" id="3_j5t5k"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
@@ -12,11 +14,31 @@
 [ext_resource type="Texture2D" uid="uid://d03jmotv4dh77" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-06-25 192059.png" id="10_y5qo3"]
 [ext_resource type="Texture2D" uid="uid://dlo6qp5p14cqh" path="res://assets/Sprint 1 Icons for benches/Chopping Board.png" id="11_8bmnr"]
 [ext_resource type="Texture2D" uid="uid://cw5xjsl48vltp" path="res://assets/Sprint 1 Icons for benches/delivery_plate.png" id="12_73aox"]
+[ext_resource type="Script" uid="uid://cf6prq01f4d01" path="res://scripts/recipe_slot.gd" id="13_73aox"]
+[ext_resource type="Script" uid="uid://7ry5gpnlyjjp" path="res://scripts/recipe.gd" id="14_21bg4"]
+[ext_resource type="Texture2D" uid="uid://cm877xs63r1qq" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png" id="14_dwafa"]
+[ext_resource type="Texture2D" uid="uid://uhwevs5wqbek" path="res://assets/icon.svg" id="15_w8pom"]
+[ext_resource type="Texture2D" uid="uid://bhl7p16gky0l" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png" id="17_dll84"]
+[ext_resource type="Texture2D" uid="uid://dnl1gv48kvb3t" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png" id="18_tcgir"]
+[ext_resource type="Texture2D" uid="uid://bg5ee6sgs0ms3" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png" id="19_1lbl1"]
+[ext_resource type="Texture2D" uid="uid://b6aw4hitsyq8s" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png" id="20_dll84"]
+[ext_resource type="PackedScene" uid="uid://cfepmsyun4rjo" path="res://prefabs/transition_animation_book_flip.tscn" id="22_1lbl1"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
 size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwafa"]
+size = Vector2(613, 399)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5qo3"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0x0nk"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcgir"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(20, 1, 20)
@@ -29,6 +51,15 @@ script = ExtResource("1_jhrhb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="book_resting_left" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("2_tcgir")
+
+[node name="book_resting_right" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 540)
+texture = ExtResource("3_j5t5k")
+
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
 visible = false
 
@@ -38,14 +69,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 758.0
-offset_top = 540.0
-offset_right = 958.0
-offset_bottom = 634.0
+offset_left = 558.0
+offset_top = 491.0
+offset_right = 758.0
+offset_bottom = 585.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "1 player"
-metadata/_edit_use_anchors_ = true
 
 [node name="players_2" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -53,10 +83,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 965.0
-offset_top = 538.0
-offset_right = 1164.0
-offset_bottom = 632.0
+offset_left = 558.0
+offset_top = 640.0
+offset_right = 758.0
+offset_bottom = 734.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "2 player"
@@ -67,14 +97,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 759.0
-offset_top = 640.0
-offset_right = 959.0
-offset_bottom = 734.0
+offset_left = 1165.0
+offset_top = 491.0
+offset_right = 1365.0
+offset_bottom = 585.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Options"
-metadata/_edit_use_anchors_ = true
 
 [node name="quit" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 863.0
@@ -83,37 +112,50 @@ offset_right = 1063.0
 offset_bottom = 835.0
 text = "Quit"
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/main_menu"]
-visible = false
-offset_left = 857.0
-offset_top = 806.0
-offset_right = 1246.0
-offset_bottom = 862.0
-placeholder_text = "Typey typey"
-
-[node name="save_confirm" type="Button" parent="CanvasLayer/main_menu"]
-visible = false
-offset_left = 1277.0
-offset_top = 778.0
-offset_right = 1460.0
-offset_bottom = 875.0
-text = "Enter
-"
-
 [node name="credits" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 966.0
+offset_left = 1165.0
 offset_top = 640.0
-offset_right = 1166.0
+offset_right = 1365.0
 offset_bottom = 734.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Credits"
 metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/main_menu"]
+offset_right = 666.0
+offset_bottom = 94.0
+text = "Sprint 3 Patch notes:
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/main_menu"]
+offset_left = 7.0
+offset_top = 112.0
+offset_right = 935.0
+offset_bottom = 2028.0
+scale = Vector2(0.5, 0.5)
+text = "Please leave your comments in
+Google form or game desc. Thanks!
+
+Added crouching and sprint
+Left Control > Crouch, Left shift > Sprint
+
+Added recipe selection + more upgrades
+(In build menu from level 2 onwards)
+
+Added new \"Bacon & Eggs on toast recipe\"
+
+Added splitscreen with controllers,
+would love feedback on that
+
+Added shark detecting text
+Minor bug fixes & more!
+"
 
 [node name="level_select" type="Node2D" parent="CanvasLayer"]
 visible = false
@@ -140,6 +182,7 @@ offset_bottom = 580.0
 text = "level 2"
 
 [node name="level_3" type="Button" parent="CanvasLayer/level_select"]
+visible = false
 offset_left = 860.0
 offset_top = 630.0
 offset_right = 1060.0
@@ -147,6 +190,7 @@ offset_bottom = 680.0
 text = "Level 3"
 
 [node name="level_4" type="Button" parent="CanvasLayer/level_select"]
+visible = false
 offset_left = 860.0
 offset_top = 730.0
 offset_right = 1060.0
@@ -183,6 +227,225 @@ offset_right = 1907.0
 offset_bottom = 104.0
 text = "Return to Level Select
 "
+
+[node name="end_screen" type="Node2D" parent="CanvasLayer"]
+
+[node name="Control" type="Control" parent="CanvasLayer/end_screen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1919.0
+offset_bottom = 1081.0
+
+[node name="stats" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -513.5
+offset_top = -350.5
+offset_right = 316.5
+offset_bottom = 313.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[u]SCORE:
+ORDERS DELIVERED:
+STARS REMAINING:
+SCORE MULTIPLIER:
+DIFFICULTY MULTIPIER:
+TOTAL SCORE:
+MONEY: [/u]
+"
+
+[node name="text_you_lost" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -178.5
+offset_top = 50.0
+offset_right = 33.5
+offset_bottom = 164.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[shake rate=20.0 level=5 connected=1][b]You lost![/b]"
+
+[node name="text_you_exited" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -202.5
+offset_top = 50.0
+offset_right = 67.5
+offset_bottom = 164.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[shake rate=20.0 level=5 connected=1][b]Day Exited![/b]"
+
+[node name="text_you_won" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -247.5
+offset_top = 50.0
+offset_right = 83.5
+offset_bottom = 164.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][b]Day Complete![/b][/pulse]"
+
+[node name="layout" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 300.5
+offset_top = 348.5
+offset_right = 622.5
+offset_bottom = 442.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+text = "To build menu"
+
+[node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.5
+offset_top = 348.5
+offset_right = 47.5001
+offset_bottom = 442.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+text = "Options menu"
+
+[node name="level_select" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.5001
+offset_top = 348.5
+offset_right = 329.5
+offset_bottom = 442.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+text = "To level select"
+
+[node name="main_menu" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -548.5
+offset_top = 348.5
+offset_right = -226.5
+offset_bottom = 442.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+text = "Main menu"
+
+[node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
+
+[node name="credits" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/credits"]
+offset_left = 422.0
+offset_top = 65.0
+offset_right = 991.0
+offset_bottom = 1006.0
+bbcode_enabled = true
+text = "[u]Lead Programmer[/u] - Hayden Clemence
+[u]Lead Designer[/u] - Benjamin Blakie
+[u]Lead Artist[/u] - Aine O'Connor
+[u]Assistant Programmer[/u] - Benjamin Wray
+[u]Assistant Designer[/u] - Finn Tan"
+
+[node name="return" type="Button" parent="CanvasLayer/credits"]
+offset_left = 1421.0
+offset_top = 10.0
+offset_right = 1907.0
+offset_bottom = 104.0
+text = "Return to main menu"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/credits"]
+offset_left = 1033.0
+offset_top = 67.0
+offset_right = 1616.0
+offset_bottom = 1008.0
+bbcode_enabled = true
+text = "[u]Special thanks to playtesters:[/u]
+Oliver Grace
+Benjamin Gorman      
+Mathew Thomas
+Cullen & Katrina Lai
+Jess Wiliams
+Minjun Cho
+Mr. Rodkiss
+Mr O'Sullivan"
+
+[node name="options" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="return" type="Button" parent="CanvasLayer/options"]
+offset_left = 1421.0
+offset_top = 10.0
+offset_right = 1907.0
+offset_bottom = 104.0
+text = "Return to main menu"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/options"]
+offset_left = 757.0
+offset_top = 487.0
+offset_right = 1164.0
+offset_bottom = 503.0
+min_value = 0.01
+max_value = 10.0
+step = 0.01
+value = 5.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/options"]
+offset_left = 775.0
+offset_top = 369.0
+offset_right = 1146.0
+offset_bottom = 478.0
+text = "Sensitivity: 5.0"
+
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/options"]
+offset_left = 760.0
+offset_top = 614.0
+offset_right = 1167.0
+offset_bottom = 630.0
+min_value = 1.0
+value = 50.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/options"]
+offset_left = 578.0
+offset_top = 506.0
+offset_right = 1342.0
+offset_bottom = 615.0
+text = "Time between burger spawns: 50"
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
 visible = false
@@ -468,17 +731,6 @@ offset_bottom = 60.0
 text = "Return"
 metadata/_edit_use_anchors_ = true
 
-[node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/dragging_bench"]
-
-[node name="Label" type="Label" parent="CanvasLayer/layout/dragging_bench"]
-offset_left = -56.0
-offset_top = -56.0
-offset_right = -16.0
-offset_bottom = -33.0
-metadata/_edit_use_anchors_ = true
-
 [node name="upgrades_button" type="Button" parent="CanvasLayer/layout"]
 offset_left = 32.0
 offset_top = 88.0
@@ -496,84 +748,245 @@ text = "recipes"
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
+visible = false
 
 [node name="buy_bench" type="Button" parent="CanvasLayer/layout/upgrades"]
-offset_left = 55.0
-offset_top = 349.0
-offset_right = 243.0
-offset_bottom = 443.0
-text = "Hello"
+offset_left = 304.0
+offset_top = 208.0
+offset_right = 606.0
+offset_bottom = 302.0
+text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
+
+[node name="bench" type="Label" parent="CanvasLayer/layout/upgrades"]
+offset_left = 41.0
+offset_top = 238.0
+offset_right = 828.0
+offset_bottom = 526.0
+scale = Vector2(0.705, 0.705)
+text = "Buy Bench 9
+-Adds another customisable bench. 
+-More benches speed up production."
 metadata/_edit_use_anchors_ = true
 
-[node name="benches" type="Label" parent="CanvasLayer/layout/upgrades"]
-offset_left = 48.0
-offset_top = 208.0
-offset_right = 815.0
-offset_bottom = 399.0
+[node name="star" type="Label" parent="CanvasLayer/layout/upgrades"]
+offset_left = 56.0
+offset_top = 468.0
+offset_right = 823.0
+offset_bottom = 756.0
 scale = Vector2(0.705, 0.705)
-text = "Buy bench 8
--Adds another customisable bench!"
-metadata/_edit_use_anchors_ = true
+text = "Buy Star 2
+-Stars allow you to fail orders. 
+-More stars means more money!"
 
 [node name="buy_star" type="Button" parent="CanvasLayer/layout/upgrades"]
-offset_left = 53.0
-offset_top = 556.0
-offset_right = 245.0
-offset_bottom = 632.0
+offset_left = 305.0
+offset_top = 444.0
+offset_right = 607.0
+offset_bottom = 538.0
+text = "MAX LEVEL!"
+script = ExtResource("7_73aox")
+
+[node name="recipe_slot" type="Label" parent="CanvasLayer/layout/upgrades"]
+offset_left = 50.0
+offset_top = 704.0
+offset_right = 846.0
+offset_bottom = 992.0
+scale = Vector2(0.705, 0.705)
+text = "Buy Slot 5
+-Cook more recipes at one time
+-Change equipped slots in Recipes"
+
+[node name="buy_recipe_slot" type="Button" parent="CanvasLayer/layout/upgrades"]
+offset_left = 306.0
+offset_top = 681.0
+offset_right = 608.0
+offset_bottom = 775.0
+text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
 visible = false
 
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/layout/recipes"]
-offset_left = 45.0
-offset_top = 200.0
-offset_right = 609.88
-offset_bottom = 1044.05
-bbcode_enabled = true
-text = "[center][u]Burguire[/u]
-- Sells for 10-30$
-[u]Ingredients[/u]
-- Meat Pattie
-- 	Chopped Bun
-- 	Chopped Lettuce
-- 	Chopped Cheese
-- 	Chopped Tomato
-[u]Needs:[/u]
-- Bun Crate (0)
+[node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/recipes"]
+position = Vector2(316, 847)
+metadata/_edit_group_ = true
 
-[u]Stew[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Chopped Potato
-- 	Chopped Meat Pattie
-- 	Chopped Carrot
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/unselect_area"]
+shape = SubResource("RectangleShape2D_dwafa")
 
-[u]Chips[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Chopped Potato
-[u]Needs:[/u]
-- Deep Fryer (0)
+[node name="Label" type="Label" parent="CanvasLayer/layout/recipes"]
+offset_left = 51.0
+offset_top = 641.0
+offset_right = 432.0
+offset_bottom = 735.0
+text = "Available recipes:"
 
-[u]Fish and Chips[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Fish
-- 	Chopped Potato
-[u]Needs:[/u]
-- Deep Fryer (0)
+[node name="Label2" type="Label" parent="CanvasLayer/layout/recipes"]
+offset_left = 59.0
+offset_top = 208.0
+offset_right = 440.0
+offset_bottom = 302.0
+text = "Selected recipes:"
 
-[u]Soup[/u]
-- Sells for xx-xx$
-[u]Ingredients[/u]
-- 	Chopped Potato
-- 	Chopped Lettuce
-[u]Needs:[/u]
-- 	Blender (0)
-"
-metadata/_edit_use_anchors_ = true
+[node name="selected_recipes" type="Node2D" parent="CanvasLayer/layout/recipes"]
+
+[node name="recipe_slot1" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+position = Vector2(122, 358)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1"]
+texture = ExtResource("14_dwafa")
+
+[node name="recipe_slot2" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+position = Vector2(257, 359)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2"]
+texture = ExtResource("15_w8pom")
+
+[node name="recipe_slot3" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+position = Vector2(397, 359)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3"]
+texture = ExtResource("15_w8pom")
+
+[node name="recipe_slot4" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+position = Vector2(534, 359)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4"]
+texture = ExtResource("15_w8pom")
+
+[node name="recipe_slot5" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+visible = false
+position = Vector2(123, 491)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5"]
+texture = ExtResource("15_w8pom")
+
+[node name="recipe_slot6" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+visible = false
+position = Vector2(259, 492)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6"]
+texture = ExtResource("15_w8pom")
+
+[node name="recipe_slot7" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+visible = false
+position = Vector2(395, 494)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7"]
+texture = ExtResource("15_w8pom")
+
+[node name="recipe_slot8" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
+visible = false
+position = Vector2(534, 493)
+script = ExtResource("13_73aox")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8"]
+shape = SubResource("RectangleShape2D_y5qo3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8"]
+texture = ExtResource("15_w8pom")
+
+[node name="available_recipes" type="Node2D" parent="CanvasLayer/layout/recipes"]
+
+[node name="burger_hayden" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+position = Vector2(117, 791)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_hayden"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_hayden"]
+texture = ExtResource("17_dll84")
+
+[node name="burger_ben" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+position = Vector2(259, 789)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_ben"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_ben"]
+texture = ExtResource("19_1lbl1")
+
+[node name="burger_aine" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+position = Vector2(405, 787)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_aine"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_aine"]
+texture = ExtResource("18_tcgir")
+
+[node name="stew" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+visible = false
+position = Vector2(551, 789)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/stew"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/stew"]
+texture = ExtResource("14_dwafa")
+
+[node name="bacon_egg_toast" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+position = Vector2(118, 926)
+script = ExtResource("14_21bg4")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast"]
+shape = SubResource("RectangleShape2D_0x0nk")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast"]
+texture = ExtResource("20_dll84")
+
+[node name="pay_wall" type="Node2D" parent="CanvasLayer/layout/recipes"]
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/layout/recipes/pay_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/pay_wall/Area2D"]
+shape = SubResource("RectangleShape2D_tcgir")
 
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
 visible = false
@@ -618,221 +1031,24 @@ offset_right = 1686.0
 offset_bottom = 101.0
 text = "?"
 
-[node name="end_screen" type="Node2D" parent="CanvasLayer"]
+[node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/dragging_bench"]
+texture = ExtResource("15_w8pom")
+
+[node name="Label" type="Label" parent="CanvasLayer/layout/dragging_bench"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = -16.0
+offset_bottom = -33.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" parent="CanvasLayer" instance=ExtResource("22_1lbl1")]
 visible = false
-
-[node name="Control" type="Control" parent="CanvasLayer/end_screen"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1919.0
-offset_bottom = 1081.0
-
-[node name="stats" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -413.5
-offset_top = -375.5
-offset_right = 416.5
-offset_bottom = 288.5
-grow_horizontal = 2
-grow_vertical = 2
-bbcode_enabled = true
-text = "[u]SCORE:
-ORDERS DELIVERED:
-STARS REMAINING:
-SCORE MULTIPLIER:
-DIFFICULTY MULTIPIER:
-TOTAL SCORE:
-MONEY: [/u]
-"
-
-[node name="text_you_lost" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -178.5
-offset_right = 33.5
-offset_bottom = 114.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-bbcode_enabled = true
-text = "[shake rate=20.0 level=5 connected=1][b]You lost![/b]"
-
-[node name="text_you_exited" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -202.5
-offset_top = 1.0
-offset_right = 67.5
-offset_bottom = 115.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-bbcode_enabled = true
-text = "[shake rate=20.0 level=5 connected=1][b]Day Exited![/b]"
-
-[node name="text_you_won" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -247.5
-offset_right = 83.5
-offset_bottom = 114.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][b]Day Complete![/b][/pulse]"
-
-[node name="layout" type="Button" parent="CanvasLayer/end_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 307.5
-offset_top = 350.5
-offset_right = 629.5
-offset_bottom = 444.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "To build menu"
-
-[node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -338.5
-offset_top = 350.5
-offset_right = -16.5
-offset_bottom = 444.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Options menu"
-
-[node name="level_select" type="Button" parent="CanvasLayer/end_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -5.5
-offset_top = 351.5
-offset_right = 293.5
-offset_bottom = 445.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "To level select"
-
-[node name="main_menu" type="Button" parent="CanvasLayer/end_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -675.5
-offset_top = 348.5
-offset_right = -353.5
-offset_bottom = 442.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Main menu"
-
-[node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
-
-[node name="credits" type="Node2D" parent="CanvasLayer"]
-visible = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/credits"]
-offset_left = 11.0
-offset_top = 1.0
-offset_right = 1723.0
-offset_bottom = 1427.0
-text = "Lead Programmer - Hayden Clemence
-Lead Designer - Benjamin Blakie
-Lead Artist - Aine O'Connor
-Assistant Programmer - Benjamin Wray
-Assistant Designer - Finn Tan
-
-Special thanks to playtesters:
-Oliver Grace
-Benjamin Gorman      
-Mathew Thomas
-Cullen & Katrina Lai             
-"
-
-[node name="return" type="Button" parent="CanvasLayer/credits"]
-offset_left = 1421.0
-offset_top = 10.0
-offset_right = 1907.0
-offset_bottom = 104.0
-text = "Return to main menu"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/credits"]
-offset_left = 610.065
-offset_top = 658.0
-offset_right = 1407.06
-offset_bottom = 1039.0
-text = "Jess Wiliams
-Minjun Cho
-Mr. Rodkiss
-Mr O'Sullivan"
-
-[node name="options" type="Node2D" parent="CanvasLayer"]
-
-[node name="return" type="Button" parent="CanvasLayer/options"]
-offset_left = 1421.0
-offset_top = 10.0
-offset_right = 1907.0
-offset_bottom = 104.0
-text = "Return to main menu"
-
-[node name="HSlider" type="HSlider" parent="CanvasLayer/options"]
-offset_left = 757.0
-offset_top = 487.0
-offset_right = 1164.0
-offset_bottom = 503.0
-min_value = 0.01
-max_value = 10.0
-step = 0.01
-value = 5.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 775.0
-offset_top = 369.0
-offset_right = 1146.0
-offset_bottom = 478.0
-text = "Sensitivity: 5.0"
-
-[node name="HSlider2" type="HSlider" parent="CanvasLayer/options"]
-offset_left = 760.0
-offset_top = 614.0
-offset_right = 1167.0
-offset_bottom = 630.0
-min_value = 1.0
-value = 50.0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 578.0
-offset_top = 506.0
-offset_right = 1342.0
-offset_bottom = 615.0
-text = "Time between burger spawns: 50"
+position = Vector2(960, 540)
+animation = &"book_flipping_left"
+frame = 21
+frame_progress = 0.0277778
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -866,7 +1082,6 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
 [connection signal="pressed" from="CanvasLayer/main_menu/options" to="." method="options"]
 [connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="CanvasLayer/main_menu/save_confirm" to="." method="_on_save_confirm"]
 [connection signal="pressed" from="CanvasLayer/main_menu/credits" to="." method="credits"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_0" to="." method="_on_level_0"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_1" to="." method="_on_level_1"]
@@ -877,6 +1092,15 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/build_or_level_menu/play_level" to="." method="_on_play_level_pressed"]
 [connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/build_or_level_menu/return" to="." method="level_select"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu" to="." method="main_menu"]
+[connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/credits/return" to="." method="main_menu"]
+[connection signal="pressed" from="CanvasLayer/options/return" to="." method="main_menu"]
+[connection signal="value_changed" from="CanvasLayer/options/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/options/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_1" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_1" to="CanvasLayer/layout/layout_benches/bench_1" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_1" to="CanvasLayer/layout/layout_benches/bench_1" method="_on_mouse_exited"]
@@ -957,19 +1181,60 @@ font_size = 128
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_star" to="CanvasLayer/layout/upgrades/buy_star" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_recipe_slot" to="CanvasLayer/layout/upgrades/buy_recipe_slot" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/unselect_area" to="CanvasLayer/layout" method="_on_unselect_area_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/unselect_area" to="CanvasLayer/layout" method="_on_unselect_area_mouse_exited"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot5" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot6" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot7" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="editing_recipe" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8" to="CanvasLayer/layout" method="_on_recipe_slot_editing_recipe"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8" to="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/selected_recipes/recipe_slot8" to="CanvasLayer/layout" method="_on_recipe_slot_recipe_type_unselect"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout/recipes/available_recipes/burger_hayden" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout/recipes/available_recipes/burger_hayden" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/burger_hayden" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/burger_ben" to="CanvasLayer/layout/recipes/available_recipes/burger_ben" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/burger_ben" to="CanvasLayer/layout/recipes/available_recipes/burger_ben" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/burger_ben" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/burger_aine" to="CanvasLayer/layout/recipes/available_recipes/burger_aine" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/burger_aine" to="CanvasLayer/layout/recipes/available_recipes/burger_aine" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/burger_aine" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout/recipes/available_recipes/stew" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout/recipes/available_recipes/stew" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/stew" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" method="_on_mouse_exited"]
+[connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout" method="_on_back_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout" method="_on_next_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout" method="_on_close_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout" method="_on_open_tutorial"]
-[connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
-[connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
-[connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
-[connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu" to="." method="main_menu"]
-[connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/credits/return" to="." method="main_menu"]
-[connection signal="pressed" from="CanvasLayer/options/return" to="." method="main_menu"]
-[connection signal="value_changed" from="CanvasLayer/options/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/options/HSlider2" to="." method="_on_h_slider_2_value_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_body_entered"]
