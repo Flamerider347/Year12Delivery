@@ -25,13 +25,16 @@ mesh = SubResource("BoxMesh_dobhj")
 [node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="trigger_body"]
 stream = ExtResource("1_7p2h2")
 volume_db = -40.0
+bus = &"Ambience"
 
 [node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="trigger_body"]
 stream = ExtResource("3_c7pu5")
 volume_db = -40.0
+bus = &"Ambience"
 
 [node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="trigger_body"]
 stream = ExtResource("4_8xmue")
 volume_db = -40.0
+bus = &"Ambience"
 
 [node name="Timer" type="Timer" parent="trigger_body"]

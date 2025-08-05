@@ -372,3 +372,18 @@ func _on_h_slider_value_changed(value: float) -> void:
 func _on_h_slider_2_value_changed(value:int) -> void:
 	$CanvasLayer/options/RichTextLabel2.text = "Time between burger spawns: " + str(value)
 	$"..".next_spawn_time = value
+
+
+func _on_h_slider_3_value_changed(value: float) -> void:
+	# Changes the volume of the master audio bus
+	pass # Replace with function body.
+
+
+func _on_h_slider_4_value_changed(value: float) -> void:
+	# Changes the volume of the Ambience audio bus
+	pass # Replace with function body.
+
+
+func _on_h_slider_5_value_changed(value: float) -> void:
+	# Changes the volume of the SFX audio bus
+	pass # Replace with function body.
