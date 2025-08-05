@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cw5xjsl48vltp" path="res://assets/Sprint 1 Icons for benches/delivery_plate.png" id="12_73aox"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
-load_path = "res://.godot/imported/istockphoto-648352074-612x612-removebg-preview.png-a475054c122f995dca554930f34f2a59.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
 size = Vector2(128, 128)
@@ -31,6 +30,7 @@ script = ExtResource("1_jhrhb")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -185,6 +185,7 @@ text = "Return to Level Select
 "
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -793,7 +794,6 @@ Mr. Rodkiss
 Mr O'Sullivan"
 
 [node name="options" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="return" type="Button" parent="CanvasLayer/options"]
 offset_left = 1421.0
