@@ -1028,9 +1028,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" parent="CanvasLayer" instance=ExtResource("22_1lbl1")]
 position = Vector2(960, 540)
-animation = &"book_flipping_left"
-frame = 29
-frame_progress = 0.46674
+frame = 4
+frame_progress = 0.807318
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
