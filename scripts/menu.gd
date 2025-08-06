@@ -149,7 +149,6 @@ func _on_quit_pressed() -> void:
 
 func level_select():
 	var returning = false
-	print($CanvasLayer/layout.visible)
 	if $CanvasLayer/layout.visible == true:
 		returning = true
 	hide_everything()
