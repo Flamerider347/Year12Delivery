@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/howling-wind-ambience.mp3-3d1343a59cec6937a77
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=1.0
+bpm=0.0
 beat_count=0
 bar_beats=4

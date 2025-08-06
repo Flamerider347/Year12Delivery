@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://bcmdeebetuqqt" path="res://assets/Cooking_crosshairs/crosshair021.png" id="20_xky7j"]
 [ext_resource type="PackedScene" uid="uid://bk5q2jyy76phw" path="res://prefabs/menu.tscn" id="21_bpfb4"]
 [ext_resource type="PackedScene" uid="uid://drsdhk6tpv6u3" path="res://prefabs/parkour table.tscn" id="21_w6ly8"]
+[ext_resource type="PackedScene" uid="uid://c4nwcw31tcoen" path="res://prefabs/audio_box.tscn" id="23_obwhl"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
@@ -1404,6 +1405,9 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/volcano_lava"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
 shape = SubResource("BoxShape3D_h6gec")
+
+[node name="Audio_Box" parent="volcano" instance=ExtResource("23_obwhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
 
 [node name="transition animation" type="CanvasLayer" parent="."]
 visible = false
