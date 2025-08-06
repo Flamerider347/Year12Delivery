@@ -181,7 +181,6 @@ offset_bottom = 580.0
 text = "level 2"
 
 [node name="level_3" type="Button" parent="CanvasLayer/level_select"]
-visible = false
 offset_left = 860.0
 offset_top = 630.0
 offset_right = 1060.0

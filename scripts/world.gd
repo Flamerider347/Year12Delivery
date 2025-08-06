@@ -282,8 +282,9 @@ func _physics_process(delta: float) -> void:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
 	if level == 2:
-		$volcano/floor/floor.material_override.uv1_offset.y += 0.02 * delta
-
+		$volcano/floor/floor.material_override.uv1_offset.x += 0.02 * delta
+	if level == 3:
+		$underwater/floor2.material_override.uv1_offset.x += 0.02 * delta
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if $player_single.held_object and $player_single.held_object.type == "knife" or $GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife" or $GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife":
 		if body.is_in_group("can_chop"):
