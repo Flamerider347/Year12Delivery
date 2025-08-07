@@ -26,6 +26,7 @@ var random_spawn = {
 	"lettuce": lettuce,
 	"carrot": carrot,
 }
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#gets controller amount
@@ -50,12 +51,8 @@ func menu_load():
 	$"../GridContainer".hide()
 	$"../ui".hide()
 	hide_everything()
-	$name.show()
-	$"CanvasLayer/main_menu/players_1".modulate.a = 0
-	$"CanvasLayer/main_menu/players_2".modulate.a = 0
-	$"CanvasLayer/main_menu/quit".modulate.a = 0
-	$"CanvasLayer/main_menu/options".modulate.a = 0
-	$"CanvasLayer/main_menu/credits".modulate.a = 0
+	$CanvasLayer/main_menu.show()
+	$CanvasLayer/book_resting_left.show()
 	for i in $CanvasLayer/level_select.get_children():
 		if str(i.name) in $"..".unlocked_levels.keys():
 			if $"..".unlocked_levels[str(i.name)] == false:
@@ -87,23 +84,6 @@ func _process(delta: float) -> void:
 	if not_toggled:
 		lerp_text()
 		win_text()
-
-	if Input.is_action_just_released("pickup_p1"):
-		name_thing.position.y = -2
-
-	if name_thing.position.y > -2:
-		name_thing.position.y -= delta
-	else:
-		if menu_toggle:
-			hide_everything()
-			main_menu()
-			menu_toggle = false
-		if $"CanvasLayer/main_menu/players_1".modulate.a < 1:
-			$"CanvasLayer/main_menu/players_1".modulate.a += delta
-			$"CanvasLayer/main_menu/players_2".modulate.a += delta
-			$"CanvasLayer/main_menu/quit".modulate.a += delta
-			$"CanvasLayer/main_menu/options".modulate.a += delta
-			$"CanvasLayer/main_menu/credits".modulate.a += delta
 
 	if spawn:
 		_spawn()
@@ -147,19 +127,19 @@ func _on_level_1() -> void:
 
 func _on_level_2() -> void:
 	$"..".level = 2
-	build_or_level()
+	_on_play_level_pressed()
 
 func _on_level_3() -> void:
 	$"..".level = 3
-	build_or_level()
+	_on_play_level_pressed()
 
 func _on_level_4() -> void:
 	$"..".level = 4
-	build_or_level()
+	_on_play_level_pressed()
 	
 func _on_level_5() -> void:
 	$"..".level = 5
-	build_or_level()
+	_on_play_level_pressed()
 
 func _on_level_select_return() -> void:
 	$CanvasLayer/level_select.hide()
@@ -169,14 +149,22 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func level_select():
+	var returning = false
+	if $CanvasLayer/layout.visible == true:
+		returning = true
 	hide_everything()
 	# Plays animation of the book flipping to the right, same for every time a button going into a submenu is pressed.
 	$CanvasLayer/AnimatedSprite2D.show()
-	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+	$CanvasLayer/AnimatedSprite2D.stop()
+	if returning:
+		$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
+		$CanvasLayer/book_resting_left.show()
+	else:
+		$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
+		$CanvasLayer/book_resting_right.show()
 	await get_tree().create_timer(1.5).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
-	$CanvasLayer/book_resting_right.show()
-
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/level_select.show()
 
 func main_menu():
@@ -184,31 +172,24 @@ func main_menu():
 	# Plays animation of the book flipping to the left every time a return button going out of a submenu is pressed.
 	# Code will need to be optimised to have the falling ingrediants show on top of the book + have the code check if the game is loaded for the first time do not play the book flip, just display the open book sprite.
 	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
 	await get_tree().create_timer(1.5).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_left.show()
 
 	$name.show()
 	$CanvasLayer/main_menu.show()
 
-func build_or_level():
-	hide_everything()
-	$CanvasLayer/AnimatedSprite2D.show()
-	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-	await get_tree().create_timer(1.5).timeout
-	$CanvasLayer/AnimatedSprite2D.hide()
-	$CanvasLayer/book_resting_right.show()
-
-	$CanvasLayer/build_or_level_menu.show()
-	$CanvasLayer/build_or_level_menu/play_level.text = "Play Level " + str($"..".level)
-
 func layout():
 	hide_everything()
 	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
 	await get_tree().create_timer(1.5).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_right.show()
 
 	$CanvasLayer/layout.show()
@@ -346,10 +327,11 @@ func _on_lerp_timer_timeout() -> void:
 func credits() -> void:
 	hide_everything()
 	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
 	await get_tree().create_timer(1.5).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
-
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/credits.show()
 
@@ -357,9 +339,11 @@ func credits() -> void:
 func options() -> void:
 	hide_everything()
 	$CanvasLayer/AnimatedSprite2D.show()
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
 	await get_tree().create_timer(1.5).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
+	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_right.show()
 
 	$CanvasLayer/options.show()
@@ -372,3 +356,18 @@ func _on_h_slider_value_changed(value: float) -> void:
 func _on_h_slider_2_value_changed(value:int) -> void:
 	$CanvasLayer/options/RichTextLabel2.text = "Time between burger spawns: " + str(value)
 	$"..".next_spawn_time = value
+
+
+func _on_h_slider_3_value_changed(new_value) -> void:
+	# Changes the volume of the master audio bus
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(new_value))
+
+
+func _on_h_slider_4_value_changed(new_value) -> void:
+	# Changes the volume of the Ambience audio bus
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambience"), linear_to_db(new_value))
+
+
+func _on_h_slider_5_value_changed(new_value) -> void:
+	# Changes the volume of the SFX audio bus
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(new_value))
