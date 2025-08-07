@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=83 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Texture2D" uid="uid://buxe7ig33jfct" path="res://assets/floorandstuff/LavaV2.png" id="24_vjo16"]
+[ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="25_1k5bn"]
 [ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_d6s6r"]
@@ -40,7 +41,6 @@
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
-[ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="33_1k5bn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(3.99, 3.99, 0.499)
@@ -1625,6 +1625,10 @@ collision_mask = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
 shape = SubResource("BoxShape3D_h6gec")
 
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="volcano/volcano_lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
+shape = SubResource("BoxShape3D_h6gec")
+
 [node name="parkour_tables" type="Node3D" parent="volcano"]
 
 [node name="parkour table" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
@@ -1690,9 +1694,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.15982, 0, 28.9471)
 [node name="parkour table21" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.530968, 0, 24.7825)
 
-[node name="Audio_Box" parent="volcano" instance=ExtResource("23_obwhl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
-
 [node name="floor" type="Node3D" parent="volcano"]
 
 [node name="floor" type="CSGBox3D" parent="volcano/floor"]
@@ -1701,15 +1702,6 @@ material_override = SubResource("StandardMaterial3D_vjo16")
 use_collision = true
 collision_layer = 5
 size = Vector3(100, 0.195, 100)
-
-[node name="volcano_lava" type="Area3D" parent="volcano"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
-collision_layer = 5
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/volcano_lava"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
-shape = SubResource("BoxShape3D_h6gec")
 
 [node name="Audio_Box_Middle" type="Node3D" parent="volcano" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
@@ -1958,7 +1950,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(960, 1080)
 render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep"]]
@@ -2005,7 +1997,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(960, 1080)
 render_target_update_mode = 4
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep"]]
