@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://bkfrirbbvtlsi"]
 
-[ext_resource type="FontFile" uid="uid://caqlanbrt6ykf" path="res://assets/fonts_and_themes/LuckiestGuy-Regular.ttf" id="1_vpdyk"]
+[ext_resource type="FontFile" uid="uid://b7jrw6dpuubin" path="res://assets/fonts_and_themes/Fredoka_SemiCondensed-SemiBold.ttf" id="1_vpdyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anvu1"]
 bg_color = Color(0.281187, 0.281187, 0.281187, 1)
