@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4nwcw31tcoen"]
+[gd_scene load_steps=7 format=3 uid="uid://cyp7gdk7w8mbv"]
 
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="1_7p2h2"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="3_c7pu5"]
@@ -6,12 +6,15 @@
 [ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="4_8xmue"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ui4bh"]
+size = Vector3(10.3688, 1, 3.87035)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dobhj"]
 
 [node name="Audio_Box" type="Node3D" groups=["keep"]]
 
 [node name="trigger_body" type="Area3D" parent="."]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("3_d57w0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger_body"]
@@ -25,13 +28,19 @@ mesh = SubResource("BoxMesh_dobhj")
 [node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="trigger_body"]
 stream = ExtResource("1_7p2h2")
 volume_db = -40.0
+bus = &"Ambience"
 
 [node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="trigger_body"]
 stream = ExtResource("3_c7pu5")
 volume_db = -40.0
+bus = &"Ambience"
 
 [node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="trigger_body"]
 stream = ExtResource("4_8xmue")
 volume_db = -40.0
+bus = &"Ambience"
 
 [node name="Timer" type="Timer" parent="trigger_body"]
+
+[connection signal="body_entered" from="trigger_body" to="trigger_body" method="_on_body_entered"]
+[connection signal="body_exited" from="trigger_body" to="trigger_body" method="_on_body_exited"]
