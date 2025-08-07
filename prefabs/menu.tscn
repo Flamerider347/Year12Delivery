@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=33 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -6,15 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://du5fhr6bwrf4s" path="res://assets/bookanim_left/tut0001.png" id="3_j5t5k"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
+[ext_resource type="Texture2D" uid="uid://c5b6q8aqldb8s" path="res://assets/resized-images/Bench.png" id="7_8hwiu"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
 [ext_resource type="Texture2D" uid="uid://b37lxiul7q6qj" path="res://assets/Sprint 1 Icons for benches/Bench.png" id="7_84sbs"]
-[ext_resource type="Texture2D" uid="uid://b3cfedxfu3p0v" path="res://assets/Sprint 1 Icons for benches/Stove.png" id="8_21bg4"]
-[ext_resource type="Texture2D" uid="uid://2m65fod6bq5h" path="res://assets/Sprint 1 Icons for benches/Fridge.png" id="9_w8pom"]
-[ext_resource type="Texture2D" uid="uid://lli3sl7i6gjf" path="res://assets/Sprint 1 Icons for benches/Bin Crate.png" id="10_0x0nk"]
-[ext_resource type="Texture2D" uid="uid://d03jmotv4dh77" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-06-25 192059.png" id="10_y5qo3"]
-[ext_resource type="Texture2D" uid="uid://dlo6qp5p14cqh" path="res://assets/Sprint 1 Icons for benches/Chopping Board.png" id="11_8bmnr"]
-[ext_resource type="Texture2D" uid="uid://cw5xjsl48vltp" path="res://assets/Sprint 1 Icons for benches/delivery_plate.png" id="12_73aox"]
+[ext_resource type="Texture2D" uid="uid://byighdpt48h7j" path="res://assets/resized-images/Stove.png" id="8_506h2"]
+[ext_resource type="Texture2D" uid="uid://d4leseb5uo1qq" path="res://assets/resized-images/Fridge.png" id="9_7xkfb"]
+[ext_resource type="Texture2D" uid="uid://d21odjojbhmb8" path="res://assets/resized-images/Bin Crate.png" id="10_w3v8e"]
+[ext_resource type="Texture2D" uid="uid://ho7ee6aancsm" path="res://assets/resized-images/Chopping Board.png" id="11_t816m"]
+[ext_resource type="Texture2D" uid="uid://ddbsimi811hbc" path="res://assets/resized-images/Screenshot 2025-06-25 192059(1).png" id="12_5c2ga"]
 [ext_resource type="Script" uid="uid://cf6prq01f4d01" path="res://scripts/recipe_slot.gd" id="13_73aox"]
+[ext_resource type="Texture2D" uid="uid://bmr0jgvrr4cqj" path="res://assets/resized-images/delivery_plate.png" id="13_wvlgw"]
 [ext_resource type="Script" uid="uid://7ry5gpnlyjjp" path="res://scripts/recipe.gd" id="14_21bg4"]
 [ext_resource type="Texture2D" uid="uid://cm877xs63r1qq" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png" id="14_dwafa"]
 [ext_resource type="Texture2D" uid="uid://uhwevs5wqbek" path="res://assets/icon.svg" id="15_w8pom"]
@@ -54,6 +55,7 @@ script = ExtResource("1_jhrhb")
 [node name="book_resting_left" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(960, 540)
 texture = ExtResource("2_tcgir")
+metadata/_edit_lock_ = true
 
 [node name="book_resting_right" type="Sprite2D" parent="CanvasLayer"]
 visible = false
@@ -622,27 +624,29 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="layout_shop" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1023, 825)
+position = Vector2(1120, 760)
 script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/bench"]
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bench"]
-texture = ExtResource("7_84sbs")
+texture = ExtResource("7_8hwiu")
 
 [node name="stove" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1167, 825)
+position = Vector2(1280, 760)
 script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/stove"]
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/stove"]
-texture = ExtResource("8_21bg4")
+texture = ExtResource("8_506h2")
 
 [node name="fridge" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1455, 825)
+position = Vector2(1120, 840)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -650,10 +654,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/fridge"]
-texture = ExtResource("9_w8pom")
+texture = ExtResource("9_7xkfb")
 
 [node name="bin" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1743, 825)
+position = Vector2(1280, 840)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -661,10 +665,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bin"]
-texture = ExtResource("10_0x0nk")
+texture = ExtResource("10_w3v8e")
 
 [node name="chopping_board" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1311, 825)
+position = Vector2(1360, 760)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -672,10 +676,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/chopping_board"]
-texture = ExtResource("11_8bmnr")
+texture = ExtResource("11_t816m")
 
 [node name="bun_crate" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1599, 825)
+position = Vector2(1200, 840)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -683,10 +687,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
-texture = ExtResource("10_y5qo3")
+texture = ExtResource("12_5c2ga")
 
 [node name="delivery_table" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(879, 825)
+position = Vector2(1200, 760)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -694,7 +698,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/delivery_table"]
-texture = ExtResource("12_73aox")
+texture = ExtResource("13_wvlgw")
 
 [node name="money" type="Label" parent="CanvasLayer/layout"]
 texture_filter = 1

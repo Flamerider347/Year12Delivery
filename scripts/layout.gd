@@ -10,13 +10,13 @@ var tutorial_step = 1
 var recipe_slots_bought = 0
 var entered_unselect_area = false
 var bench_type_sprites = {
-	"bench" : preload("res://assets/Sprint 1 Icons for benches/Bench.png"),
-	"bin" : preload("res://assets/Sprint 1 Icons for benches/Bin Crate.png"),
-	"bun_crate" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-06-25 192059.png"),
-	"chopping_board" : preload("res://assets/Sprint 1 Icons for benches/Chopping Board.png"),
-	"fridge" :preload("res://assets/Sprint 1 Icons for benches/Fridge.png"),
-	"stove" : preload("res://assets/Sprint 1 Icons for benches/Stove.png"),
-	"delivery_table" : preload("res://assets/Sprint 1 Icons for benches/delivery_plate.png"),
+	"bench" : preload("res://assets/resized-images/Bench.png"),
+	"bin" : preload("res://assets/resized-images/Bin Crate.png"),
+	"bun_crate" : preload("res://assets/resized-images/Screenshot 2025-06-25 192059(1).png"),
+	"chopping_board" : preload("res://assets/resized-images/Chopping Board.png"),
+	"fridge" :preload("res://assets/resized-images/Fridge.png"),
+	"stove" : preload("res://assets/resized-images/Stove.png"),
+	"delivery_table" : preload("res://assets/resized-images/delivery_plate.png"),
 	"burger_hayden" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png"),
 	"burger_ben" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png"),
 	"burger_aine" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png"),
