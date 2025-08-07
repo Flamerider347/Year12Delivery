@@ -26,6 +26,7 @@ var random_spawn = {
 	"lettuce": lettuce,
 	"carrot": carrot,
 }
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#gets controller amount
@@ -374,16 +375,16 @@ func _on_h_slider_2_value_changed(value:int) -> void:
 	$"..".next_spawn_time = value
 
 
-func _on_h_slider_3_value_changed(value: float) -> void:
+func _on_h_slider_3_value_changed(new_value) -> void:
 	# Changes the volume of the master audio bus
-	pass # Replace with function body.
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(new_value))
 
 
-func _on_h_slider_4_value_changed(value: float) -> void:
+func _on_h_slider_4_value_changed(new_value) -> void:
 	# Changes the volume of the Ambience audio bus
-	pass # Replace with function body.
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambience"), linear_to_db(new_value))
 
 
-func _on_h_slider_5_value_changed(value: float) -> void:
+func _on_h_slider_5_value_changed(new_value) -> void:
 	# Changes the volume of the SFX audio bus
-	pass # Replace with function body.
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(new_value))

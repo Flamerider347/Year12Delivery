@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=33 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bg5ee6sgs0ms3" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png" id="19_1lbl1"]
 [ext_resource type="Texture2D" uid="uid://b6aw4hitsyq8s" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png" id="20_dll84"]
 [ext_resource type="PackedScene" uid="uid://cfepmsyun4rjo" path="res://prefabs/transition_animation_book_flip.tscn" id="22_1lbl1"]
+[ext_resource type="AudioStream" uid="uid://sao0gpmjg6r1" path="res://assets/SFX/Jaws-theme-song.mp3" id="24_8hwiu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
 
@@ -482,8 +483,8 @@ offset_left = 1002.0
 offset_top = 605.0
 offset_right = 1409.0
 offset_bottom = 621.0
-min_value = 1.0
-value = 50.0
+max_value = 1.0
+step = 0.001
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/options"]
 offset_left = 972.0
@@ -497,8 +498,8 @@ offset_left = 1002.0
 offset_top = 805.0
 offset_right = 1409.0
 offset_bottom = 821.0
-min_value = 1.0
-value = 50.0
+max_value = 1.0
+step = 0.001
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="CanvasLayer/options"]
 offset_left = 972.0
@@ -512,8 +513,8 @@ offset_left = 1002.0
 offset_top = 985.0
 offset_right = 1409.0
 offset_bottom = 1001.0
-min_value = 1.0
-value = 50.0
+max_value = 1.0
+step = 0.001
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
 visible = false
@@ -1145,6 +1146,11 @@ text = "Kitchen Chaos
 Return of the
 UNNAMED PROJECT"
 font_size = 128
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_8hwiu")
+autoplay = true
+bus = &"Ambience"
 
 [connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]

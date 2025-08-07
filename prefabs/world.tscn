@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=75 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -1525,18 +1525,23 @@ shape = SubResource("BoxShape3D_1k5bn")
 
 [node name="ding" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("20_b1m2q")
+bus = &"SFX"
 
 [node name="delivered" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("20_b1m2q")
+bus = &"SFX"
 
 [node name="ingrediants added" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("30_v44qx")
+bus = &"SFX"
 
 [node name="player walking" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("31_qrdq4")
+bus = &"SFX"
 
 [node name="knife chopping" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("32_w1n2x")
+bus = &"SFX"
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tlwt5")
@@ -1563,7 +1568,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(960, 1080)
 render_target_update_mode = 4
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep"]]
@@ -1610,7 +1615,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(960, 1080)
 render_target_update_mode = 4
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep"]]
