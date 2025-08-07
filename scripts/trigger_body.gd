@@ -3,12 +3,11 @@ extends Area3D
 "res://assets/SFX/lava-bubbling-ambience.mp3"
 "res://assets/SFX/underwater-currents-ambience.mp3"
 "res://assets/SFX/howling-wind-ambience.mp3"
-
+@onready var tween = get_tree().create_tween()
 
 func _on_body_entered(body):
 	# Creates tween variable audio manipulation
 	print("entered")
-	var tween = get_tree().create_tween()
 	# Checks if the body enter is a player
 	if body.name == "player_single" or body.name == "player" or body.name == "player2":
 		# Checks which level is being played
@@ -30,7 +29,6 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	print("exited")
-	var tween = get_tree().create_tween()
 	# Checks if the body enter is a player
 	if body.name == "player_single" or body.name == "player" or body.name == "player2":
 		# Checks which level is being played
