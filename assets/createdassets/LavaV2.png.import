@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs453g4gcppxk"
-path.s3tc="res://.godot/imported/lave_basecolor.png-423a7235bc0d0c408a78127921cc08ca.s3tc.ctex"
+uid="uid://b6ggqb3lr6n4o"
+path.s3tc="res://.godot/imported/LavaV2.png-d794755573cf119ec8253228261259a1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/materials/lave_basecolor.png"
-dest_files=["res://.godot/imported/lave_basecolor.png-423a7235bc0d0c408a78127921cc08ca.s3tc.ctex"]
+source_file="res://assets/createdassets/LavaV2.png"
+dest_files=["res://.godot/imported/LavaV2.png-d794755573cf119ec8253228261259a1.s3tc.ctex"]
 
 [params]
 

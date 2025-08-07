@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=76 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -20,10 +20,8 @@
 [ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="15_l0am5"]
 [ext_resource type="AudioStream" uid="uid://sao0gpmjg6r1" path="res://assets/SFX/Jaws-theme-song.mp3" id="16_l0am5"]
 [ext_resource type="Texture2D" uid="uid://dhkb7f0r3w6lj" path="res://assets/Cooking_crosshairs/crosshair001.png" id="17_8bx52"]
-[ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/fonts_and_themes/Charm-Regular.ttf" id="17_k1hdb"]
 [ext_resource type="Texture2D" uid="uid://bre88583x4q1e" path="res://assets/Cooking_crosshairs/crosshair007.png" id="18_n7i1a"]
 [ext_resource type="Texture2D" uid="uid://csaluys53804r" path="res://assets/Cooking_crosshairs/crosshair020.png" id="19_k1hdb"]
-[ext_resource type="Texture2D" uid="uid://rmmlwqdyxuv0" path="res://assets/materials/lave_emissive.png" id="19_n7i1a"]
 [ext_resource type="PackedScene" uid="uid://bjmj5dj16j0mt" path="res://prefabs/particle_sizzle.tscn" id="19_obwhl"]
 [ext_resource type="AudioStream" uid="uid://bi4bkrmahcsiq" path="res://assets/SFX/ChamberUltKill3.mp3" id="20_b1m2q"]
 [ext_resource type="PackedScene" uid="uid://bhxi1c7vowdmn" path="res://prefabs/particle_smoke.tscn" id="20_obwhl"]
@@ -33,6 +31,8 @@
 [ext_resource type="PackedScene" uid="uid://c4nwcw31tcoen" path="res://prefabs/audio_box.tscn" id="23_obwhl"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
+[ext_resource type="Texture2D" uid="uid://buxe7ig33jfct" path="res://assets/floorandstuff/LavaV2.png" id="24_vjo16"]
+[ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
@@ -68,6 +68,11 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Arr
 agent_height = 2.0
 agent_max_climb = 2.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6gec"]
+shading_mode = 0
+albedo_texture = ExtResource("25_h6gec")
+uv1_scale = Vector3(5, 5, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
 albedo_texture = ExtResource("4_mrigr")
 
@@ -88,11 +93,12 @@ size = Vector3(1.56824, 0.651474, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iobq"]
 albedo_texture = ExtResource("2_xky7j")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0am5"]
-albedo_texture = ExtResource("19_n7i1a")
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjo16"]
+albedo_texture = ExtResource("24_vjo16")
+uv1_scale = Vector3(10, 10, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_48uca"]
 shader = ExtResource("28_w6ly8")
@@ -512,7 +518,7 @@ cell_size = Vector3(3.215, 2, 3.215)
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PackedInt32Array(9, 7, 1048576, 9, 8, 1048576, 9, 9, 1048576, 9, 10, 1048576, 9, 11, 1048576, 9, 12, 1048576, 9, 13, 1048576, 9, 14, 1048576, 65526, 9, 1441792, 65526, 10, 1441792, 65526, 11, 1441792, 65526, 12, 1441792, 65526, 13, 1441792, 65526, 14, 0, 65526, 6, 1441792, 65526, 7, 1441792, 65526, 8, 1441792, 65526, 4, 1441792, 65526, 5, 1441792, 65532, 4, 655360, 9, 6, 1048576, 9, 5, 1048576, 9, 4, 1048576, 9, 3, 1048576, 9, 2, 1048576, 9, 1, 1048576, 9, 0, 1048576, 9, 65535, 655360, 8, 65535, 655360, 7, 65535, 655360, 6, 65535, 655360, 5, 65535, 655360, 4, 65535, 655360, 3, 65535, 655360, 2, 65535, 655360, 1, 65535, 655360, 0, 65535, 655360, 65535, 65535, 655360, 65534, 65535, 655360, 65533, 65535, 655360, 65532, 65535, 655360, 65531, 65535, 655360, 65530, 65535, 655360, 65529, 65535, 655360, 65528, 65535, 655360, 65527, 65535, 655360, 65526, 65535, 1441792, 65526, 3, 1441792, 65526, 2, 1441792, 65526, 1, 1441792, 65526, 0, 1441792, 8, 14, 0, 7, 14, 0, 6, 14, 0, 5, 14, 0, 4, 14, 0, 3, 14, 0, 2, 14, 0, 1, 14, 0, 0, 14, 0, 65535, 14, 0, 65534, 14, 0, 65533, 14, 0, 65532, 14, 0, 65531, 14, 0, 65530, 14, 0, 65529, 14, 0, 65528, 14, 0, 65527, 14, 0)
+"cells": PackedInt32Array(9, 7, 1048576, 9, 8, 1048576, 9, 9, 1048576, 9, 10, 1048576, 9, 11, 1048576, 9, 12, 1048576, 9, 13, 1048576, 9, 14, 1048576, 65526, 9, 1441792, 65526, 10, 1441792, 65526, 11, 1441792, 65526, 12, 1441792, 65526, 13, 1441792, 65526, 14, 0, 65526, 6, 1441792, 65526, 7, 1441792, 65526, 8, 1441792, 65526, 4, 1441792, 65526, 5, 1441792, 9, 6, 1048576, 9, 5, 1048576, 9, 4, 1048576, 9, 3, 1048576, 9, 2, 1048576, 9, 1, 1048576, 9, 0, 1048576, 9, 65535, 655360, 8, 65535, 655360, 7, 65535, 655360, 6, 65535, 655360, 5, 65535, 655360, 4, 65535, 655360, 3, 65535, 655360, 2, 65535, 655360, 1, 65535, 655360, 0, 65535, 655360, 65535, 65535, 655360, 65534, 65535, 655360, 65533, 65535, 655360, 65532, 65535, 655360, 65531, 65535, 655360, 65530, 65535, 655360, 65529, 65535, 655360, 65528, 65535, 655360, 65527, 65535, 655360, 65526, 65535, 1441792, 65526, 3, 1441792, 65526, 2, 1441792, 65526, 1, 1441792, 65526, 0, 1441792, 8, 14, 0, 7, 14, 0, 6, 14, 0, 5, 14, 0, 4, 14, 0, 3, 14, 0, 2, 14, 0, 1, 14, 0, 0, 14, 0, 65535, 14, 0, 65534, 14, 0, 65533, 14, 0, 65532, 14, 0, 65531, 14, 0, 65530, 14, 0, 65529, 14, 0, 65528, 14, 0, 65527, 14, 0)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -891,6 +897,13 @@ navigation_mesh = SubResource("NavigationMesh_mrigr")
 
 [node name="underwater" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
+
+[node name="floor2" type="CSGSphere3D" parent="underwater"]
+material_override = SubResource("StandardMaterial3D_h6gec")
+flip_faces = true
+radius = 99.0
+radial_segments = 50
+rings = 50
 
 [node name="floor" type="CSGBox3D" parent="underwater"]
 material_override = SubResource("StandardMaterial3D_v44qx")
@@ -1325,6 +1338,15 @@ size = Vector3(100, 0.195, 100)
 [node name="volcano" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, -0.09, 128)
 
+[node name="volcano_lava" type="Area3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/volcano_lava"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
+shape = SubResource("BoxShape3D_h6gec")
+
 [node name="parkour_tables" type="Node3D" parent="volcano"]
 
 [node name="parkour table" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
@@ -1390,23 +1412,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.15982, 0, 28.9471)
 [node name="parkour table21" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.530968, 0, 24.7825)
 
-[node name="floor" type="CSGBox3D" parent="volcano"]
-material_override = SubResource("StandardMaterial3D_l0am5")
+[node name="Audio_Box" parent="volcano" instance=ExtResource("23_obwhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
+
+[node name="floor" type="Node3D" parent="volcano"]
+
+[node name="floor" type="CSGBox3D" parent="volcano/floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vjo16")
 use_collision = true
 collision_layer = 5
 size = Vector3(100, 0.195, 100)
-
-[node name="volcano_lava" type="Area3D" parent="volcano"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
-collision_layer = 5
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/volcano_lava"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
-shape = SubResource("BoxShape3D_h6gec")
-
-[node name="Audio_Box" parent="volcano" instance=ExtResource("23_obwhl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
 
 [node name="transition animation" type="CanvasLayer" parent="."]
 visible = false
@@ -1440,7 +1456,6 @@ anchor_bottom = 0.12963
 offset_left = 8.0
 offset_right = 493.0
 offset_bottom = 43.0
-theme_override_fonts/font = ExtResource("17_k1hdb")
 text = "Money: 0"
 metadata/_edit_use_anchors_ = true
 

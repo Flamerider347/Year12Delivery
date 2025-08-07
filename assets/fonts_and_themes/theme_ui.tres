@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://bkfrirbbvtlsi"]
 
-[ext_resource type="FontFile" uid="uid://ddfpgth32l7y1" path="res://assets/fonts_and_themes/Charm-Regular.ttf" id="1_anvu1"]
+[ext_resource type="FontFile" uid="uid://caqlanbrt6ykf" path="res://assets/fonts_and_themes/LuckiestGuy-Regular.ttf" id="1_vpdyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anvu1"]
 bg_color = Color(0.281187, 0.281187, 0.281187, 1)
@@ -26,7 +26,7 @@ corner_radius_bottom_right = 2
 shadow_size = 2
 
 [resource]
-default_font = ExtResource("1_anvu1")
+default_font = ExtResource("1_vpdyk")
 default_font_size = 60
 Button/styles/hover = SubResource("StyleBoxFlat_anvu1")
 Button/styles/normal = SubResource("StyleBoxFlat_uiji5")

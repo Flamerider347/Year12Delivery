@@ -159,7 +159,6 @@ Minor bug fixes & more!
 "
 
 [node name="level_select" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="level_0" type="Button" parent="CanvasLayer/level_select"]
 offset_left = 860.0
@@ -183,7 +182,6 @@ offset_bottom = 580.0
 text = "level 2"
 
 [node name="level_3" type="Button" parent="CanvasLayer/level_select"]
-visible = false
 offset_left = 860.0
 offset_top = 630.0
 offset_right = 1060.0
@@ -205,29 +203,12 @@ offset_right = 1907.0
 offset_bottom = 104.0
 text = "Return to main menu"
 
-[node name="build_or_level_menu" type="Node2D" parent="CanvasLayer"]
-visible = false
-
-[node name="play_level" type="Button" parent="CanvasLayer/build_or_level_menu"]
-offset_left = 800.0
-offset_top = 600.0
-offset_right = 1000.0
-offset_bottom = 650.0
-
-[node name="build_menu" type="Button" parent="CanvasLayer/build_or_level_menu"]
-offset_left = 749.0
-offset_top = 721.0
-offset_right = 1145.0
-offset_bottom = 815.0
+[node name="build_menu" type="Button" parent="CanvasLayer/level_select"]
+offset_left = 762.0
+offset_top = 890.0
+offset_right = 1158.0
+offset_bottom = 984.0
 text = "Open Build Menu"
-
-[node name="return" type="Button" parent="CanvasLayer/build_or_level_menu"]
-offset_left = 1421.0
-offset_top = 10.0
-offset_right = 1907.0
-offset_bottom = 104.0
-text = "Return to Level Select
-"
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
 visible = false
@@ -1113,11 +1094,9 @@ offset_bottom = -33.0
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" parent="CanvasLayer" instance=ExtResource("22_1lbl1")]
-visible = false
 position = Vector2(960, 540)
-animation = &"book_flipping_left"
-frame = 21
-frame_progress = 0.0277778
+frame = 4
+frame_progress = 0.807318
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
@@ -1163,9 +1142,7 @@ bus = &"Ambience"
 [connection signal="pressed" from="CanvasLayer/level_select/level_3" to="." method="_on_level_3"]
 [connection signal="pressed" from="CanvasLayer/level_select/level_4" to="." method="_on_level_4"]
 [connection signal="pressed" from="CanvasLayer/level_select/return" to="." method="main_menu"]
-[connection signal="pressed" from="CanvasLayer/build_or_level_menu/play_level" to="." method="_on_play_level_pressed"]
-[connection signal="pressed" from="CanvasLayer/build_or_level_menu/build_menu" to="." method="layout"]
-[connection signal="pressed" from="CanvasLayer/build_or_level_menu/return" to="." method="level_select"]
+[connection signal="pressed" from="CanvasLayer/level_select/build_menu" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/level_select" to="." method="level_select"]
@@ -1253,7 +1230,7 @@ bus = &"Ambience"
 [connection signal="bench_type" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout" method="_on_bench_bench_type"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout/layout_shop/delivery_table" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout/layout_shop/delivery_table" method="_on_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/layout/return" to="." method="build_or_level"]
+[connection signal="pressed" from="CanvasLayer/layout/return" to="." method="level_select"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout" method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
