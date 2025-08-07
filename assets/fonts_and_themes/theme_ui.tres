@@ -11,11 +11,12 @@ corner_radius_bottom_left = 2
 shadow_size = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uiji5"]
-bg_color = Color(0.385493, 0.385493, 0.385492, 1)
+bg_color = Color(0.407843, 0.407843, 0.407843, 0)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+shadow_color = Color(0, 0, 0, 0)
 shadow_size = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd0hi"]

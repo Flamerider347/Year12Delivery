@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 
 
 		if global_position.x > 120 and global_position.z > 150:
+			rotation_degrees.y += delta * 50
 			if not target:
 				get_target()
 			if held_rigid:
@@ -45,7 +46,6 @@ func _physics_process(delta: float) -> void:
 				target = false
 
 func get_target():
-	$jaws_theme.play()
 	speed = 5
 	var rigid_list = []
 	for i in $"../..".get_children():
@@ -62,7 +62,7 @@ func get_target():
 
 func run_away():
 	$"../Label3D".hide()
-	$jaws_theme.stop()
+
 	target_rigid = null
 	nav.target_position = Vector3(128,0,160)
 	speed = 10
