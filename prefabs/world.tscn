@@ -1540,18 +1540,23 @@ shape = SubResource("BoxShape3D_1k5bn")
 
 [node name="ding" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("20_b1m2q")
+bus = &"SFX"
 
 [node name="delivered" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("20_b1m2q")
+bus = &"SFX"
 
 [node name="ingrediants added" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("30_v44qx")
+bus = &"SFX"
 
 [node name="player walking" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("31_qrdq4")
+bus = &"SFX"
 
 [node name="knife chopping" type="AudioStreamPlayer3D" parent="SFX"]
 stream = ExtResource("32_w1n2x")
+bus = &"SFX"
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tlwt5")
