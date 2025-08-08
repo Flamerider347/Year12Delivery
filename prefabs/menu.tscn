@@ -191,21 +191,21 @@ offset_left = 527.0
 offset_top = 452.61
 offset_right = 727.0
 offset_bottom = 526.61
-text = "level 2"
+text = "Level 2"
 
 [node name="level_3" type="Button" parent="CanvasLayer/level_select"]
-offset_left = 527.0
-offset_top = 552.61
-offset_right = 727.0
-offset_bottom = 626.61
+offset_left = 511.0
+offset_top = 559.0
+offset_right = 748.0
+offset_bottom = 643.0
 text = "Level 3"
 
 [node name="level_4" type="Button" parent="CanvasLayer/level_select"]
-offset_left = 527.0
-offset_top = 652.61
-offset_right = 727.0
-offset_bottom = 726.61
-text = "level 4"
+offset_left = 513.0
+offset_top = 651.0
+offset_right = 737.0
+offset_bottom = 741.0
+text = "Level 4"
 
 [node name="return" type="Button" parent="CanvasLayer/level_select"]
 offset_left = 981.0
@@ -217,7 +217,7 @@ text = "Return to main menu"
 [node name="build_menu" type="Button" parent="CanvasLayer/level_select"]
 offset_left = 422.0
 offset_top = 787.0
-offset_right = 841.0
+offset_right = 893.0
 offset_bottom = 881.0
 text = "Open Build Menu"
 

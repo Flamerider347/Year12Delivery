@@ -2,16 +2,22 @@
 
 [ext_resource type="FontFile" uid="uid://b7jrw6dpuubin" path="res://assets/fonts_and_themes/Fredoka_SemiCondensed-SemiBold.ttf" id="1_vpdyk"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anvu1"]
-bg_color = Color(0.281187, 0.281187, 0.281187, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-shadow_size = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpdyk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uiji5"]
-bg_color = Color(0.407843, 0.407843, 0.407843, 0)
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.806574, 0.78878, 0.773982, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -29,6 +35,8 @@ shadow_size = 2
 [resource]
 default_font = ExtResource("1_vpdyk")
 default_font_size = 60
-Button/styles/hover = SubResource("StyleBoxFlat_anvu1")
+Button/colors/font_color = Color(0.158473, 0.158472, 0.158472, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_vpdyk")
 Button/styles/normal = SubResource("StyleBoxFlat_uiji5")
 Button/styles/pressed = SubResource("StyleBoxFlat_rd0hi")
