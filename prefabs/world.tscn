@@ -112,7 +112,8 @@ size = Vector3(100, 0.1, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjo16"]
 albedo_texture = ExtResource("24_vjo16")
-uv1_offset = Vector3(0, 6.845, 0)
+uv1_scale = Vector3(1.62, 5, 1)
+uv1_offset = Vector3(-0.305, 6.845, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_48uca"]
 shader = ExtResource("28_w6ly8")
@@ -286,6 +287,7 @@ height = 1.99
 script = ExtResource("1_k40i2")
 
 [node name="kitchen" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 128)
 
 [node name="kitchen_walls" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.449997)

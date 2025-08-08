@@ -361,10 +361,6 @@ func _on_pickup_timer_timeout() -> void:
 
 func bounce():
 	velocity.y = 8
-	if held_object:
-		if held_object.type  == "delivery_pot":
-			held_object.find_child("Timer").start(round(held_object.time_left_timer.time_left * 0.9))
-
 
 func _on_interaction_timer_timeout() -> void:
 	if $"..".world_toggle:

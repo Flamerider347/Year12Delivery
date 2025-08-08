@@ -282,7 +282,7 @@ func _physics_process(delta: float) -> void:
 				emit_signal("make_order","make",count)
 				orders[i] = 2
 	if level == 2:
-		$volcano/floor/floor.material_override.uv1_offset.x += 0.02 * delta
+		$volcano/floor/floor.material_override.uv1_offset.y += 0.02 * delta
 	if level == 3:
 		$underwater/floor2.material_override.uv1_offset.x += 0.01 * delta
 func _on_cut_area_body_entered(body: Node3D) -> void:
@@ -441,3 +441,6 @@ func looking_recipe(looking_at_list):
 func _on_volcano_lava_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		body.bounce()
+		if score > 0:
+			score = round(score * 0.8)
+			$ui/Label.text = "Score: " +str(score)
