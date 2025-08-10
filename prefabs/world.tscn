@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=85 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_d6s6r"]
+[ext_resource type="PackedScene" uid="uid://bh1tyq3t8xos2" path="res://prefabs/tree_burnt_gridmap.tscn" id="26_lhn7i"]
 [ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="27_lhn7i"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="28_1k5bn"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
@@ -1794,6 +1795,12 @@ volume_db = -40.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 98.3145)
 material_override = ExtResource("28_1k5bn")
 mesh = ExtResource("29_d6s6r")
+
+[node name="Tree_Burnt_GridMap" parent="volcano" instance=ExtResource("26_lhn7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0.09, -128)
+data = {
+"cells": PackedInt32Array(1, 65535, 655360, 65500, 45, 1441792, 65487, 44, 1441792, 65485, 47, 1441792, 65484, 55, 1441792, 65486, 53, 1441792, 65501, 55, 1441792, 65500, 50, 1441792, 65502, 48, 1441792, 65497, 43, 1441792, 65484, 43, 1441792, 65484, 45, 1441792, 65485, 51, 1441792, 65489, 45, 1441792, 65496, 45, 1441792, 65502, 43, 1441792, 65502, 53, 1441792, 65499, 56, 1441792, 65486, 57, 1441792)
+}
 
 [node name="transition animation" type="CanvasLayer" parent="."]
 visible = false
