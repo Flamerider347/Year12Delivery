@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b63luhhnx6ibr"]
+[gd_scene load_steps=6 format=3 uid="uid://b63luhhnx6ibr"]
 
 [ext_resource type="Shader" uid="uid://bjr7ptan8v5yj" path="res://assets/materials/sky.gdshader" id="1_7dela"]
 [ext_resource type="Texture2D" uid="uid://b01qawstnk7bi" path="res://assets/floorandstuff/overcast_soil_puresky_4k.png" id="2_2766v"]
@@ -20,13 +20,7 @@ ambient_light_source = 3
 reflected_light_source = 2
 volumetric_fog_density = 0.2042
 
-[sub_resource type="BoxMesh" id="BoxMesh_jnaew"]
-
 [node name="sky shader messing around" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_veb8j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
-mesh = SubResource("BoxMesh_jnaew")
