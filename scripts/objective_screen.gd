@@ -111,8 +111,6 @@ func randomise_objective():
 func update_target(recipe):
 	#Summons a physical version of the randomised burger
 	var recipes_list_keys = recipes_list.keys()
-	print(plate_contents[making_plate])
-	print(recipe.substr(0,5))
 	if recipe.substr(0,6) != "burger":
 		plate_contents[making_plate] = [str(recipe)]
 	next_position = 0.1
