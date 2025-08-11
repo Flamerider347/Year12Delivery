@@ -196,6 +196,7 @@ func layout():
 	$CanvasLayer/layout.setup()
 
 func lose_screen():
+	$"../pause_menu".ingame = false
 	$"../transition animation".show()
 	$"../transition animation/transition animation".play("fade_transition")
 	await get_tree().create_timer(1.0).timeout
@@ -220,6 +221,7 @@ func lose_screen():
 	win_text()
 
 func win_screen():
+	$"../pause_menu".ingame = false
 	$"../transition animation".show()
 	$"../transition animation/transition animation".play("fade_transition")
 	await get_tree().create_timer(1.0).timeout

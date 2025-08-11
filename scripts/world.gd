@@ -125,6 +125,7 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
+	$pause_menu.ingame = true
 	world_toggle = true
 	$tutorial.show()
 	$ui.show()
@@ -137,12 +138,17 @@ func tutorial():
 		if not i.is_in_group("keep"):
 			i.queue_free()
 	if player_count == 1:
-		$ui/Label.text = ""
-		$ui/Label2.text = ""
-		$ui/Label3.text = ""
+		$player_single._setup()
+		$player_single/head/player_camera.current = true
 		$ui/Sprite2D.show()
+		$ui/Sprite2D2.hide()
 		$GridContainer.hide()
 		$ui/Sprite2D.position.x = 960
+		$player_single.show()
+		$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
+		$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
+		$GridContainer/SubViewportContainer/SubViewport/player.hide()
+		$GridContainer/SubViewportContainer2/SubViewport/player2.hide()
 	if player_count == 2:
 		$GridContainer.show()
 		$GridContainer/SubViewportContainer/SubViewport/player._setup()
@@ -150,8 +156,6 @@ func tutorial():
 		$player_single.hide()
 		$GridContainer/SubViewportContainer/SubViewport/player.show()
 		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
-		$GridContainer/SubViewportContainer/SubViewport/player.position = Vector3(1,31,6)
-		$GridContainer/SubViewportContainer2/SubViewport/player2.position = Vector3(-1,31,6)
 		$ui/Sprite2D.show()
 		$ui/Sprite2D2.show()
 		$ui/Sprite2D.position.x = 480
@@ -170,10 +174,10 @@ func tutorial():
 	$tutorial/plates.start()
 	$tutorial/plates.randomise_objective()
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
-	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day incomplete)"
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 
 func _setup():
+	$pause_menu.ingame = true
 	world_toggle = true
 	is_tutorial = false
 	for i in get_children():
@@ -227,8 +231,6 @@ func _setup():
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
-	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK
-	 to End the day (Day incomplete)"
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 	if level == 1:
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
@@ -425,7 +427,6 @@ func map_select():
 func _on_day_timer_timeout() -> void:
 	if level < 4:
 		unlocked_levels["level_"+str(level+1)] = true
-	$kitchen/sign_out/Label3D.text =  "Look at me and hold LEFT CLICK to End the day (Day complete)"
 	$ui/Label3.text = "OVERTIME"
 	$day_timer.stop()
 	$order_timer.stop()
@@ -442,5 +443,5 @@ func _on_volcano_lava_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		body.bounce()
 		if score > 0:
-			score = round(score * 0.8)
+			score = round(score * 0.9)
 			$ui/Label.text = "Score: " +str(score)

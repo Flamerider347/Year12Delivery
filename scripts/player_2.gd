@@ -118,16 +118,11 @@ func _physics_process(delta: float):
 	if position.y < -10:
 		position = $"../kitchen".position + Vector3(0,0.5,5)
 
-	if Input.is_action_just_released("pickup_p1") or Input.is_action_just_released("menu"):
-		if not $interaction_timer.is_stopped():
-			$interaction_timer.stop()
 	if controlling:
 		crosshair_change()
 		position_held_object()
 		movement(delta)
 		move_and_slide()
-	else:
-		$interaction_timer.stop()
 
 
 func pickup(object):
