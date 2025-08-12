@@ -36,6 +36,7 @@ shape = SubResource("CylinderShape3D_7kf0k")
 
 [node name="stove_timer" type="Label3D" parent="stove"]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0.78665, 0)
+billboard = 1
 
 [node name="StoveSingle" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_lrai8")
@@ -43,6 +44,7 @@ skeleton = NodePath("../../..")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86053, 0)
+billboard = 1
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.688397, 0)

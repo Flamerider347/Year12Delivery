@@ -42,7 +42,7 @@ material = SubResource("StandardMaterial3D_k5jio")
 radius = 0.05
 height = 0.1
 
-[node name="particle_smoke" type="Node3D"]
+[node name="particle_smoke" type="Node3D" groups=["particle"]]
 
 [node name="black" type="GPUParticles3D" parent="."]
 amount = 10

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=86 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -42,11 +42,8 @@
 [ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="27_lhn7i"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="28_1k5bn"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
-
-[ext_resource type="ArrayMesh" uid="uid://c1twurgwvuls8" path="res://assets/createdassets/Volcano.obj" id="29_d6s6r"]
-
 [ext_resource type="Script" uid="uid://gi3yl5dxxabq" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
-
+[ext_resource type="ArrayMesh" uid="uid://c1twurgwvuls8" path="res://assets/createdassets/Volcano.obj" id="29_d6s6r"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
@@ -282,12 +279,6 @@ background_mode = 2
 sky = SubResource("Sky_xfqyr")
 tonemap_mode = 2
 fog_density = 0.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fj7yv"]
-radius = 0.49
-height = 1.99
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tlwt5"]
 
 [node name="world" type="Node3D" groups=["can_stack_plate"]]
 script = ExtResource("1_k40i2")
@@ -1895,8 +1886,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
 [node name="pickup_timer" type="Timer" parent="player_single"]
 wait_time = 0.06
 
-[node name="swap_timer" type="Timer" parent="player_single"]
-
 [node name="AudioListener3D" type="AudioListener3D" parent="player_single"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 current = true
@@ -1938,7 +1927,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 
 [node name="order_timer" type="Timer" parent="."]
 
@@ -1961,24 +1950,22 @@ size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="player" type="CharacterBody3D" parent="GridContainer/SubViewportContainer/SubViewport" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.16267, 6)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 1, 1.73761, 6)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("2_le6xu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player" groups=["hitbox"]]
-shape = SubResource("CapsuleShape3D_fj7yv")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+shape = SubResource("CapsuleShape3D_n7i1a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
-mesh = SubResource("CapsuleMesh_tlwt5")
+mesh = SubResource("CapsuleMesh_k1hdb")
 
 [node name="head" type="Node3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
-
-[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.16, -0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524684, 0)
 
 [node name="player_camera" type="Camera3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head"]
-current = true
-far = 500.0
+far = 300.0
 
 [node name="seecast" type="RayCast3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head/player_camera"]
 target_position = Vector3(0, 0, -5)
@@ -1989,10 +1976,23 @@ target_position = Vector3(0, 0, -8)
 [node name="stackcast" type="RayCast3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head/player_camera"]
 target_position = Vector3(0, 0, -3)
 
+[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer/SubViewport/player/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
+
 [node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
 wait_time = 0.06
 
-[node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+[node name="AudioListener3D" type="AudioListener3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+current = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridContainer/SubViewportContainer/SubViewport/player"]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GridContainer/SubViewportContainer/SubViewport/player/StaticBody3D"]
+shape = SubResource("BoxShape3D_1k5bn")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
 layout_mode = 2
@@ -2006,23 +2006,22 @@ size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="player2" type="CharacterBody3D" parent="GridContainer/SubViewportContainer2/SubViewport" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 6)
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -1, 1.52333, 6)
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("24_n7i1a")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2" groups=["hitbox"]]
-shape = SubResource("CapsuleShape3D_fj7yv")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+shape = SubResource("CapsuleShape3D_n7i1a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
-mesh = SubResource("CapsuleMesh_tlwt5")
+mesh = SubResource("CapsuleMesh_k1hdb")
 
 [node name="head" type="Node3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645, 0)
-
-[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.16, -0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524684, 0)
 
 [node name="player_camera" type="Camera3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head"]
-current = true
+far = 300.0
 
 [node name="seecast" type="RayCast3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head/player_camera"]
 target_position = Vector3(0, 0, -5)
@@ -2033,10 +2032,23 @@ target_position = Vector3(0, 0, -8)
 [node name="stackcast" type="RayCast3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head/player_camera"]
 target_position = Vector3(0, 0, -3)
 
-[node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
-wait_time = 0.1
+[node name="knife_offset" type="Marker3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.515, -0.75)
 
-[node name="swap_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+[node name="pickup_timer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+wait_time = 0.06
+
+[node name="AudioListener3D" type="AudioListener3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+current = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2"]
+collision_layer = 3
+collision_mask = 3
+input_ray_pickable = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GridContainer/SubViewportContainer2/SubViewport/player2/StaticBody3D"]
+shape = SubResource("BoxShape3D_1k5bn")
 
 [connection signal="objective" from="kitchen/plates" to="." method="_on_objective_plate_objective"]
 [connection signal="objective_clear" from="kitchen/plates" to="." method="_on_plates_objective_clear"]
@@ -2115,10 +2127,7 @@ wait_time = 0.1
 [connection signal="pressed" from="pause_menu/Button" to="player_single" method="pause_exit"]
 [connection signal="looking_recipe" from="player_single" to="." method="looking_recipe"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
-[connection signal="timeout" from="player_single/swap_timer" to="player_single" method="_on_swap_timer_timeout"]
 [connection signal="timeout" from="day_timer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="order_timer" to="." method="_on_order_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/pickup_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_pickup_timer_timeout"]
-[connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/swap_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_swap_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/pickup_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_pickup_timer_timeout"]
-[connection signal="timeout" from="GridContainer/SubViewportContainer2/SubViewport/player2/swap_timer" to="GridContainer/SubViewportContainer2/SubViewport/player2" method="_on_swap_timer_timeout"]

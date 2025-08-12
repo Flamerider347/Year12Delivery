@@ -4,10 +4,7 @@ var editing_bench = null
 var recipe_type = null
 var bench_type = null
 var replaced_recipe = null
-var benches_bought = 7
-var stars_bought = 1
 var tutorial_step = 1
-var recipe_slots_bought = 0
 var entered_unselect_area = false
 var bench_type_sprites = {
 	"bench" : preload("res://assets/resized-images/Bench.png"),

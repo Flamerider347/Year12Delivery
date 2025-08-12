@@ -53,14 +53,6 @@ func _unhandled_input(event):
 			if event.device == controller_id:
 				if event.axis == 5:
 					if event.axis_value > 0.1 and can_pickup:
-						if held_object and held_object.type == "knife":
-							held_object.get_parent().find_child("AnimationPlayer").stop()
-							held_object.get_parent().find_child("AnimationPlayer").play("swing_knife")
-							seecast.target_position.z = -0.1
-							await held_object.get_parent().find_child("AnimationPlayer").animation_finished
-							if held_object:
-								held_object.get_parent().find_child("AnimationPlayer").play_backwards("swing_knife")
-								seecast.target_position.z = -1.8
 						if held_object and can_pickup:
 							if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 								stack()
@@ -86,10 +78,10 @@ func _unhandled_input(event):
 							can_pickup = false
 
 
-			if event is InputEventJoypadButton:
-				if event.device == controller_id:
-					if event.button_index == JOY_BUTTON_A and is_on_floor():
-						velocity.y = JUMP_VELOCITY
+		if event is InputEventJoypadButton:
+			if event.device == controller_id:
+				if event.button_index == JOY_BUTTON_A and is_on_floor():
+					velocity.y = JUMP_VELOCITY
 
 
 func _physics_process(delta: float):

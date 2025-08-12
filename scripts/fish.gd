@@ -16,9 +16,9 @@ func _physics_process(delta: float) -> void:
 				global_position = Vector3(125,0.75,155)
 				target_rigid = null
 			if target_rigid:
-				if target_rigid == $"../../player_single".held_object:
+				$"../Label3D".show()
+				if target_rigid == $"../../player_single".held_object or target_rigid ==$"../../GridContainer/SubViewportContainer/SubViewport/player".held_object or target_rigid == $"../../GridContainer/SubViewportContainer2/SubViewport/player2".held_object:
 					run_away()
-					
 				elif target_rigid.global_position != nav.target_position:
 					nav.target_position = target_rigid.global_position
 					$"../Label3D".global_position = target_rigid.global_position + Vector3(0,1,0)
@@ -48,7 +48,7 @@ func get_target():
 	speed = 5
 	var rigid_list = []
 	for i in $"../..".get_children():
-		if is_instance_valid(i) and i is RigidBody3D and i.type != "knife" and i != $"../../player_single".held_object:
+		if is_instance_valid(i) and i is RigidBody3D and i.type != "knife" and i != $"../../player_single".held_object and i !=$"../../GridContainer/SubViewportContainer/SubViewport/player".held_object and i != $"../../GridContainer/SubViewportContainer2/SubViewport/player2".held_object:
 			rigid_list.append(i)
 
 	if rigid_list.size() > 0:

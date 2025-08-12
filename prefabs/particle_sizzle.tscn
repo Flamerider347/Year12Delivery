@@ -14,7 +14,7 @@ material = ExtResource("1_7ovuw")
 radius = 0.015
 height = 0.03
 
-[node name="particle_sizzle" type="Node3D"]
+[node name="particle_sizzle" type="Node3D" groups=["particle"]]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

@@ -5,6 +5,8 @@ var can_pickup = true
 var controlling = false
 var evil = false
 var controller_let_go = true
+var head_target_position = 0.525
+var head_moving = false
 var SENSITIVITY = 0.01
 const WALK_SPEED = 10
 const SPRINT_SPEED = 15
@@ -20,14 +22,17 @@ const GRAVITY = 9.81 #ms^-2
 var ingredient_scenes = {
 	"bun":preload("res://prefabs/bun.tscn"),
 	"cheese":preload("res://prefabs/cheese.tscn"),
-	"meat" : preload("res://prefabs/meat.tscn"),
+	"meat" : preload("res://prefabs/meat_chopped.tscn"),
 	"tomato": preload("res://prefabs/tomato.tscn"),
 	"lettuce": preload("res://prefabs/lettuce.tscn"),
 	"carrot": preload("res://prefabs/carrot.tscn"),
 	"potato": preload("res://prefabs/potato.tscn"),
+	"bacon" : preload("res://prefabs/bacon.tscn"),
+	"egg" :preload("res://prefabs/egg.tscn"),
 	"bowl" : preload(("res://prefabs/bowl.tscn")),
 	"plate": preload("res://prefabs/plate.tscn"),
-	"stew" : preload("res://prefabs/stew.tscn")
+	"stew" : preload("res://prefabs/stew.tscn"),
+	"bacon_egg_toast" : preload("res://prefabs/bacon_egg_toast.tscn"),
 }
 
 var held_object = null  # Stores the object being held
@@ -44,47 +49,64 @@ func _setup():
 	controlling = true
 func _unhandled_input(event):
 	if controlling:
-			if event is InputEventJoypadMotion:
-				if event.device == controller_id:
-					if event.axis == 4 and event.axis_value < 0.05:
+		if event is InputEventMouseMotion:
+			head.rotate_y(-event.relative.x * SENSITIVITY/200)
+			camera.rotation.x = clamp(camera.rotation.x - event.relative.y * SENSITIVITY/200, deg_to_rad(-60), deg_to_rad(60))
+			look_recipe()
+		if event is InputEventJoypadMotion:
+			if event.device == controller_id:
+				if event.axis == 5:
+					if event.axis_value > 0.1 and can_pickup:
+						if held_object and held_object.type == "knife":
+							held_object.get_parent().find_child("AnimationPlayer").stop()
+							held_object.get_parent().find_child("AnimationPlayer").play("swing_knife")
+							seecast.target_position.z = -0.1
+							await held_object.get_parent().find_child("AnimationPlayer").animation_finished
+							if held_object:
+								held_object.get_parent().find_child("AnimationPlayer").play_backwards("swing_knife")
+								seecast.target_position.z = -1.8
+						if held_object and can_pickup:
+							if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
+								stack()
+				if event.axis == 4 and can_pickup:
+					if event.axis_value > 0.5:
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
+							$interaction_timer.start(1)
+						if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
+							var door = seecast.get_collider()
+							door.swinging = true
+						if not held_object and can_pickup:
+							$pickup_timer.start()
+							can_pickup = false
+							if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
+								held_object = seecast.get_collider()
+								pickup(held_object)
+							if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
+								var summon_type = seecast.get_collider().name.replace("_crate","")
+								summon(summon_type)
+						if held_object and can_pickup:
+							drop(held_object)
+							$pickup_timer.start()
+							can_pickup = false
+
+					elif event.axis_value < 0.2:
+						if held_object and can_pickup:
+							drop(held_object)
+							$pickup_timer.start()
+							can_pickup = false
 						controller_let_go = true
-					if event.axis == 5 and can_pickup:
-						if event.axis_value > 0.1:
-							if held_object and can_pickup:
-								if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
-									stack()
-					if event.axis == 4 and can_pickup:
-						if event.axis_value > 0.5:
-							if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
-								$interaction_timer.start(1)
-							if seecast.is_colliding() and seecast.get_collider().is_in_group("door") and can_pickup and controller_let_go:
-								controller_let_go = false
-								var door = seecast.get_collider()
-								door.swinging = true
-								$pickup_timer.start()
-								can_pickup = false
-							if not held_object and can_pickup and controller_let_go:
-								$pickup_timer.start()
-								can_pickup = false
-								controller_let_go = false
-								if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
-									held_object = seecast.get_collider()
-									pickup(held_object)
-								if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
-									var summon_type = seecast.get_collider().name.replace("_crate","")
-									summon(summon_type)
-						else:
-							if held_object and can_pickup:
-								drop(held_object)
-								$pickup_timer.start()
-								can_pickup = false
 
-
-
-			if event is InputEventJoypadButton:
-				if event.device == controller_id:
-					if event.button_index == JOY_BUTTON_A and is_on_floor():
-						velocity.y = JUMP_VELOCITY
+		if event is InputEventJoypadButton:
+			if event.device == controller_id:
+				if event.button_index == JOY_BUTTON_RIGHT_STICK:
+					if event.pressed:
+						head_moving = true
+						head_target_position = 0.0
+					else:
+						head_moving = true
+						head_target_position = 0.525
+				if event.button_index == JOY_BUTTON_A and is_on_floor():
+					velocity.y = JUMP_VELOCITY
 
 func movement(delta):
 	if not is_on_floor():
@@ -96,6 +118,8 @@ func movement(delta):
 		speed = SPRINT_SPEED
 	else:
 		speed = WALK_SPEED
+	if head_target_position == 0.0:
+		speed *= 0.6
 	var joy_input = Vector2(
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_X),
 	Input.get_joy_axis(controller_id, JOY_AXIS_LEFT_Y),)
@@ -115,9 +139,15 @@ func movement(delta):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
+	if controlling:
+		if head_moving:
+			if abs($head.position.y - head_target_position) > 0.05:
+				$head.position.y = lerp($head.position.y, head_target_position, 0.2)
+			else:
+				head_moving = false
 
 	if position.y < -10:
-		position = $"../kitchen".position + Vector3(0,0.5,5)
+		position = $"../../../../kitchen".position + Vector3(0,0.5,5)
 
 
 	if controlling:
@@ -148,6 +178,8 @@ func pickup(object):
 	position_held_object()
 
 func drop(object):
+	if object.type == "knife":
+		object.move = true
 	for child in object.get_children():
 		if child.is_in_group("hitbox"):
 			child.disabled = false
@@ -156,6 +188,9 @@ func drop(object):
 	seecast.clear_exceptions()
 	seecast.target_position.z = -3
 	object.linear_velocity.y = 0.3
+	if $"../../../..".level == 3 and not $"../../../../underwater/fish".target:
+		$"../../../../underwater/fish".get_target()
+
 
 func position_held_object():
 	if held_object:
@@ -289,17 +324,3 @@ func bounce():
 	if held_object:
 		if held_object.type  == "delivery_pot":
 			held_object.find_child("Timer").start(round(held_object.time_left_timer.time_left * 0.9))
-
-
-func _on_interaction_timer_timeout() -> void:
-	if $"../../../..".world_toggle:
-		$"../../../..".world_toggle = false
-		if $"../day_timer".is_stopped():
-			$"../menu".win_screen()
-		else:
-			if $"..".level == 0:
-				$"../menu".menu_toggle = true
-				$"../menu".menu_load()
-			else:
-				$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
-				$"../menu".lose_screen()

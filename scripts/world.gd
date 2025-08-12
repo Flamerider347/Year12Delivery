@@ -18,9 +18,9 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 100
+var money = 500
 var score = 0
-var stars = 5
+var stars = 1
 var orders_delivered = 0
 var day_timer = 20
 var is_tutorial = false
@@ -170,7 +170,6 @@ func tutorial():
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 	orders_delivered = 0
 	score = 0
-	stars = $menu/CanvasLayer/layout.stars_bought
 	$tutorial/plates.start()
 	$tutorial/plates.randomise_objective()
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
@@ -227,7 +226,7 @@ func _setup():
 					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
 	orders_delivered = 0
 	score = 0
-	stars = $menu/CanvasLayer/layout.stars_bought
+	stars = $menu/CanvasLayer/layout/upgrades/buy_star.stars_bought
 	$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
@@ -393,7 +392,6 @@ func _on_objective_plate_timeout(timer_number) -> void:
 	$ui/Label2.text = "stars: " + str(stars)
 	if stars <= 0:
 		$menu.lose_screen()
-		stars = 5
 
 
 func _on_plates_objective_clear(timer_number) -> void:

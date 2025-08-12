@@ -63,9 +63,7 @@ func randomise_objective():
 	var make_time = 120
 	delivery_location = "A1"
 	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
-	for i in plate_contents[making_plate]:
-		if i in ingredient_time.keys():
-			make_time += ingredient_time[i]
+	make_time = 999
 	var plate_name = making_plate.replace("plate_", "")
 	plates[making_plate].find_child("order_time").start(make_time)
 	objective.emit(plate_contents[making_plate],plate_name,plates[making_plate].find_child("order_time").time_left,delivery_location,plates[making_plate])
@@ -202,14 +200,17 @@ func delivered():
 		$"../tutorial_text".position = Vector3(2.7,2.3,10.9)
 		$"../tutorial_text".rotation_degrees.y = 180
 		$"../tutorial_text".text = "Now pickup the POT using LEFT CLICK
-		and deliver it to the HOUSE 
-		stated on the POT by dropping it on the DOORSTEP.
+		and deliver it to the HOUSE stated 
+		on the DELIVERY BOX by dropping
+		it on the DOORSTEP in time.
 				"
 		step = 9
 func delivered_to_house():
 	if step == 9:
 		$"../tutorial_text".text = "You Beat the tutorial!
-		Press ESCAPE to open pause menu and leave 
-		or redo the tutorial by walking forward
+		Press ESCAPE to open pause menu and EXIT to 
+		leave or redo the tutorial by walking
+		back to the starting bench. 
+		Good luck, have fun!
 			"
 		step = 1

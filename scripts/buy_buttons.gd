@@ -52,9 +52,10 @@ func _on_pressed() -> void:
 	if item == "star":
 		if stars_bought < 5:
 			if item_cost[item][stars_bought] <= $"../../../../..".money:
-				stars_bought += 1
 				$"../../../../..".money -= item_cost[item][stars_bought]
 				$"../../money".text = "Money: " + str($"../../../../..".money)
+				stars_bought += 1
+				$"../../../../..".stars = stars_bought
 				button_money(item_cost["star"][stars_bought])
 				$"../star".text = "Buy Star " + str(stars_bought+1) + "
 -Stars allow you to fail orders. 

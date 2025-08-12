@@ -12,15 +12,21 @@ func _on_stove_body_entered(body: Node3D) -> void:
 	if body.is_in_group("cookable"):
 		cooking_something = body
 		body.cooking = true
-	elif body.is_in_group("meat"):
+	if body.get_child(2) and body.get_child(2).is_in_group("particle"):
+			body.get_child(2).show()
+	if body.is_in_group("meat") and not body.is_in_group("cookable"):
 		var spawned_particle = particle_smoke.instantiate()
 		body.add_child(spawned_particle)
 		spawned_particle.global_position = body.global_position
+
 
 func _on_stove_body_exited(body: Node3D) -> void:
 	if body.is_in_group("cookable"):
 		cooking_something = null
 		body.cooking = false
 		$Label3D.text = ""
-	elif body.is_in_group("meat"):
-		body.get_child(2).queue_free()
+		if body.get_child(2) and body.get_child(2).is_in_group("particle"):
+			body.get_child(2).hide()
+	if body.is_in_group("meat"):
+		if body.get_child(2) and body.get_child(2).is_in_group("particle"):
+			body.get_child(2).hide()

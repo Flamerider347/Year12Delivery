@@ -110,13 +110,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	body.queue_free()
 
 
-func _on_1_player() -> void:
-	$CanvasLayer/level_select.show()
-	$CanvasLayer/main_menu.hide()
-
-func _on_2_players() -> void:
-	$"..".player_count = 2
-
 func _on_level_0() -> void:
 	$"..".level = 0
 	_on_play_level_pressed()
@@ -136,14 +129,7 @@ func _on_level_3() -> void:
 func _on_level_4() -> void:
 	$"..".level = 4
 	_on_play_level_pressed()
-	
-func _on_level_5() -> void:
-	$"..".level = 5
-	_on_play_level_pressed()
 
-func _on_level_select_return() -> void:
-	$CanvasLayer/level_select.hide()
-	$CanvasLayer/main_menu.show()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -215,6 +201,7 @@ func lose_screen():
 	visual_money = $"..".money
 	new_money = int(round($"..".score * difficulty_multiplier * score_multiplier))
 	$CanvasLayer/end_screen/lerp_timer.start(0.5)
+	$"..".money += new_money
 	$"../transition animation/transition animation".play("fade_transition_reverse")
 	await get_tree().create_timer(1.0).timeout
 	$"../transition animation".hide()
@@ -318,8 +305,18 @@ func level_select_1() -> void:
 	level_select()
 
 func level_select_2() -> void:
-	$"..".player_count = 2
-	level_select()
+	$"..".controllers = 0
+	for i in Input.get_connected_joypads():
+		if $"..".controllers < 2:
+			$"..".controllers += 1
+	if $"..".controllers == 2:
+		$"..".player_count = 2
+		level_select()
+	else:
+		$CanvasLayer/main_menu/players_2.text = "Needs 2
+		Controllers"
+		await get_tree().create_timer(0.5).timeout
+		$CanvasLayer/main_menu/players_2.text = "2 player"
 
 
 func _on_lerp_timer_timeout() -> void:
