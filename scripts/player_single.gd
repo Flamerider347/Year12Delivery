@@ -111,8 +111,6 @@ func _physics_process(delta: float):
 			head_moving = true
 			head_target_position = 0.525
 		if Input.is_action_just_pressed("pickup_p1") and can_pickup:
-			if seecast.is_colliding() and seecast.get_collider().is_in_group("interactable"):
-				$interaction_timer.start(1)
 			if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
 				var door = seecast.get_collider()
 				door.swinging = true
@@ -133,25 +131,9 @@ func _physics_process(delta: float):
 			if held_object and can_pickup:
 				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 					stack()
-		if Input.is_action_pressed("menu"):
-			if not $interaction_timer.is_stopped():
-				$"../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-				$"../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-		if Input.is_action_just_pressed("menu"):
-			$interaction_timer.start(1.0)
-		if Input.is_action_just_released("menu"):
-			if not $interaction_timer.is_stopped():
-				$interaction_timer.stop()
-				$"../kitchen/sign_out/interact_time_left".text = ""
-				$"../tutorial/sign_out/interact_time_left".text = ""
 		position_held_object()
 		movement(delta)
 		move_and_slide()
-	else:
-		$interaction_timer.stop()
-		$"../kitchen/sign_out/interact_time_left".text = ""
-		$"../tutorial/sign_out/interact_time_left".text = ""
-
 
 func movement(delta):
 	if not is_on_floor():
@@ -222,6 +204,8 @@ func drop(object):
 	seecast.clear_exceptions()
 	seecast.target_position.z = -3
 	object.linear_velocity.y = 0.3
+	if $"..".level == 3 and not $"../underwater/fish".target:
+		$"../underwater/fish".get_target()
 
 
 func position_held_object():
@@ -300,6 +284,7 @@ func summon(item):
 	seecast.target_position.z = -1.6
 
 
+
 func crosshair_change():
 	if controlling:
 		if not held_object:
@@ -362,9 +347,11 @@ func _on_pickup_timer_timeout() -> void:
 func bounce():
 	velocity.y = 8
 
-func _on_interaction_timer_timeout() -> void:
+func pause_exit() -> void:
 	if $"..".world_toggle:
 		$"..".world_toggle = false
+		$"../pause_menu".hide()
+		get_tree().paused = false
 		controlling = false
 		$"../GridContainer/SubViewportContainer/SubViewport/player".controlling = false
 		$"../GridContainer/SubViewportContainer2/SubViewport/player2".controlling = false

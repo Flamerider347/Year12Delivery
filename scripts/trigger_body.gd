@@ -7,7 +7,6 @@ extends Area3D
 
 func _on_body_entered(body):
 	# Creates tween variable audio manipulation
-	print("entered")
 	# Checks if the body enter is a player
 	if body.name == "player_single" or body.name == "player" or body.name == "player2":
 		# Checks which level is being played
@@ -28,7 +27,6 @@ func _on_body_entered(body):
 		pass
 
 func _on_body_exited(body):
-	print("exited")
 	# Checks if the body enter is a player
 	if body.name == "player_single" or body.name == "player" or body.name == "player2":
 		# Checks which level is being played

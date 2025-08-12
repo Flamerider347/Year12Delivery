@@ -26,6 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://b6aw4hitsyq8s" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png" id="20_dll84"]
 [ext_resource type="PackedScene" uid="uid://cfepmsyun4rjo" path="res://prefabs/transition_animation_book_flip.tscn" id="22_1lbl1"]
 
+
+[ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_7xkfb
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
@@ -511,7 +514,6 @@ max_value = 1.0
 step = 0.001
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -1025,7 +1027,7 @@ texture = ExtResource("18_tcgir")
 
 [node name="stew" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 visible = false
-position = Vector2(551, 789)
+position = Vector2(596, 891)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -1141,6 +1143,13 @@ text = "Kitchen Chaos
 Return of the
 UNNAMED PROJECT"
 font_size = 128
+
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_7xkfb")
+autoplay = true
+bus = &"Ambience"
+
 
 [connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]

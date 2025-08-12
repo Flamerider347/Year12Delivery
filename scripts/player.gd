@@ -121,25 +121,11 @@ func _physics_process(delta: float):
 
 
 	if controlling:
-		if Input.is_action_pressed("menu"):
-			if not $interaction_timer.is_stopped():
-				$"../../../../kitchen/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-				$"../../../../tutorial/sign_out/interact_time_left".text = str(round($interaction_timer.time_left*10)/10)
-		if Input.is_action_just_pressed("menu"):
-			$interaction_timer.start(1.0)
-		if Input.is_action_just_released("menu"):
-			if not $interaction_timer.is_stopped():
-				$interaction_timer.stop()
-				$"../../../../kitchen/sign_out/interact_time_left".text = ""
-				$"../../../../tutorial/sign_out/interact_time_left".text = ""
 		crosshair_change()
 		position_held_object()
 		movement(delta)
 		move_and_slide()
-	else:
-		$interaction_timer.stop()
-		$"../../../../kitchen/sign_out/interact_time_left".text = ""
-		$"../../../../tutorial/sign_out/interact_time_left".text = ""
+
 
 
 func pickup(object):

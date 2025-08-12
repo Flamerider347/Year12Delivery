@@ -157,7 +157,8 @@ func _on_area_3d_2_body_entered(body: Node3D) -> void:
 		if body is RigidBody3D:
 			if body.type == "plate":
 				$"../tutorial_text".text = "Great, now get a bun and put it on the chopping board.
-				(If you don't know the recipe contents, it tells you when you look up at it.)
+				If you don't know what you're making,
+				it tells you when you look up at it.
 				(On the right side of screen.)
 				"
 				step = 3
@@ -208,8 +209,7 @@ func delivered():
 func delivered_to_house():
 	if step == 9:
 		$"../tutorial_text".text = "You Beat the tutorial!
-		Hold ESCAPE to return to menu at any time.
-		You can also hold LEFT CLICK
-		on the sign out board to your right
+		Press ESCAPE to open pause menu and leave 
+		or redo the tutorial by walking forward
 			"
 		step = 1

@@ -13,7 +13,8 @@ func _physics_process(delta: float) -> void:
 		if target:
 			if $"../..".level != 3:
 				target = false
-				position = Vector3(0,0.75,32)
+				global_position = Vector3(125,0.75,155)
+				target_rigid = null
 			if target_rigid:
 				if target_rigid == $"../../player_single".held_object:
 					run_away()
@@ -35,17 +36,18 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 
 
-		if global_position.x > 120 and global_position.z > 150:
-			rotation_degrees.y += delta * 50
-			if not target:
-				get_target()
-			if held_rigid:
-				held_rigid.queue_free()
-				held_rigid = null
-			if not target_rigid:
-				target = false
+			if global_position.x > 120 and global_position.z > 150:
+				rotation_degrees.y += delta * 50
+
+				if held_rigid:
+					held_rigid.queue_free()
+					held_rigid = null
+				if not target_rigid:
+					get_target()
+					$"../Label3D".hide()
 
 func get_target():
+	print("go")
 	speed = 5
 	var rigid_list = []
 	for i in $"../..".get_children():
@@ -59,6 +61,8 @@ func get_target():
 		if is_instance_valid(target_rigid):
 			nav.target_position = target_rigid.global_position
 			target = true
+	else:
+		target = false
 
 func run_away():
 	$"../Label3D".hide()
