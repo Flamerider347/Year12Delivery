@@ -37,8 +37,6 @@ func _physics_process(delta: float) -> void:
 
 
 			if global_position.x > 120 and global_position.z > 150:
-				rotation_degrees.y += delta * 50
-
 				if held_rigid:
 					held_rigid.queue_free()
 					held_rigid = null
@@ -47,7 +45,6 @@ func _physics_process(delta: float) -> void:
 					$"../Label3D".hide()
 
 func get_target():
-	print("go")
 	speed = 5
 	var rigid_list = []
 	for i in $"../..".get_children():
