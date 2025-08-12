@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=88 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bcmdeebetuqqt" path="res://assets/Cooking_crosshairs/crosshair021.png" id="20_xky7j"]
 [ext_resource type="PackedScene" uid="uid://bk5q2jyy76phw" path="res://prefabs/menu.tscn" id="21_bpfb4"]
 [ext_resource type="PackedScene" uid="uid://drsdhk6tpv6u3" path="res://prefabs/parkour table.tscn" id="21_w6ly8"]
+[ext_resource type="PackedScene" uid="uid://cb70phjqrxqyl" path="res://prefabs/tree_coral_gridmap.tscn" id="22_2h4m2"]
 [ext_resource type="Script" uid="uid://busw405b68h0v" path="res://scripts/trigger_body.gd" id="24_guuop"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
@@ -35,9 +36,17 @@
 [ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_d6s6r"]
+[ext_resource type="PackedScene" uid="uid://bh1tyq3t8xos2" path="res://prefabs/tree_burnt_gridmap.tscn" id="26_lhn7i"]
+[ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
+[ext_resource type="PackedScene" uid="uid://c7liwpmdhkn7p" path="res://prefabs/tree_alive_gridmap.tscn" id="26_umtm3"]
 [ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="27_lhn7i"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="28_1k5bn"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
+
+[ext_resource type="ArrayMesh" uid="uid://c1twurgwvuls8" path="res://assets/createdassets/Volcano.obj" id="29_d6s6r"]
+
 [ext_resource type="Script" uid="uid://gi3yl5dxxabq" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
+
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
@@ -1018,6 +1027,12 @@ volume_db = -40.0
 
 [node name="Timer" type="Timer" parent="underwater/Audio_Box_Right/trigger_body"]
 
+[node name="Tree_Coral_GridMap" parent="underwater" instance=ExtResource("22_2h4m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
+data = {
+"cells": PackedInt32Array(0, 0, 0, 83, 82, 655360, 81, 79, 655360, 82, 81, 655360, 81, 81, 655360, 82, 84, 655360, 67, 75, 655360, 67, 73, 655360, 69, 74, 655360, 72, 83, 655360, 72, 77, 1441792, 72, 73, 655360, 69, 70, 1048576, 81, 67, 0, 82, 70, 655360, 77, 70, 1048576, 78, 65, 1441792, 79, 76, 655360, 81, 73, 1048576, 76, 77, 1441792, 76, 78, 655360, 68, 81, 1048576, 50, 70, 655360, 50, 85, 655360, 51, 70, 655360, 51, 71, 655360, 51, 72, 0, 51, 77, 655360, 51, 83, 655360, 52, 70, 655360, 52, 78, 1048576, 52, 81, 655360, 53, 68, 655360, 53, 69, 655360, 53, 70, 655360, 53, 71, 655360, 53, 80, 655360, 53, 81, 655360, 53, 84, 655360, 54, 68, 655360, 54, 69, 655360, 54, 74, 655360, 55, 82, 655360, 57, 76, 655360, 57, 78, 655360, 57, 86, 1441792, 58, 77, 655360)
+}
+
 [node name="tutorial" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
 
@@ -1475,6 +1490,12 @@ volume_db = -40.0
 
 [node name="Timer" type="Timer" parent="dine_in/Audio_Box_Right/trigger_body"]
 
+[node name="Tree_Alive_GridMap" parent="dine_in" instance=ExtResource("26_umtm3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 128)
+data = {
+"cells": PackedInt32Array(0, 65535, 1048576, 46, 65489, 655360, 29, 65494, 655360, 30, 65507, 655360, 31, 65495, 655360, 31, 65500, 655360, 34, 65496, 655360, 35, 65506, 655360, 35, 65494, 655360, 38, 65495, 655360, 49, 65500, 655360, 49, 65506, 655360, 51, 65497, 655360, 51, 65504, 655360, 48, 65494, 655360)
+}
+
 [node name="siberia" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
 
@@ -1571,6 +1592,11 @@ stream = ExtResource("27_lhn7i")
 volume_db = -40.0
 
 [node name="Timer" type="Timer" parent="siberia/Audio_Box_Right/trigger_body"]
+
+[node name="Tree_Frozen_GridMap" parent="siberia" instance=ExtResource("26_p78bo")]
+data = {
+"cells": PackedInt32Array(2, 14, 1441792, 65529, 14, 1441792, 6, 11, 1441792, 7, 8, 1441792, 8, 5, 1441792, 12, 4, 1441792, 4, 2, 1441792, 7, 3, 1441792, 65528, 3, 1441792, 65530, 65531, 1441792, 65533, 65534, 1441792, 65532, 8, 1441792, 65527, 11, 1441792, 65531, 2, 1441792, 65527, 7, 1441792)
+}
 
 [node name="volcano" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, -0.09, 128)
@@ -1749,6 +1775,17 @@ stream = ExtResource("27_lhn7i")
 volume_db = -40.0
 
 [node name="Timer" type="Timer" parent="volcano/Audio_Box_Right/trigger_body"]
+
+[node name="volcano_mesh" type="MeshInstance3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 98.3145)
+material_override = ExtResource("28_1k5bn")
+mesh = ExtResource("29_d6s6r")
+
+[node name="Tree_Burnt_GridMap" parent="volcano" instance=ExtResource("26_lhn7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0.09, -128)
+data = {
+"cells": PackedInt32Array(1, 65535, 655360, 65500, 45, 1441792, 65487, 44, 1441792, 65485, 47, 1441792, 65484, 55, 1441792, 65486, 53, 1441792, 65501, 55, 1441792, 65500, 50, 1441792, 65502, 48, 1441792, 65497, 43, 1441792, 65484, 43, 1441792, 65484, 45, 1441792, 65485, 51, 1441792, 65489, 45, 1441792, 65496, 45, 1441792, 65502, 43, 1441792, 65502, 53, 1441792, 65499, 56, 1441792, 65486, 57, 1441792)
+}
 
 [node name="transition animation" type="CanvasLayer" parent="."]
 visible = false

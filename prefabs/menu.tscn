@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=34 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -25,7 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://bg5ee6sgs0ms3" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png" id="19_1lbl1"]
 [ext_resource type="Texture2D" uid="uid://b6aw4hitsyq8s" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png" id="20_dll84"]
 [ext_resource type="PackedScene" uid="uid://cfepmsyun4rjo" path="res://prefabs/transition_animation_book_flip.tscn" id="22_1lbl1"]
-[ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_7xkfb"]
+
+
+[ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_7xkfb
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
 
@@ -1143,10 +1145,12 @@ Return of the
 UNNAMED PROJECT"
 font_size = 128
 
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_7xkfb")
 autoplay = true
 bus = &"Ambience"
+
 
 [connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
