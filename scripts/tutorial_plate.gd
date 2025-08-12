@@ -209,8 +209,7 @@ func delivered():
 func delivered_to_house():
 	if step == 9:
 		$"../tutorial_text".text = "You Beat the tutorial!
-		Hold ESCAPE to return to menu at any time.
-		You can also hold LEFT CLICK
-		on the sign out board to your right
+		Press ESCAPE to open pause menu and leave 
+		or redo the tutorial by walking forward
 			"
 		step = 1
