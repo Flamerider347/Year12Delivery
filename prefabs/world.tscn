@@ -1,10 +1,9 @@
-[gd_scene load_steps=86 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=92 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
 [ext_resource type="Texture2D" uid="uid://yaqtpg8sikk" path="res://assets/materials/lave_ambientocclusion.png" id="2_xky7j"]
 [ext_resource type="Script" uid="uid://d0vlgi3des8jt" path="res://scripts/objective_plates.gd" id="3_u7kri"]
-[ext_resource type="Texture2D" uid="uid://b46jqktnxqbq0" path="res://assets/materials/lave_normal.png" id="4_mrigr"]
 [ext_resource type="ArrayMesh" uid="uid://dy7fogl7n2mo5" path="res://assets/kitchenassets/wall.obj" id="5_8bx52"]
 [ext_resource type="ArrayMesh" uid="uid://clb6b847k0tlf" path="res://assets/kitchenassets/pillar_A.obj" id="6_xfqyr"]
 [ext_resource type="Script" uid="uid://cwndeek72ht6r" path="res://scripts/tutorial_plate.gd" id="7_k1hdb"]
@@ -15,6 +14,7 @@
 [ext_resource type="MeshLibrary" uid="uid://q0qc1fhj8fx5" path="res://assets/materials/fence mesh library.tres" id="13_k1hdb"]
 [ext_resource type="Script" uid="uid://ebqitybuyxfv" path="res://scripts/fish.gd" id="13_mrigr"]
 [ext_resource type="ArrayMesh" uid="uid://dp8fdximd6trr" path="res://assets/SharkV1.obj" id="14_1iobq"]
+[ext_resource type="Texture2D" uid="uid://c64ahmram7b4p" path="res://sand_1.jpg" id="14_os0cm"]
 [ext_resource type="ArrayMesh" uid="uid://blmeb0is1ac16" path="res://assets/kitchenassets/plate.obj" id="14_q76tg"]
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
 [ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="15_l0am5"]
@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="25_1k5bn"]
 [ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
+[ext_resource type="Texture2D" uid="uid://calsrxt8pt8jk" path="res://assets/bookanim_left/grass.png" id="26_aqg0f"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_d6s6r"]
 [ext_resource type="PackedScene" uid="uid://bh1tyq3t8xos2" path="res://prefabs/tree_burnt_gridmap.tscn" id="26_lhn7i"]
 [ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
@@ -47,6 +48,7 @@
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
+[ext_resource type="Texture2D" uid="uid://b01qawstnk7bi" path="res://assets/floorandstuff/overcast_soil_puresky_4k.png" id="35_aqg0f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(3.99, 3.99, 0.499)
@@ -80,7 +82,10 @@ albedo_texture = ExtResource("25_h6gec")
 uv1_scale = Vector3(5, 5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
-albedo_texture = ExtResource("4_mrigr")
+albedo_texture = ExtResource("14_os0cm")
+clearcoat = 0.0
+refraction_scale = 1.0
+uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0am5"]
 
@@ -107,6 +112,10 @@ size = Vector3(10.8106, 0.305573, 11.618)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjo16"]
 size = Vector3(1.56824, 0.651474, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jynr8"]
+albedo_texture = ExtResource("26_aqg0f")
+uv1_scale = Vector3(20, 20, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iobq"]
 albedo_texture = ExtResource("2_xky7j")
 
@@ -117,6 +126,12 @@ size = Vector3(100, 0.1, 100)
 albedo_texture = ExtResource("24_vjo16")
 uv1_scale = Vector3(1.62, 5, 1)
 uv1_offset = Vector3(-0.305, 6.845, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro2rw"]
+shading_mode = 0
+albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
+albedo_texture = ExtResource("35_aqg0f")
+uv1_scale = Vector3(3, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_48uca"]
 shader = ExtResource("28_w6ly8")
@@ -266,6 +281,15 @@ height = 1.99
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1k5bn"]
 size = Vector3(0.2, 2.232, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqg0f"]
+shading_mode = 0
+albedo_color = Color(0.00784314, 0.12549, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_aqg0f"]
+flip_faces = true
+radius = 0.2
+height = 0.4
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -1389,6 +1413,7 @@ mesh = SubResource("BoxMesh_w6ly8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, -128)
 
 [node name="floor" type="CSGBox3D" parent="dine_in"]
+material_override = SubResource("StandardMaterial3D_jynr8")
 use_collision = true
 collision_layer = 5
 size = Vector3(100, 0.195, 100)
@@ -1769,14 +1794,21 @@ volume_db = -40.0
 
 [node name="volcano_mesh" type="MeshInstance3D" parent="volcano"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 98.3145)
-material_override = ExtResource("28_1k5bn")
 mesh = ExtResource("29_d6s6r")
+surface_material_override/0 = ExtResource("28_1k5bn")
 
 [node name="Tree_Burnt_GridMap" parent="volcano" instance=ExtResource("26_lhn7i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0.09, -128)
 data = {
 "cells": PackedInt32Array(1, 65535, 655360, 65500, 45, 1441792, 65487, 44, 1441792, 65485, 47, 1441792, 65484, 55, 1441792, 65486, 53, 1441792, 65501, 55, 1441792, 65500, 50, 1441792, 65502, 48, 1441792, 65497, 43, 1441792, 65484, 43, 1441792, 65484, 45, 1441792, 65485, 51, 1441792, 65489, 45, 1441792, 65496, 45, 1441792, 65502, 43, 1441792, 65502, 53, 1441792, 65499, 56, 1441792, 65486, 57, 1441792)
 }
+
+[node name="floor2" type="CSGSphere3D" parent="volcano"]
+material_override = SubResource("StandardMaterial3D_ro2rw")
+flip_faces = true
+radius = 99.0
+radial_segments = 100
+rings = 100
 
 [node name="transition animation" type="CanvasLayer" parent="."]
 visible = false
@@ -1897,6 +1929,12 @@ input_ray_pickable = false
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="player_single/StaticBody3D"]
 shape = SubResource("BoxShape3D_1k5bn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="player_single"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563543, 0.00701427)
+material_override = SubResource("StandardMaterial3D_aqg0f")
+transparency = 0.7
+mesh = SubResource("SphereMesh_aqg0f")
 
 [node name="SFX" type="Node3D" parent="."]
 

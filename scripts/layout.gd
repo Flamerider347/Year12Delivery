@@ -33,7 +33,7 @@ var bench_costs = {
 }
 @onready var benches = $"../../..".benches
 @onready var recipe_list = $"../../../kitchen/plates".recipes_list
-var recipe_slots = ["stew",null,null,null,null,null,null,null]
+var recipe_slots = ["burger_ben","burger_hayden","burger_aine",null,null,null,null,null]
 func _ready() -> void:
 	setup()
 func setup():

@@ -514,7 +514,6 @@ max_value = 1.0
 step = 0.001
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -874,7 +873,6 @@ text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
-visible = false
 
 [node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/recipes"]
 position = Vector2(654, 815)
@@ -908,7 +906,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_y5qo3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1"]
-texture = ExtResource("14_dwafa")
+texture = ExtResource("19_1lbl1")
 
 [node name="recipe_slot2" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(600, 382)
@@ -919,7 +917,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_y5qo3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2"]
-texture = ExtResource("15_w8pom")
+texture = ExtResource("17_dll84")
 
 [node name="recipe_slot3" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(740, 382)
@@ -930,7 +928,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_y5qo3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3"]
-texture = ExtResource("15_w8pom")
+texture = ExtResource("18_tcgir")
 
 [node name="recipe_slot4" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(877, 382)
@@ -994,6 +992,7 @@ texture = ExtResource("15_w8pom")
 [node name="available_recipes" type="Node2D" parent="CanvasLayer/layout/recipes"]
 
 [node name="burger_hayden" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+visible = false
 position = Vector2(455, 759)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
@@ -1005,6 +1004,7 @@ shape = SubResource("RectangleShape2D_0x0nk")
 texture = ExtResource("17_dll84")
 
 [node name="burger_ben" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+visible = false
 position = Vector2(597, 757)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
@@ -1016,6 +1016,7 @@ shape = SubResource("RectangleShape2D_0x0nk")
 texture = ExtResource("19_1lbl1")
 
 [node name="burger_aine" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
+visible = false
 position = Vector2(743, 755)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
@@ -1027,7 +1028,6 @@ shape = SubResource("RectangleShape2D_0x0nk")
 texture = ExtResource("18_tcgir")
 
 [node name="stew" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
-visible = false
 position = Vector2(596, 891)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true

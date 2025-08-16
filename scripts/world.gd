@@ -117,8 +117,8 @@ var tutorial_benches = {
 var unlocked_levels = {
 	"level_1" :true,
 	"level_2" : true,
-	"level_3" : false,
-	"level_4" : false,
+	"level_3" : true,
+	"level_4" : true,
 }
 func _ready() -> void:
 	$GridContainer.hide()
