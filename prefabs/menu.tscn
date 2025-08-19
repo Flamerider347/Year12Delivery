@@ -943,7 +943,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot5" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(123, 491)
+position = Vector2(467, 513)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -955,7 +955,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot6" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(259, 492)
+position = Vector2(599, 514)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -967,7 +967,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot7" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(395, 494)
+position = Vector2(740, 516)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -979,7 +979,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot8" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(534, 493)
+position = Vector2(876, 518)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 

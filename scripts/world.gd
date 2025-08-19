@@ -232,6 +232,9 @@ func _setup():
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 	if level == 1:
+		$player_single/head/dinein.show()
+		$player_single/head/volcano.hide()
+		$player_single/head/underwater.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Neighbourhood level
@@ -241,6 +244,9 @@ Dangers & Modifications:
 -If a timer runs out, you lose a star
 -Losing all 5 stars restarts level, no money is rewarded"
 	if level == 2:
+		$player_single/head/dinein.hide()
+		$player_single/head/volcano.show()
+		$player_single/head/underwater.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Volcano level
@@ -250,6 +256,9 @@ Dangers & Modifications:
 -Touching lava will make you bounce around
 -Lava burns delivery pots (-10% of the score/bounce)"
 	if level == 3:
+		$player_single/head/dinein.hide()
+		$player_single/head/volcano.hide()
+		$player_single/head/underwater.show()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Underwater level

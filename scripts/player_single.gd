@@ -166,6 +166,7 @@ func movement(delta):
 
 
 func pickup(object):
+	vibrate(object)
 	if object.type == "knife":
 		seecast.target_position.z = -1.8
 		if $"..".is_tutorial:
@@ -199,6 +200,23 @@ func drop(object):
 	if $"..".level == 3 and not $"../underwater/fish".target:
 		$"../underwater/fish".get_target()
 
+func vibrate(body: RigidBody3D):
+	var space := get_world_3d().direct_space_state
+
+	var params := PhysicsShapeQueryParameters3D.new()
+	params.shape = SphereShape3D.new()
+	params.shape.radius = 0.75   # adjust radius
+	params.transform = Transform3D(Basis(), body.global_position)
+	params.collide_with_bodies = true
+	params.exclude = [body]  # don't include the grabbed object
+
+	var result = space.intersect_shape(params, 32)  # 32 = max results
+	for hit in result:
+		var collider = hit.collider
+		if collider is RigidBody3D:
+			collider.sleeping = false
+			var impulse = Vector3.UP * 0.2 + Vector3(randf()-0.5, 0, randf()-0.5) * 0.1
+			collider.apply_impulse(impulse, Vector3.ZERO)
 
 func position_held_object():
 	if held_object:

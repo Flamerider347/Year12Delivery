@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=94 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -35,7 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="25_1k5bn"]
 [ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
-[ext_resource type="Texture2D" uid="uid://calsrxt8pt8jk" path="res://assets/bookanim_left/grass.png" id="26_aqg0f"]
+[ext_resource type="Texture2D" uid="uid://calsrxt8pt8jk" path="res://assets/grass.png" id="26_aqg0f"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_d6s6r"]
 [ext_resource type="PackedScene" uid="uid://bh1tyq3t8xos2" path="res://prefabs/tree_burnt_gridmap.tscn" id="26_lhn7i"]
 [ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
@@ -279,17 +279,25 @@ height = 1.99
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k1hdb"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1k5bn"]
-size = Vector3(0.2, 2.232, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqg0f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbo5a"]
 shading_mode = 0
-albedo_color = Color(0.00784314, 0.12549, 1, 1)
+albedo_color = Color(0.784179, 0.956568, 0.755781, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_aqg0f"]
 flip_faces = true
 radius = 0.2
 height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_er0x2"]
+shading_mode = 0
+albedo_color = Color(1, 0.396078, 0.0941176, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqg0f"]
+shading_mode = 0
+albedo_color = Color(0.00784314, 0.12549, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1k5bn"]
+size = Vector3(0.2, 2.232, 0.2)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -1900,6 +1908,29 @@ mesh = SubResource("CapsuleMesh_k1hdb")
 [node name="head" type="Node3D" parent="player_single"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524684, 0)
 
+[node name="dinein" type="MeshInstance3D" parent="player_single/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.150598, 0.038862, 0.0096879)
+material_override = SubResource("StandardMaterial3D_jbo5a")
+transparency = 0.95
+mesh = SubResource("SphereMesh_aqg0f")
+skeleton = NodePath("../..")
+
+[node name="volcano" type="MeshInstance3D" parent="player_single/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038859, 0.00701427)
+visible = false
+material_override = SubResource("StandardMaterial3D_er0x2")
+transparency = 0.9
+mesh = SubResource("SphereMesh_aqg0f")
+skeleton = NodePath("../..")
+
+[node name="underwater" type="MeshInstance3D" parent="player_single/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038859, 0.00701475)
+visible = false
+material_override = SubResource("StandardMaterial3D_aqg0f")
+transparency = 0.9
+mesh = SubResource("SphereMesh_aqg0f")
+skeleton = NodePath("../..")
+
 [node name="player_camera" type="Camera3D" parent="player_single/head"]
 far = 300.0
 
@@ -1929,12 +1960,6 @@ input_ray_pickable = false
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="player_single/StaticBody3D"]
 shape = SubResource("BoxShape3D_1k5bn")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="player_single"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.563543, 0.00701427)
-material_override = SubResource("StandardMaterial3D_aqg0f")
-transparency = 0.7
-mesh = SubResource("SphereMesh_aqg0f")
 
 [node name="SFX" type="Node3D" parent="."]
 
