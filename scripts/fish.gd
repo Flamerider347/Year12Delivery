@@ -7,6 +7,9 @@ var accel = 10
 var target_rigid: RigidBody3D = null
 var held_rigid: RigidBody3D = null
 
+var max_dist = 5.0
+var max_dist_sq = max_dist * max_dist
+
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 
 func _physics_process(delta: float) -> void:
@@ -21,9 +24,18 @@ func _physics_process(delta: float) -> void:
 			or target_rigid ==$"../../GridContainer/SubViewportContainer/SubViewport/player".held_object \
 			or target_rigid == $"../../GridContainer/SubViewportContainer2/SubViewport/player2".held_object:
 				run_away()
+				target_rigid = null
 			elif target_rigid.global_position != nav.target_position:
 				nav.target_position = target_rigid.global_position
 				$"../Label3D".global_position = target_rigid.global_position + Vector3(0,1,0)
+			if target_rigid:
+				var dx = self.global_transform.origin.x - target_rigid.global_transform.origin.x
+				var dz = self.global_transform.origin.z - target_rigid.global_transform.origin.z
+				var dist = sqrt(dx * dx + dz * dz)
+
+				if dist <= 2.0:
+					_on_area_3d_body_entered(target_rigid)
+
 		else:
 			run_away()
 

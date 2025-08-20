@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba4rmkyhaecby"
-path.s3tc="res://.godot/imported/rock4.png-24048f7b0f26ae8836adddc4af68da9f.s3tc.ctex"
+uid="uid://dbsshkb2gow57"
+path.s3tc="res://.godot/imported/1230 Volcano.png-8881d8fe7106a0e0044aceef0f4822c1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/createdassets/rock4.png"
-dest_files=["res://.godot/imported/rock4.png-24048f7b0f26ae8836adddc4af68da9f.s3tc.ctex"]
+source_file="res://haydenfoundassets/Volcano/1230 Volcano.png"
+dest_files=["res://.godot/imported/1230 Volcano.png-8881d8fe7106a0e0044aceef0f4822c1.s3tc.ctex"]
 
 [params]
 

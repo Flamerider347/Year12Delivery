@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c78jtgxi0ld1l"]
+[gd_scene load_steps=11 format=3 uid="uid://c78jtgxi0ld1l"]
 
 [ext_resource type="ArrayMesh" uid="uid://bov75hve7me6q" path="res://assets/createdassets/pantry.obj" id="1_3bn08"]
 [ext_resource type="Texture2D" uid="uid://bif4m57k6k2ll" path="res://assets/createdassets/createdtexture.png" id="2_snfhu"]
@@ -19,6 +19,9 @@ size = Vector3(0.813477, 0.666035, 1.49475)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ukro"]
 size = Vector3(0.758606, 0.694694, 1.48499)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3bn08"]
+size = Vector3(0.246216, 2.49585, 1.50586)
 
 [node name="bun_crate" type="Node3D"]
 
@@ -91,3 +94,30 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="plate_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131745, -0.505344, -0.190613)
 shape = SubResource("BoxShape3D_5ukro")
+
+[node name="wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.872204, 0, 0)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
+shape = SubResource("BoxShape3D_3bn08")
+
+[node name="wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.249649, 0, -0.875284)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
+shape = SubResource("BoxShape3D_3bn08")
+
+[node name="wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.881442, 0, 0)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
+shape = SubResource("BoxShape3D_3bn08")

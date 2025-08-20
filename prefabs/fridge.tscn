@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cf2s322ap3bxw"]
+[gd_scene load_steps=15 format=3 uid="uid://cf2s322ap3bxw"]
 
 [ext_resource type="Script" uid="uid://8nrws8bwiprl" path="res://scripts/fridge_door.gd" id="2_252b1"]
 [ext_resource type="ArrayMesh" uid="uid://bmnjpfam7mg7n" path="res://assets/kitchenassets/fridge_B_door.obj" id="3_2xlda"]
@@ -32,6 +32,9 @@ size = Vector3(0.5, 2.5, 2.001)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yynxn"]
 size = Vector3(0.482803, 0.31012, 0.652527)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_252b1"]
+size = Vector3(0.246216, 2.49585, 1.50586)
 
 [node name="fridge" type="Node3D"]
 
@@ -122,3 +125,30 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="egg_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.504273, 0.568557, 0.0603944)
 shape = SubResource("BoxShape3D_yynxn")
+
+[node name="wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.872204, 0, 0)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
+shape = SubResource("BoxShape3D_252b1")
+
+[node name="wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.879741, 0, 0)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
+shape = SubResource("BoxShape3D_252b1")
+
+[node name="wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.258, 0, -0.87336)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
+shape = SubResource("BoxShape3D_252b1")
