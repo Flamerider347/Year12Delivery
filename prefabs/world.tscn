@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=93 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -29,24 +29,19 @@
 [ext_resource type="PackedScene" uid="uid://drsdhk6tpv6u3" path="res://prefabs/parkour table.tscn" id="21_w6ly8"]
 [ext_resource type="PackedScene" uid="uid://cb70phjqrxqyl" path="res://prefabs/tree_coral_gridmap.tscn" id="22_2h4m2"]
 [ext_resource type="ArrayMesh" uid="uid://uedbggc1w3hj" path="res://haydenfoundassets/Volcano/1230 Volcano.obj" id="23_er0x2"]
-[ext_resource type="Texture2D" uid="uid://cbaqvlt0pmnhj" path="res://assets/createdassets/rock1.png" id="24_6j6fw"]
 [ext_resource type="Script" uid="uid://busw405b68h0v" path="res://scripts/trigger_body.gd" id="24_guuop"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Texture2D" uid="uid://buxe7ig33jfct" path="res://assets/floorandstuff/LavaV2.png" id="24_vjo16"]
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="25_1k5bn"]
-[ext_resource type="Texture2D" uid="uid://c1hof3uacvun7" path="res://assets/createdassets/rock2.png" id="25_dfx56"]
 [ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 [ext_resource type="Texture2D" uid="uid://calsrxt8pt8jk" path="res://assets/grass.png" id="26_aqg0f"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="26_d6s6r"]
-[ext_resource type="Texture2D" uid="uid://cj63sx8pp38pt" path="res://assets/createdassets/rock3.png" id="26_hq0kh"]
 [ext_resource type="PackedScene" uid="uid://bh1tyq3t8xos2" path="res://prefabs/tree_burnt_gridmap.tscn" id="26_lhn7i"]
 [ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
 [ext_resource type="PackedScene" uid="uid://c7liwpmdhkn7p" path="res://prefabs/tree_alive_gridmap.tscn" id="26_umtm3"]
-[ext_resource type="Texture2D" uid="uid://ba4rmkyhaecby" path="res://assets/createdassets/rock4.png" id="27_a82c5"]
 [ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="27_lhn7i"]
-[ext_resource type="Texture2D" uid="uid://cvfms3agyod64" path="res://assets/createdassets/rock5.png" id="28_mqtvo"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
 [ext_resource type="Script" uid="uid://gi3yl5dxxabq" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
@@ -104,9 +99,6 @@ size = Vector3(4.62631, 1, 2.81477)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2dp0v"]
-size = Vector3(1.74976, 0.260681, 1.64453)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjo16"]
 albedo_texture = ExtResource("24_vjo16")
@@ -1475,44 +1467,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.15982, 0, 28.9471)
 
 [node name="parkour table21" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.530968, 0, 24.7825)
-
-[node name="Sprite3D" type="Sprite3D" parent="volcano/parkour_tables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93558, 0.11859, 19.2306)
-pixel_size = 0.001
-axis = 1
-texture = ExtResource("24_6j6fw")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="volcano/parkour_tables/Sprite3D"]
-collision_layer = 5
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/parkour_tables/Sprite3D/StaticBody3D"]
-transform = Transform3D(1.12385, 0, 0, 0, 1.12385, 0, 0, 0, 1.12385, -0.00714111, -0.0796725, -0.0471954)
-shape = SubResource("BoxShape3D_2dp0v")
-
-[node name="Sprite3D2" type="Sprite3D" parent="volcano/parkour_tables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.084, 0.355, 30.659)
-pixel_size = 0.001
-axis = 1
-texture = ExtResource("25_dfx56")
-
-[node name="Sprite3D3" type="Sprite3D" parent="volcano/parkour_tables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.93185, 1.07331, 29.0526)
-pixel_size = 0.001
-axis = 1
-texture = ExtResource("26_hq0kh")
-
-[node name="Sprite3D4" type="Sprite3D" parent="volcano/parkour_tables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.83849, 1.36652, 30.0356)
-pixel_size = 0.001
-axis = 1
-texture = ExtResource("27_a82c5")
-
-[node name="Sprite3D5" type="Sprite3D" parent="volcano/parkour_tables"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32893, 0.664167, 26.8047)
-pixel_size = 0.001
-axis = 1
-texture = ExtResource("28_mqtvo")
 
 [node name="floor" type="Node3D" parent="volcano"]
 
