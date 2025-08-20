@@ -329,7 +329,6 @@ func _on_objective_plate_objective(changed_objective,plate_name,timer,address,pl
 
 
 func plate_check(contents,body,plate_pos,plate_rotation) -> void:
-	print("run")
 	if body.is_in_group("packageable"):
 		var activate_once = true
 		product = contents

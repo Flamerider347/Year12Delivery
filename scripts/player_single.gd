@@ -358,6 +358,7 @@ func bounce():
 	velocity.y = 8
 
 func pause_exit() -> void:
+	$"../kitchen/Audio_Box/trigger_body".menu()
 	if $"..".world_toggle:
 		$"..".world_toggle = false
 		$"../pause_menu".hide()
@@ -374,3 +375,5 @@ func pause_exit() -> void:
 			else:
 				$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
 				$"../menu".lose_screen()
+		await get_tree().create_timer(1.0).timeout
+		self.position.y += 10

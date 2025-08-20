@@ -1,49 +1,80 @@
 extends Area3D
-# Audio to be played.
-"res://assets/SFX/lava-bubbling-ambience.mp3"
-"res://assets/SFX/underwater-currents-ambience.mp3"
-"res://assets/SFX/howling-wind-ambience.mp3"
-@onready var tween = get_tree().create_tween()
+
+@onready var tracks = {
+	dine_in = $AudioStreamPlayer3D_lava,
+	lava = $AudioStreamPlayer3D_lava,
+	underwater = $AudioStreamPlayer3D_underwater,
+	restaurant = $AudioStreamPlayer3D_frozen,
+	menu = $menu,
+	book = $book
+}
+
+var playing_current = "menu"
+var playing_next = "menu"
+var menu_open = false
+
+func _ready() -> void:
+	menu()
+# Fade out a track over duration seconds
+func fade_out(track: AudioStreamPlayer3D, duration: float = 1.0):
+	var steps = 20
+	var step_time = duration / steps
+	var start_volume = float(track.volume_db)
+	for i in range(steps):
+		track.volume_db = lerp(start_volume, -40.0, float(i + 1)/steps)
+		await get_tree().create_timer(step_time).timeout
+	track.stop()
+
+# Fade in a track over duration seconds
+func fade_in(track: AudioStreamPlayer3D, duration: float = 1.0):
+	track.volume_db = -40.0
+	track.play()
+	var steps = 20
+	var step_time = duration / steps
+	for i in range(steps):
+		track.volume_db = lerp(-40.0, 0.0, float(i + 1)/steps)
+		await get_tree().create_timer(step_time).timeout
 
 func _on_body_entered(body):
-	# Creates tween variable audio manipulation
-	# Checks if the body enter is a player
-	if body.name == "player_single" or body.name == "player" or body.name == "player2":
-		# Checks which level is being played
-		if $"../../..".level == 1:
-			pass
-		elif $"../../..".level == 2:
-			# Starts to play the audio from the player
-			$AudioStreamPlayer3D_lava.play()
-			# Increases the sound through the db scale
-			tween.tween_property($AudioStreamPlayer3D_lava, "volume_db", 0, 2)
-		elif $"../../..".level == 3:
-			$AudioStreamPlayer3D_underwater.play()
-			tween.tween_property($AudioStreamPlayer3D_underwater, "volume_db", 0, 2)
-		#elif $"../../..".level == 4:
-			#$AudioStreamPlayer3D_frozen.play()
-			#tween.tween_property($AudioStreamPlayer3D_frozen, "volume_db", 0, 2)
-	else:
-		pass
+	if body.name in ["player_single", "player", "player2"]:
+		playing_next = "menu"  # Always switch to menu
+		
+		# Fade out whatever is currently playing (book or any other track)
+		if playing_current != "":
+			await fade_out(tracks[playing_current], 1.0)
+		
+		# Fade in the menu track
+		playing_current = playing_next
+		await fade_in(tracks[playing_current], 1.0)
+		playing_next = null
+		menu_open = false
 
 func _on_body_exited(body):
-	# Checks if the body enter is a player
-	if body.name == "player_single" or body.name == "player" or body.name == "player2":
-		# Checks which level is being played
+	if menu_open:
+		return
+	if body.name in ["player_single", "player", "player2"]:
 		if $"../../..".level == 1:
-			pass
+			playing_next = "lava"
 		elif $"../../..".level == 2:
-			# Decreases the sound through the db scale
-			tween.tween_property($AudioStreamPlayer3D_lava, "volume_db", -40, 2)
-			# Waits three seconds
-			await get_tree().create_timer(3.0).timeout
-			# Stops the audio player playing
-			$AudioStreamPlayer3D_lava.stop()
+			playing_next = "lava"
 		elif $"../../..".level == 3:
-			tween.tween_property($AudioStreamPlayer3D_underwater, "volume_db", -40, 2)
-			await get_tree().create_timer(3.0).timeout
-			$AudioStreamPlayer3D_underwater.stop()
-		#elif $"../../..".level == 4:
-			#tween.tween_property($AudioStreamPlayer3D_frozen, "volume_db", -40, 2)
-			#await get_tree().create_timer(3.0).timeout
-			$AudioStreamPlayer3D_frozen.stop()
+			playing_next = "underwater"
+		
+		await fade_out(tracks[playing_current], 1.0)
+		playing_current = playing_next
+		await fade_in(tracks[playing_current], 1.0)
+
+func menu():
+	if playing_current == "book":
+		return
+	menu_open = true
+	if tracks.has(playing_current):
+		await fade_out(tracks[playing_current], 1.0)
+	playing_current = "book"
+	await fade_in(tracks[playing_current], 1.0)
+	playing_next = null
+
+func close_menu():
+	if not menu_open:
+		return
+	menu_open = false

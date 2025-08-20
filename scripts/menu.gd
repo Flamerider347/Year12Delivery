@@ -60,7 +60,6 @@ func menu_load():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
-
 func _input(event):
 	#if button pressed, skips menu loading animatation
 	if event.is_action_pressed("interact_menu_controller"):
@@ -281,6 +280,7 @@ func _on_play_level_pressed() -> void:
 		$Timer.stop()
 		$"../transition animation".show()
 		$"../transition animation/transition animation".play("fade_transition_reverse")
+		$"../kitchen/audio_box/trigger_body"._on_body_entered()
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
 
