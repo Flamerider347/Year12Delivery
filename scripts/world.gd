@@ -329,14 +329,17 @@ func _on_objective_plate_objective(changed_objective,plate_name,timer,address,pl
 
 
 func plate_check(contents,body,plate_pos,plate_rotation) -> void:
+	print("run")
 	if body.is_in_group("packageable"):
+		var activate_once = true
 		product = contents
 		var sorted_product = product.duplicate()
 		sorted_product.sort()
 		for objective in objectives:
 			var sorted_objective = objectives[objective][0].duplicate()
 			sorted_objective.sort()
-			if sorted_product == sorted_objective:
+			if sorted_product == sorted_objective and activate_once:
+				activate_once = false
 				var plate_number = objectives[objective][3]
 				var spawned_box = pot.instantiate()
 				add_child(spawned_box)

@@ -308,7 +308,6 @@ background_mode = 2
 sky = SubResource("Sky_xfqyr")
 tonemap_mode = 2
 fog_density = 0.02
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.03
 
 [node name="world" type="Node3D" groups=["can_stack_plate"]]
@@ -318,7 +317,7 @@ script = ExtResource("1_k40i2")
 navigation_mesh = SubResource("NavigationMesh_aqg0f")
 
 [node name="kitchen" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0.08, 128)
 
 [node name="kitchen_walls" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.449997)
@@ -1626,6 +1625,7 @@ shape = SubResource("BoxShape3D_f6knb")
 
 [node name="Audio_Box_Middle" type="Node3D" parent="underwater" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
+visible = false
 
 [node name="trigger_body" type="Area3D" parent="underwater/Audio_Box_Middle"]
 collision_layer = 5
@@ -1655,6 +1655,7 @@ volume_db = -40.0
 [node name="Timer" type="Timer" parent="underwater/Audio_Box_Middle/trigger_body"]
 
 [node name="Audio_Box_Left" type="Node3D" parent="underwater" groups=["keep"]]
+visible = false
 
 [node name="trigger_body" type="Area3D" parent="underwater/Audio_Box_Left"]
 collision_layer = 5
@@ -1684,6 +1685,7 @@ volume_db = -40.0
 [node name="Timer" type="Timer" parent="underwater/Audio_Box_Left/trigger_body"]
 
 [node name="Audio_Box_Right" type="Node3D" parent="underwater" groups=["keep"]]
+visible = false
 
 [node name="trigger_body" type="Area3D" parent="underwater/Audio_Box_Right"]
 collision_layer = 5
