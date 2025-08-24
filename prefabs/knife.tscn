@@ -9,7 +9,7 @@ size = Vector3(0.260298, 0.107117, 0.797)
 [sub_resource type="BoxShape3D" id="BoxShape3D_eqqha"]
 size = Vector3(0.255676, 0.102249, 1.14643)
 
-[node name="knife" type="RigidBody3D" groups=["knife", "pickupable"]]
+[node name="knife" type="RigidBody3D" groups=["knife", "outline", "pickupable"]]
 mass = 0.6
 script = ExtResource("1_35fu0")
 

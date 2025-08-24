@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+var outlined_meshes: Array = []
 var speed = 0
 var can_pickup = true
 var controlling = false
@@ -91,6 +91,25 @@ func _physics_process(delta: float):
 
 
 	if controlling:
+		if seecast.is_colliding():
+			# clear previous outlines first
+			for m in outlined_meshes:
+				if m and m.material_overlay:
+					m.material_overlay = null
+			outlined_meshes.clear()
+			
+			# only outline if collider is in group and not holding something
+			if seecast.is_colliding() and not held_object and seecast.get_collider().is_in_group("outline"):
+				for child in seecast.get_collider().get_children():
+					if child is MeshInstance3D:
+						child.material_overlay = load("res://haydenfoundassets/pixel_perfect_outline.tres")
+						outlined_meshes.append(child)
+		else:
+			# no collision → clear any old outlines
+			for m in outlined_meshes:
+				if m and m.material_overlay:
+					m.material_overlay = null
+			outlined_meshes.clear()
 		if head_moving:
 			if abs($head.position.y - head_target_position) > 0.05:
 				$head.position.y = lerp($head.position.y, head_target_position, 0.2)

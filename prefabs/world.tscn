@@ -303,7 +303,7 @@ script = ExtResource("1_k40i2")
 navigation_mesh = SubResource("NavigationMesh_aqg0f")
 
 [node name="kitchen" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 
 [node name="Audio_Box" parent="kitchen" instance=ExtResource("2_p78bo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.486, 4.979)

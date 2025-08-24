@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://10jmhqt1mltu"]
+
+[ext_resource type="Shader" uid="uid://c5uiaf4puft8d" path="res://haydenfoundassets/bacon_egg_toast.gdshader" id="1_ec7on"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ec7on")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 10.0

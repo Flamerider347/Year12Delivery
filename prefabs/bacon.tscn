@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_oy0vl"]
 size = Vector3(0.748901, 0.123535, 0.276563)
 
-[node name="bacon" type="RigidBody3D" groups=["cookable", "pickupable"]]
+[node name="bacon" type="RigidBody3D" groups=["cookable", "outline", "pickupable"]]
 script = ExtResource("1_q45tl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

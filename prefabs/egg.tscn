@@ -12,7 +12,7 @@ height = 0.322924
 radius = 0.126257
 height = 0.366868
 
-[node name="egg" type="RigidBody3D" groups=["pickupable"]]
+[node name="egg" type="RigidBody3D" groups=["outline", "pickupable"]]
 script = ExtResource("1_2plfv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

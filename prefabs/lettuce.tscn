@@ -6,7 +6,7 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ycxo7"]
 height = 0.795349
 
-[node name="lettuce" type="RigidBody3D" groups=["choppable", "pickupable"]]
+[node name="lettuce" type="RigidBody3D" groups=["choppable", "outline", "pickupable"]]
 script = ExtResource("1_ycxo7")
 
 [node name="FoodIngredientLettuce" type="MeshInstance3D" parent="."]

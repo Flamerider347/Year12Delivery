@@ -7,7 +7,7 @@
 height = 1.23633
 radius = 0.268555
 
-[node name="carrot" type="RigidBody3D" groups=["choppable", "pickupable"]]
+[node name="carrot" type="RigidBody3D" groups=["choppable", "outline", "pickupable"]]
 transform = Transform3D(-1, 8.74228e-08, 0, -1.04251e-15, -1.19249e-08, 1, 8.74228e-08, 1, 1.19249e-08, 0, 0, 0)
 script = ExtResource("1_wtyes")
 

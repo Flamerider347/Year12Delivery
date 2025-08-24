@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dowux"]
 size = Vector3(0.339966, 0.0473022, 0.322021)
 
-[node name="egg_cracked_cooked" type="RigidBody3D" groups=["can_stack_plate", "meat", "pickupable"]]
+[node name="egg_cracked_cooked" type="RigidBody3D" groups=["can_stack_plate", "meat", "outline", "pickupable"]]
 script = ExtResource("1_n8w26")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

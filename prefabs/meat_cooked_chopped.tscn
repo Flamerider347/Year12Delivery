@@ -11,7 +11,7 @@ uv1_offset = Vector3(0.1, -1.5, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7nnsw"]
 size = Vector3(0.655212, 0.441345, 0.621582)
 
-[node name="cooked_meat_chopped" type="RigidBody3D" groups=["can_stack_bowl", "pickupable"]]
+[node name="cooked_meat_chopped" type="RigidBody3D" groups=["can_stack_bowl", "outline", "pickupable"]]
 script = ExtResource("1_7nnsw")
 
 [node name="FoodIngredientSteakPieces" type="MeshInstance3D" parent="."]

@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ts8n"]
 size = Vector3(0.358948, 0.0331268, 0.325195)
 
-[node name="egg_cracked" type="RigidBody3D" groups=["cookable", "pickupable"]]
+[node name="egg_cracked" type="RigidBody3D" groups=["cookable", "outline", "pickupable"]]
 script = ExtResource("1_kw8qq")
 
 [node name="Cracked-eggRaw" type="MeshInstance3D" parent="."]

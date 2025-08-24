@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dfrlc"]
 size = Vector3(0.958984, 0.303223, 1)
 
-[node name="bowl" type="RigidBody3D" groups=["pickupable", "stackable"]]
+[node name="bowl" type="RigidBody3D" groups=["outline", "pickupable", "stackable"]]
 script = ExtResource("1_dfrlc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

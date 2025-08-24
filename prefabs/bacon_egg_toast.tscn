@@ -11,7 +11,7 @@
 height = 0.299591
 radius = 0.487305
 
-[node name="bacon_egg_toast" type="RigidBody3D" groups=["packageable", "pickupable"]]
+[node name="bacon_egg_toast" type="RigidBody3D" groups=["outline", "packageable", "pickupable"]]
 script = ExtResource("1_l5rxw")
 
 [node name="Bacon" type="MeshInstance3D" parent="."]
@@ -37,6 +37,7 @@ shape = SubResource("CylinderShape3D_0omm0")
 
 [node name="Cracked-eggCooked" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0198842, 0.201001, 0.147015)
+cast_shadow = 0
 mesh = ExtResource("6_nfu55")
 surface_material_override/0 = ExtResource("3_6ocx3")
 surface_material_override/1 = ExtResource("3_6ocx3")

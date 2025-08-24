@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_cn6fc"]
 size = Vector3(0.825, 0.0470093, 0.825)
 
-[node name="cheese_chopped" type="RigidBody3D" groups=["can_stack_plate", "pickupable"]]
+[node name="cheese_chopped" type="RigidBody3D" groups=["can_stack_plate", "outline", "pickupable"]]
 script = ExtResource("1_cn6fc")
 
 [node name="FoodIngredientCheeseSlice" type="MeshInstance3D" parent="."]

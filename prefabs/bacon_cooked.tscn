@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_46pbv"]
 size = Vector3(0.748901, 0.123535, 0.276563)
 
-[node name="bacon_cooked" type="RigidBody3D" groups=["can_stack_plate", "meat", "pickupable"]]
+[node name="bacon_cooked" type="RigidBody3D" groups=["can_stack_plate", "meat", "outline", "pickupable"]]
 script = ExtResource("1_cbq4y")
 
 [node name="Bacon" type="MeshInstance3D" parent="."]

@@ -10,7 +10,7 @@ rough = true
 height = 0.308044
 radius = 0.339844
 
-[node name="bun_top_chopped" type="RigidBody3D" groups=["can_stack", "can_stack_plate", "pickupable"]]
+[node name="bun_top_chopped" type="RigidBody3D" groups=["can_stack", "can_stack_plate", "outline", "pickupable"]]
 physics_material_override = SubResource("PhysicsMaterial_psc68")
 script = ExtResource("1_5lp56")
 

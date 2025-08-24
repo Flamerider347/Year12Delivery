@@ -7,7 +7,7 @@
 height = 0.0863037
 radius = 0.396484
 
-[node name="lettuce_chopped" type="RigidBody3D" groups=["can_stack_plate", "pickupable"]]
+[node name="lettuce_chopped" type="RigidBody3D" groups=["can_stack_plate", "outline", "pickupable"]]
 script = ExtResource("1_f7ufg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
