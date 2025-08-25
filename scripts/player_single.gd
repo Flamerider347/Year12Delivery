@@ -104,7 +104,7 @@ func _physics_process(delta: float):
 				if is_instance_valid(col) and col.is_in_group("outline"):
 					for child in col.get_children():
 						if child is MeshInstance3D:
-							child.material_overlay = load("res://haydenfoundassets/pixel_perfect_outline.tres")
+							child.material_overlay = load("res://assets/haydenfoundassets/pixel_perfect_outline.tres")
 							outlined_meshes.append(child)
 
 		else:

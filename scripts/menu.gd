@@ -53,7 +53,7 @@ func menu_load():
 	hide_everything()
 	$CanvasLayer/main_menu.show()
 	$CanvasLayer/book_resting_left.show()
-	for i in $CanvasLayer/level_select.get_children():
+	for i in $CanvasLayer/main_menu.get_children():
 		if str(i.name) in $"..".unlocked_levels.keys():
 			if $"..".unlocked_levels[str(i.name)] == false:
 				i.hide()
@@ -132,25 +132,6 @@ func _on_level_4() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
-
-func level_select():
-	var returning = false
-	if $CanvasLayer/layout.visible == true:
-		returning = true
-	hide_everything()
-	# Plays animation of the book flipping to the right, same for every time a button going into a submenu is pressed.
-	$CanvasLayer/AnimatedSprite2D.show()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	if returning:
-		$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
-		$CanvasLayer/book_resting_left.show()
-	else:
-		$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-		$CanvasLayer/book_resting_right.show()
-	await get_tree().create_timer(1.5).timeout
-	$CanvasLayer/AnimatedSprite2D.hide()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/level_select.show()
 
 func main_menu():
 	hide_everything()
@@ -280,7 +261,6 @@ func _on_play_level_pressed() -> void:
 		$Timer.stop()
 		$"../transition animation".show()
 		$"../transition animation/transition animation".play("fade_transition_reverse")
-		$"../kitchen/audio_box/trigger_body"._on_body_entered()
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
 
@@ -301,8 +281,8 @@ func hide_everything():
 		i.hide()
 		
 func level_select_1() -> void:
-	$"..".player_count = 1
-	level_select()
+	$CanvasLayer/main_menu/players_2.button_pressed = false
+
 
 func level_select_2() -> void:
 	$"..".controllers = 0
@@ -311,8 +291,11 @@ func level_select_2() -> void:
 			$"..".controllers += 1
 	if $"..".controllers == 2:
 		$"..".player_count = 2
-		level_select()
+		$CanvasLayer/main_menu/players_1.button_pressed = false
 	else:
+		$CanvasLayer/main_menu/players_1.button_pressed = true
+		$"..".player_count = 1
+		$CanvasLayer/main_menu/players_2.button_pressed = false
 		$CanvasLayer/main_menu/players_2.text = "Needs 2
 		Controllers"
 		await get_tree().create_timer(0.5).timeout
