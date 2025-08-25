@@ -33,7 +33,7 @@
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
 [ext_resource type="Texture2D" uid="uid://buxe7ig33jfct" path="res://assets/floorandstuff/LavaV2.png" id="24_vjo16"]
-[ext_resource type="Texture2D" uid="uid://5vxkr5v5ey8l" path="res://assets/createdassets/WaterV2.png" id="25_h6gec"]
+[ext_resource type="Texture2D" uid="uid://bp8qrttk51j5s" path="res://assets/createdassets/Water.png" id="25_p78bo"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 [ext_resource type="Texture2D" uid="uid://calsrxt8pt8jk" path="res://assets/grass.png" id="26_aqg0f"]
 [ext_resource type="PackedScene" uid="uid://bh1tyq3t8xos2" path="res://prefabs/tree_burnt_gridmap.tscn" id="26_lhn7i"]
@@ -99,7 +99,7 @@ uv1_scale = Vector3(3, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6gec"]
 shading_mode = 0
-albedo_texture = ExtResource("25_h6gec")
+albedo_texture = ExtResource("25_p78bo")
 uv1_scale = Vector3(5, 5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
