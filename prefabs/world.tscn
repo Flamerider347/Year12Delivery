@@ -40,7 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
 [ext_resource type="PackedScene" uid="uid://c7liwpmdhkn7p" path="res://prefabs/tree_alive_gridmap.tscn" id="26_umtm3"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
-[ext_resource type="Script" uid="uid://gi3yl5dxxabq" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="AudioStream" uid="uid://droo54gtqhbaf" path="res://assets/SFX/knife chopping.wav" id="32_w1n2x"]
