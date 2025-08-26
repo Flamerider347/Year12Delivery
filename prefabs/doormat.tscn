@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk2cvubqe7sky"]
+
+[ext_resource type="ArrayMesh" uid="uid://dkytuhgvfx1fr" path="res://assets/createdassets/door-mat.obj" id="1_fbfy4"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_8aanf"]
+
+[node name="Doormat" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_fbfy4")
+surface_material_override/0 = ExtResource("2_8aanf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
