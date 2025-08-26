@@ -336,7 +336,7 @@ func _on_h_slider_value_changed(value: float) -> void:
 
 
 func _on_h_slider_2_value_changed(value:int) -> void:
-	$CanvasLayer/options/RichTextLabel2.text = "Time between burger spawns: " + str(value)
+	$CanvasLayer/options/RichTextLabel4.text = "Time between burger spawns: " + str(value)
 	$"..".next_spawn_time = value
 
 

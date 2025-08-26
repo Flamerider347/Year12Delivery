@@ -17,6 +17,7 @@ var bench_type_sprites = {
 	"burger_hayden" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png"),
 	"burger_ben" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png"),
 	"burger_aine" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png"),
+	"burger_sullivan" : preload("res://assets/resized-images/Screenshot 2025-08-26 144301.png"),
 	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png"),
 	"bacon_egg_toast" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png"),
 	"unselect" : preload("res://assets/icon.svg")
