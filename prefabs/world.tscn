@@ -1497,6 +1497,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524684, 0)
 
 [node name="dinein" type="MeshInstance3D" parent="player_single/head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.039, 0.007)
+visible = false
 material_override = SubResource("StandardMaterial3D_jbo5a")
 transparency = 0.95
 mesh = SubResource("SphereMesh_aqg0f")
@@ -1504,6 +1505,7 @@ skeleton = NodePath("../..")
 
 [node name="volcano" type="MeshInstance3D" parent="player_single/head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038859, 0.00701427)
+visible = false
 material_override = SubResource("StandardMaterial3D_er0x2")
 transparency = 0.9
 mesh = SubResource("SphereMesh_aqg0f")

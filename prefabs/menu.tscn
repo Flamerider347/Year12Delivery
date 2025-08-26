@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=37 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
@@ -30,10 +30,12 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_7xkfb"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y5qo3"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
 size = Vector2(80, 80)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_w3v8e"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_t816m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwafa"]
 size = Vector2(613, 399)
@@ -68,6 +70,7 @@ position = Vector2(960, 540)
 texture = ExtResource("3_j5t5k")
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -355,17 +358,17 @@ text = "[u]Lead Programmer[/u] - Hayden Clemence
 [u]Assistant Designer[/u] - Finn Tan"
 
 [node name="return" type="Button" parent="CanvasLayer/credits"]
-offset_left = 1421.0
-offset_top = 10.0
-offset_right = 1907.0
-offset_bottom = 104.0
-text = "Return to main menu"
+offset_left = 1310.0
+offset_top = 80.0
+offset_right = 1530.0
+offset_bottom = 174.0
+text = "Return"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/credits"]
-offset_left = 1033.0
-offset_top = 67.0
-offset_right = 1616.0
-offset_bottom = 1008.0
+offset_left = 997.0
+offset_top = 190.0
+offset_right = 1580.0
+offset_bottom = 952.0
 bbcode_enabled = true
 text = "[u]Special thanks to playtesters:[/u]
 Oliver Grace
@@ -381,49 +384,42 @@ Mr O'Sullivan"
 visible = false
 
 [node name="return" type="Button" parent="CanvasLayer/options"]
-offset_left = 1421.0
-offset_top = 10.0
-offset_right = 1907.0
-offset_bottom = 104.0
-text = "Return to main menu"
+offset_left = 1310.0
+offset_top = 80.0
+offset_right = 1530.0
+offset_bottom = 174.0
+text = "Return"
 
 [node name="HSlider" type="HSlider" parent="CanvasLayer/options"]
-offset_left = 999.0
-offset_top = 191.0
-offset_right = 1406.0
-offset_bottom = 207.0
+offset_left = 424.0
+offset_top = 189.0
+offset_right = 831.0
+offset_bottom = 205.0
 min_value = 0.01
 max_value = 10.0
 step = 0.01
 value = 5.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 972.0
-offset_top = 72.0
-offset_right = 1343.0
-offset_bottom = 181.0
+offset_left = 397.0
+offset_top = 70.0
+offset_right = 768.0
+offset_bottom = 179.0
 text = "Sensitivity: 5.0"
 
 [node name="HSlider2" type="HSlider" parent="CanvasLayer/options"]
-offset_left = 1002.0
-offset_top = 426.0
-offset_right = 1409.0
-offset_bottom = 442.0
+offset_left = 427.0
+offset_top = 424.0
+offset_right = 834.0
+offset_bottom = 440.0
 min_value = 1.0
 value = 50.0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 972.0
-offset_top = 218.0
-offset_right = 1492.0
-offset_bottom = 407.0
-text = "Time between burger spawns: 50"
-
 [node name="Glossary" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 365.0
-offset_top = 69.0
-offset_right = 960.0
-offset_bottom = 1002.0
+offset_left = 969.0
+offset_top = 189.0
+offset_right = 1564.0
+offset_bottom = 1122.0
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[u]Glossary of options[/u]
@@ -436,70 +432,69 @@ fit_content = true
 tab_size = 3
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 972.0
-offset_top = 218.0
-offset_right = 1492.0
-offset_bottom = 407.0
+offset_left = 397.0
+offset_top = 216.0
+offset_right = 917.0
+offset_bottom = 405.0
 text = "Time between burger spawns: 50"
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 972.0
-offset_top = 469.0
-offset_right = 1492.0
-offset_bottom = 567.0
+offset_left = 397.0
+offset_top = 467.0
+offset_right = 917.0
+offset_bottom = 565.0
 text = "Master Volume"
 
 [node name="HSlider3" type="HSlider" parent="CanvasLayer/options"]
-offset_left = 1002.0
-offset_top = 605.0
-offset_right = 1409.0
-offset_bottom = 621.0
+offset_left = 427.0
+offset_top = 603.0
+offset_right = 834.0
+offset_bottom = 619.0
 max_value = 1.0
 step = 0.001
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 972.0
-offset_top = 669.0
-offset_right = 1492.0
-offset_bottom = 767.0
+offset_left = 397.0
+offset_top = 667.0
+offset_right = 917.0
+offset_bottom = 765.0
 text = "SFX Volume"
 
 [node name="HSlider4" type="HSlider" parent="CanvasLayer/options"]
-offset_left = 1002.0
-offset_top = 805.0
-offset_right = 1409.0
-offset_bottom = 821.0
+offset_left = 427.0
+offset_top = 803.0
+offset_right = 834.0
+offset_bottom = 819.0
 max_value = 1.0
 step = 0.001
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="CanvasLayer/options"]
-offset_left = 972.0
-offset_top = 849.0
-offset_right = 1492.0
-offset_bottom = 947.0
+offset_left = 397.0
+offset_top = 847.0
+offset_right = 917.0
+offset_bottom = 945.0
 text = "Ambience Volume"
 
 [node name="HSlider5" type="HSlider" parent="CanvasLayer/options"]
-offset_left = 1002.0
-offset_top = 985.0
-offset_right = 1409.0
-offset_bottom = 1001.0
+offset_left = 427.0
+offset_top = 983.0
+offset_right = 834.0
+offset_bottom = 999.0
 max_value = 1.0
 step = 0.001
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
-[node name="photo" type="Sprite2D" parent="CanvasLayer/layout"]
-position = Vector2(998, 645)
-scale = Vector2(2.325, 2.325)
-texture = SubResource("CompressedTexture2D_y5qo3")
+[node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
+position = Vector2(1244, 434)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("4_7xkfb")
 
 [node name="layout_benches" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="bench_1" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 200)
+position = Vector2(1040, 230)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -509,7 +504,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_1"]
 
 [node name="bench_2" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1120, 200)
+position = Vector2(1120, 230)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -519,7 +514,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_2"]
 
 [node name="bench_3" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1200, 200)
+position = Vector2(1200, 230)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -529,7 +524,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_3"]
 
 [node name="bench_4" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1280, 200)
+position = Vector2(1280, 230)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -539,7 +534,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_4"]
 
 [node name="bench_5" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1360, 200)
+position = Vector2(1360, 230)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -549,7 +544,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_5"]
 
 [node name="bench_6" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 200)
+position = Vector2(1440, 230)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -559,7 +554,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_6"]
 
 [node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 280)
+position = Vector2(1440, 310)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -569,7 +564,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
 
 [node name="bench_7" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 280)
+position = Vector2(1040, 310)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -579,7 +574,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_7"]
 
 [node name="bench_9" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 360)
+position = Vector2(1040, 390)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -589,7 +584,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_9"]
 
 [node name="bench_10" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 360)
+position = Vector2(1440, 390)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -599,7 +594,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_10"]
 
 [node name="bench_11" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 440)
+position = Vector2(1040, 470)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -609,7 +604,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_11"]
 
 [node name="bench_12" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 440)
+position = Vector2(1440, 470)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -619,7 +614,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_12"]
 
 [node name="bench_13" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 520)
+position = Vector2(1040, 550)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -629,7 +624,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_13"]
 
 [node name="bench_14" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 520)
+position = Vector2(1440, 550)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -639,7 +634,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_14"]
 
 [node name="bench_15" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 600)
+position = Vector2(1040, 630)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -649,7 +644,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_15"]
 
 [node name="bench_16" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 600)
+position = Vector2(1440, 630)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -659,7 +654,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_16"]
 
 [node name="bench_17" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1120, 600)
+position = Vector2(1120, 630)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -669,7 +664,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_17"]
 
 [node name="bench_18" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1360, 600)
+position = Vector2(1360, 630)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -677,6 +672,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_18"]
+
+[node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/layout/layout_benches/unselect_area"]
+polygon = PackedVector2Array(990, 180, 1490, 180, 1490, 680, 1310, 680, 1310, 580, 1390, 580, 1390, 280, 1090, 280, 1090, 580, 1170, 580, 1170, 680, 990, 680)
 
 [node name="layout_shop" type="Node2D" parent="CanvasLayer/layout"]
 
@@ -766,27 +766,32 @@ text = "Money:"
 metadata/_edit_use_anchors_ = true
 
 [node name="return" type="Button" parent="CanvasLayer/layout"]
-offset_left = 1700.0
-offset_top = 10.0
-offset_right = 1900.0
-offset_bottom = 60.0
+offset_left = 1310.0
+offset_top = 80.0
+offset_right = 1530.0
+offset_bottom = 174.0
 text = "Return"
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades_button" type="Button" parent="CanvasLayer/layout"]
-offset_left = 441.0
-offset_top = 121.0
-offset_right = 678.0
-offset_bottom = 209.0
+offset_left = 401.0
+offset_top = 120.0
+offset_right = 671.0
+offset_bottom = 214.0
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_w3v8e")
 text = "Upgrades"
 metadata/_edit_use_anchors_ = true
 
 [node name="recipes_button" type="Button" parent="CanvasLayer/layout"]
-offset_left = 719.0
-offset_top = 121.0
-offset_right = 897.0
-offset_bottom = 215.0
-text = "recipes"
+offset_left = 681.0
+offset_top = 120.0
+offset_right = 951.0
+offset_bottom = 214.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_t816m")
+text = "Recipes"
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
@@ -1068,10 +1073,10 @@ offset_bottom = 974.0
 text = "The upgrades menu allows you to buy benches and more (just benches rn) with money (in the top left)"
 
 [node name="show_tutorial" type="Button" parent="CanvasLayer/layout"]
-offset_left = 1646.0
-offset_top = 7.0
-offset_right = 1686.0
-offset_bottom = 101.0
+offset_left = 1260.0
+offset_top = 80.0
+offset_right = 1300.0
+offset_bottom = 174.0
 text = "?"
 
 [node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
@@ -1196,6 +1201,7 @@ font_size = 128
 [connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_18" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_18" to="CanvasLayer/layout/layout_benches/bench_18" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_18" to="CanvasLayer/layout/layout_benches/bench_18" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/unselect_area" to="CanvasLayer/layout" method="_on_unselect_area_mouse_exited_bench"]
 [connection signal="bench_type" from="CanvasLayer/layout/layout_shop/bench" to="CanvasLayer/layout" method="_on_bench_bench_type"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/bench" to="CanvasLayer/layout/layout_shop/bench" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/bench" to="CanvasLayer/layout/layout_shop/bench" method="_on_mouse_exited"]

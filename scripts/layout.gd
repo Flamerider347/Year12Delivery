@@ -143,11 +143,13 @@ func _on_bench_bench_type(type) -> void:
 func _on_recipes_button_pressed() -> void:
 	$upgrades.hide()
 	$recipes.show()
+	$upgrades_button.button_pressed = false
 
 
 func _on_upgrades_button_pressed() -> void:
 	$upgrades.show()
 	$recipes.hide()
+	$recipes_button.button_pressed = false
 
 
 
@@ -187,3 +189,7 @@ func _on_unselect_area_mouse_entered() -> void:
 
 func _on_unselect_area_mouse_exited() -> void:
 	entered_unselect_area = false
+
+
+func _on_unselect_area_mouse_exited_bench() -> void:
+	editing_bench = null
