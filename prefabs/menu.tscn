@@ -75,9 +75,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 440.0
+offset_left = 430.0
 offset_top = 500.0
-offset_right = 660.0
+offset_right = 650.0
 offset_bottom = 594.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -92,9 +92,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 660.0
+offset_left = 670.0
 offset_top = 500.0
-offset_right = 880.0
+offset_right = 890.0
 offset_bottom = 594.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -108,18 +108,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 440.0
+offset_left = 430.0
 offset_top = 640.0
-offset_right = 660.0
+offset_right = 650.0
 offset_bottom = 734.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Options"
 
 [node name="quit" type="Button" parent="CanvasLayer/main_menu"]
-offset_left = 660.0
+offset_left = 670.0
 offset_top = 640.0
-offset_right = 880.0
+offset_right = 890.0
 offset_bottom = 734.0
 text = "Quit"
 
@@ -143,9 +143,9 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_7xkfb")
 
 [node name="level_0" type="Button" parent="CanvasLayer/main_menu"]
-offset_left = 1250.0
+offset_left = 1270.0
 offset_top = 500.0
-offset_right = 1470.0
+offset_right = 1490.0
 offset_bottom = 594.0
 text = "Tutorial"
 
@@ -157,9 +157,9 @@ offset_bottom = 734.0
 text = "Level 1"
 
 [node name="level_2" type="Button" parent="CanvasLayer/main_menu"]
-offset_left = 1250.0
+offset_left = 1270.0
 offset_top = 640.0
-offset_right = 1470.0
+offset_right = 1490.0
 offset_bottom = 734.0
 text = "Level 2"
 
@@ -171,9 +171,9 @@ offset_bottom = 874.0
 text = "Level 3"
 
 [node name="level_4" type="Button" parent="CanvasLayer/main_menu"]
-offset_left = 1250.0
+offset_left = 1270.0
 offset_top = 780.0
-offset_right = 1470.0
+offset_right = 1490.0
 offset_bottom = 874.0
 text = "Level 4"
 
