@@ -1,9 +1,9 @@
 [gd_scene load_steps=38 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
+[ext_resource type="Texture2D" uid="uid://invjjj3eyaob" path="res://assets/bookanim_right_nobg/tu30-Photoroom.png" id="2_7xkfb"]
 [ext_resource type="Script" uid="uid://b6ke1g0es30vg" path="res://scripts/layout.gd" id="2_kuqlr"]
-[ext_resource type="Texture2D" uid="uid://cgpjvgxwv1hbu" path="res://assets/bookanim_left/tut0030.png" id="2_tcgir"]
-[ext_resource type="Texture2D" uid="uid://du5fhr6bwrf4s" path="res://assets/bookanim_left/tut0001.png" id="3_j5t5k"]
+[ext_resource type="Texture2D" uid="uid://du5wly5ra5c5i" path="res://assets/bookanim_left_nobg/tut0001-Photoroom.png" id="3_w3v8e"]
 [ext_resource type="Texture2D" uid="uid://beni3mx1rotvr" path="res://assets/createdassets/Delivery_Cover-art.png" id="4_7xkfb"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
@@ -63,12 +63,14 @@ script = ExtResource("1_jhrhb")
 [node name="book_resting_left" type="Sprite2D" parent="CanvasLayer"]
 visible = false
 position = Vector2(960, 540)
-texture = ExtResource("2_tcgir")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_7xkfb")
 metadata/_edit_lock_ = true
 
 [node name="book_resting_right" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(960, 540)
-texture = ExtResource("3_j5t5k")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_w3v8e")
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
 visible = false

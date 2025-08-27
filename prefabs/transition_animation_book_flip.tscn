@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cfepmsyun4rjo"]
+[gd_scene load_steps=82 format=3 uid="uid://cfepmsyun4rjo"]
 
 [ext_resource type="Texture2D" uid="uid://du5fhr6bwrf4s" path="res://assets/bookanim_left/tut0001.png" id="1_6fud0"]
 [ext_resource type="Texture2D" uid="uid://cb5hh2q3f2prg" path="res://assets/bookanim_left/tut0002.png" id="2_76j1r"]
@@ -21,28 +21,133 @@
 [ext_resource type="Texture2D" uid="uid://4ij6wnbb4gvw" path="res://assets/bookanim_left/tut0019.png" id="19_yv21j"]
 [ext_resource type="Texture2D" uid="uid://di2nif722ay1u" path="res://assets/bookanim_left/tut0020.png" id="20_0nyr6"]
 [ext_resource type="Texture2D" uid="uid://becp35e2utngt" path="res://assets/bookanim_right/tu11.png" id="41_esfee"]
+[ext_resource type="Texture2D" uid="uid://78bvtouob0cd" path="res://assets/bookanim_right_nobg/tu11-Photoroom.png" id="41_mpm73"]
+[ext_resource type="Texture2D" uid="uid://du5wly5ra5c5i" path="res://assets/bookanim_left_nobg/tut0001-Photoroom.png" id="41_ytcqq"]
 [ext_resource type="Texture2D" uid="uid://bk35xsx78v1bj" path="res://assets/bookanim_right/tu12.png" id="42_1kfkd"]
+[ext_resource type="Texture2D" uid="uid://d1ixwsjju2g56" path="res://assets/bookanim_right_nobg/tu12-Photoroom.png" id="42_3ird0"]
+[ext_resource type="Texture2D" uid="uid://blkuhunnih6iw" path="res://assets/bookanim_left_nobg/tut0002-Photoroom.png" id="42_nqaxi"]
+[ext_resource type="Texture2D" uid="uid://dx6xicxh5jvik" path="res://assets/bookanim_right_nobg/tu13-Photoroom.png" id="43_cke12"]
+[ext_resource type="Texture2D" uid="uid://givdciet6kdn" path="res://assets/bookanim_left_nobg/tut0003-Photoroom.png" id="43_h8btg"]
 [ext_resource type="Texture2D" uid="uid://c77l4blko7ki0" path="res://assets/bookanim_right/tu13.png" id="43_xj5fr"]
 [ext_resource type="Texture2D" uid="uid://cutbd2hlxgxrt" path="res://assets/bookanim_right/tu14.png" id="44_2eeic"]
+[ext_resource type="Texture2D" uid="uid://eog325e4ic44" path="res://assets/bookanim_right_nobg/tu14-Photoroom.png" id="44_obxej"]
+[ext_resource type="Texture2D" uid="uid://qrm5dbnb1rf3" path="res://assets/bookanim_left_nobg/tut0004-Photoroom.png" id="44_x5ymu"]
 [ext_resource type="Texture2D" uid="uid://dgj726keylghw" path="res://assets/bookanim_right/tu15.png" id="45_44bwp"]
+[ext_resource type="Texture2D" uid="uid://d24epgr0evp68" path="res://assets/bookanim_left_nobg/tut0005-Photoroom.png" id="45_d8r68"]
+[ext_resource type="Texture2D" uid="uid://c1xjnwxeom025" path="res://assets/bookanim_right_nobg/tu15-Photoroom.png" id="45_i7qsq"]
+[ext_resource type="Texture2D" uid="uid://d4apvk7djoukm" path="res://assets/bookanim_right_nobg/tu16-Photoroom.png" id="46_47f77"]
+[ext_resource type="Texture2D" uid="uid://dd4hxg8ju874w" path="res://assets/bookanim_left_nobg/tut0006-Photoroom.png" id="46_fulu8"]
 [ext_resource type="Texture2D" uid="uid://c0jcctvese248" path="res://assets/bookanim_right/tu16.png" id="46_v7l6s"]
+[ext_resource type="Texture2D" uid="uid://dqqtecsvts6f8" path="res://assets/bookanim_right_nobg/tu17-Photoroom.png" id="47_3ctaw"]
+[ext_resource type="Texture2D" uid="uid://ddh34a6e082bb" path="res://assets/bookanim_left_nobg/tut0007-Photoroom.png" id="47_n7h6p"]
 [ext_resource type="Texture2D" uid="uid://bjvrcv3v52mj3" path="res://assets/bookanim_right/tu17.png" id="47_qtjaa"]
+[ext_resource type="Texture2D" uid="uid://c0sg3ot5hlkni" path="res://assets/bookanim_right_nobg/tu18-Photoroom.png" id="48_3npjm"]
 [ext_resource type="Texture2D" uid="uid://d285dcmobkj1a" path="res://assets/bookanim_right/tu18.png" id="48_70bpq"]
+[ext_resource type="Texture2D" uid="uid://cgkmoxtk4r78k" path="res://assets/bookanim_left_nobg/tut0008-Photoroom.png" id="48_pue2s"]
+[ext_resource type="Texture2D" uid="uid://fpfqhw67yvtq" path="res://assets/bookanim_left_nobg/tut0009-Photoroom.png" id="49_t4h06"]
 [ext_resource type="Texture2D" uid="uid://cvqgo0cokshr8" path="res://assets/bookanim_right/tu19.png" id="49_tum2x"]
+[ext_resource type="Texture2D" uid="uid://jq4aeayqavu1" path="res://assets/bookanim_right_nobg/tu19-Photoroom.png" id="49_usyqs"]
+[ext_resource type="Texture2D" uid="uid://dh5ln2qwqa44u" path="res://assets/bookanim_right_nobg/tu20-Photoroom.png" id="50_lj0uc"]
 [ext_resource type="Texture2D" uid="uid://cfqvdn4ekvquq" path="res://assets/bookanim_right/tu20.png" id="50_lrbhl"]
+[ext_resource type="Texture2D" uid="uid://bycfqrf3a261o" path="res://assets/bookanim_left_nobg/tut0010-Photoroom.png" id="50_t583x"]
+[ext_resource type="Texture2D" uid="uid://dcy41io4yx472" path="res://assets/bookanim_left_nobg/tut0011-Photoroom.png" id="51_esfee"]
 [ext_resource type="Texture2D" uid="uid://bkn10x83dnlhn" path="res://assets/bookanim_right/tu21.png" id="51_mpm73"]
+[ext_resource type="Texture2D" uid="uid://cm4je7hbfu6uy" path="res://assets/bookanim_right_nobg/tu21-Photoroom.png" id="51_uofll"]
+[ext_resource type="Texture2D" uid="uid://lf2ol2e56sif" path="res://assets/bookanim_left_nobg/tut0012-Photoroom.png" id="52_1kfkd"]
 [ext_resource type="Texture2D" uid="uid://bt4wm82y4oyv3" path="res://assets/bookanim_right/tu22.png" id="52_3ird0"]
+[ext_resource type="Texture2D" uid="uid://b7pary5qyj1k2" path="res://assets/bookanim_right_nobg/tu22-Photoroom.png" id="52_ed1oy"]
 [ext_resource type="Texture2D" uid="uid://ckv6lwtiq58ui" path="res://assets/bookanim_right/tu23.png" id="53_cke12"]
+[ext_resource type="Texture2D" uid="uid://3qmrrcv6qjke" path="res://assets/bookanim_right_nobg/tu23-Photoroom.png" id="53_k564x"]
+[ext_resource type="Texture2D" uid="uid://dmevxwos6003" path="res://assets/bookanim_left_nobg/tut0013-Photoroom.png" id="53_xj5fr"]
+[ext_resource type="Texture2D" uid="uid://dp5l0clhh47pl" path="res://assets/bookanim_left_nobg/tut0014-Photoroom.png" id="54_2eeic"]
 [ext_resource type="Texture2D" uid="uid://037241ibicdg" path="res://assets/bookanim_right/tu24.png" id="54_obxej"]
+[ext_resource type="Texture2D" uid="uid://hn85yjpbipem" path="res://assets/bookanim_right_nobg/tu24-Photoroom.png" id="54_tt5rn"]
+[ext_resource type="Texture2D" uid="uid://mb3dk4b64ud8" path="res://assets/bookanim_right_nobg/tu25-Photoroom.png" id="55_8f4sw"]
+[ext_resource type="Texture2D" uid="uid://5vs7ywnjmevj" path="res://assets/bookanim_left_nobg/tut0015-Photoroom.png" id="55_44bwp"]
 [ext_resource type="Texture2D" uid="uid://c685fo3kwt55d" path="res://assets/bookanim_right/tu25.png" id="55_i7qsq"]
 [ext_resource type="Texture2D" uid="uid://djv6d155b4e0x" path="res://assets/bookanim_right/tu26.png" id="56_47f77"]
+[ext_resource type="Texture2D" uid="uid://dw82belli3gi3" path="res://assets/bookanim_right_nobg/tu26-Photoroom.png" id="56_jgo4w"]
+[ext_resource type="Texture2D" uid="uid://cusnk88qikavd" path="res://assets/bookanim_left_nobg/tut0016-Photoroom.png" id="56_v7l6s"]
 [ext_resource type="Texture2D" uid="uid://00agmgpa1pmi" path="res://assets/bookanim_right/tu27.png" id="57_3ctaw"]
+[ext_resource type="Texture2D" uid="uid://dg5te4i0imy0u" path="res://assets/bookanim_right_nobg/tu27-Photoroom.png" id="57_pnmkp"]
+[ext_resource type="Texture2D" uid="uid://be33vvnp2u0ei" path="res://assets/bookanim_left_nobg/tut0017-Photoroom.png" id="57_qtjaa"]
 [ext_resource type="Texture2D" uid="uid://ddmlvyl6mk8kj" path="res://assets/bookanim_right/tu28.png" id="58_3npjm"]
+[ext_resource type="Texture2D" uid="uid://qguxtvqv5k53" path="res://assets/bookanim_left_nobg/tut0018-Photoroom.png" id="58_70bpq"]
+[ext_resource type="Texture2D" uid="uid://b6kij7t1gv8ya" path="res://assets/bookanim_right_nobg/tu28-Photoroom.png" id="58_s0u61"]
+[ext_resource type="Texture2D" uid="uid://cmdy777h1sr26" path="res://assets/bookanim_left_nobg/tut0019-Photoroom.png" id="59_tum2x"]
+[ext_resource type="Texture2D" uid="uid://dm1dnav8m1p88" path="res://assets/bookanim_right_nobg/tu29-Photoroom.png" id="59_tybf6"]
 [ext_resource type="Texture2D" uid="uid://ccosktv5o0iba" path="res://assets/bookanim_right/tu29.png" id="59_usyqs"]
+[ext_resource type="Texture2D" uid="uid://invjjj3eyaob" path="res://assets/bookanim_right_nobg/tu30-Photoroom.png" id="60_ae86d"]
 [ext_resource type="Texture2D" uid="uid://dbtk1g85w8pxy" path="res://assets/bookanim_right/tu30.png" id="60_lj0uc"]
+[ext_resource type="Texture2D" uid="uid://ekvkxvfntqdc" path="res://assets/bookanim_left_nobg/tut0020-Photoroom.png" id="60_lrbhl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ytcqq"]
 animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("41_ytcqq")
+}, {
+"duration": 0.5,
+"texture": ExtResource("42_nqaxi")
+}, {
+"duration": 0.5,
+"texture": ExtResource("43_h8btg")
+}, {
+"duration": 0.5,
+"texture": ExtResource("44_x5ymu")
+}, {
+"duration": 0.5,
+"texture": ExtResource("45_d8r68")
+}, {
+"duration": 0.5,
+"texture": ExtResource("46_fulu8")
+}, {
+"duration": 0.5,
+"texture": ExtResource("47_n7h6p")
+}, {
+"duration": 0.5,
+"texture": ExtResource("48_pue2s")
+}, {
+"duration": 0.5,
+"texture": ExtResource("49_t4h06")
+}, {
+"duration": 0.5,
+"texture": ExtResource("50_t583x")
+}, {
+"duration": 0.5,
+"texture": ExtResource("51_esfee")
+}, {
+"duration": 0.5,
+"texture": ExtResource("52_1kfkd")
+}, {
+"duration": 0.5,
+"texture": ExtResource("53_xj5fr")
+}, {
+"duration": 0.5,
+"texture": ExtResource("54_2eeic")
+}, {
+"duration": 0.5,
+"texture": ExtResource("55_44bwp")
+}, {
+"duration": 0.5,
+"texture": ExtResource("56_v7l6s")
+}, {
+"duration": 0.5,
+"texture": ExtResource("57_qtjaa")
+}, {
+"duration": 0.5,
+"texture": ExtResource("58_70bpq")
+}, {
+"duration": 0.5,
+"texture": ExtResource("59_tum2x")
+}, {
+"duration": 0.5,
+"texture": ExtResource("60_lrbhl")
+}],
+"loop": false,
+"name": &"book_flipping_left",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 0.5,
 "texture": ExtResource("1_6fud0")
@@ -104,8 +209,73 @@ animations = [{
 "duration": 0.5,
 "texture": ExtResource("20_0nyr6")
 }],
-"loop": true,
-"name": &"book_flipping_left",
+"loop": false,
+"name": &"book_flipping_left_old",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("41_mpm73")
+}, {
+"duration": 0.5,
+"texture": ExtResource("42_3ird0")
+}, {
+"duration": 0.5,
+"texture": ExtResource("43_cke12")
+}, {
+"duration": 0.5,
+"texture": ExtResource("44_obxej")
+}, {
+"duration": 0.5,
+"texture": ExtResource("45_i7qsq")
+}, {
+"duration": 0.5,
+"texture": ExtResource("46_47f77")
+}, {
+"duration": 0.5,
+"texture": ExtResource("47_3ctaw")
+}, {
+"duration": 0.5,
+"texture": ExtResource("48_3npjm")
+}, {
+"duration": 0.5,
+"texture": ExtResource("49_usyqs")
+}, {
+"duration": 0.5,
+"texture": ExtResource("50_lj0uc")
+}, {
+"duration": 0.5,
+"texture": ExtResource("51_uofll")
+}, {
+"duration": 0.5,
+"texture": ExtResource("52_ed1oy")
+}, {
+"duration": 0.5,
+"texture": ExtResource("53_k564x")
+}, {
+"duration": 0.5,
+"texture": ExtResource("54_tt5rn")
+}, {
+"duration": 0.5,
+"texture": ExtResource("55_8f4sw")
+}, {
+"duration": 0.5,
+"texture": ExtResource("56_jgo4w")
+}, {
+"duration": 0.5,
+"texture": ExtResource("57_pnmkp")
+}, {
+"duration": 0.5,
+"texture": ExtResource("58_s0u61")
+}, {
+"duration": 0.5,
+"texture": ExtResource("59_tybf6")
+}, {
+"duration": 0.5,
+"texture": ExtResource("60_ae86d")
+}],
+"loop": false,
+"name": &"book_flipping_right",
 "speed": 10.0
 }, {
 "frames": [{
@@ -170,12 +340,11 @@ animations = [{
 "texture": ExtResource("60_lj0uc")
 }],
 "loop": false,
-"name": &"book_flipping_right",
+"name": &"book_flipping_right_old",
 "speed": 10.0
 }]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ytcqq")
 animation = &"book_flipping_right"
-frame = 19
-frame_progress = 1.0
