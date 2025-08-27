@@ -53,10 +53,6 @@ func menu_load():
 	hide_everything()
 	$CanvasLayer/main_menu.show()
 	$CanvasLayer/book_resting_left.show()
-	for i in $CanvasLayer/main_menu.get_children():
-		if str(i.name) in $"..".unlocked_levels.keys():
-			if $"..".unlocked_levels[str(i.name)] == false:
-				i.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
@@ -211,10 +207,8 @@ func win_screen():
 	await get_tree().create_timer(1.0).timeout
 	$"../transition animation".hide()
 	win_text()
-	for i in $"..".unlocked_levels:
-		if $"..".unlocked_levels[i] == true:
-			$CanvasLayer/level_select.find_child(i).show()
-
+	
+	
 func lerp_text():
 	var score = float($"..".score)
 	var orders_delivered = float($"..".orders_delivered)

@@ -14,7 +14,7 @@ func _on_stove_body_entered(body: Node3D) -> void:
 		body.cooking = true
 
 	if body.is_in_group("meat"):
-		if body.get_child(2) and body.get_child(2).is_in_group("particle"):
+		if body.get_child_count() > 2 and body.get_child(2).is_in_group("particle"):
 			body.get_child(2).show()
 
 
@@ -24,8 +24,8 @@ func _on_stove_body_exited(body: Node3D) -> void:
 		cooking_something = null
 		body.cooking = false
 		$Label3D.text = ""
-		if body.get_child(2) and body.get_child(2).is_in_group("particle"):
+		if body.get_child_count() > 2 and body.get_child(2).is_in_group("particle"):
 			body.get_child(2).hide()
 	if body.is_in_group("meat"):
-		if body.get_child(2) and body.get_child(2).is_in_group("particle"):
+		if body.get_child_count() > 2 and body.get_child(2).is_in_group("particle"):
 			body.get_child(2).hide()

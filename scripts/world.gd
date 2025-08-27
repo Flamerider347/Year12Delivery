@@ -114,12 +114,6 @@ var tutorial_benches = {
 	"bench_17" : ["bench",180,false],
 	"bench_18" : ["delivery_table",180,true],
 }
-var unlocked_levels = {
-	"level_1" :true,
-	"level_2" : true,
-	"level_3" : true,
-	"level_4" : true,
-}
 func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
@@ -442,8 +436,6 @@ func map_select():
 
 
 func _on_day_timer_timeout() -> void:
-	if level < 4:
-		unlocked_levels["level_"+str(level+1)] = true
 	$ui/Label3.text = "OVERTIME"
 	$day_timer.stop()
 	$order_timer.stop()
