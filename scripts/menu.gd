@@ -306,7 +306,7 @@ func credits() -> void:
 	$CanvasLayer/AnimatedSprite2D.show()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.95).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_right.show()
@@ -318,7 +318,7 @@ func options() -> void:
 	$CanvasLayer/AnimatedSprite2D.show()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.95).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_right.show()
