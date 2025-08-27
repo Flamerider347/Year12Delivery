@@ -159,7 +159,6 @@ func layout():
 	$CanvasLayer/layout.setup()
 
 func lose_screen():
-	$"../pause_menu".ingame = false
 	$"../transition animation".show()
 	$"../transition animation/transition animation".play("fade_transition")
 	await get_tree().create_timer(1.0).timeout
@@ -185,7 +184,6 @@ func lose_screen():
 	win_text()
 
 func win_screen():
-	$"../pause_menu".ingame = false
 	$"../transition animation".show()
 	$"../transition animation/transition animation".play("fade_transition")
 	await get_tree().create_timer(1.0).timeout
@@ -244,6 +242,7 @@ func reset_text():
 
 func _on_play_level_pressed() -> void:
 	$CanvasLayer/end_screen/Control/text_you_exited.hide()
+	$"../player_single".can_exit = false
 	if $"..".level == 0:
 		$"../transition animation".show()
 		$"../transition animation/transition animation".play("fade_transition")
@@ -258,6 +257,7 @@ func _on_play_level_pressed() -> void:
 		$"../transition animation/transition animation".play("fade_transition_reverse")
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
+		$"../player_single".can_exit = true
 
 	else:
 		$"../transition animation".show()
@@ -270,6 +270,7 @@ func _on_play_level_pressed() -> void:
 		$Timer.stop()
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
+		$"../player_single".can_exit = true
 func hide_everything():
 	$name.hide()
 	for i in $CanvasLayer.get_children():

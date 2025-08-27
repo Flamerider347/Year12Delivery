@@ -14,41 +14,62 @@ var playing_current = "menu"
 var playing_next = "menu"
 var menu_open = false
 var can_play = true
+
+# Keep references to running fades so we can cancel them
+var fade_tasks := {}
+
 func _ready() -> void:
 	menu()
-# Fade out a track over duration seconds
-func fade_out(track: AudioStreamPlayer3D, duration: float = 1.0):
+
+# Utility: start a fade safely
+func start_fade(track: AudioStreamPlayer3D, fade_func: Callable, duration: float):
+	if track == null or not is_instance_valid(track):
+		return
+	if fade_tasks.has(track):
+		fade_tasks[track].cancelled = true
+		fade_tasks.erase(track)
+	var task = { "cancelled": false }
+	fade_tasks[track] = task
+	await fade_func.call(track, duration, task)
+	if fade_tasks.has(track):
+		fade_tasks.erase(track)
+
+func fade_out(track: AudioStreamPlayer3D, duration: float, task):
+	if track == null or not is_instance_valid(track):
+		return
 	var steps = 20
 	var step_time = duration / steps
 	var start_volume = float(track.volume_db)
 	for i in range(steps):
-		track.volume_db = lerp(start_volume, -40.0, float(i + 1)/steps)
+		if task.cancelled: return
+		track.volume_db = lerp(start_volume, -40.0, float(i + 1) / steps)
 		await get_tree().create_timer(step_time).timeout
-	track.stop()
+	if not task.cancelled and is_instance_valid(track):
+		track.stop()
 
-# Fade in a track over duration seconds
-func fade_in(track: AudioStreamPlayer3D, duration: float = 1.0):
+func fade_in(track: AudioStreamPlayer3D, duration: float, task):
+	if track == null or not is_instance_valid(track):
+		return
 	track.volume_db = -40.0
 	track.play()
 	var steps = 20
 	var step_time = duration / steps
 	for i in range(steps):
-		track.volume_db = lerp(-40.0, 0.0, float(i + 1)/steps)
+		if task.cancelled: return
+		track.volume_db = lerp(-40.0, 0.0, float(i + 1) / steps)
 		await get_tree().create_timer(step_time).timeout
 
 func _on_body_entered(body):
 	if body.name in ["player_single", "player", "player2"] and can_play:
-		can_play =false
+		can_play = false
 		$Transition_timer.start(2.01)
-		playing_next = "menu"  # Always switch to menu
-		
-		# Fade out whatever is currently playing (book or any other track)
+		playing_next = "menu"
+
 		if playing_current != "":
-			await fade_out(tracks[playing_current], 1.0)
-		
-		# Fade in the menu track
+			await start_fade(tracks[playing_current], fade_out, 1.0)
+
 		playing_current = playing_next
-		await fade_in(tracks[playing_current], 1.0)
+		await start_fade(tracks[playing_current], fade_in, 1.0)
 		playing_next = null
 		menu_open = false
 
@@ -56,7 +77,7 @@ func _on_body_exited(body):
 	if menu_open:
 		return
 	if body.name in ["player_single", "player", "player2"] and can_play:
-		can_play =false
+		can_play = false
 		$Transition_timer.start(2.01)
 		if $"../../..".level == 1:
 			playing_next = "dine_in"
@@ -66,25 +87,21 @@ func _on_body_exited(body):
 			playing_next = "underwater"
 		elif $"../../..".level == 4:
 			playing_next = "tundra"
-		await fade_out(tracks[playing_current], 1.0)
+
+		await start_fade(tracks[playing_current], fade_out, 1.0)
 		playing_current = playing_next
-		await fade_in(tracks[playing_current], 1.0)
+		await start_fade(tracks[playing_current], fade_in, 1.0)
 
 func menu():
 	if playing_current == "book":
 		return
 	menu_open = true
+
+	# Fade out safely
 	if tracks.has(playing_current):
-		await fade_out(tracks[playing_current], 1.0)
+		await start_fade(tracks[playing_current], fade_out, 1.0)
+
+	# Switch to book
 	playing_current = "book"
-	await fade_in(tracks[playing_current], 1.0)
+	await start_fade(tracks[playing_current], fade_in, 1.0)
 	playing_next = null
-
-func close_menu():
-	if not menu_open:
-		return
-	menu_open = false
-
-
-func _on_transition_timer_timeout() -> void:
-	can_play = true

@@ -4,6 +4,7 @@ var speed = 0
 var can_pickup = true
 var controlling = false
 var evil = false
+var can_exit = false
 var head_target_position = 0.525
 var head_moving = false
 var SENSITIVITY = 0.1
@@ -91,6 +92,8 @@ func _physics_process(delta: float):
 
 
 	if controlling:
+		if Input.is_action_just_pressed("menu") and can_exit:
+			pause_exit()
 		if seecast.is_colliding():
 			# clear previous outlines first
 			for m in outlined_meshes:
@@ -386,7 +389,6 @@ func pause_exit() -> void:
 	$"../kitchen/Audio_Box/trigger_body".menu()
 	if $"..".world_toggle:
 		$"..".world_toggle = false
-		$"../pause_menu".hide()
 		get_tree().paused = false
 		controlling = false
 		$"../GridContainer/SubViewportContainer/SubViewport/player".controlling = false

@@ -119,7 +119,6 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
-	$pause_menu.ingame = true
 	world_toggle = true
 	$tutorial.show()
 	$ui.show()
@@ -170,7 +169,6 @@ func tutorial():
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
 
 func _setup():
-	$pause_menu.ingame = true
 	world_toggle = true
 	is_tutorial = false
 	for i in get_children():

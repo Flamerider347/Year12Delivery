@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=87 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -40,7 +40,6 @@
 [ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
 [ext_resource type="PackedScene" uid="uid://c7liwpmdhkn7p" path="res://prefabs/tree_alive_gridmap.tscn" id="26_umtm3"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
-[ext_resource type="Script" uid="uid://gi3yl5dxxabq" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="PackedScene" uid="uid://8knwxbv0ojoy" path="res://prefabs/tree_coral_and_seaweed_gridmap.tscn" id="31_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
@@ -1596,16 +1595,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_nek0r")
 }
 
-[node name="pause_menu" type="CanvasLayer" parent="."]
-process_mode = 3
-visible = false
-script = ExtResource("29_1k5bn")
-
-[node name="Button" type="Button" parent="pause_menu"]
-offset_right = 278.0
-offset_bottom = 112.0
-text = "Exit"
-
 [node name="ui" type="CanvasLayer" parent="."]
 visible = false
 
@@ -1834,7 +1823,6 @@ shape = SubResource("BoxShape3D_1k5bn")
 [connection signal="body_entered" from="underwater/fish/Area3D" to="underwater/fish" method="_on_area_3d_body_entered"]
 [connection signal="looking_recipe" from="player_single" to="." method="looking_recipe"]
 [connection signal="timeout" from="player_single/pickup_timer" to="player_single" method="_on_pickup_timer_timeout"]
-[connection signal="pressed" from="pause_menu/Button" to="player_single" method="pause_exit"]
 [connection signal="timeout" from="day_timer" to="." method="_on_day_timer_timeout"]
 [connection signal="timeout" from="order_timer" to="." method="_on_order_timer_timeout"]
 [connection signal="timeout" from="GridContainer/SubViewportContainer/SubViewport/player/pickup_timer" to="GridContainer/SubViewportContainer/SubViewport/player" method="_on_pickup_timer_timeout"]
