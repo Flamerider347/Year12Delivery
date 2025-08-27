@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvyhf3kno28cu"]
+[gd_scene load_steps=5 format=3 uid="uid://cvyhf3kno28cu"]
 
 [ext_resource type="ArrayMesh" uid="uid://dvmeltkyjfnd7" path="res://assets/createdassets/house1.obj" id="1_o8sle"]
+[ext_resource type="PackedScene" uid="uid://bk2cvubqe7sky" path="res://prefabs/doormat.tscn" id="1_upbwm"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_upbwm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8sle"]
 size = Vector3(4.71214, 3.98541, 4.83797)
 
 [node name="house" type="Node3D"]
+
+[node name="Doormat" parent="." instance=ExtResource("1_upbwm")]
+transform = Transform3D(-1.09278e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278e-07, -2.38523, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 collision_layer = 5

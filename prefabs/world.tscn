@@ -40,8 +40,9 @@
 [ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
 [ext_resource type="PackedScene" uid="uid://c7liwpmdhkn7p" path="res://prefabs/tree_alive_gridmap.tscn" id="26_umtm3"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
-[ext_resource type="Script" uid="uid://gi3yl5dxxabq" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="29_1k5bn"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
+[ext_resource type="PackedScene" uid="uid://8knwxbv0ojoy" path="res://prefabs/tree_coral_and_seaweed_gridmap.tscn" id="31_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="Texture2D" uid="uid://b01qawstnk7bi" path="res://assets/floorandstuff/overcast_soil_puresky_4k.png" id="35_aqg0f"]
 [ext_resource type="AudioStream" uid="uid://ss2100jcaehb" path="res://assets/haydenfoundassets/sharp-blade-slice-2-185145.mp3" id="36_p78bo"]
@@ -1444,7 +1445,15 @@ shape = SubResource("BoxShape3D_f6knb")
 [node name="Tree_Coral_GridMap" parent="underwater" instance=ExtResource("22_2h4m2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
 data = {
-"cells": PackedInt32Array(0, 0, 0, 83, 82, 655360, 81, 79, 655360, 82, 81, 655360, 81, 81, 655360, 82, 84, 655360, 67, 75, 655360, 67, 73, 655360, 69, 74, 655360, 72, 83, 655360, 72, 77, 1441792, 72, 73, 655360, 69, 70, 1048576, 81, 67, 0, 82, 70, 655360, 77, 70, 1048576, 78, 65, 1441792, 79, 76, 655360, 81, 73, 1048576, 76, 77, 1441792, 76, 78, 655360, 68, 81, 1048576, 50, 70, 655360, 50, 85, 655360, 51, 70, 655360, 51, 71, 655360, 51, 72, 0, 51, 77, 655360, 51, 83, 655360, 52, 70, 655360, 52, 78, 1048576, 52, 81, 655360, 53, 68, 655360, 53, 69, 655360, 53, 70, 655360, 53, 71, 655360, 53, 80, 655360, 53, 81, 655360, 53, 84, 655360, 54, 68, 655360, 54, 69, 655360, 54, 74, 655360, 55, 82, 655360, 57, 76, 655360, 57, 78, 655360, 57, 86, 1441792, 58, 77, 655360, 62, 51, 1441792)
+
+"cells": PackedInt32Array(0, 0, 0, 83, 82, 655360, 81, 79, 655360, 82, 81, 655360, 81, 81, 655360, 82, 84, 655360, 67, 75, 655360, 67, 73, 655360, 69, 74, 655360, 72, 83, 655360, 72, 77, 1441792, 72, 73, 655360, 81, 67, 0, 82, 70, 655360, 77, 70, 1048576, 78, 65, 1441792, 81, 73, 1048576, 76, 77, 1441792, 76, 78, 655360, 68, 81, 1048576, 50, 70, 655360, 50, 85, 655360, 51, 70, 655360, 51, 71, 655360, 51, 72, 0, 51, 77, 655360, 51, 83, 655360, 52, 70, 655360, 52, 78, 1048576, 52, 81, 655360, 53, 68, 655360, 53, 69, 655360, 53, 70, 655360, 53, 71, 655360, 53, 80, 655360, 53, 81, 655360, 53, 84, 655360, 54, 68, 655360, 54, 69, 655360, 54, 74, 655360, 55, 82, 655360, 57, 76, 655360, 57, 78, 655360, 57, 86, 1441792, 58, 77, 655360, 72, 65, 0, 67, 67, 1441792, 59, 65, 1441792, 58, 68, 655360, 56, 66, 0, 62, 69, 1441792, 60, 75, 1048576)
+}
+
+[node name="tree_coral_and_seaweed_gridmap" parent="underwater" instance=ExtResource("31_2h4m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
+data = {
+"cells": PackedInt32Array(0, 0, 1048576, 77, 67, 655360, 80, 82, 1441792, 78, 83, 1441792, 78, 82, 1441792, 69, 85, 1048576, 52, 74, 655360, 54, 71, 0, 53, 65, 1441792, 54, 66, 1441792, 51, 67, 655360, 74, 66, 0, 76, 65, 0, 76, 69, 1441792, 73, 70, 655360, 75, 73, 1048576, 74, 79, 0, 50, 82, 1048576, 70, 67, 655360, 68, 64, 0, 67, 68, 655360, 71, 64, 0, 57, 63, 1048576, 60, 67, 0, 61, 72, 0)
+
 }
 
 [node name="siberia" type="Node3D" parent="."]

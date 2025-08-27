@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b86sgx6yin61s"]
+
+[ext_resource type="ArrayMesh" uid="uid://bg4pauwgvo2xc" path="res://assets/createdassets/seaweed-coral_set.obj" id="1_2adme"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_eh561"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2adme"]
+size = Vector3(2.44092, 5.086, 2.36536)
+
+[node name="tree_coral_and_seaweed" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_2adme")
+surface_material_override/0 = ExtResource("2_eh561")
+surface_material_override/1 = ExtResource("2_eh561")
+surface_material_override/2 = ExtResource("2_eh561")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.720459, 2.54208, 0.0518188)
+shape = SubResource("BoxShape3D_2adme")
