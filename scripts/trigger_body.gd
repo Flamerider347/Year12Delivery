@@ -6,7 +6,8 @@ extends Area3D
 	underwater = $AudioStreamPlayer3D_underwater,
 	restaurant = $AudioStreamPlayer3D_frozen,
 	menu = $menu,
-	book = $book
+	book = $book,
+	tundra = $tundra
 }
 
 var playing_current = "menu"
@@ -63,7 +64,8 @@ func _on_body_exited(body):
 			playing_next = "lava"
 		elif $"../../..".level == 3:
 			playing_next = "underwater"
-		
+		elif $"../../..".level == 4:
+			playing_next = "tundra"
 		await fade_out(tracks[playing_current], 1.0)
 		playing_current = playing_next
 		await fade_in(tracks[playing_current], 1.0)

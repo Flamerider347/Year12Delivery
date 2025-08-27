@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyp7gdk7w8mbv"]
+[gd_scene load_steps=11 format=3 uid="uid://cyp7gdk7w8mbv"]
 
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="1_7p2h2"]
 [ext_resource type="AudioStream" uid="uid://5tdrf2hl43u5" path="res://assets/haydenfoundassets/nature-ambience-323729.mp3" id="2_lvbu6"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="4_8xmue"]
 [ext_resource type="AudioStream" uid="uid://c8pom7pp31hrg" path="res://assets/haydenfoundassets/Sizzling Symphony.mp3" id="5_8xmue"]
 [ext_resource type="AudioStream" uid="uid://8sftrnqs1foi" path="res://assets/haydenfoundassets/Gentle Horizons.mp3" id="6_fwar3"]
+[ext_resource type="AudioStream" uid="uid://dak0fp5i5jeig" path="res://assets/haydenfoundassets/wind-blowing-sfx-12809.mp3" id="8_x8y6t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ui4bh"]
 size = Vector3(12.5, 10, 12.5)
@@ -58,6 +59,11 @@ volume_db = -40.0
 bus = &"Ambience"
 
 [node name="Transition_timer" type="Timer" parent="trigger_body"]
+
+[node name="tundra" type="AudioStreamPlayer3D" parent="trigger_body"]
+stream = ExtResource("8_x8y6t")
+volume_db = -40.0
+bus = &"Ambience"
 
 [connection signal="body_entered" from="trigger_body" to="trigger_body" method="_on_body_entered"]
 [connection signal="body_exited" from="trigger_body" to="trigger_body" method="_on_body_exited"]

@@ -235,6 +235,7 @@ func _setup():
 		$player_single/head/dinein.show()
 		$player_single/head/volcano.hide()
 		$player_single/head/underwater.hide()
+		$player_single/head/tundra.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Neighbourhood level
@@ -247,6 +248,7 @@ Dangers & Modifications:
 		$player_single/head/dinein.hide()
 		$player_single/head/volcano.show()
 		$player_single/head/underwater.hide()
+		$player_single/head/tundra.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Volcano level
@@ -259,6 +261,7 @@ Dangers & Modifications:
 		$player_single/head/dinein.hide()
 		$player_single/head/volcano.hide()
 		$player_single/head/underwater.show()
+		$player_single/head/tundra.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Underwater level
@@ -269,6 +272,11 @@ Dangers:
 -Nothing can stop the Shark
 -Gravity is weird because underwater"
 		$underwater/fish.run_away()
+	if level == 4:
+		$player_single/head/dinein.hide()
+		$player_single/head/volcano.hide()
+		$player_single/head/underwater.hide()
+		$player_single/head/tundra.show()
 
 func _physics_process(delta: float) -> void:
 	if $day_timer.time_left >0:

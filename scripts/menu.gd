@@ -132,6 +132,7 @@ func _on_level_4() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+	#set to reload
 
 func main_menu():
 	hide_everything()
@@ -140,7 +141,7 @@ func main_menu():
 	$CanvasLayer/AnimatedSprite2D.show()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.95).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_left.show()
@@ -153,7 +154,7 @@ func layout():
 	$CanvasLayer/AnimatedSprite2D.show()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.95).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_right.show()

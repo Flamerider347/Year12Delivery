@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=87 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -139,8 +139,12 @@ albedo_color = Color(1, 0.396078, 0.0941176, 1)
 shading_mode = 0
 albedo_color = Color(0.00784314, 0.12549, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p78bo"]
+shading_mode = 0
+albedo_color = Color(0.54099, 0.54099, 0.54099, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_1k5bn"]
-size = Vector3(0.2, 2.232, 0.2)
+size = Vector3(0.2, 4.67618, 0.2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_48uca"]
 shader = ExtResource("28_w6ly8")
@@ -1440,7 +1444,7 @@ shape = SubResource("BoxShape3D_f6knb")
 [node name="Tree_Coral_GridMap" parent="underwater" instance=ExtResource("22_2h4m2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
 data = {
-"cells": PackedInt32Array(0, 0, 0, 83, 82, 655360, 81, 79, 655360, 82, 81, 655360, 81, 81, 655360, 82, 84, 655360, 67, 75, 655360, 67, 73, 655360, 69, 74, 655360, 72, 83, 655360, 72, 77, 1441792, 72, 73, 655360, 69, 70, 1048576, 81, 67, 0, 82, 70, 655360, 77, 70, 1048576, 78, 65, 1441792, 79, 76, 655360, 81, 73, 1048576, 76, 77, 1441792, 76, 78, 655360, 68, 81, 1048576, 50, 70, 655360, 50, 85, 655360, 51, 70, 655360, 51, 71, 655360, 51, 72, 0, 51, 77, 655360, 51, 83, 655360, 52, 70, 655360, 52, 78, 1048576, 52, 81, 655360, 53, 68, 655360, 53, 69, 655360, 53, 70, 655360, 53, 71, 655360, 53, 80, 655360, 53, 81, 655360, 53, 84, 655360, 54, 68, 655360, 54, 69, 655360, 54, 74, 655360, 55, 82, 655360, 57, 76, 655360, 57, 78, 655360, 57, 86, 1441792, 58, 77, 655360)
+"cells": PackedInt32Array(0, 0, 0, 83, 82, 655360, 81, 79, 655360, 82, 81, 655360, 81, 81, 655360, 82, 84, 655360, 67, 75, 655360, 67, 73, 655360, 69, 74, 655360, 72, 83, 655360, 72, 77, 1441792, 72, 73, 655360, 69, 70, 1048576, 81, 67, 0, 82, 70, 655360, 77, 70, 1048576, 78, 65, 1441792, 79, 76, 655360, 81, 73, 1048576, 76, 77, 1441792, 76, 78, 655360, 68, 81, 1048576, 50, 70, 655360, 50, 85, 655360, 51, 70, 655360, 51, 71, 655360, 51, 72, 0, 51, 77, 655360, 51, 83, 655360, 52, 70, 655360, 52, 78, 1048576, 52, 81, 655360, 53, 68, 655360, 53, 69, 655360, 53, 70, 655360, 53, 71, 655360, 53, 80, 655360, 53, 81, 655360, 53, 84, 655360, 54, 68, 655360, 54, 69, 655360, 54, 74, 655360, 55, 82, 655360, 57, 76, 655360, 57, 78, 655360, 57, 86, 1441792, 58, 77, 655360, 62, 51, 1441792)
 }
 
 [node name="siberia" type="Node3D" parent="."]
@@ -1519,6 +1523,13 @@ transparency = 0.9
 mesh = SubResource("SphereMesh_aqg0f")
 skeleton = NodePath("../..")
 
+[node name="tundra" type="MeshInstance3D" parent="player_single/head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0389999, 0.00699997)
+material_override = SubResource("StandardMaterial3D_p78bo")
+transparency = 0.7
+mesh = SubResource("SphereMesh_aqg0f")
+skeleton = NodePath("../..")
+
 [node name="player_camera" type="Camera3D" parent="player_single/head"]
 far = 300.0
 
@@ -1542,11 +1553,11 @@ transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 current = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="player_single"]
-collision_layer = 3
-collision_mask = 3
+collision_mask = 0
 input_ray_pickable = false
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="player_single/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.527632, 0)
 shape = SubResource("BoxShape3D_1k5bn")
 
 [node name="transition animation" type="CanvasLayer" parent="."]
