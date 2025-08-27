@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cfepmsyun4rjo"]
+[gd_scene load_steps=42 format=3 uid="uid://cfepmsyun4rjo"]
 
 [ext_resource type="Texture2D" uid="uid://du5fhr6bwrf4s" path="res://assets/bookanim_left/tut0001.png" id="1_6fud0"]
 [ext_resource type="Texture2D" uid="uid://cb5hh2q3f2prg" path="res://assets/bookanim_left/tut0002.png" id="2_76j1r"]
@@ -20,26 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://bd1jxbfd5cbjw" path="res://assets/bookanim_left/tut0018.png" id="18_2bloq"]
 [ext_resource type="Texture2D" uid="uid://4ij6wnbb4gvw" path="res://assets/bookanim_left/tut0019.png" id="19_yv21j"]
 [ext_resource type="Texture2D" uid="uid://di2nif722ay1u" path="res://assets/bookanim_left/tut0020.png" id="20_0nyr6"]
-[ext_resource type="Texture2D" uid="uid://bwmp5f1umwvex" path="res://assets/bookanim_left/tut0021.png" id="21_1qwqg"]
-[ext_resource type="Texture2D" uid="uid://crhtcdn1p46yk" path="res://assets/bookanim_left/tut0022.png" id="22_aqx6m"]
-[ext_resource type="Texture2D" uid="uid://bfpsc31p16vh8" path="res://assets/bookanim_left/tut0023.png" id="23_gln37"]
-[ext_resource type="Texture2D" uid="uid://b4s6t7nt0ql8w" path="res://assets/bookanim_left/tut0024.png" id="24_vlbsn"]
-[ext_resource type="Texture2D" uid="uid://bp1lc8yf78jen" path="res://assets/bookanim_left/tut0025.png" id="25_76k3l"]
-[ext_resource type="Texture2D" uid="uid://bbc3ehi44ydm7" path="res://assets/bookanim_left/tut0026.png" id="26_l2mtd"]
-[ext_resource type="Texture2D" uid="uid://dm8u1em8btfog" path="res://assets/bookanim_left/tut0027.png" id="27_rjqoi"]
-[ext_resource type="Texture2D" uid="uid://bnim4wm5kvaxr" path="res://assets/bookanim_left/tut0028.png" id="28_5d20j"]
-[ext_resource type="Texture2D" uid="uid://dio2ifrd78q55" path="res://assets/bookanim_left/tut0029.png" id="29_kb4g0"]
-[ext_resource type="Texture2D" uid="uid://cgpjvgxwv1hbu" path="res://assets/bookanim_left/tut0030.png" id="30_ib1lr"]
-[ext_resource type="Texture2D" uid="uid://ctdrdnh58k4kt" path="res://assets/bookanim_right/tu01.png" id="31_ytcqq"]
-[ext_resource type="Texture2D" uid="uid://d4kv54751r6js" path="res://assets/bookanim_right/tu02.png" id="32_nqaxi"]
-[ext_resource type="Texture2D" uid="uid://btkwi1yjqeuos" path="res://assets/bookanim_right/tu03.png" id="33_h8btg"]
-[ext_resource type="Texture2D" uid="uid://dkledbjkaaphx" path="res://assets/bookanim_right/tu04.png" id="34_x5ymu"]
-[ext_resource type="Texture2D" uid="uid://4rubuulxfvwm" path="res://assets/bookanim_right/tu05.png" id="35_d8r68"]
-[ext_resource type="Texture2D" uid="uid://ewnmgc01hyct" path="res://assets/bookanim_right/tu06.png" id="36_fulu8"]
-[ext_resource type="Texture2D" uid="uid://dn4vceuu0so0" path="res://assets/bookanim_right/tu07.png" id="37_n7h6p"]
-[ext_resource type="Texture2D" uid="uid://bk1y7fvjkkn0c" path="res://assets/bookanim_right/tu08.png" id="38_pue2s"]
-[ext_resource type="Texture2D" uid="uid://gn0n1y2ste1o" path="res://assets/bookanim_right/tu09.png" id="39_t4h06"]
-[ext_resource type="Texture2D" uid="uid://by61mybvqqlte" path="res://assets/bookanim_right/tu10.png" id="40_t583x"]
 [ext_resource type="Texture2D" uid="uid://becp35e2utngt" path="res://assets/bookanim_right/tu11.png" id="41_esfee"]
 [ext_resource type="Texture2D" uid="uid://bk35xsx78v1bj" path="res://assets/bookanim_right/tu12.png" id="42_1kfkd"]
 [ext_resource type="Texture2D" uid="uid://c77l4blko7ki0" path="res://assets/bookanim_right/tu13.png" id="43_xj5fr"]
@@ -123,72 +103,12 @@ animations = [{
 }, {
 "duration": 0.5,
 "texture": ExtResource("20_0nyr6")
-}, {
-"duration": 0.5,
-"texture": ExtResource("21_1qwqg")
-}, {
-"duration": 0.5,
-"texture": ExtResource("22_aqx6m")
-}, {
-"duration": 0.5,
-"texture": ExtResource("23_gln37")
-}, {
-"duration": 0.5,
-"texture": ExtResource("24_vlbsn")
-}, {
-"duration": 0.5,
-"texture": ExtResource("25_76k3l")
-}, {
-"duration": 0.5,
-"texture": ExtResource("26_l2mtd")
-}, {
-"duration": 0.5,
-"texture": ExtResource("27_rjqoi")
-}, {
-"duration": 0.5,
-"texture": ExtResource("28_5d20j")
-}, {
-"duration": 0.5,
-"texture": ExtResource("29_kb4g0")
-}, {
-"duration": 0.5,
-"texture": ExtResource("30_ib1lr")
 }],
 "loop": true,
 "name": &"book_flipping_left",
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 0.5,
-"texture": ExtResource("31_ytcqq")
-}, {
-"duration": 0.5,
-"texture": ExtResource("32_nqaxi")
-}, {
-"duration": 0.5,
-"texture": ExtResource("33_h8btg")
-}, {
-"duration": 0.5,
-"texture": ExtResource("34_x5ymu")
-}, {
-"duration": 0.5,
-"texture": ExtResource("35_d8r68")
-}, {
-"duration": 0.5,
-"texture": ExtResource("36_fulu8")
-}, {
-"duration": 0.5,
-"texture": ExtResource("37_n7h6p")
-}, {
-"duration": 0.5,
-"texture": ExtResource("38_pue2s")
-}, {
-"duration": 0.5,
-"texture": ExtResource("39_t4h06")
-}, {
-"duration": 0.5,
-"texture": ExtResource("40_t583x")
-}, {
 "duration": 0.5,
 "texture": ExtResource("41_esfee")
 }, {
@@ -249,7 +169,7 @@ animations = [{
 "duration": 0.5,
 "texture": ExtResource("60_lj0uc")
 }],
-"loop": true,
+"loop": false,
 "name": &"book_flipping_right",
 "speed": 10.0
 }]
@@ -257,4 +177,5 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_ytcqq")
 animation = &"book_flipping_right"
-frame_progress = 0.912016
+frame = 19
+frame_progress = 1.0

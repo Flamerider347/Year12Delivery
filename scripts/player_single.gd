@@ -99,11 +99,14 @@ func _physics_process(delta: float):
 			outlined_meshes.clear()
 			
 			# only outline if collider is in group and not holding something
-			if seecast.is_colliding() and not held_object and seecast.get_collider().is_in_group("outline"):
-				for child in seecast.get_collider().get_children():
-					if child is MeshInstance3D:
-						child.material_overlay = load("res://haydenfoundassets/pixel_perfect_outline.tres")
-						outlined_meshes.append(child)
+			if seecast.is_colliding() and not held_object:
+				var col = seecast.get_collider()
+				if is_instance_valid(col) and col.is_in_group("outline"):
+					for child in col.get_children():
+						if child is MeshInstance3D:
+							child.material_overlay = load("res://assets/haydenfoundassets/pixel_perfect_outline.tres")
+							outlined_meshes.append(child)
+
 		else:
 			# no collision → clear any old outlines
 			for m in outlined_meshes:
@@ -263,6 +266,9 @@ func stack():
 			held_object.reparent(stack_bottom)
 			held_object.position = Vector3(0,stack_bottom.next_position,0)
 			ingredient_added.connect(stack_bottom._on_player_ingredient_added)
+			for i in held_object.get_children():
+				if i is MeshInstance3D:
+					i.reparent(stack_bottom)
 			if item_shape is BoxShape3D:
 				var item_size = item_shape.size.y
 				ingredient_added.emit(held_object.type,item_size)

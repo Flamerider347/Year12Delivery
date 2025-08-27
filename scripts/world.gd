@@ -114,12 +114,6 @@ var tutorial_benches = {
 	"bench_17" : ["bench",180,false],
 	"bench_18" : ["delivery_table",180,true],
 }
-var unlocked_levels = {
-	"level_1" :true,
-	"level_2" : true,
-	"level_3" : true,
-	"level_4" : true,
-}
 func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
@@ -235,6 +229,7 @@ func _setup():
 		$player_single/head/dinein.show()
 		$player_single/head/volcano.hide()
 		$player_single/head/underwater.hide()
+		$player_single/head/tundra.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Neighbourhood level
@@ -247,6 +242,7 @@ Dangers & Modifications:
 		$player_single/head/dinein.hide()
 		$player_single/head/volcano.show()
 		$player_single/head/underwater.hide()
+		$player_single/head/tundra.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Volcano level
@@ -259,6 +255,7 @@ Dangers & Modifications:
 		$player_single/head/dinein.hide()
 		$player_single/head/volcano.hide()
 		$player_single/head/underwater.show()
+		$player_single/head/tundra.hide()
 		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
 
 Underwater level
@@ -269,6 +266,11 @@ Dangers:
 -Nothing can stop the Shark
 -Gravity is weird because underwater"
 		$underwater/fish.run_away()
+	if level == 4:
+		$player_single/head/dinein.hide()
+		$player_single/head/volcano.hide()
+		$player_single/head/underwater.hide()
+		$player_single/head/tundra.show()
 
 func _physics_process(delta: float) -> void:
 	if $day_timer.time_left >0:
@@ -434,8 +436,6 @@ func map_select():
 
 
 func _on_day_timer_timeout() -> void:
-	if level < 4:
-		unlocked_levels["level_"+str(level+1)] = true
 	$ui/Label3.text = "OVERTIME"
 	$day_timer.stop()
 	$order_timer.stop()

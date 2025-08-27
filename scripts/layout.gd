@@ -17,6 +17,7 @@ var bench_type_sprites = {
 	"burger_hayden" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png"),
 	"burger_ben" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png"),
 	"burger_aine" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png"),
+	"burger_sullivan" : preload("res://assets/resized-images/Screenshot 2025-08-26 144301.png"),
 	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png"),
 	"bacon_egg_toast" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png"),
 	"unselect" : preload("res://assets/icon.svg")
@@ -143,11 +144,13 @@ func _on_bench_bench_type(type) -> void:
 func _on_recipes_button_pressed() -> void:
 	$upgrades.hide()
 	$recipes.show()
+	$upgrades_button.button_pressed = false
 
 
 func _on_upgrades_button_pressed() -> void:
 	$upgrades.show()
 	$recipes.hide()
+	$recipes_button.button_pressed = false
 
 
 
@@ -187,3 +190,7 @@ func _on_unselect_area_mouse_entered() -> void:
 
 func _on_unselect_area_mouse_exited() -> void:
 	entered_unselect_area = false
+
+
+func _on_unselect_area_mouse_exited_bench() -> void:
+	editing_bench = null

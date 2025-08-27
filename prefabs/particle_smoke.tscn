@@ -45,7 +45,7 @@ height = 0.1
 [node name="particle_smoke" type="Node3D" groups=["particle"]]
 
 [node name="black" type="GPUParticles3D" parent="."]
-amount = 10
+amount = 20
 lifetime = 0.5
 preprocess = 2.0
 speed_scale = 0.5
@@ -54,7 +54,7 @@ process_material = SubResource("ParticleProcessMaterial_ufkp0")
 draw_pass_1 = SubResource("CapsuleMesh_nekil")
 
 [node name="grey" type="GPUParticles3D" parent="."]
-amount = 10
+amount = 20
 lifetime = 0.75
 preprocess = 2.0
 speed_scale = 0.5
@@ -63,7 +63,7 @@ process_material = SubResource("ParticleProcessMaterial_30666")
 draw_pass_1 = SubResource("CapsuleMesh_2rfa1")
 
 [node name="white" type="GPUParticles3D" parent="."]
-amount = 10
+amount = 20
 preprocess = 2.0
 speed_scale = 0.5
 randomness = 1.0

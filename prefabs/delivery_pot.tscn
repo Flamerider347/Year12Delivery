@@ -1,34 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://1gco46vh5o4v"]
+[gd_scene load_steps=6 format=3 uid="uid://1gco46vh5o4v"]
 
 [ext_resource type="Script" uid="uid://b7oa21afbmfj8" path="res://scripts/delivery_pot.gd" id="1_h4rvv"]
+[ext_resource type="ArrayMesh" uid="uid://by7tmcr15w0f8" path="res://assets/createdassets/paper-bag.obj" id="2_amwjr"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="3_wmoa5"]
+[ext_resource type="Texture2D" uid="uid://beni3mx1rotvr" path="res://assets/createdassets/Delivery_Cover-art.png" id="4_2nylf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h4rvv"]
-size = Vector3(0.5, 0.5, 0.5)
+size = Vector3(0.608459, 0.682373, 0.387207)
 
-[sub_resource type="BoxMesh" id="BoxMesh_amwjr"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[node name="delivery_pot" type="RigidBody3D" groups=["deliverable", "pickupable"]]
+[node name="delivery_pot" type="RigidBody3D" groups=["deliverable", "outline", "pickupable"]]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_h4rvv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.271112, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00234985, 0.179925, 0.0563965)
 shape = SubResource("BoxShape3D_h4rvv")
 
 [node name="Label3D" type="Label3D" parent="." groups=["lid"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10824e-08, 0.271112, 0.253535)
+transform = Transform3D(1, 7.95527e-09, 7.30005e-10, -7.95527e-09, 0.983299, 0.181995, 7.30008e-10, -0.181995, 0.983299, -7.08192e-09, 0.613482, 0.162015)
 text = "1A"
 
 [node name="Label3D2" type="Label3D" parent="." groups=["lid"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.747486, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02842, 0)
+billboard = 1
 text = "Deliver in:
 59"
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.271112, 0)
-mesh = SubResource("BoxMesh_amwjr")
+transform = Transform3D(-1.74846e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.74846e-08, -2.38198e-09, 0.271112, 0.0544933)
+mesh = ExtResource("2_amwjr")
+surface_material_override/0 = ExtResource("3_wmoa5")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.08, -8.54564e-10, 1.06025e-10, 8.54564e-10, 0.0775744, -0.0195501, 1.06025e-10, 0.0195501, 0.0775744, 2.1305e-09, 0.242525, -0.0487401)
+texture = ExtResource("4_2nylf")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(0.08, 3.61824e-10, 1.87688e-11, -3.61824e-10, 0.0795706, 0.00827757, 1.87685e-11, -0.00827757, 0.0795706, -9.35581e-09, 0.242525, 0.214036)
+texture = ExtResource("4_2nylf")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
