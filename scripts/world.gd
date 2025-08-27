@@ -449,6 +449,8 @@ func looking_recipe(looking_at_list):
 
 
 func _on_volcano_lava_body_entered(body: Node3D) -> void:
+	if body is RigidBody3D:
+		body.queue_free()
 	if body is CharacterBody3D:
 		body.bounce()
 		if score > 0:
