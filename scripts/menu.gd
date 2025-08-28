@@ -11,7 +11,6 @@ var visual_money = 0.0
 var visual_score = 0.0
 var not_toggled = false
 var mouse_speed := 1200.0  # Pixels per second
-@onready var name_thing = $name
 var bun = preload("res://prefabs/bun.tscn")
 var cheese = preload("res://prefabs/cheese.tscn")
 var meat = preload("res://prefabs/meat.tscn")
@@ -90,7 +89,8 @@ func _spawn():
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
 	var instance = random_spawn[spawned_random_item].instantiate()
 	add_child(instance)
-	instance.position = Vector3(randf_range(-10,10),-1,randf_range(-10,10))
+	instance.position = Vector3(randf_range(-18,18),1,randf_range(-18,18))
+	instance.scale = Vector3.ONE * randi_range(1, 3)
 	instance.rotation_degrees = Vector3(randi_range(0,360),randi_range(0,360),randi_range(0,360))
 	spawn = false
 	$Timer.start()
@@ -101,7 +101,8 @@ func _on_timer_timeout() -> void:
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	body.queue_free()
+	if body is RigidBody3D:
+		body.queue_free()
 
 
 func _on_level_0() -> void:
@@ -140,8 +141,6 @@ func main_menu():
 	$CanvasLayer/AnimatedSprite2D.hide()
 	$CanvasLayer/AnimatedSprite2D.stop()
 	$CanvasLayer/book_resting_left.show()
-
-	$name.show()
 	$CanvasLayer/main_menu.show()
 
 func layout():

@@ -1595,7 +1595,6 @@ libraries = {
 }
 
 [node name="ui" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="ui"]
 position = Vector2(318.63, 540)
@@ -1606,6 +1605,7 @@ position = Vector2(1399, 540)
 sprite_frames = SubResource("SpriteFrames_qrdq4")
 
 [node name="Label" type="Label" parent="ui"]
+visible = false
 anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.12963
@@ -1616,6 +1616,7 @@ text = "Money: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="ui"]
+visible = false
 offset_left = 873.0
 offset_right = 1163.0
 offset_bottom = 139.0
@@ -1623,6 +1624,7 @@ text = "Stars: 5"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label3" type="Label" parent="ui"]
+visible = false
 anchors_preset = -1
 anchor_left = -0.207292
 anchor_right = -0.125
