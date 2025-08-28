@@ -43,7 +43,6 @@ func menu_load():
 	$"../order_timer".stop()
 	$"../kitchen/plates".clear()
 	$"../player_single".controlling = false
-	name_thing.position.y = 0.5
 	spawn = true
 	$Timer.start()
 	$Camera3D.current = true
@@ -91,7 +90,7 @@ func _spawn():
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
 	var instance = random_spawn[spawned_random_item].instantiate()
 	add_child(instance)
-	instance.position = Vector3(randf_range(-3,3),1,randf_range(-3,3))
+	instance.position = Vector3(randf_range(-10,10),-1,randf_range(-10,10))
 	instance.rotation_degrees = Vector3(randi_range(0,360),randi_range(0,360),randi_range(0,360))
 	spawn = false
 	$Timer.start()
@@ -272,7 +271,6 @@ func _on_play_level_pressed() -> void:
 		$"../transition animation".hide()
 		$"../player_single".can_exit = true
 func hide_everything():
-	$name.hide()
 	for i in $CanvasLayer.get_children():
 		i.hide()
 		

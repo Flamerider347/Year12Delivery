@@ -1132,14 +1132,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 shape = SubResource("BoxShape3D_hpiwi")
 
-[node name="name" type="Label3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0.5, -0.7)
-texture_filter = 2
-text = "Kitchen Chaos
-Return of the
-UNNAMED PROJECT"
-font_size = 128
-
 [connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
 [connection signal="pressed" from="CanvasLayer/main_menu/options" to="." method="options"]
