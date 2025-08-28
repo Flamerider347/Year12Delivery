@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://xvx7y5nfbm87"]
+
+[sub_resource type="Curve" id="Curve_1kvig"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.687204, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hatgf"]
+curve = SubResource("Curve_1kvig")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xw51y"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_hatgf")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hatgf"]
+top_radius = 0.1
+bottom_radius = 0.0
+
+[node name="particle_ingredients_cut" type="GPUParticles3D"]
+amount = 24
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xw51y")
+draw_pass_1 = SubResource("CylinderMesh_hatgf")

@@ -300,6 +300,7 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 		if body.is_in_group("can_chop"):
 			$"SFX/knife chopping".global_position = body.global_position
 			$"SFX/knife chopping".play()
+			### Add the particele instansitate with position.gloabal position of the food
 			if body.type == "bun":
 				if is_tutorial:
 					$tutorial/plates.cut_bun()
