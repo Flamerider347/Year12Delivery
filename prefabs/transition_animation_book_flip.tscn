@@ -345,6 +345,7 @@ animations = [{
 }]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
-scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_ytcqq")
 animation = &"book_flipping_right"
+frame = 19
+frame_progress = 1.0

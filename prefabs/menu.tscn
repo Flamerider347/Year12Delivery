@@ -1107,8 +1107,8 @@ offset_bottom = -33.0
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" parent="CanvasLayer" instance=ExtResource("22_1lbl1")]
-visible = false
-position = Vector2(960, 540)
+position = Vector2(961, 540)
+scale = Vector2(1.5, 1.5)
 frame = 8
 frame_progress = 0.191771
 
