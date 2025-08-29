@@ -27,6 +27,8 @@ var is_tutorial = false
 var world_toggle = false
 # Defines the animation player for when the player moves between menus.
 @onready var animation: AnimationPlayer = $"transition animation/transition animation"
+# Preloads the ingrients getting chopped particle
+var particle_ingredients_chopped = preload("res://prefabs/particle_ingredients_chopped.tscn")
 
 @onready var pot = preload("res://prefabs/delivery_pot.tscn")
 var bench_summoning = {
@@ -300,7 +302,11 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 		if body.is_in_group("can_chop"):
 			$"SFX/knife chopping".global_position = body.global_position
 			$"SFX/knife chopping".play()
-			### Add the particele instansitate with position.gloabal position of the food
+			# Instantiates particle at location of chopped ingredient
+			var ingredients_chopped = particle_ingredients_chopped.instantiate()
+			ingredients_chopped.position = Vector3(0, 0, 0)
+			add_child(particle_ingredients_chopped.instantiate())
+
 			if body.type == "bun":
 				if is_tutorial:
 					$tutorial/plates.cut_bun()

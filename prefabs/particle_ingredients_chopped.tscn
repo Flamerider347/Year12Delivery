@@ -20,9 +20,11 @@ scale_curve = SubResource("CurveTexture_hatgf")
 top_radius = 0.1
 bottom_radius = 0.0
 
-[node name="particle_ingredients_cut" type="GPUParticles3D"]
+[node name="particle_ingredients_chopped" type="GPUParticles3D"]
+emitting = false
 amount = 24
 lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_xw51y")
 draw_pass_1 = SubResource("CylinderMesh_hatgf")
