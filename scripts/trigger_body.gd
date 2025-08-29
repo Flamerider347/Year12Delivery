@@ -105,3 +105,7 @@ func menu():
 	playing_current = "book"
 	await start_fade(tracks[playing_current], fade_in, 1.0)
 	playing_next = null
+
+
+func _on_transition_timer_timeout() -> void:
+	pass # Replace with function body.

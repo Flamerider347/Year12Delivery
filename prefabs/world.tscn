@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=93 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -43,6 +43,7 @@
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="PackedScene" uid="uid://8knwxbv0ojoy" path="res://prefabs/tree_coral_and_seaweed_gridmap.tscn" id="31_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
+[ext_resource type="Texture2D" uid="uid://8qnjl27yqjla" path="res://assets/haydenfoundassets/Volcano/bubble_7.png" id="32_2h4m2"]
 [ext_resource type="Texture2D" uid="uid://b01qawstnk7bi" path="res://assets/floorandstuff/overcast_soil_puresky_4k.png" id="35_aqg0f"]
 [ext_resource type="AudioStream" uid="uid://ss2100jcaehb" path="res://assets/haydenfoundassets/sharp-blade-slice-2-185145.mp3" id="36_p78bo"]
 
@@ -113,6 +114,30 @@ uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6knb"]
 size = Vector3(1, 2.09375, 6.50854)
+
+[sub_resource type="Gradient" id="Gradient_2h4m2"]
+offsets = PackedFloat32Array(0.00520833, 0.317708, 0.734375, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_umtm3"]
+gradient = SubResource("Gradient_2h4m2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_umtm3"]
+emission_shape_offset = Vector3(0, 7.75, -14)
+emission_shape_scale = Vector3(20, 6, 17.83)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_umtm3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_os0cm"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("32_2h4m2")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_aqg0f"]
+material = SubResource("StandardMaterial3D_os0cm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iobq"]
 albedo_texture = ExtResource("2_xky7j")
@@ -558,7 +583,7 @@ cell_size = Vector3(3.215, 2, 3.215)
 collision_layer = 5
 collision_mask = 5
 data = {
-"cells": PackedInt32Array(9, 7, 1048576, 9, 8, 1048576, 9, 9, 1048576, 9, 10, 1048576, 9, 11, 1048576, 9, 12, 1048576, 9, 13, 1048576, 9, 14, 1048576, 65526, 9, 1441792, 65526, 10, 1441792, 65526, 11, 1441792, 65526, 12, 1441792, 65526, 13, 1441792, 65526, 14, 0, 65526, 6, 1441792, 65526, 7, 1441792, 65526, 8, 1441792, 65526, 4, 1441792, 65526, 5, 1441792, 9, 6, 1048576, 9, 5, 1048576, 9, 4, 1048576, 9, 3, 1048576, 9, 2, 1048576, 9, 1, 1048576, 9, 0, 1048576, 9, 65535, 655360, 8, 65535, 655360, 6, 65535, 655360, 5, 65535, 655360, 4, 65535, 655360, 3, 65535, 655360, 2, 65535, 655360, 1, 65535, 655360, 0, 65535, 655360, 65535, 65535, 655360, 65534, 65535, 655360, 65533, 65535, 655360, 65532, 65535, 655360, 65531, 65535, 655360, 65528, 65535, 655360, 65527, 65535, 655360, 65526, 65535, 1441792, 65526, 3, 1441792, 65526, 2, 1441792, 65526, 1, 1441792, 65526, 0, 1441792, 8, 14, 0, 6, 14, 1048576, 5, 14, 0, 4, 14, 0, 3, 14, 0, 2, 14, 0, 1, 14, 0, 0, 14, 0, 65535, 14, 0, 65534, 14, 0, 65533, 14, 0, 65532, 14, 0, 65531, 14, 0, 65528, 14, 0, 65527, 14, 0, 65529, 65532, 1441792, 65530, 14, 0, 65529, 14, 0, 65530, 65535, 655360, 65529, 65535, 1441792, 65529, 0, 1441792, 65529, 1, 1441792, 65529, 2, 1441792, 65529, 3, 1441792, 65529, 4, 1441792, 65529, 5, 1441792, 65529, 6, 1441792, 65529, 7, 1441792, 65529, 8, 1441792, 65529, 9, 1441792, 65529, 10, 1441792, 65529, 11, 1441792, 65529, 12, 1441792, 65529, 13, 1441792, 6, 0, 1048576, 6, 1, 1048576, 6, 2, 1048576, 6, 3, 1048576, 6, 4, 1048576, 6, 5, 1048576, 6, 6, 1048576, 6, 7, 1048576, 6, 8, 1048576, 6, 9, 1048576, 6, 10, 1048576, 6, 11, 1048576, 6, 12, 1048576, 6, 13, 1048576)
+"cells": PackedInt32Array(6, 65535, 655360, 5, 65535, 655360, 4, 65535, 655360, 3, 65535, 655360, 2, 65535, 655360, 1, 65535, 655360, 0, 65535, 655360, 65535, 65535, 655360, 65534, 65535, 655360, 65533, 65535, 655360, 65532, 65535, 655360, 65531, 65535, 655360, 6, 14, 1048576, 5, 14, 0, 4, 14, 0, 3, 14, 0, 2, 14, 0, 1, 14, 0, 0, 14, 0, 65535, 14, 0, 65534, 14, 0, 65533, 14, 0, 65532, 14, 0, 65531, 14, 0, 65530, 14, 0, 65529, 14, 0, 65530, 65535, 655360, 65529, 65535, 1441792, 65529, 0, 1441792, 65529, 1, 1441792, 65529, 2, 1441792, 65529, 3, 1441792, 65529, 4, 1441792, 65529, 5, 1441792, 65529, 6, 1441792, 65529, 7, 1441792, 65529, 8, 1441792, 65529, 9, 1441792, 65529, 10, 1441792, 65529, 11, 1441792, 65529, 12, 1441792, 65529, 13, 1441792, 6, 0, 1048576, 6, 1, 1048576, 6, 2, 1048576, 6, 3, 1048576, 6, 4, 1048576, 6, 5, 1048576, 6, 6, 1048576, 6, 7, 1048576, 6, 8, 1048576, 6, 9, 1048576, 6, 10, 1048576, 6, 11, 1048576, 6, 12, 1048576, 6, 13, 1048576)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -1465,6 +1490,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
 data = {
 "cells": PackedInt32Array(0, 0, 1048576, 77, 67, 655360, 80, 82, 1441792, 78, 83, 1441792, 78, 82, 1441792, 69, 85, 1048576, 52, 74, 655360, 54, 71, 0, 53, 65, 1441792, 54, 66, 1441792, 51, 67, 655360, 74, 66, 0, 76, 65, 0, 76, 69, 1441792, 73, 70, 655360, 75, 73, 1048576, 74, 79, 0, 50, 82, 1048576, 70, 67, 655360, 68, 64, 0, 67, 68, 655360, 71, 64, 0, 57, 63, 1048576, 60, 67, 0, 61, 72, 0)
 }
+
+[node name="bubbles" type="GPUParticles3D" parent="underwater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7101, 37.2317)
+amount = 30
+speed_scale = 0.1
+visibility_aabb = AABB(-24.41, -4, -38.665, 50, 8, 50)
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_umtm3")
+draw_pass_1 = SubResource("QuadMesh_aqg0f")
 
 [node name="siberia" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
