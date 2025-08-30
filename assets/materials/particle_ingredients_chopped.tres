@@ -1,0 +1,17 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://cfbi6cm5on0gq"]
+
+[sub_resource type="Curve" id="Curve_1kvig"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.687204, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hatgf"]
+curve = SubResource("Curve_1kvig")
+
+[resource]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_hatgf")

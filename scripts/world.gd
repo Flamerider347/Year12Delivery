@@ -29,7 +29,6 @@ var world_toggle = false
 @onready var animation: AnimationPlayer = $"transition animation/transition animation"
 # Preloads the ingrients getting chopped particle
 var particle_ingredients_chopped = preload("res://prefabs/particle_ingredients_chopped.tscn")
-
 @onready var pot = preload("res://prefabs/delivery_pot.tscn")
 var bench_summoning = {
 	"bench_1" : [Vector3(-5,0,0),0],
@@ -304,8 +303,16 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 			$"SFX/knife chopping".play()
 			# Instantiates particle at location of chopped ingredient
 			var ingredients_chopped = particle_ingredients_chopped.instantiate()
-			ingredients_chopped.position = Vector3(0, 0, 0)
-			add_child(particle_ingredients_chopped.instantiate())
+			ingredients_chopped.position = body.global_position
+			add_child(ingredients_chopped)
+			# i is the mesh of ingredients
+			for i in body.get_children():
+				if i is MeshInstance3D:
+					var particle_colour = i.get_active_material()
+					ingredients_chopped.material_override = particle_colour
+			ingredients_chopped.emitting = true
+			await ingredients_chopped.finished
+			ingredients_chopped.queue_free()
 
 			if body.type == "bun":
 				if is_tutorial:
