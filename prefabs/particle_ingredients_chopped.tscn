@@ -11,8 +11,6 @@ top_radius = 0.1
 bottom_radius = 0.0
 
 [node name="particle_ingredients_chopped" type="GPUParticles3D"]
-emitting = false
-one_shot = true
 explosiveness = 1.0
 process_material = ExtResource("1_a8q0d")
 draw_pass_1 = SubResource("CylinderMesh_ucqno")

@@ -66,6 +66,16 @@ var bench_summoning = {
 	"underwater" : $underwater,
 	"siberia" : $siberia,
 }
+
+var ingredient_colors := {
+	"tomato": Color(1, 0, 0),
+	"lettuce": Color(0, 1, 0),
+	"cheese": Color(1, 1, 0),
+	"bun": Color(0.9, 0.8, 0.6),
+	"carrot": Color(1, 0.5, 0),
+	"onion": Color(0.8, 0.8, 0.7),
+	}
+
 var ingredients = {
 "potato": preload("res://prefabs/potato_chopped.tscn"),
 "cheese": preload("res://prefabs/cheese_chopped.tscn"),
@@ -297,24 +307,35 @@ func _physics_process(delta: float) -> void:
 	if level == 3:
 		$underwater/floor2.material_override.uv1_offset.x += 0.01 * delta
 func _on_cut_area_body_entered(body: Node3D) -> void:
-	if $player_single.held_object and $player_single.held_object.type == "knife" or $GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife" or $GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife":
+	if ($player_single.held_object and $player_single.held_object.type == "knife") \
+	or ($GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife") \
+	or ($GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife"):
+
 		if body.is_in_group("can_chop"):
 			$"SFX/knife chopping".global_position = body.global_position
 			$"SFX/knife chopping".play()
+
+			# store body type before freeing
+			var body_type = body.type
+
 			# Instantiates particle at location of chopped ingredient
 			var ingredients_chopped = particle_ingredients_chopped.instantiate()
 			ingredients_chopped.position = body.global_position
 			add_child(ingredients_chopped)
-			# i is the mesh of ingredients
-			for i in body.get_children():
-				if i is MeshInstance3D:
-					var particle_colour = i.get_active_material()
-					ingredients_chopped.material_override = particle_colour
+
+			# Tint particle based on ingredient color
+			var mat = ingredients_chopped.process_material
+			if mat:
+				if body_type in ingredient_colors:
+					mat.color = ingredient_colors[body_type]
+				else:
+					mat.color = Color(1, 1, 1) # default white
+
 			ingredients_chopped.emitting = true
 			await ingredients_chopped.finished
 			ingredients_chopped.queue_free()
 
-			if body.type == "bun":
+			if body_type == "bun":
 				if is_tutorial:
 					$tutorial/plates.cut_bun()
 				var instance = bun_chopped_bottom.instantiate()
@@ -327,16 +348,15 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 				instance2.position = body.position + Vector3(0,0.1,0)
 				body.queue_free()
 
-			elif body.type in ingredients:
+			elif body_type in ingredients:
 				if is_tutorial:
-					if body.type == "tomato":
+					if body_type == "tomato":
 						$tutorial/plates.cut_tomato()
-				var instance = ingredients[body.type].instantiate()
-				instance.type = body.type + "_chopped"
+				var instance = ingredients[body_type].instantiate()
+				instance.type = body_type + "_chopped"
 				instance.position = body.position
 				add_child(instance)
 				body.queue_free()
-
 
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
