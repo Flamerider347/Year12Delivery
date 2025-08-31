@@ -69,11 +69,12 @@ var bench_summoning = {
 
 var ingredient_colors := {
 	"tomato": Color(1, 0, 0),
-	"lettuce": Color(0, 1, 0),
+	"lettuce": Color(0.1, 0.9, 0),
 	"cheese": Color(1, 1, 0),
 	"bun": Color(0.9, 0.8, 0.6),
 	"carrot": Color(1, 0.5, 0),
-	"onion": Color(0.8, 0.8, 0.7),
+	"meat_cooked": Color(0.33,0.175,0.12),
+	"potato" : Color(0.8,0.635,0.31)
 	}
 
 var ingredients = {
@@ -296,11 +297,9 @@ func _physics_process(delta: float) -> void:
 				break
 			else:
 				pass
-		var count = 0
 		for i in range(10):
-			count += 1
 			if orders[i] == 1:
-				emit_signal("make_order","make",count)
+				emit_signal("make_order","make",i + 1)
 				orders[i] = 2
 	if level == 2:
 		$volcano/floor/floor.material_override.uv1_offset.y += 0.02 * delta
@@ -311,7 +310,8 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 	or ($GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife") \
 	or ($GridContainer/SubViewportContainer2/SubViewport/player2.held_object and $GridContainer/SubViewportContainer2/SubViewport/player2.held_object.type == "knife"):
 
-		if body.is_in_group("can_chop"):
+		if body.is_in_group("can_chop") and not body.is_in_group("stackable") and not body.is_in_group("packageable"):
+			body.remove_from_group("can_chop")
 			$"SFX/knife chopping".global_position = body.global_position
 			$"SFX/knife chopping".play()
 
@@ -323,17 +323,10 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 			ingredients_chopped.position = body.global_position
 			add_child(ingredients_chopped)
 
-			# Tint particle based on ingredient color
-			var mat = ingredients_chopped.process_material
-			if mat:
-				if body_type in ingredient_colors:
-					mat.color = ingredient_colors[body_type]
-				else:
-					mat.color = Color(1, 1, 1) # default white
-
+			if body_type in ingredient_colors:
+				ingredients_chopped.material_override.albedo_color = ingredient_colors[body_type]
 			ingredients_chopped.emitting = true
-			await ingredients_chopped.finished
-			ingredients_chopped.queue_free()
+
 
 			if body_type == "bun":
 				if is_tutorial:
@@ -358,6 +351,8 @@ func _on_cut_area_body_entered(body: Node3D) -> void:
 				add_child(instance)
 				body.queue_free()
 
+			await ingredients_chopped.finished
+			ingredients_chopped.queue_free()
 func _on_objective_plate_objective(changed_objective,plate_name,timer,address,plate_timer_name) -> void:
 	objectives[plate_timer_name] = [changed_objective,timer,address,plate_name]
 

@@ -11,6 +11,7 @@ script = ExtResource("1_k03a5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0123, -0.00210571, -0.000305176)
+visible = false
 shape = SubResource("BoxShape3D_k03a5")
 
 [node name="FoodIngredientPotato" type="MeshInstance3D" parent="."]
