@@ -89,8 +89,8 @@ func _spawn():
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
 	var instance = random_spawn[spawned_random_item].instantiate()
 	add_child(instance)
-	instance.position = Vector3(randf_range(-18,18),1,randf_range(-18,18))
-	instance.scale = Vector3.ONE * randi_range(1, 3)
+	instance.position = Vector3(randf_range(-20,20),1,randf_range(-15,15))
+	instance.scale = Vector3.ONE * randi_range(1, 10)
 	instance.rotation_degrees = Vector3(randi_range(0,360),randi_range(0,360),randi_range(0,360))
 	spawn = false
 	$Timer.start()
