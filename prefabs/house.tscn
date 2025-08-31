@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvyhf3kno28cu"]
+[gd_scene load_steps=8 format=3 uid="uid://cvyhf3kno28cu"]
 
 [ext_resource type="ArrayMesh" uid="uid://dkytuhgvfx1fr" path="res://assets/createdassets/door-mat.obj" id="1_44rip"]
 [ext_resource type="ArrayMesh" uid="uid://dvmeltkyjfnd7" path="res://assets/createdassets/house1.obj" id="1_o8sle"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_upbwm"]
 [ext_resource type="Texture2D" uid="uid://beni3mx1rotvr" path="res://assets/createdassets/Delivery_Cover-art.png" id="3_hvfu8"]
+[ext_resource type="ArrayMesh" uid="uid://cr7omhjvlr3oq" path="res://assets/createdassets/house1_snow.obj" id="5_hvfu8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yg153"]
 size = Vector3(0.956696, 0.0627136, 0.568344)
@@ -38,6 +39,15 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.085, 1.99, 0.176)
 shape = SubResource("BoxShape3D_o8sle")
+
+[node name="house_frozen_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.275, 0)
+mesh = ExtResource("5_hvfu8")
+surface_material_override/0 = ExtResource("2_upbwm")
+surface_material_override/1 = ExtResource("2_upbwm")
+surface_material_override/2 = ExtResource("2_upbwm")
+surface_material_override/3 = ExtResource("2_upbwm")
+surface_material_override/4 = ExtResource("2_upbwm")
 
 [node name="house_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.275, 0)
