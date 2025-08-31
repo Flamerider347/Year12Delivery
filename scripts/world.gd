@@ -307,12 +307,12 @@ func _physics_process(delta: float) -> void:
 		$underwater/floor2.material_override.uv1_offset.x += 0.01 * delta
 	if level == 4:
 		for i in $kitchen/houses.get_children():
-			find_child("house").find_child("house_frozen_mesh").show()
-			find_child("house").find_child("house_mesh").hide()
+			i.find_child("house").find_child("house_frozen_mesh").show()
+			i.find_child("house").find_child("house_mesh").hide()
 	else:
 		for i in $kitchen/houses.get_children():
-			find_child("house").find_child("house_frozen_mesh").hide()
-			find_child("house").find_child("house_mesh").show()
+			i.find_child("house").find_child("house_frozen_mesh").hide()
+			i.find_child("house").find_child("house_mesh").show()
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if ($player_single.held_object and $player_single.held_object.type == "knife") \
 	or ($GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife") \
