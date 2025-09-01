@@ -4,7 +4,6 @@ extends Area3D
 	dine_in = $nature,
 	lava = $AudioStreamPlayer3D_lava,
 	underwater = $AudioStreamPlayer3D_underwater,
-	restaurant = $AudioStreamPlayer3D_frozen,
 	menu = $menu,
 	book = $book,
 	tundra = $tundra
@@ -22,7 +21,7 @@ func _ready() -> void:
 	menu()
 
 # Utility: start a fade safely
-func start_fade(track: AudioStreamPlayer3D, fade_func: Callable, duration: float):
+func start_fade(track: AudioStreamPlayer, fade_func: Callable, duration: float):
 	if track == null or not is_instance_valid(track):
 		return
 	if fade_tasks.has(track):
@@ -34,7 +33,7 @@ func start_fade(track: AudioStreamPlayer3D, fade_func: Callable, duration: float
 	if fade_tasks.has(track):
 		fade_tasks.erase(track)
 
-func fade_out(track: AudioStreamPlayer3D, duration: float, task):
+func fade_out(track: AudioStreamPlayer, duration: float, task):
 	if track == null or not is_instance_valid(track):
 		return
 	var steps = 20
@@ -47,13 +46,13 @@ func fade_out(track: AudioStreamPlayer3D, duration: float, task):
 	if not task.cancelled and is_instance_valid(track):
 		track.stop()
 
-func fade_in(track: AudioStreamPlayer3D, duration: float, task):
+func fade_in(track: AudioStreamPlayer, duration: float, task):
 	if track == null or not is_instance_valid(track):
 		return
 
 	# Stop any other playing tracks just in case
 	for child in get_children():
-		if child is AudioStreamPlayer3D and child != track and child.playing:
+		if child is AudioStreamPlayer and child != track and child.playing:
 			child.stop()
 
 	track.volume_db = -40.0
@@ -111,7 +110,7 @@ func menu():
 
 	# 🔇 Extra safety: once fades are done, mute/stop everything
 	for child in get_children():
-		if child is AudioStreamPlayer3D and child.playing:
+		if child is AudioStreamPlayer and child.playing:
 			child.stop()
 
 	# Switch to book

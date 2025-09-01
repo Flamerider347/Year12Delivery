@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyp7gdk7w8mbv"]
+[gd_scene load_steps=10 format=3 uid="uid://cyp7gdk7w8mbv"]
 
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="1_7p2h2"]
 [ext_resource type="AudioStream" uid="uid://5tdrf2hl43u5" path="res://assets/haydenfoundassets/nature-ambience-323729.mp3" id="2_lvbu6"]
 [ext_resource type="AudioStream" uid="uid://p8ud4ysqccpr" path="res://assets/SFX/underwater-currents-ambience.mp3" id="3_c7pu5"]
 [ext_resource type="Script" uid="uid://busw405b68h0v" path="res://scripts/trigger_body.gd" id="3_d57w0"]
-[ext_resource type="AudioStream" uid="uid://embbrqdhskwd" path="res://assets/SFX/howling-wind-ambience.mp3" id="4_8xmue"]
 [ext_resource type="AudioStream" uid="uid://c8pom7pp31hrg" path="res://assets/haydenfoundassets/Sizzling Symphony.mp3" id="5_8xmue"]
 [ext_resource type="AudioStream" uid="uid://8sftrnqs1foi" path="res://assets/haydenfoundassets/Gentle Horizons.mp3" id="6_fwar3"]
 [ext_resource type="AudioStream" uid="uid://dak0fp5i5jeig" path="res://assets/haydenfoundassets/wind-blowing-sfx-12809.mp3" id="8_x8y6t"]
@@ -27,42 +26,30 @@ shape = SubResource("BoxShape3D_ui4bh")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="trigger_body"]
 mesh = SubResource("BoxMesh_dobhj")
 
-[node name="nature" type="AudioStreamPlayer3D" parent="trigger_body"]
-stream = ExtResource("2_lvbu6")
-volume_db = 80.0
-max_db = 6.0
-bus = &"Ambience"
-
-[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="trigger_body"]
-stream = ExtResource("1_7p2h2")
-volume_db = -40.0
-bus = &"Ambience"
-
-[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="trigger_body"]
-stream = ExtResource("3_c7pu5")
-volume_db = -40.0
-bus = &"Ambience"
-
-[node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="trigger_body"]
-stream = ExtResource("4_8xmue")
-volume_db = -40.0
-bus = &"Ambience"
-
-[node name="menu" type="AudioStreamPlayer3D" parent="trigger_body"]
-stream = ExtResource("5_8xmue")
-volume_db = -40.0
-bus = &"Ambience"
-
-[node name="book" type="AudioStreamPlayer3D" parent="trigger_body"]
-stream = ExtResource("6_fwar3")
-volume_db = -40.0
-bus = &"Ambience"
-
 [node name="Transition_timer" type="Timer" parent="trigger_body"]
 
-[node name="tundra" type="AudioStreamPlayer3D" parent="trigger_body"]
+[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer" parent="trigger_body"]
+stream = ExtResource("1_7p2h2")
+bus = &"Ambience"
+
+[node name="menu" type="AudioStreamPlayer" parent="trigger_body"]
+stream = ExtResource("5_8xmue")
+bus = &"Ambience"
+
+[node name="book" type="AudioStreamPlayer" parent="trigger_body"]
+stream = ExtResource("6_fwar3")
+bus = &"Ambience"
+
+[node name="tundra" type="AudioStreamPlayer" parent="trigger_body"]
 stream = ExtResource("8_x8y6t")
-volume_db = -40.0
+bus = &"Ambience"
+
+[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer" parent="trigger_body"]
+stream = ExtResource("3_c7pu5")
+bus = &"Ambience"
+
+[node name="nature" type="AudioStreamPlayer" parent="trigger_body"]
+stream = ExtResource("2_lvbu6")
 bus = &"Ambience"
 
 [connection signal="body_entered" from="trigger_body" to="trigger_body" method="_on_body_entered"]

@@ -53,6 +53,9 @@ func menu_load():
 	$CanvasLayer/main_menu.show()
 	$CanvasLayer/book_resting_left.show()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_on_h_slider_5_value_changed(0.5)
+	_on_h_slider_4_value_changed(0.5)
+	_on_h_slider_3_value_changed(1.0)
 
 
 func _input(event):
@@ -99,7 +102,7 @@ func random_position():
 	var rand_x = randi_range(7,9)
 	if rand_place == 2:
 		rand_x *= -1
-	return Vector3(rand_x, 3, -1)
+	return Vector3(rand_x, 2.5, -1)
 
 
 func _on_timer_timeout() -> void:
