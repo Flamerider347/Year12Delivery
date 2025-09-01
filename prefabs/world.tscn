@@ -1,9 +1,8 @@
-[gd_scene load_steps=93 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=94 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
 [ext_resource type="PackedScene" uid="uid://cyp7gdk7w8mbv" path="res://prefabs/audio_box.tscn" id="2_p78bo"]
-[ext_resource type="Texture2D" uid="uid://yaqtpg8sikk" path="res://assets/materials/lave_ambientocclusion.png" id="2_xky7j"]
 [ext_resource type="Script" uid="uid://d0vlgi3des8jt" path="res://scripts/objective_plates.gd" id="3_u7kri"]
 [ext_resource type="ArrayMesh" uid="uid://dy7fogl7n2mo5" path="res://assets/kitchenassets/wall.obj" id="5_8bx52"]
 [ext_resource type="ArrayMesh" uid="uid://clb6b847k0tlf" path="res://assets/kitchenassets/pillar_A.obj" id="6_xfqyr"]
@@ -44,7 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://8knwxbv0ojoy" path="res://prefabs/tree_coral_and_seaweed_gridmap.tscn" id="31_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="Texture2D" uid="uid://8qnjl27yqjla" path="res://assets/haydenfoundassets/Volcano/bubble_7.png" id="32_2h4m2"]
-[ext_resource type="Texture2D" uid="uid://b01qawstnk7bi" path="res://assets/floorandstuff/overcast_soil_puresky_4k.png" id="35_aqg0f"]
+[ext_resource type="Texture2D" uid="uid://cnbkv0tr05cdg" path="res://assets/floorandstuff/mud_road_puresky.jpg" id="35_umtm3"]
 [ext_resource type="AudioStream" uid="uid://ss2100jcaehb" path="res://assets/haydenfoundassets/sharp-blade-slice-2-185145.mp3" id="36_p78bo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_aqg0f"]
@@ -96,7 +95,7 @@ uv1_scale = Vector3(20, 20, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro2rw"]
 shading_mode = 0
 albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
-albedo_texture = ExtResource("35_aqg0f")
+albedo_texture = ExtResource("35_umtm3")
 uv1_scale = Vector3(3, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6gec"]
@@ -139,8 +138,20 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_aqg0f"]
 material = SubResource("StandardMaterial3D_os0cm")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iobq"]
-albedo_texture = ExtResource("2_xky7j")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j6fw"]
+shading_mode = 0
+albedo_texture = ExtResource("35_umtm3")
+albedo_texture_force_srgb = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umtm3"]
+albedo_texture = ExtResource("14_os0cm")
+clearcoat = 0.0
+refraction_scale = 1.0
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfx56"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.407843)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7i1a"]
 height = 1.99
@@ -1320,6 +1331,11 @@ data = {
 "cells": PackedInt32Array(0, 65535, 1048576, 31, 65495, 655360, 35, 65506, 655360, 35, 65494, 655360, 38, 65495, 655360, 49, 65500, 655360, 49, 65506, 655360, 51, 65497, 655360, 51, 65504, 655360, 48, 65494, 655360, 35, 65499, 655360, 46, 65491, 655360, 33, 65503, 655360, 32, 65508, 655360, 29, 65500, 655360)
 }
 
+[node name="floor2" type="CSGSphere3D" parent="dine_in"]
+radius = 99.9
+radial_segments = 100
+rings = 100
+
 [node name="volcano" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, -0.09, 128)
 
@@ -1502,17 +1518,25 @@ draw_pass_1 = SubResource("QuadMesh_aqg0f")
 [node name="siberia" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
 
-[node name="floor" type="CSGBox3D" parent="siberia"]
-material_override = SubResource("StandardMaterial3D_1iobq")
-use_collision = true
-collision_layer = 5
-size = Vector3(100, 0.195, 100)
-
 [node name="Tree_Frozen_GridMap" parent="siberia" instance=ExtResource("26_p78bo")]
 data = {
 "cells": PackedInt32Array(2, 14, 1441792, 65529, 14, 1441792, 65533, 65534, 1441792, 65532, 8, 1441792, 65531, 2, 1441792, 65526, 12, 1441792, 3, 0, 1441792, 6, 1, 1441792, 6, 13, 1441792, 6, 10, 1441792, 9, 8, 1441792, 10, 4, 1441792, 6, 65533, 1441792, 65525, 7, 1441792, 65528, 3, 655360)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="floor2" type="CSGSphere3D" parent="siberia"]
+material_override = SubResource("StandardMaterial3D_6j6fw")
+flip_faces = true
+radius = 99.9
+radial_segments = 100
+rings = 100
+
+[node name="floor3" type="CSGBox3D" parent="siberia"]
+material_override = SubResource("StandardMaterial3D_umtm3")
+material_overlay = SubResource("StandardMaterial3D_dfx56")
+use_collision = true
+collision_layer = 5
+size = Vector3(100, 0.195, 100)
 
 [node name="SFX" type="Node3D" parent="."]
 
