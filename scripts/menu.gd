@@ -6,6 +6,7 @@ var text_1 = 0.0
 var text_2 = 0.0
 var text_3 = 0.0
 var difficulty_multiplier
+var object_count = 0
 var score_multiplier = 0.0
 var visual_money = 0.0
 var visual_score = 0.0
@@ -89,11 +90,16 @@ func _spawn():
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
 	var instance = random_spawn[spawned_random_item].instantiate()
 	add_child(instance)
-	instance.position = Vector3(randf_range(-20,20),1,randf_range(-15,15))
-	instance.scale = Vector3.ONE * randi_range(1, 10)
-	instance.rotation_degrees = Vector3(randi_range(0,360),randi_range(0,360),randi_range(0,360))
+	instance.position = random_position()
+
 	spawn = false
-	$Timer.start()
+
+func random_position():
+	var rand_place = randi_range(1,2)
+	var rand_x = randi_range(7,9)
+	if rand_place == 2:
+		rand_x *= -1
+	return Vector3(rand_x, 3, -1)
 
 
 func _on_timer_timeout() -> void:
@@ -103,6 +109,7 @@ func _on_timer_timeout() -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is RigidBody3D:
 		body.queue_free()
+
 
 
 func _on_level_0() -> void:

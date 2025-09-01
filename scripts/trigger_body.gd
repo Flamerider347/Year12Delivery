@@ -50,6 +50,12 @@ func fade_out(track: AudioStreamPlayer3D, duration: float, task):
 func fade_in(track: AudioStreamPlayer3D, duration: float, task):
 	if track == null or not is_instance_valid(track):
 		return
+
+	# Stop any other playing tracks just in case
+	for child in get_children():
+		if child is AudioStreamPlayer3D and child != track and child.playing:
+			child.stop()
+
 	track.volume_db = -40.0
 	track.play()
 	var steps = 20
@@ -60,7 +66,8 @@ func fade_in(track: AudioStreamPlayer3D, duration: float, task):
 		await get_tree().create_timer(step_time).timeout
 
 func _on_body_entered(body):
-	if body.name in ["player_single", "player", "player2"] and can_play:
+	# Only player_single and player control audio
+	if body.name in ["player_single", "player"] and can_play:
 		can_play = false
 		$Transition_timer.start(2.01)
 		playing_next = "menu"
@@ -74,9 +81,10 @@ func _on_body_entered(body):
 		menu_open = false
 
 func _on_body_exited(body):
+	# Only player_single and player control audio
 	if menu_open:
 		return
-	if body.name in ["player_single", "player", "player2"] and can_play:
+	if body.name in ["player_single", "player"] and can_play:
 		can_play = false
 		$Transition_timer.start(2.01)
 		if $"../../..".level == 1:
@@ -101,11 +109,15 @@ func menu():
 	if tracks.has(playing_current):
 		await start_fade(tracks[playing_current], fade_out, 1.0)
 
+	# 🔇 Extra safety: once fades are done, mute/stop everything
+	for child in get_children():
+		if child is AudioStreamPlayer3D and child.playing:
+			child.stop()
+
 	# Switch to book
 	playing_current = "book"
 	await start_fade(tracks[playing_current], fade_in, 1.0)
 	playing_next = null
 
-
 func _on_transition_timer_timeout() -> void:
-	pass # Replace with function body.
+	can_play = true

@@ -1303,7 +1303,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.03653, 5.45544)
 mesh = SubResource("BoxMesh_w6ly8")
 
 [node name="menu" parent="." instance=ExtResource("21_bpfb4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.7077)
 
 [node name="dine_in" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, -128)
@@ -1577,6 +1577,7 @@ skeleton = NodePath("../..")
 
 [node name="tundra" type="MeshInstance3D" parent="player_single/head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0389999, 0.00699997)
+visible = false
 material_override = SubResource("StandardMaterial3D_p78bo")
 transparency = 0.7
 mesh = SubResource("SphereMesh_aqg0f")
