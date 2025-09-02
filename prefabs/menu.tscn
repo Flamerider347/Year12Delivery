@@ -348,15 +348,20 @@ visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/credits"]
 offset_left = 422.0
-offset_top = 65.0
+offset_top = 85.0
 offset_right = 991.0
-offset_bottom = 1006.0
+offset_bottom = 1026.0
 bbcode_enabled = true
-text = "[u]Lead Programmer[/u] - Hayden Clemence
-[u]Lead Designer[/u] - Benjamin Blakie
-[u]Lead Artist[/u] - Aine O'Connor
-[u]Assistant Programmer[/u] - Benjamin Wray
-[u]Assistant Designer[/u] - Finn Tan"
+text = "[u]Lead Programmer[/u]  Hayden Clemence
+
+[u]Lead Designer[/u]  Benjamin Blakie
+
+[u]Lead Artist[/u]  
+Aine O'Connor
+
+[u]With help from[/u]  
+Benjamin Wray
+Finn Tan"
 
 [node name="return" type="Button" parent="CanvasLayer/credits"]
 offset_left = 1310.0
@@ -382,6 +387,7 @@ Mr. Rodkiss
 Mr O'Sullivan"
 
 [node name="options" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="return" type="Button" parent="CanvasLayer/options"]
 offset_left = 1310.0
@@ -481,7 +487,6 @@ step = 0.001
 value = 0.5
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -773,10 +778,11 @@ text = "Return"
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades_button" type="Button" parent="CanvasLayer/layout"]
-offset_left = 407.0
+offset_left = 420.0
 offset_top = 167.0
-offset_right = 677.0
+offset_right = 690.0
 offset_bottom = 261.0
+scale = Vector2(0.95, 0.95)
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_w3v8e")
@@ -784,10 +790,11 @@ text = "Upgrades"
 metadata/_edit_use_anchors_ = true
 
 [node name="recipes_button" type="Button" parent="CanvasLayer/layout"]
-offset_left = 687.0
+offset_left = 689.205
 offset_top = 167.0
-offset_right = 957.0
+offset_right = 959.205
 offset_bottom = 261.0
+scale = Vector2(0.95, 0.95)
 toggle_mode = true
 button_group = SubResource("ButtonGroup_t816m")
 text = "Recipes"
@@ -797,56 +804,56 @@ metadata/_edit_use_anchors_ = true
 visible = false
 
 [node name="buy_bench" type="Button" parent="CanvasLayer/layout/upgrades"]
-offset_left = 630.0
+offset_left = 615.0
 offset_top = 283.0
-offset_right = 950.0
+offset_right = 935.0
 offset_bottom = 377.0
 text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
 [node name="bench" type="Label" parent="CanvasLayer/layout/upgrades"]
-offset_left = 373.84
-offset_top = 342.455
-offset_right = 1267.84
-offset_bottom = 630.455
-scale = Vector2(0.65, 0.65)
+offset_left = 415.0
+offset_top = 344.0
+offset_right = 1309.0
+offset_bottom = 632.0
+scale = Vector2(0.6, 0.6)
 text = "Buy Bench 9
 -Adds another customisable bench. 
 -More benches speed up production."
 metadata/_edit_use_anchors_ = true
 
 [node name="star" type="Label" parent="CanvasLayer/layout/upgrades"]
-offset_left = 373.84
-offset_top = 592.045
-offset_right = 1169.84
-offset_bottom = 880.045
-scale = Vector2(0.65, 0.65)
+offset_left = 415.0
+offset_top = 590.0
+offset_right = 1211.0
+offset_bottom = 878.0
+scale = Vector2(0.6, 0.6)
 text = "Buy Star 2
 -Stars allow you to fail orders. 
 -More stars means more money!"
 
 [node name="buy_star" type="Button" parent="CanvasLayer/layout/upgrades"]
-offset_left = 630.0
-offset_top = 521.0
-offset_right = 950.0
-offset_bottom = 615.0
+offset_left = 615.0
+offset_top = 526.175
+offset_right = 935.0
+offset_bottom = 620.175
 text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
 [node name="recipe_slot" type="Label" parent="CanvasLayer/layout/upgrades"]
-offset_left = 373.84
+offset_left = 415.0
 offset_top = 808.555
-offset_right = 1213.84
+offset_right = 1255.0
 offset_bottom = 1096.55
-scale = Vector2(0.65, 0.65)
+scale = Vector2(0.6, 0.6)
 text = "Buy Slot 5
 -Cook more recipes at one time
 -Change equipped slots in Recipes"
 
 [node name="buy_recipe_slot" type="Button" parent="CanvasLayer/layout/upgrades"]
-offset_left = 630.0
+offset_left = 615.0
 offset_top = 756.0
-offset_right = 950.0
+offset_right = 935.0
 offset_bottom = 850.0
 text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
@@ -861,23 +868,23 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_dwafa")
 
 [node name="Label" type="Label" parent="CanvasLayer/layout/recipes"]
-offset_left = 380.0
+offset_left = 420.0
 offset_top = 641.0
-offset_right = 819.0
+offset_right = 859.0
 offset_bottom = 735.0
 text = "Available recipes:"
 
 [node name="Label2" type="Label" parent="CanvasLayer/layout/recipes"]
-offset_left = 399.0
+offset_left = 420.0
 offset_top = 254.0
-offset_right = 819.0
+offset_right = 840.0
 offset_bottom = 348.0
 text = "Selected recipes:"
 
 [node name="selected_recipes" type="Node2D" parent="CanvasLayer/layout/recipes"]
 
 [node name="recipe_slot1" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
-position = Vector2(462, 404)
+position = Vector2(480, 400)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -888,7 +895,7 @@ shape = SubResource("RectangleShape2D_y5qo3")
 texture = ExtResource("19_1lbl1")
 
 [node name="recipe_slot2" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
-position = Vector2(597, 405)
+position = Vector2(615, 400)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -899,7 +906,7 @@ shape = SubResource("RectangleShape2D_y5qo3")
 texture = ExtResource("17_dll84")
 
 [node name="recipe_slot3" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
-position = Vector2(737, 405)
+position = Vector2(750, 400)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -910,7 +917,7 @@ shape = SubResource("RectangleShape2D_y5qo3")
 texture = ExtResource("18_tcgir")
 
 [node name="recipe_slot4" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
-position = Vector2(874, 405)
+position = Vector2(885, 400)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -922,7 +929,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot5" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(464, 536)
+position = Vector2(480, 540)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -934,7 +941,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot6" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(596, 537)
+position = Vector2(615, 540)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -946,7 +953,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot7" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(737, 539)
+position = Vector2(750, 540)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -958,7 +965,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot8" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 visible = false
-position = Vector2(873, 541)
+position = Vector2(885, 540)
 script = ExtResource("13_73aox")
 metadata/_edit_group_ = true
 
@@ -972,7 +979,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="burger_hayden" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 visible = false
-position = Vector2(455, 790)
+position = Vector2(480, 790)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -984,7 +991,7 @@ texture = ExtResource("17_dll84")
 
 [node name="burger_ben" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 visible = false
-position = Vector2(597, 790)
+position = Vector2(615, 790)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -996,7 +1003,7 @@ texture = ExtResource("19_1lbl1")
 
 [node name="burger_aine" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 visible = false
-position = Vector2(743, 790)
+position = Vector2(750, 790)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -1007,7 +1014,7 @@ shape = SubResource("RectangleShape2D_0x0nk")
 texture = ExtResource("18_tcgir")
 
 [node name="burger_sullivan" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
-position = Vector2(882.905, 790)
+position = Vector2(885, 790)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -1018,7 +1025,7 @@ shape = SubResource("RectangleShape2D_0x0nk")
 texture = ExtResource("22_7xkfb")
 
 [node name="stew" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
-position = Vector2(595, 935)
+position = Vector2(615, 930)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -1029,7 +1036,7 @@ shape = SubResource("RectangleShape2D_0x0nk")
 texture = ExtResource("14_dwafa")
 
 [node name="bacon_egg_toast" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
-position = Vector2(456, 933.85)
+position = Vector2(480, 930)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
