@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=95 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -43,6 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://8knwxbv0ojoy" path="res://prefabs/tree_coral_and_seaweed_gridmap.tscn" id="31_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="Texture2D" uid="uid://8qnjl27yqjla" path="res://assets/haydenfoundassets/Volcano/bubble_7.png" id="32_2h4m2"]
+[ext_resource type="AudioStream" uid="uid://bilwcfwkyslou" path="res://assets/haydenfoundassets/doorbell-223669.mp3" id="35_2h4m2"]
 [ext_resource type="Texture2D" uid="uid://cnbkv0tr05cdg" path="res://assets/floorandstuff/mud_road_puresky.jpg" id="35_umtm3"]
 [ext_resource type="AudioStream" uid="uid://ss2100jcaehb" path="res://assets/haydenfoundassets/sharp-blade-slice-2-185145.mp3" id="36_p78bo"]
 
@@ -1332,6 +1333,7 @@ data = {
 }
 
 [node name="floor2" type="CSGSphere3D" parent="dine_in"]
+flip_faces = true
 radius = 99.9
 radial_segments = 100
 rings = 100
@@ -1545,7 +1547,7 @@ stream = ExtResource("20_b1m2q")
 bus = &"SFX"
 
 [node name="delivered" type="AudioStreamPlayer3D" parent="SFX"]
-stream = ExtResource("20_b1m2q")
+stream = ExtResource("35_2h4m2")
 bus = &"SFX"
 
 [node name="ingrediants added" type="AudioStreamPlayer3D" parent="SFX"]
@@ -1663,7 +1665,6 @@ position = Vector2(1399, 540)
 sprite_frames = SubResource("SpriteFrames_qrdq4")
 
 [node name="Label" type="Label" parent="ui"]
-visible = false
 anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.12963
@@ -1674,7 +1675,6 @@ text = "Money: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="ui"]
-visible = false
 offset_left = 873.0
 offset_right = 1163.0
 offset_bottom = 139.0
@@ -1682,7 +1682,6 @@ text = "Stars: 5"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label3" type="Label" parent="ui"]
-visible = false
 anchors_preset = -1
 anchor_left = -0.207292
 anchor_right = -0.125

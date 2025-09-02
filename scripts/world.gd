@@ -393,6 +393,7 @@ func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 				emit_signal("make_order","kill",plate_number)
 				orders[int(plate_number)-1] = 0
 				objectives.erase(objective)
+				$SFX/ding.global_position = spawned_box.global_position
 				$SFX/ding.play()
 				body.queue_free()
 				if is_tutorial:
@@ -413,6 +414,7 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			making_time_left = round(time_left)
 			score += making_time_left
 			$ui/Label.text = "Score " + str(score)
+			$SFX/delivered.global_position = delivered_pot.global_position
 			$SFX/delivered.play()
 			delivered_pot.queue_free()
 			orders_delivered += 1
