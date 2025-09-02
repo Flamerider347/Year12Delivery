@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=98 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -44,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://8knwxbv0ojoy" path="res://prefabs/tree_coral_and_seaweed_gridmap.tscn" id="31_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="Texture2D" uid="uid://8qnjl27yqjla" path="res://assets/haydenfoundassets/Volcano/bubble_7.png" id="32_2h4m2"]
+[ext_resource type="PackedScene" uid="uid://bhqv8uu8y51xi" path="res://prefabs/snowman.tscn" id="35_os0cm"]
 [ext_resource type="Texture2D" uid="uid://cnbkv0tr05cdg" path="res://assets/floorandstuff/mud_road_puresky.jpg" id="35_umtm3"]
 [ext_resource type="AudioStream" uid="uid://ss2100jcaehb" path="res://assets/haydenfoundassets/sharp-blade-slice-2-185145.mp3" id="36_p78bo"]
 
@@ -1547,6 +1548,9 @@ material_overlay = SubResource("StandardMaterial3D_dfx56")
 use_collision = true
 collision_layer = 5
 size = Vector3(100, 0.195, 100)
+
+[node name="snowman" parent="siberia" instance=ExtResource("35_os0cm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 30.0526)
 
 [node name="SFX" type="Node3D" parent="."]
 
