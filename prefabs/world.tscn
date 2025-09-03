@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=94 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -109,15 +109,108 @@ size = Vector3(10.8106, 0.305573, 11.618)
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjo16"]
 size = Vector3(1.56824, 0.651474, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iobq"]
-albedo_texture = ExtResource("2_xky7j")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jynr8"]
+albedo_texture = ExtResource("26_aqg0f")
+uv1_scale = Vector3(20, 20, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vjo16"]
-albedo_texture = ExtResource("24_vjo16")
-uv1_offset = Vector3(0, 6.845, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h4m2"]
+shading_mode = 0
+albedo_color = Color(0.572988, 0.572988, 0.572988, 1)
+albedo_texture = ExtResource("22_p78bo")
+uv1_scale = Vector3(20, 20, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ro2rw"]
+shading_mode = 0
+albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
+albedo_texture = ExtResource("35_umtm3")
+uv1_scale = Vector3(3, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6gec"]
+shading_mode = 0
+albedo_texture = ExtResource("25_p78bo")
+uv1_scale = Vector3(5, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v44qx"]
+albedo_texture = ExtResource("14_os0cm")
+clearcoat = 0.0
+refraction_scale = 1.0
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0am5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6knb"]
+size = Vector3(1, 2.09375, 6.50854)
+
+[sub_resource type="Gradient" id="Gradient_2h4m2"]
+offsets = PackedFloat32Array(0.00520833, 0.317708, 0.734375, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_umtm3"]
+gradient = SubResource("Gradient_2h4m2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_umtm3"]
+emission_shape_offset = Vector3(0, 7.75, -14)
+emission_shape_scale = Vector3(20, 6, 17.83)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_umtm3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_os0cm"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("32_2h4m2")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_aqg0f"]
+material = SubResource("StandardMaterial3D_os0cm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j6fw"]
+shading_mode = 0
+albedo_texture = ExtResource("35_umtm3")
+albedo_texture_force_srgb = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umtm3"]
+albedo_texture = ExtResource("14_os0cm")
+clearcoat = 0.0
+refraction_scale = 1.0
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfx56"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.407843)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7i1a"]
+height = 1.99
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k1hdb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbo5a"]
+shading_mode = 0
+albedo_color = Color(0.784179, 0.956568, 0.755781, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_aqg0f"]
+flip_faces = true
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_er0x2"]
+shading_mode = 0
+albedo_color = Color(1, 0.396078, 0.0941176, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqg0f"]
+shading_mode = 0
+albedo_color = Color(0.00784314, 0.12549, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p78bo"]
+shading_mode = 0
+albedo_color = Color(0.54099, 0.54099, 0.54099, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1k5bn"]
+size = Vector3(0.2, 4.67618, 0.2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_48uca"]
 shader = ExtResource("28_w6ly8")
@@ -291,6 +384,10 @@ height = 1.99
 script = ExtResource("1_k40i2")
 
 [node name="kitchen" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, 128)
+
+[node name="Audio_Box" parent="kitchen" instance=ExtResource("2_p78bo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.486, 4.979)
 
 [node name="kitchen_walls" type="Node3D" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.449997)
@@ -1436,187 +1533,10 @@ size = Vector3(100, 0.195, 100)
 [node name="Audio_Box_Middle" type="Node3D" parent="dine_in" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
 
-[node name="trigger_body" type="Area3D" parent="dine_in/Audio_Box_Middle"]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("24_guuop")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="dine_in/Audio_Box_Middle/trigger_body"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.152054, 0, 6.98428)
-shape = SubResource("BoxShape3D_ui4bh")
-debug_color = Color(0.45098, 0.45098, 1, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="dine_in/Audio_Box_Middle/trigger_body"]
-mesh = SubResource("BoxMesh_dobhj")
-
-[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Middle/trigger_body"]
-stream = ExtResource("25_1k5bn")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Middle/trigger_body"]
-stream = ExtResource("26_d6s6r")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Middle/trigger_body"]
-stream = ExtResource("27_lhn7i")
-volume_db = -40.0
-
-[node name="Timer" type="Timer" parent="dine_in/Audio_Box_Middle/trigger_body"]
-
-[node name="Audio_Box_Left" type="Node3D" parent="dine_in" groups=["keep"]]
-
-[node name="trigger_body" type="Area3D" parent="dine_in/Audio_Box_Left"]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("24_guuop")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="dine_in/Audio_Box_Left/trigger_body"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 29.9922, 0, -1.5823)
-shape = SubResource("BoxShape3D_d6s6r")
-debug_color = Color(0.45098, 0.45098, 1, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="dine_in/Audio_Box_Left/trigger_body"]
-mesh = SubResource("BoxMesh_dobhj")
-
-[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Left/trigger_body"]
-stream = ExtResource("25_1k5bn")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Left/trigger_body"]
-stream = ExtResource("26_d6s6r")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Left/trigger_body"]
-stream = ExtResource("27_lhn7i")
-volume_db = -40.0
-
-[node name="Timer" type="Timer" parent="dine_in/Audio_Box_Left/trigger_body"]
-
-[node name="Audio_Box_Right" type="Node3D" parent="dine_in" groups=["keep"]]
-
-[node name="trigger_body" type="Area3D" parent="dine_in/Audio_Box_Right"]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("24_guuop")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="dine_in/Audio_Box_Right/trigger_body"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -29.7226, 0, -1.5942)
-shape = SubResource("BoxShape3D_lhn7i")
-debug_color = Color(0.45098, 0.45098, 1, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="dine_in/Audio_Box_Right/trigger_body"]
-mesh = SubResource("BoxMesh_dobhj")
-
-[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Right/trigger_body"]
-stream = ExtResource("25_1k5bn")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Right/trigger_body"]
-stream = ExtResource("26_d6s6r")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="dine_in/Audio_Box_Right/trigger_body"]
-stream = ExtResource("27_lhn7i")
-volume_db = -40.0
-
-[node name="Timer" type="Timer" parent="dine_in/Audio_Box_Right/trigger_body"]
-
-[node name="siberia" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, 0, -128)
-
-[node name="floor" type="CSGBox3D" parent="siberia"]
-material_override = SubResource("StandardMaterial3D_1iobq")
-use_collision = true
-collision_layer = 5
-size = Vector3(100, 0.195, 100)
-
-[node name="Audio_Box_Middle" type="Node3D" parent="siberia" groups=["keep"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3426, 24.5923)
-
-[node name="trigger_body" type="Area3D" parent="siberia/Audio_Box_Middle"]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("24_guuop")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="siberia/Audio_Box_Middle/trigger_body"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.152054, 0, 6.98428)
-shape = SubResource("BoxShape3D_ui4bh")
-debug_color = Color(0.45098, 0.45098, 1, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="siberia/Audio_Box_Middle/trigger_body"]
-mesh = SubResource("BoxMesh_dobhj")
-
-[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Middle/trigger_body"]
-stream = ExtResource("25_1k5bn")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Middle/trigger_body"]
-stream = ExtResource("26_d6s6r")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Middle/trigger_body"]
-stream = ExtResource("27_lhn7i")
-volume_db = -40.0
-
-[node name="Timer" type="Timer" parent="siberia/Audio_Box_Middle/trigger_body"]
-
-[node name="Audio_Box_Left" type="Node3D" parent="siberia" groups=["keep"]]
-
-[node name="trigger_body" type="Area3D" parent="siberia/Audio_Box_Left"]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("24_guuop")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="siberia/Audio_Box_Left/trigger_body"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 29.9922, 0, -1.5823)
-shape = SubResource("BoxShape3D_d6s6r")
-debug_color = Color(0.45098, 0.45098, 1, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="siberia/Audio_Box_Left/trigger_body"]
-mesh = SubResource("BoxMesh_dobhj")
-
-[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Left/trigger_body"]
-stream = ExtResource("25_1k5bn")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Left/trigger_body"]
-stream = ExtResource("26_d6s6r")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Left/trigger_body"]
-stream = ExtResource("27_lhn7i")
-volume_db = -40.0
-
-[node name="Timer" type="Timer" parent="siberia/Audio_Box_Left/trigger_body"]
-
-[node name="Audio_Box_Right" type="Node3D" parent="siberia" groups=["keep"]]
-
-[node name="trigger_body" type="Area3D" parent="siberia/Audio_Box_Right"]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("24_guuop")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="siberia/Audio_Box_Right/trigger_body"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -29.7226, 0, -1.5942)
-shape = SubResource("BoxShape3D_lhn7i")
-debug_color = Color(0.45098, 0.45098, 1, 1)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="siberia/Audio_Box_Right/trigger_body"]
-mesh = SubResource("BoxMesh_dobhj")
-
-[node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Right/trigger_body"]
-stream = ExtResource("25_1k5bn")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Right/trigger_body"]
-stream = ExtResource("26_d6s6r")
-volume_db = -40.0
-
-[node name="AudioStreamPlayer3D_frozen" type="AudioStreamPlayer3D" parent="siberia/Audio_Box_Right/trigger_body"]
-stream = ExtResource("27_lhn7i")
-volume_db = -40.0
-
-[node name="Timer" type="Timer" parent="siberia/Audio_Box_Right/trigger_body"]
+[node name="floor2" type="CSGSphere3D" parent="dine_in"]
+radius = 99.9
+radial_segments = 100
+rings = 100
 
 [node name="volcano" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, -0.09, 128)
