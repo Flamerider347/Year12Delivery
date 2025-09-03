@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=106 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -160,6 +160,56 @@ uv1_scale = Vector3(20, 20, 20)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfx56"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.407843)
+
+[sub_resource type="Gradient" id="Gradient_os0cm"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.929715, 0.929715, 0.929715, 1, 0.458678, 0.458678, 0.458678, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aqg0f"]
+gradient = SubResource("Gradient_os0cm")
+
+[sub_resource type="Curve" id="Curve_jynr8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.239865, 1), -1.66003, -1.66003, 0, 0, Vector2(1, 0.489313), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ro2rw"]
+curve = SubResource("Curve_jynr8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2h4m2"]
+emission_shape = 3
+emission_box_extents = Vector3(23.5, 2, 17.5)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -5.5, 0)
+radial_accel_min = -4.0
+radial_accel_max = 4.0
+tangential_accel_min = -8.0
+tangential_accel_max = 8.0
+damping_max = 4.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_ro2rw")
+color_ramp = SubResource("GradientTexture1D_aqg0f")
+
+[sub_resource type="Gradient" id="Gradient_umtm3"]
+offsets = PackedFloat32Array(0.252, 0.692)
+colors = PackedColorArray(1, 1, 1, 1, 0.32549, 0.32549, 0.32549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_os0cm"]
+gradient = SubResource("Gradient_umtm3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a82c5"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_os0cm")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_mqtvo"]
+material = SubResource("StandardMaterial3D_a82c5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n7i1a"]
 height = 1.99
@@ -1551,9 +1601,12 @@ use_collision = true
 collision_layer = 5
 size = Vector3(100, 0.195, 100)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="siberia"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71, 37.232)
+[node name="snowflakes" type="GPUParticles3D" parent="siberia"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 28.6395)
 amount = 30
+lifetime = 3.5
+process_material = SubResource("ParticleProcessMaterial_2h4m2")
+draw_pass_1 = SubResource("QuadMesh_mqtvo")
 
 [node name="SFX" type="Node3D" parent="."]
 
