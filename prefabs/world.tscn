@@ -1551,6 +1551,10 @@ use_collision = true
 collision_layer = 5
 size = Vector3(100, 0.195, 100)
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="siberia"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71, 37.232)
+amount = 30
+
 [node name="SFX" type="Node3D" parent="."]
 
 [node name="ding" type="AudioStreamPlayer3D" parent="SFX"]
