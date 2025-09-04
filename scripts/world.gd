@@ -400,9 +400,9 @@ func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 				spawned_confetti.global_position = spawned_box.global_position 
 				add_child(spawned_confetti)
 				spawned_confetti.emitting = true
+				body.queue_free()
 				await spawned_confetti.finished
 				spawned_confetti.queue_free()
-				body.queue_free()
 				if is_tutorial:
 					$tutorial/plates.delivered()
 				break
@@ -423,24 +423,26 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			$ui/Label.text = "Score " + str(score)
 			$SFX/delivered.global_position = delivered_pot.global_position
 			$SFX/delivered.play()
+			delivered_pot.queue_free()
 			var spawned_confetti = confetti.instantiate()
 			spawned_confetti.global_position = delivered_pot.global_position 
 			add_child(spawned_confetti)
 			spawned_confetti.emitting = true
 			await spawned_confetti.finished
 			spawned_confetti.queue_free()
-			delivered_pot.queue_free()
 			orders_delivered += 1
 
 		else:
 			$tutorial/plates.delivered_to_house()
+			
 			var spawned_confetti = confetti.instantiate()
 			spawned_confetti.global_position = delivered_pot.global_position 
 			add_child(spawned_confetti)
 			spawned_confetti.emitting = true
+			delivered_pot.queue_free()
 			await spawned_confetti.finished
 			spawned_confetti.queue_free()
-			delivered_pot.queue_free()
+
 			$SFX/delivered.play()
 			$tutorial/plates.randomise_objective()
 
