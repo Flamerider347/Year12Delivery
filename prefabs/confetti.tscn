@@ -1,4 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8eplhjfwxl8i"]
+[gd_scene load_steps=10 format=3 uid="uid://c8eplhjfwxl8i"]
+
+[sub_resource type="Curve" id="Curve_icvsy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.376147, 1), 0.0, 0.0, 0, 0, Vector2(0.674312, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_s52ti"]
+curve = SubResource("Curve_icvsy")
 
 [sub_resource type="Gradient" id="Gradient_icvsy"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -7,13 +14,23 @@ colors = PackedColorArray(1, 1, 1, 0, 100, 0.048, 0.03, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_s52ti"]
 gradient = SubResource("Gradient_icvsy")
 
+[sub_resource type="Curve" id="Curve_bx7sj"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 3.37079), 0.0, 0.0, 0, 0, Vector2(0.559633, 8.31461), -5.04296, -5.04296, 0, 0, Vector2(1, 1.79775), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n82g3"]
+curve = SubResource("Curve_bx7sj")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bx7sj"]
 angle_min = -720.0
 angle_max = 720.0
 spread = 180.0
-initial_velocity_max = 5.0
+initial_velocity_max = 3.0
+velocity_limit_curve = SubResource("CurveTexture_n82g3")
 gravity = Vector3(0, 5, 0)
 color_ramp = SubResource("GradientTexture1D_s52ti")
+alpha_curve = SubResource("CurveTexture_s52ti")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
@@ -25,6 +42,7 @@ billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
+distance_fade_min_distance = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_ymuhk"]
 material = SubResource("StandardMaterial3D_n82g3")
@@ -36,5 +54,6 @@ amount = 20
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
+trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_bx7sj")
 draw_pass_1 = SubResource("QuadMesh_ymuhk")

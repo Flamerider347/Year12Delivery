@@ -71,13 +71,13 @@ func _on_body_entered(body):
 		$Transition_timer.start(2.01)
 		playing_next = "menu"
 
-		if playing_current != "":
+		if playing_current != "<null>":
 			await start_fade(tracks[playing_current], fade_out, 1.0)
 
-		playing_current = playing_next
-		await start_fade(tracks[playing_current], fade_in, 1.0)
-		playing_next = null
-		menu_open = false
+			playing_current = playing_next
+			await start_fade(tracks[playing_current], fade_in, 1.0)
+			playing_next = null
+			menu_open = false
 
 func _on_body_exited(body):
 	# Only player_single and player control audio

@@ -241,7 +241,7 @@ func _setup():
 		$player_single/head/volcano.hide()
 		$player_single/head/underwater.hide()
 		$player_single/head/tundra.hide()
-		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
+		$kitchen/billboard/Label3D.text = "Todays weather: Cloudy with a chance of meatballs
 
 Neighbourhood level
 Difficulty level: SAFE
@@ -254,7 +254,7 @@ Dangers & Modifications:
 		$player_single/head/volcano.show()
 		$player_single/head/underwater.hide()
 		$player_single/head/tundra.hide()
-		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
+		$kitchen/billboard/Label3D.text = "Todays weather: Cloudy with a chance of meatballs
 
 Volcano level
 Difficulty level: C
@@ -267,15 +267,14 @@ Dangers & Modifications:
 		$player_single/head/volcano.hide()
 		$player_single/head/underwater.show()
 		$player_single/head/tundra.hide()
-		$kitchen/billboard/Label3D.text = "Todays weather:         Cloudy with a chance of meatballs
+		$kitchen/billboard/Label3D.text = "Todays weather: Cloudy with a chance of meatballs
 
 Underwater level
 Difficulty level: B
 Dangers:
 -Shark can steal your ingredients if you aren't watching
 -Pickup the ingredient the Shark is going for to scare him
--Nothing can stop the Shark
--Gravity is weird because underwater"
+-Nothing can stop the Shark"
 		$underwater/fish.run_away()
 	if level == 4:
 		$player_single/head/dinein.hide()
@@ -397,7 +396,7 @@ func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 				$SFX/ding.global_position = spawned_box.global_position
 				$SFX/ding.play()
 				var spawned_confetti = confetti.instantiate()
-				spawned_confetti.global_position = spawned_box.global_position 
+				spawned_confetti.position = spawned_box.position
 				add_child(spawned_confetti)
 				spawned_confetti.emitting = true
 				body.queue_free()
@@ -425,7 +424,7 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			$SFX/delivered.play()
 			delivered_pot.queue_free()
 			var spawned_confetti = confetti.instantiate()
-			spawned_confetti.global_position = delivered_pot.global_position 
+			spawned_confetti.position = delivered_pot.global_position 
 			add_child(spawned_confetti)
 			spawned_confetti.emitting = true
 			await spawned_confetti.finished
@@ -436,7 +435,7 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			$tutorial/plates.delivered_to_house()
 			
 			var spawned_confetti = confetti.instantiate()
-			spawned_confetti.global_position = delivered_pot.global_position 
+			spawned_confetti.global_position = delivered_pot.position 
 			add_child(spawned_confetti)
 			spawned_confetti.emitting = true
 			delivered_pot.queue_free()
