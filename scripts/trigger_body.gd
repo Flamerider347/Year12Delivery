@@ -53,7 +53,7 @@ func _on_body_entered(body):
 		$Transition_timer.start(2.01)
 		playing_next = "menu"
 
-		if playing_current != "<null>" and tracks.has(playing_current):
+		if playing_current and tracks.has(playing_current):
 			tween_fade(tracks[playing_current], -40.0, 1.0, false, true)
 
 		if tracks.has(playing_next):
