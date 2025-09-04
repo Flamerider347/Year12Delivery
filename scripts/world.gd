@@ -30,6 +30,7 @@ var world_toggle = false
 # Preloads the ingrients getting chopped particle
 var particle_ingredients_chopped = preload("res://prefabs/particle_ingredients_chopped.tscn")
 @onready var pot = preload("res://prefabs/delivery_pot.tscn")
+@onready var confetti = preload("res://prefabs/confetti.tscn")
 var bench_summoning = {
 	"bench_1" : [Vector3(-5,0,0),0],
 	"bench_2" : [Vector3(-3,0,0),0],
@@ -395,6 +396,12 @@ func plate_check(contents,body,plate_pos,plate_rotation) -> void:
 				objectives.erase(objective)
 				$SFX/ding.global_position = spawned_box.global_position
 				$SFX/ding.play()
+				var spawned_confetti = confetti.instantiate()
+				spawned_confetti.global_position = spawned_box.global_position 
+				add_child(spawned_confetti)
+				spawned_confetti.emitting = true
+				await spawned_confetti.finished
+				spawned_confetti.queue_free()
 				body.queue_free()
 				if is_tutorial:
 					$tutorial/plates.delivered()
@@ -416,11 +423,23 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			$ui/Label.text = "Score " + str(score)
 			$SFX/delivered.global_position = delivered_pot.global_position
 			$SFX/delivered.play()
+			var spawned_confetti = confetti.instantiate()
+			spawned_confetti.global_position = delivered_pot.global_position 
+			add_child(spawned_confetti)
+			spawned_confetti.emitting = true
+			await spawned_confetti.finished
+			spawned_confetti.queue_free()
 			delivered_pot.queue_free()
 			orders_delivered += 1
 
 		else:
 			$tutorial/plates.delivered_to_house()
+			var spawned_confetti = confetti.instantiate()
+			spawned_confetti.global_position = delivered_pot.global_position 
+			add_child(spawned_confetti)
+			spawned_confetti.emitting = true
+			await spawned_confetti.finished
+			spawned_confetti.queue_free()
 			delivered_pot.queue_free()
 			$SFX/delivered.play()
 			$tutorial/plates.randomise_objective()
