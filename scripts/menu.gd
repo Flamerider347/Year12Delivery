@@ -39,6 +39,8 @@ func _ready() -> void:
 	
 	
 func menu_load():
+	# hides fog from level 4
+	$"../environment".environment.fog_enabled = false
 	#loads main menu
 	$"../order_timer".stop()
 	$"../kitchen/plates".clear()
