@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cvyhf3kno28cu"]
 
-[ext_resource type="ArrayMesh" uid="uid://dkytuhgvfx1fr" path="res://assets/createdassets/door-mat.obj" id="1_44rip"]
+[ext_resource type="ArrayMesh" uid="uid://cjba4vivgay8f" path="res://assets/createdassets/kitchen-models_door-mat.obj" id="1_hvfu8"]
 [ext_resource type="ArrayMesh" uid="uid://dvmeltkyjfnd7" path="res://assets/createdassets/house1.obj" id="1_o8sle"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_upbwm"]
 [ext_resource type="Texture2D" uid="uid://beni3mx1rotvr" path="res://assets/createdassets/Delivery_Cover-art.png" id="3_hvfu8"]
@@ -20,8 +20,8 @@ collision_layer = 5
 collision_mask = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="doormat"]
-mesh = ExtResource("1_44rip")
-surface_material_override/1 = ExtResource("2_upbwm")
+mesh = ExtResource("1_hvfu8")
+surface_material_override/0 = ExtResource("2_upbwm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doormat"]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0.00340271, -0.00526425, 0.00576019)
