@@ -14,78 +14,63 @@ var playing_next = "menu"
 var menu_open = false
 var can_play = true
 
-# Keep references to running fades so we can cancel them
-var fade_tasks := {}
+# Track active tweens per AudioStream
+var fade_tweens := {}
 
 func _ready() -> void:
 	menu()
 
-# Utility: start a fade safely
-func start_fade(track: AudioStreamPlayer, fade_func: Callable, duration: float):
-	if track == null or not is_instance_valid(track):
-		return
-	if fade_tasks.has(track):
-		fade_tasks[track].cancelled = true
-		fade_tasks.erase(track)
-	var task = { "cancelled": false }
-	fade_tasks[track] = task
-	await fade_func.call(track, duration, task)
-	if fade_tasks.has(track):
-		fade_tasks.erase(track)
 
-func fade_out(track: AudioStreamPlayer, duration: float, task):
-	if track == null or not is_instance_valid(track):
-		return
-	var steps = 20
-	var step_time = duration / steps
-	var start_volume = float(track.volume_db)
-	for i in range(steps):
-		if task.cancelled: return
-		track.volume_db = lerp(start_volume, -40.0, float(i + 1) / steps)
-		await get_tree().create_timer(step_time).timeout
-	if not task.cancelled and is_instance_valid(track):
-		track.stop()
-
-func fade_in(track: AudioStreamPlayer, duration: float, task):
+func tween_fade(track: AudioStreamPlayer, target_volume: float, duration: float, play_on_start := false, stop_on_end := false):
 	if track == null or not is_instance_valid(track):
 		return
 
-	# Stop any other playing tracks just in case
-	for child in get_children():
-		if child is AudioStreamPlayer and child != track and child.playing:
-			child.stop()
+	# Kill existing tween for this track
+	if fade_tweens.has(track):
+		fade_tweens[track].kill()
+		fade_tweens.erase(track)
 
-	track.volume_db = -40.0
-	track.play()
-	var steps = 20
-	var step_time = duration / steps
-	for i in range(steps):
-		if task.cancelled: return
-		track.volume_db = lerp(-40.0, 0.0, float(i + 1) / steps)
-		await get_tree().create_timer(step_time).timeout
+	var tween := create_tween()
+	fade_tweens[track] = tween
+
+	if play_on_start:
+		track.volume_db = -40.0
+		track.play()
+
+	tween.tween_property(track, "volume_db", target_volume, duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+
+	if stop_on_end:
+		tween.tween_callback(track.stop)
+
+	tween.tween_callback(func():
+		if fade_tweens.has(track):
+			fade_tweens.erase(track)
+	)
 
 func _on_body_entered(body):
-	# Only player_single and player control audio
 	if body.name in ["player_single", "player"] and can_play:
 		can_play = false
 		$Transition_timer.start(2.01)
 		playing_next = "menu"
 
-		if playing_current != "<null>":
-			await start_fade(tracks[playing_current], fade_out, 1.0)
+		if playing_current != "<null>" and tracks.has(playing_current):
+			tween_fade(tracks[playing_current], -40.0, 1.0, false, true)
 
-			playing_current = playing_next
-			await start_fade(tracks[playing_current], fade_in, 1.0)
-			playing_next = null
-			menu_open = false
+		if tracks.has(playing_next):
+			tween_fade(tracks[playing_next], 0.0, 1.0, true, false)
+
+		playing_current = playing_next
+		playing_next = null
+		menu_open = false
+
 
 func _on_body_exited(body):
-	# Only player_single and player control audio
 	if menu_open:
 		return
 	if body.name in ["player_single", "player"] and can_play:
 		can_play = false
 		$Transition_timer.start(2.01)
+
 		if $"../../..".level == 1:
 			playing_next = "dine_in"
 		elif $"../../..".level == 2:
@@ -95,28 +80,35 @@ func _on_body_exited(body):
 		elif $"../../..".level == 4:
 			playing_next = "tundra"
 
-		await start_fade(tracks[playing_current], fade_out, 1.0)
+		if tracks.has(playing_current):
+			tween_fade(tracks[playing_current], -40.0, 1.0, false, true)
+
+		if tracks.has(playing_next):
+			tween_fade(tracks[playing_next], 0.0, 1.0, true, false)
+
 		playing_current = playing_next
-		await start_fade(tracks[playing_current], fade_in, 1.0)
+		playing_next = null
+
 
 func menu():
 	if playing_current == "book":
 		return
+
 	menu_open = true
 
-	# Fade out safely
 	if tracks.has(playing_current):
-		await start_fade(tracks[playing_current], fade_out, 1.0)
+		tween_fade(tracks[playing_current], -40.0, 1.0, false, true)
 
-	# 🔇 Extra safety: once fades are done, mute/stop everything
+	# Extra safety: Stop everything after fade
 	for child in get_children():
 		if child is AudioStreamPlayer and child.playing:
 			child.stop()
 
-	# Switch to book
-	playing_current = "book"
-	await start_fade(tracks[playing_current], fade_in, 1.0)
-	playing_next = null
+	if tracks.has("book"):
+		tween_fade(tracks["book"], 0.0, 1.0, true, false)
+		playing_current = "book"
+		playing_next = null
+
 
 func _on_transition_timer_timeout() -> void:
 	can_play = true
