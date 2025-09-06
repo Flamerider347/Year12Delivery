@@ -70,6 +70,11 @@ func _input(event):
 		if hovered and hovered is Button:
 			hovered.emit_signal("pressed")
 			
+		elif hovered is HSlider:
+				hovered.grab_focus()
+				# Optionally nudge value
+				hovered.value += hovered.step  # Or -step depending on direction
+			
 			
 func _process(delta: float) -> void:
 	# Get left stick vector using your input actions
