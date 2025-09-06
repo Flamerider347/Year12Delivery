@@ -70,7 +70,7 @@ func _input(event):
 			
 func _process(delta: float) -> void:
 	# Get left stick vector using your input actions
-	var left_stick_vector = Input.get_vector("left", "right", "up", "down")  # Vector2
+	var left_stick_vector = Input.get_vector("left_split", "right_split", "up_split", "down_split")  # Vector2
 	var current_mouse_pos = get_viewport().get_mouse_position()
 	var new_mouse_pos = current_mouse_pos + left_stick_vector * mouse_speed * delta
 	var screen_size = get_viewport().get_visible_rect().size
