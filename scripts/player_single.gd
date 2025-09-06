@@ -146,7 +146,7 @@ func _physics_process(delta: float):
 				can_pickup = false
 		if Input.is_action_just_pressed("stack"):
 			if held_object and can_pickup:
-				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
+				if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().type)):
 					stack()
 		position_held_object()
 		movement(delta)
@@ -260,54 +260,55 @@ func position_held_object():
 
 
 func stack():
-		evil = false
-		var stack_bottom = stackcast.get_collider()
-		var item_shape = held_object.find_child("CollisionShape3D").shape
-		if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 3 and held_object.type != "bun_bottom_chopped":
-			evil = true
-		if not evil:
-			held_object.reparent(stack_bottom)
-			held_object.position = Vector3(0,stack_bottom.next_position,0)
-			ingredient_added.connect(stack_bottom._on_player_ingredient_added)
-			for i in held_object.get_children():
-				if i is MeshInstance3D:
-					i.reparent(stack_bottom)
-			if item_shape is BoxShape3D:
-				var item_size = item_shape.size.y
-				ingredient_added.emit(held_object.type,item_size)
-			elif item_shape is CylinderShape3D:
-				var item_size = item_shape.height
-				ingredient_added.emit(held_object.type,item_size)
-			ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
-			if held_object.type == "bun_top_chopped":
-				if $"..".is_tutorial:
-					if stack_bottom.contents == ["plate","bun_bottom_chopped","tomato_chopped","bun_top_chopped"]:
-						$"../tutorial/plates".complete_burger()
-				stack_bottom.add_to_group("packageable")
-				stack_bottom.remove_from_group("stackable")
-			held_object.rotation_degrees.x = 0
-			held_object.rotation_degrees.y = randi_range(0,360)
-			held_object.rotation_degrees.z = 0
-			held_object.find_child("CollisionShape3D").disabled = false
-			held_object.find_child("CollisionShape3D").reparent(stack_bottom)
-			held_object.remove_from_group("pickupable")
-			held_object.freeze = true
-			held_object = null
-			seecast.target_position.z = -3
-			for i in $"../kitchen/plates".recipes_list:
-				var sorted_list = $"../kitchen/plates".recipes_list[i][0].duplicate()
-				sorted_list.sort()
-				var sorted_contents = stack_bottom.contents.duplicate()
-				sorted_contents.sort()
-				if sorted_list == sorted_contents:
-					if i in ingredient_scenes:
-						var spawned_recipe = ingredient_scenes[i].instantiate()
-						$"..".add_child(spawned_recipe)
-						spawned_recipe.position = stack_bottom.position
-						stack_bottom.queue_free()
-		if evil:
-			drop(held_object)
-
+	evil = false
+	var stack_bottom = stackcast.get_collider()
+	var item_shape = held_object.find_child("CollisionShape3D").shape
+	if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 3 and held_object.type != "bun_bottom_chopped":
+		evil = true
+	if not evil:
+		held_object.reparent(stack_bottom)
+		held_object.position = Vector3(0,stack_bottom.next_position,0)
+		ingredient_added.connect(stack_bottom._on_player_ingredient_added)
+		for i in held_object.get_children():
+			if i is MeshInstance3D:
+				i.reparent(stack_bottom)
+		if item_shape is BoxShape3D:
+			var item_size = item_shape.size.y
+			ingredient_added.emit(held_object.type,item_size)
+		elif item_shape is CylinderShape3D:
+			var item_size = item_shape.height
+			ingredient_added.emit(held_object.type,item_size)
+		ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
+		if held_object.type == "bun_top_chopped":
+			if $"..".is_tutorial:
+				if stack_bottom.contents == ["plate","bun_bottom_chopped","tomato_chopped","bun_top_chopped"]:
+					$"../tutorial/plates".complete_burger()
+			stack_bottom.add_to_group("packageable")
+			stack_bottom.remove_from_group("stackable")
+		held_object.rotation_degrees.x = 0
+		held_object.rotation_degrees.y = randi_range(0,360)
+		held_object.rotation_degrees.z = 0
+		held_object.find_child("CollisionShape3D").disabled = false
+		held_object.find_child("CollisionShape3D").reparent(stack_bottom)
+		held_object.remove_from_group("pickupable")
+		held_object.freeze = true
+		held_object = null
+		seecast.target_position.z = -3
+		seecast.clear_exceptions()  # Add this line!
+		
+		for i in $"../kitchen/plates".recipes_list:
+			var sorted_list = $"../kitchen/plates".recipes_list[i][0].duplicate()
+			sorted_list.sort()
+			var sorted_contents = stack_bottom.contents.duplicate()
+			sorted_contents.sort()
+			if sorted_list == sorted_contents:
+				if i in ingredient_scenes:
+					var spawned_recipe = ingredient_scenes[i].instantiate()
+					$"..".add_child(spawned_recipe)
+					spawned_recipe.position = stack_bottom.position
+					stack_bottom.queue_free()
+	if evil:
+		drop(held_object)
 
 func summon(item):
 	var instance = ingredient_scenes[item].instantiate()
@@ -336,8 +337,8 @@ func crosshair_change():
 				else:
 					$"../ui/Sprite2D".play("default")
 		if held_object:
-			if stackcast.get_collider() != null:
-				if held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
+			if stackcast.get_collider() != null and stackcast.get_collider() is RigidBody3D:
+				if held_object.is_in_group("can_stack_" + str(stackcast.get_collider().type)):
 					$"../ui/Sprite2D".play("stacking")
 				else:
 					$"../ui/Sprite2D".play("default")
@@ -403,4 +404,5 @@ func pause_exit() -> void:
 				$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
 				$"../menu".lose_screen()
 		await get_tree().create_timer(1.0).timeout
+		$"../environment".environment.fog_enabled = false
 		self.position.y += 10

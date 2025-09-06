@@ -27,6 +27,9 @@ var random_spawn = {
 	"carrot": carrot,
 }
 
+# Add this variable for tweening
+var is_first_load: bool = true
+var is_transitioning:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#gets controller amount
@@ -51,7 +54,7 @@ func menu_load():
 	$"../player_single/head/player_camera".current = false
 	$"../GridContainer".hide()
 	$"../ui".hide()
-	hide_everything()
+	hide_everything_instant()
 	$CanvasLayer/main_menu.show()
 	$CanvasLayer/book_resting_left.show()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -89,7 +92,6 @@ func _process(delta: float) -> void:
 		
 		
 func _spawn():
-	#spawns random items
 	var list_keys = random_spawn.keys()
 	var list_size = list_keys.size()
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
@@ -142,31 +144,91 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 	#set to reload
 
-func main_menu():
-	hide_everything()
-	# Plays animation of the book flipping to the left every time a return button going out of a submenu is pressed.
-	# Code will need to be optimised to have the falling ingrediants show on top of the book + have the code check if the game is loaded for the first time do not play the book flip, just display the open book sprite.
+# New tweening functions
+func hide_everything():
+	# Always create a fresh tween
+	var fade_out_tween = create_tween()
+	
+	# Get all visible children and tween them out (exclude book sprites and animation sprite)
+	var visible_children = []
+	for child in $CanvasLayer.get_children():
+		if child.visible and child != $CanvasLayer/AnimatedSprite2D and child != $CanvasLayer/book_resting_left and child != $CanvasLayer/book_resting_right:
+			visible_children.append(child)
+	
+	if visible_children.size() > 0:
+		# Tween out all visible children
+		for child in visible_children:
+			fade_out_tween.parallel().tween_property(child, "modulate:a", 0.0, 0.3)
+		
+		# Wait for fade out to complete
+		await fade_out_tween.finished
+	
+	# Hide all children after fade out, but don't reset alpha for book sprites
+	for child in $CanvasLayer.get_children():
+		if child != $CanvasLayer/AnimatedSprite2D and child != $CanvasLayer/book_resting_left and child != $CanvasLayer/book_resting_right:
+			child.hide()
+			child.modulate.a = 1.0  # Reset alpha for next time
+
+func hide_everything_instant():
+	# Instant hide for menu_load() - no tweening
+	for i in $CanvasLayer.get_children():
+		i.hide()
+
+func show_page_with_transition(page_node: Node, flip_direction: String = "right"):
+	# Prevent multiple transitions from running at once
+	if is_transitioning:
+		return
+	
+	is_transitioning = true
+	
+	await hide_everything()
+	
+	# Play book flip animation
 	$CanvasLayer/AnimatedSprite2D.show()
 	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/AnimatedSprite2D.play("book_flipping_left")
+	$CanvasLayer/AnimatedSprite2D.play("book_flipping_" + flip_direction)
 	await get_tree().create_timer(0.95).timeout
 	$CanvasLayer/AnimatedSprite2D.hide()
 	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/book_resting_left.show()
-	$CanvasLayer/main_menu.show()
+	
+	# Show appropriate book resting sprite
+	if flip_direction == "left":
+		$CanvasLayer/book_resting_left.show()
+	else:
+		$CanvasLayer/book_resting_right.show()
+	
+	# Tween in the new page
+	await tween_in_page(page_node)
+	
+	is_transitioning = false
+
+func tween_in_page(page_node: Node):
+	# Create new tween instance to avoid conflicts
+	var fade_tween = create_tween()
+	
+	page_node.modulate.a = 0.0
+	page_node.show()
+	
+	# Call setup if it exists (for layout page)
+	if page_node.has_method("setup"):
+		page_node.setup()
+	
+	# Tween in the new page
+	fade_tween.tween_property(page_node, "modulate:a", 1.0, 0.4)
+	await fade_tween.finished
+
+# Simplified menu functions with tweening
+func main_menu():
+	await show_page_with_transition($CanvasLayer/main_menu, "left")
 
 func layout():
-	hide_everything()
-	$CanvasLayer/AnimatedSprite2D.show()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-	await get_tree().create_timer(0.95).timeout
-	$CanvasLayer/AnimatedSprite2D.hide()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/book_resting_right.show()
+	await show_page_with_transition($CanvasLayer/layout, "right")
 
-	$CanvasLayer/layout.show()
-	$CanvasLayer/layout.setup()
+func credits() -> void:
+	await show_page_with_transition($CanvasLayer/credits, "right")
+
+func options() -> void:
+	await show_page_with_transition($CanvasLayer/options, "right")
 
 func lose_screen():
 	$"../transition animation".show()
@@ -174,7 +236,7 @@ func lose_screen():
 	await get_tree().create_timer(1.0).timeout
 
 	menu_load()
-	hide_everything()
+	hide_everything_instant()
 	reset_text()
 	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
@@ -199,7 +261,7 @@ func win_screen():
 	await get_tree().create_timer(1.0).timeout
 
 	menu_load()
-	hide_everything()
+	hide_everything_instant()
 	reset_text()
 	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
@@ -260,7 +322,7 @@ func _on_play_level_pressed() -> void:
 		$"../transition animation".hide()
 		$"..".tutorial()
 		$Camera3D.current = false
-		hide_everything()
+		hide_everything_instant()
 		spawn = false
 		$Timer.stop()
 		$"../transition animation".show()
@@ -275,16 +337,13 @@ func _on_play_level_pressed() -> void:
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation/transition animation".play("fade_transition_reverse")
 		$".."._setup()
-		hide_everything()
+		hide_everything_instant()
 		spawn = false
 		$Timer.stop()
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
 		$"../player_single".can_exit = true
-func hide_everything():
-	for i in $CanvasLayer.get_children():
-		i.hide()
-		
+
 func level_select_1() -> void:
 	$CanvasLayer/main_menu/players_2.button_pressed = false
 
@@ -311,29 +370,6 @@ func _on_lerp_timer_timeout() -> void:
 	not_toggled = true
 
 
-func credits() -> void:
-	hide_everything()
-	$CanvasLayer/AnimatedSprite2D.show()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-	await get_tree().create_timer(0.95).timeout
-	$CanvasLayer/AnimatedSprite2D.hide()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/book_resting_right.show()
-	$CanvasLayer/credits.show()
-
-
-func options() -> void:
-	hide_everything()
-	$CanvasLayer/AnimatedSprite2D.show()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/AnimatedSprite2D.play("book_flipping_right")
-	await get_tree().create_timer(0.95).timeout
-	$CanvasLayer/AnimatedSprite2D.hide()
-	$CanvasLayer/AnimatedSprite2D.stop()
-	$CanvasLayer/book_resting_right.show()
-
-	$CanvasLayer/options.show()
 
 
 func _on_h_slider_value_changed(value: float) -> void:

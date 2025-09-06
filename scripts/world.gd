@@ -281,6 +281,15 @@ Dangers:
 		$player_single/head/volcano.hide()
 		$player_single/head/underwater.hide()
 		$player_single/head/tundra.show()
+		for i in $kitchen/houses.get_children():
+			i.find_child("house").find_child("house_frozen_mesh").show()
+			i.find_child("house").find_child("house_mesh").hide()
+		await get_tree().create_timer(1.0).timeout
+		$environment.environment.fog_enabled = true
+	else:
+		for i in $kitchen/houses.get_children():
+			i.find_child("house").find_child("house_frozen_mesh").hide()
+			i.find_child("house").find_child("house_mesh").show()
 
 func _physics_process(delta: float) -> void:
 	if $day_timer.time_left >0:
@@ -305,18 +314,7 @@ func _physics_process(delta: float) -> void:
 		$volcano/floor/floor.material_override.uv1_offset.y += 0.02 * delta
 	if level == 3:
 		$underwater/floor2.material_override.uv1_offset.x += 0.01 * delta
-	if level == 4:
-		for i in $kitchen/houses.get_children():
-			i.find_child("house").find_child("house_frozen_mesh").show()
-			i.find_child("house").find_child("house_mesh").hide()
-		await get_tree().create_timer(1.0).timeout
-		$environment.environment.fog_enabled = true
-	else:
-		for i in $kitchen/houses.get_children():
-			i.find_child("house").find_child("house_frozen_mesh").hide()
-			i.find_child("house").find_child("house_mesh").show()
-			await get_tree().create_timer(1.0).timeout
-			$environment.environment.fog_enabled = false
+
 func _on_cut_area_body_entered(body: Node3D) -> void:
 	if ($player_single.held_object and $player_single.held_object.type == "knife") \
 	or ($GridContainer/SubViewportContainer/SubViewport/player.held_object and $GridContainer/SubViewportContainer/SubViewport/player.held_object.type == "knife") \
@@ -439,8 +437,8 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 			$tutorial/plates.delivered_to_house()
 			
 			var spawned_confetti = confetti.instantiate()
-			spawned_confetti.global_position = delivered_pot.position 
 			add_child(spawned_confetti)
+			spawned_confetti.position = delivered_pot.position 
 			spawned_confetti.emitting = true
 			delivered_pot.queue_free()
 			await spawned_confetti.finished

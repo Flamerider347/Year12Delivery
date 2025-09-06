@@ -31,26 +31,32 @@ mesh = SubResource("BoxMesh_dobhj")
 [node name="AudioStreamPlayer3D_lava" type="AudioStreamPlayer" parent="trigger_body"]
 stream = ExtResource("1_7p2h2")
 bus = &"Ambience"
+parameters/looping = true
 
 [node name="menu" type="AudioStreamPlayer" parent="trigger_body"]
 stream = ExtResource("5_8xmue")
 bus = &"Ambience"
+parameters/looping = true
 
 [node name="book" type="AudioStreamPlayer" parent="trigger_body"]
 stream = ExtResource("6_fwar3")
 bus = &"Ambience"
+parameters/looping = true
 
 [node name="tundra" type="AudioStreamPlayer" parent="trigger_body"]
 stream = ExtResource("8_x8y6t")
 bus = &"Ambience"
+parameters/looping = true
 
 [node name="AudioStreamPlayer3D_underwater" type="AudioStreamPlayer" parent="trigger_body"]
 stream = ExtResource("3_c7pu5")
 bus = &"Ambience"
+parameters/looping = true
 
 [node name="nature" type="AudioStreamPlayer" parent="trigger_body"]
 stream = ExtResource("2_lvbu6")
 bus = &"Ambience"
+parameters/looping = true
 
 [connection signal="body_entered" from="trigger_body" to="trigger_body" method="_on_body_entered"]
 [connection signal="body_exited" from="trigger_body" to="trigger_body" method="_on_body_exited"]
