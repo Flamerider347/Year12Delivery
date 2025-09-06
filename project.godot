@@ -146,7 +146,8 @@ up_split={
 }
 down_split={
 "deadzone": 0.2,
-"events": []
+"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
+]
 }
 interact_menu={
 "deadzone": 0.2,

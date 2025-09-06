@@ -13,6 +13,14 @@ const SPRINT_SPEED = 15
 const JUMP_VELOCITY = 4.5
 const GRAVITY = 9.81 #ms^-2
 @export var controller_id: int = 1
+
+# New variables for hold-to-pickup system
+var l2_held = false
+var l2_was_released = true  # Track if L2 was fully released
+var pickup_hold_active = false
+const L2_THRESHOLD = 0.3  # Threshold for considering L2 "pressed"
+const L2_RELEASE_THRESHOLD = 0.1  # Threshold for considering L2 "released"
+
 @onready var head = $head
 @onready var camera = $head/player_camera
 @onready var seecast = $head/player_camera/seecast
@@ -40,57 +48,30 @@ var collision_point
 
 signal ingredient_added
 signal looking_recipe
+
 func _setup():
-	if $"../../../..".controllers == 1:
-		controller_id = 0
-	if $"../../../..".controllers == 2:
-		controller_id = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	controlling = true
+
 func _unhandled_input(event):
 	if controlling:
 		if event is InputEventMouseMotion:
 			head.rotate_y(-event.relative.x * SENSITIVITY/200)
 			camera.rotation.x = clamp(camera.rotation.x - event.relative.y * SENSITIVITY/200, deg_to_rad(-60), deg_to_rad(60))
 			look_recipe()
+		
 		if event is InputEventJoypadMotion:
 			if event.device == controller_id:
+				# Handle L2 (axis 4) for pickup with hold system
+				if event.axis == 4:
+					handle_l2_input(event.axis_value)
+				
+				# Handle R2 (axis 5) for stacking
 				if event.axis == 5:
 					if event.axis_value > 0.1 and can_pickup:
-						if held_object and held_object.type == "knife":
-							held_object.get_parent().find_child("AnimationPlayer").stop()
-							held_object.get_parent().find_child("AnimationPlayer").play("swing_knife")
-							seecast.target_position.z = -0.1
-							await held_object.get_parent().find_child("AnimationPlayer").animation_finished
-							if held_object:
-								held_object.get_parent().find_child("AnimationPlayer").play_backwards("swing_knife")
-								seecast.target_position.z = -1.8
-						if held_object and can_pickup:
+						if held_object and pickup_hold_active:
 							if stackcast.is_colliding() and stackcast.get_collider().is_in_group("stackable") and held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
 								stack()
-				if event.axis == 4 and can_pickup:
-					if event.axis_value > 0.5:
-						if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
-							var door = seecast.get_collider()
-							door.swinging = true
-							controller_let_go = false
-						if not held_object and can_pickup and controller_let_go:
-							$pickup_timer.start()
-							can_pickup = false
-							controller_let_go = false
-							if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
-								held_object = seecast.get_collider()
-								pickup(held_object)
-							if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
-								var summon_type = seecast.get_collider().name.replace("_crate","")
-								summon(summon_type)
-
-					elif event.axis_value < 0.2:
-						if held_object and can_pickup:
-							drop(held_object)
-							$pickup_timer.start()
-							can_pickup = false
-						controller_let_go = true
 
 		if event is InputEventJoypadButton:
 			if event.device == controller_id:
@@ -103,6 +84,61 @@ func _unhandled_input(event):
 						head_target_position = 0.525
 				if event.button_index == JOY_BUTTON_A and is_on_floor():
 					velocity.y = JUMP_VELOCITY
+
+func handle_l2_input(axis_value: float):
+	var l2_pressed = axis_value > L2_THRESHOLD
+	var l2_released = axis_value < L2_RELEASE_THRESHOLD
+	
+	# Update L2 release tracking
+	if l2_released:
+		l2_was_released = true
+	
+	# Handle L2 state changes
+	if l2_pressed and l2_was_released and can_pickup:
+		# L2 just pressed and was previously released
+		l2_held = true
+		l2_was_released = false
+		
+		if not held_object:
+			# Try to pick up something
+			attempt_pickup()
+		
+	elif not l2_pressed and l2_held:
+		# L2 released while holding
+		l2_held = false
+		pickup_hold_active = false
+		
+		if held_object:
+			drop(held_object)
+			$pickup_timer.start()
+			can_pickup = false
+
+func attempt_pickup():
+	if seecast.is_colliding():
+		var collider = seecast.get_collider()
+		
+		# Handle interactables
+		if collider.is_in_group("interactable"):
+			$interaction_timer.start(1)
+			return
+		
+		# Handle doors
+		if collider.is_in_group("door"):
+			var door = collider
+			door.swinging = true
+			return
+		
+		# Handle pickupable objects
+		if collider.is_in_group("pickupable"):
+			held_object = collider
+			pickup(held_object)
+			pickup_hold_active = true
+		
+		# Handle summoners
+		elif collider.is_in_group("summoner"):
+			var summon_type = collider.name.replace("_crate","")
+			summon(summon_type)
+			pickup_hold_active = true
 
 func movement(delta):
 	if not is_on_floor():
@@ -135,22 +171,21 @@ func movement(delta):
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta: float):
-
 	if controlling:
 		if head_moving:
 			if abs($head.position.y - head_target_position) > 0.05:
 				$head.position.y = lerp($head.position.y, head_target_position, 0.2)
 			else:
 				head_moving = false
+
 	if position.y < -10:
-		position = $"../kitchen".position + Vector3(0,0.5,5)
+		position = $"../../../../kitchen".position + Vector3(0,0.5,5)
 
 	if controlling:
 		crosshair_change()
 		position_held_object()
 		movement(delta)
 		move_and_slide()
-
 
 func pickup(object):
 	if object.type == "knife":
@@ -185,9 +220,14 @@ func drop(object):
 	if $"../../../..".level == 3 and not $"../../../../underwater/fish".target:
 		$"../../../../underwater/fish".get_target()
 
-
 func position_held_object():
 	if held_object:
+		# Drop if L2 not held (controller only)
+		if not l2_held and pickup_hold_active:
+			drop(held_object)
+			pickup_hold_active = false
+			return
+		
 		if held_object.rotation_degrees.y != head.rotation_degrees.y:
 			held_object.rotation_degrees.y = head.rotation_degrees.y
 		if seecast.is_colliding():
@@ -200,52 +240,58 @@ func position_held_object():
 				held_object.global_position.x = lerp(held_object.global_position.x, target_position.x,0.8)
 				held_object.global_position.y = lerp(held_object.global_position.y, target_position.y,0.8)
 				held_object.global_position.z = lerp(held_object.global_position.z, target_position.z,0.8)
+
 func stack():
-		evil = false
-		var stack_bottom = stackcast.get_collider()
-		var item_shape = held_object.find_child("CollisionShape3D").shape
-		if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 3 and held_object.type != "bun_bottom_chopped":
-			evil = true
-		if not evil:
-			held_object.reparent(stack_bottom)
-			held_object.position = Vector3(0,stack_bottom.next_position,0)
-			ingredient_added.connect(stack_bottom._on_player_ingredient_added)
-			if item_shape is BoxShape3D:
-				var item_size = item_shape.size.y
-				ingredient_added.emit(held_object.type,item_size)
-			elif item_shape is CylinderShape3D:
-				var item_size = item_shape.height
-				ingredient_added.emit(held_object.type,item_size)
-			ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
-			if held_object.type == "bun_top_chopped":
-				if $"../../../..".is_tutorial:
-					if stack_bottom.contents == ["plate","bun_bottom_chopped","tomato_chopped","bun_top_chopped"]:
-						$"../../../../tutorial/plates".complete_burger()
-				stack_bottom.add_to_group("packageable")
-				stack_bottom.remove_from_group("stackable")
-			held_object.rotation_degrees.x = 0
-			held_object.rotation_degrees.y = randi_range(0,360)
-			held_object.rotation_degrees.z = 0
-			held_object.find_child("CollisionShape3D").disabled = false
-			held_object.find_child("CollisionShape3D").reparent(stack_bottom)
-			held_object.remove_from_group("pickupable")
-			held_object.freeze = true
-			held_object = null
-			seecast.target_position.z = -3
-			for i in $"../../../../kitchen/plates".recipes_list:
-				if i[1]:
-					var sorted_list = $"../../../../kitchen/plates".recipes_list[i][0].duplicate()
-					sorted_list.sort()
-					var sorted_contents = stack_bottom.contents.duplicate()
-					sorted_contents.sort()
-					if sorted_list == sorted_contents:
-						if i in ingredient_scenes:
-							var spawned_recipe = ingredient_scenes[i].instantiate()
-							$"..".add_child(spawned_recipe)
-							spawned_recipe.position = stack_bottom.position
-							stack_bottom.queue_free()
-		if evil:
-			drop(held_object)
+	evil = false
+	var stack_bottom = stackcast.get_collider()
+	var item_shape = held_object.find_child("CollisionShape3D").shape
+	if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 3 and held_object.type != "bun_bottom_chopped":
+		evil = true
+	if not evil:
+		held_object.reparent(stack_bottom)
+		held_object.position = Vector3(0,stack_bottom.next_position,0)
+		ingredient_added.connect(stack_bottom._on_player_ingredient_added)
+		if item_shape is BoxShape3D:
+			var item_size = item_shape.size.y
+			ingredient_added.emit(held_object.type,item_size)
+		elif item_shape is CylinderShape3D:
+			var item_size = item_shape.height
+			ingredient_added.emit(held_object.type,item_size)
+		ingredient_added.disconnect(stack_bottom._on_player_ingredient_added)
+		if held_object.type == "bun_top_chopped":
+			if $"../../../..".is_tutorial:
+				if stack_bottom.contents == ["plate","bun_bottom_chopped","tomato_chopped","bun_top_chopped"]:
+					$"../../../../tutorial/plates".complete_burger()
+			stack_bottom.add_to_group("packageable")
+			stack_bottom.remove_from_group("stackable")
+		held_object.rotation_degrees.x = 0
+		held_object.rotation_degrees.y = randi_range(0,360)
+		held_object.rotation_degrees.z = 0
+		held_object.find_child("CollisionShape3D").disabled = false
+		held_object.find_child("CollisionShape3D").reparent(stack_bottom)
+		held_object.remove_from_group("pickupable")
+		held_object.freeze = true
+		held_object = null
+		pickup_hold_active = false  # Reset pickup hold when stacking
+		seecast.target_position.z = -3
+		seecast.clear_exceptions()
+		
+		for i in $"../../../../kitchen/plates".recipes_list:
+			if i[1]:
+				var sorted_list = $"../../../../kitchen/plates".recipes_list[i][0].duplicate()
+				sorted_list.sort()
+				var sorted_contents = stack_bottom.contents.duplicate()
+				sorted_contents.sort()
+				if sorted_list == sorted_contents:
+					if i in ingredient_scenes:
+						var spawned_recipe = ingredient_scenes[i].instantiate()
+						$"..".add_child(spawned_recipe)
+						spawned_recipe.position = stack_bottom.position
+						stack_bottom.queue_free()
+	if evil:
+		drop(held_object)
+		pickup_hold_active = false
+
 func summon(item):
 	var instance = ingredient_scenes[item].instantiate()
 	$"../../../..".add_child(instance)
@@ -280,6 +326,7 @@ func crosshair_change():
 				$"../../../../ui/Sprite2D2".play("default")
 		if not stackcast.is_colliding():
 			$"../../../../ui/Sprite2D2".play("default")
+
 func look_recipe():
 	if lookcast.is_colliding():
 		var collision_item = lookcast.get_collider()
