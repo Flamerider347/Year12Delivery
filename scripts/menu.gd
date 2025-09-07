@@ -410,7 +410,7 @@ func quit() -> void:
 	# Stop the timer if it's already running
 	$quit_attempt_timer.stop()
 	
-	var quit_names = ["No","Why","Please Stay","Try again","Nope","Don't Go","Wait!","Nooo","Stay Pls","But Why?","Come Back","Not Yet","Hold On","Seriously?","Think Twice","Reconsider","Never","Nu-uh","Denied","Rejected","Forbidden","Impossible","Error 404","Ctrl+Z","Undo","Refresh","Reboot","Stay Here","One More?","Final Offer","Last Chance","Pretty Pls","With Sugar","I'll Miss U","Don't Leave","Stay 4ever","Pwease","Big Sad","Much Wow","Very Leave","Such Quit","Sadge","Cringe","Fr?","Bestie No","Bestie Pls"]
+	var quit_names = ["No","Why","Please Stay","Try again","Nope","Don't Go","Wait!","Nooo","Stay Pls","But Why?","Come Back","Not Yet","Hold On","Seriously?","Think Twice","Reconsider","Never","Nu-uh","Denied","Rejected","Forbidden","Impossible","Error 404","Ctrl+Z","Undo","Refresh","Reboot","Stay Here","One More?","Final Offer","Last Chance","Pretty Pls","I'll Miss U","Don't Leave","Stay 4ever","Pwease","Big Sad","Much Wow","Very Leave","Such Quit","Sadge"]
 	var quit_number = randi() % quit_names.size()
 	$CanvasLayer/end_screen/Control/quit.text = quit_names[quit_number]
 	
