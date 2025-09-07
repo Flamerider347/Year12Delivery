@@ -132,103 +132,109 @@ func _ready() -> void:
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
 func tutorial():
+	var cameras = ["dinein", "volcano", "underwater", "tundra"]
+	for cam in cameras:
+		$player_single/head.get_node(cam).hide()
 	world_toggle = true
 	$tutorial.show()
 	$ui.show()
-	$player_single.position = Vector3(0,31.65,5.3)
+	$player_single.position = Vector3(0, 31.65, 5.3)
 	is_tutorial = true
-	for i in get_children():
-		if i is RigidBody3D:
-			i.queue_free()
-	for i in $tutorial.get_children():
-		if not i.is_in_group("keep"):
-			i.queue_free()
-	if player_count == 1:
-		$player_single._setup()
-		$player_single/head/player_camera.current = true
-		$ui/Sprite2D.show()
-		$ui/Sprite2D2.hide()
-		$GridContainer.hide()
-		$ui/Sprite2D.position.x = 960
-		$player_single.show()
-		$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
-		$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
-		$GridContainer/SubViewportContainer/SubViewport/player.hide()
-		$GridContainer/SubViewportContainer2/SubViewport/player2.hide()
-	if player_count == 2:
-		$GridContainer.show()
-		$GridContainer/SubViewportContainer/SubViewport/player._setup()
-		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
-		$player_single.hide()
-		$GridContainer/SubViewportContainer/SubViewport/player.show()
-		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
-		$ui/Sprite2D.show()
-		$ui/Sprite2D2.show()
-		$ui/Sprite2D.position.x = 480
-		$ui/Sprite2D2.position.x = 1440
-	for i in tutorial_benches:
-		if tutorial_benches[i][2] == true:
-			if i in bench_summoning.keys():
-				if tutorial_benches[i][0] in bench_types:
-					var summoned_bench = bench_types[tutorial_benches[i][0]].instantiate()
-					$tutorial.add_child(summoned_bench)
-					summoned_bench.position = bench_summoning[i][0]
-					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
-	orders_delivered = 0
-	score = 0
+	
+	_clear_rigid_bodies()
+	_clear_tutorial_children()
+	_setup_players()
+	_spawn_benches(tutorial_benches, $tutorial)
+	_reset_game_state()
+	
 	$tutorial/plates.start()
 	$tutorial/plates.randomise_objective()
-	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
-	$player_single.SENSITIVITY = sens_multiplyer * 0.1
+	
 
 func _setup():
 	world_toggle = true
 	is_tutorial = false
+	
+	_clear_game_objects()
+	_clear_kitchen_children()
+	
+	$ui.show()
+	$tutorial.hide()
+	$day_timer.start()
+	map_select()
+	
+	_setup_players()
+	
+	$order_timer.start(0.1)
+	_spawn_benches(benches, $kitchen)
+	_reset_game_state()
+	_setup_level_specific_content()
+
+func _clear_rigid_bodies():
+	for i in get_children():
+		if i is RigidBody3D:
+			i.queue_free()
+
+func _clear_game_objects():
 	for i in get_children():
 		if i.is_in_group("clear"):
 			i.queue_free()
 		if i is RigidBody3D:
 			i.queue_free()
-	for i in $kitchen.get_children():
-		
+
+func _clear_tutorial_children():
+	for i in $tutorial.get_children():
 		if not i.is_in_group("keep"):
 			i.queue_free()
-	$ui.show()
-	$tutorial.hide()
-	$day_timer.start()
-	map_select()
+
+func _clear_kitchen_children():
+	for i in $kitchen.get_children():
+		if not i.is_in_group("keep"):
+			i.queue_free()
+
+func _setup_players():
 	if player_count == 1:
-		$player_single._setup()
-		$player_single/head/player_camera.current = true
-		$ui/Sprite2D.show()
-		$ui/Sprite2D2.hide()
-		$GridContainer.hide()
-		$ui/Sprite2D.position.x = 960
-		$player_single.show()
-		$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
-		$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
-		$GridContainer/SubViewportContainer/SubViewport/player.hide()
-		$GridContainer/SubViewportContainer2/SubViewport/player2.hide()
-	if player_count == 2:
-		$GridContainer.show()
-		$GridContainer/SubViewportContainer/SubViewport/player._setup()
-		$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
-		$player_single.hide()
-		$GridContainer/SubViewportContainer/SubViewport/player.show()
-		$GridContainer/SubViewportContainer2/SubViewport/player2.show()
-		$ui/Sprite2D.show()
-		$ui/Sprite2D2.show()
-		$ui/Sprite2D.position.x = 480
-		$ui/Sprite2D2.position.x = 1440
-	$order_timer.start(0.1)
-	for i in benches:
-		if benches[i][2] == true:
-			if i in bench_summoning.keys():
-				if benches[i][0] in bench_types:
-					var summoned_bench = bench_types[benches[i][0]].instantiate()
-					$kitchen.add_child(summoned_bench)
-					summoned_bench.position = bench_summoning[i][0]
-					summoned_bench.rotation_degrees.y = bench_summoning[i][1]
+		_setup_single_player()
+	elif player_count == 2:
+		_setup_two_players()
+
+func _setup_single_player():
+	$player_single._setup()
+	$player_single/head/player_camera.current = true
+	$ui/Sprite2D.show()
+	$ui/Sprite2D2.hide()
+	$GridContainer.hide()
+	$ui/Sprite2D.position.x = 960
+	$player_single.show()
+	
+	# Disable multiplayer players
+	$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
+	$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
+	$GridContainer/SubViewportContainer/SubViewport/player.hide()
+	$GridContainer/SubViewportContainer2/SubViewport/player2.hide()
+
+func _setup_two_players():
+	$GridContainer.show()
+	$GridContainer/SubViewportContainer/SubViewport/player._setup()
+	$GridContainer/SubViewportContainer2/SubViewport/player2._setup()
+	$player_single.hide()
+	$GridContainer/SubViewportContainer/SubViewport/player.show()
+	$GridContainer/SubViewportContainer2/SubViewport/player2.show()
+	$ui/Sprite2D.show()
+	$ui/Sprite2D2.show()
+	$ui/Sprite2D.position.x = 480
+	$ui/Sprite2D2.position.x = 1440
+
+func _spawn_benches(bench_data: Dictionary, parent: Node):
+	for i in bench_data:
+		if bench_data[i][2] == true and i in bench_summoning.keys():
+			if bench_data[i][0] in bench_types:
+				var summoned_bench = bench_types[bench_data[i][0]].instantiate()
+				parent.add_child(summoned_bench)
+				summoned_bench.position = bench_summoning[i][0]
+				summoned_bench.rotation_degrees.y = bench_summoning[i][1]
+
+func _reset_game_state():
 	orders_delivered = 0
 	score = 0
 	stars = $menu/CanvasLayer/layout/upgrades/buy_star.stars_bought
@@ -236,61 +242,80 @@ func _setup():
 	$ui/Label2.text = "Stars: " + str(stars)
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
-	if level == 1:
-		$player_single/head/dinein.show()
-		$player_single/head/volcano.hide()
-		$player_single/head/underwater.hide()
-		$player_single/head/tundra.hide()
-		$kitchen/billboard/Label3D.text = "Todays weather: Cloudy with a chance of meatballs
+
+func _setup_level_specific_content():
+	var level_configs = {
+		1: {
+			"camera": "dinein",
+			"billboard_text": """Todays weather: Cloudy with a chance of meatballs
 
 Neighbourhood level
 Difficulty level: SAFE
 Dangers & Modifications:
 -Timers on food, more score means more money
 -If a timer runs out, you lose a star
--Losing all 5 stars restarts level, no money is rewarded"
-	if level == 2:
-		$player_single/head/dinein.hide()
-		$player_single/head/volcano.show()
-		$player_single/head/underwater.hide()
-		$player_single/head/tundra.hide()
-		$kitchen/billboard/Label3D.text = "Todays weather: Cloudy with a chance of meatballs
+-Losing all 5 stars restarts level, no money is rewarded"""
+		},
+		2: {
+			"camera": "volcano",
+			"billboard_text": """Todays weather: Cloudy with a chance of meatballs
 
 Volcano level
 Difficulty level: C
 Dangers & Modifications:
 -LAVA!!!
 -Touching lava will make you bounce around
--Lava burns delivery pots (-10% of the score/bounce)"
-	if level == 3:
-		$player_single/head/dinein.hide()
-		$player_single/head/volcano.hide()
-		$player_single/head/underwater.show()
-		$player_single/head/tundra.hide()
-		$kitchen/billboard/Label3D.text = "Todays weather: Cloudy with a chance of meatballs
+-Lava burns delivery pots (-10% of the score/bounce)"""
+		},
+		3: {
+			"camera": "underwater",
+			"billboard_text": """Todays weather: Cloudy with a chance of meatballs
 
 Underwater level
 Difficulty level: B
 Dangers:
 -Shark can steal your ingredients if you aren't watching
 -Pickup the ingredient the Shark is going for to scare him
--Nothing can stop the Shark"
+-Nothing can stop the Shark"""
+		},
+		4: {
+			"camera": "tundra",
+			"billboard_text": ""
+		}
+	}
+	
+	# Hide all cameras first
+	var cameras = ["dinein", "volcano", "underwater", "tundra"]
+	for cam in cameras:
+		$player_single/head.get_node(cam).hide()
+	
+	if level in level_configs:
+		var config = level_configs[level]
+		$player_single/head.get_node(config.camera).show()
+		if config.billboard_text != "":
+			$kitchen/billboard/Label3D.text = config.billboard_text
+	
+	# Special level-specific logic
+	if level == 3:
 		$underwater/fish.run_away()
-	if level == 4:
-		$player_single/head/dinein.hide()
-		$player_single/head/volcano.hide()
-		$player_single/head/underwater.hide()
-		$player_single/head/tundra.show()
-		for i in $kitchen/houses.get_children():
-			i.find_child("house").find_child("house_frozen_mesh").show()
-			i.find_child("house").find_child("house_mesh").hide()
+	elif level == 4:
+		_setup_frozen_houses()
 		await get_tree().create_timer(1.0).timeout
 		$environment.environment.fog_enabled = true
 	else:
-		for i in $kitchen/houses.get_children():
-			i.find_child("house").find_child("house_frozen_mesh").hide()
-			i.find_child("house").find_child("house_mesh").show()
+		_setup_normal_houses()
 
+func _setup_frozen_houses():
+	for i in $kitchen/houses.get_children():
+		i.find_child("house").find_child("house_frozen_mesh").show()
+		i.find_child("house").find_child("house_mesh").hide()
+
+func _setup_normal_houses():
+	for i in $kitchen/houses.get_children():
+		i.find_child("house").find_child("house_frozen_mesh").hide()
+		i.find_child("house").find_child("house_mesh").show()
+		
+		
 func _physics_process(delta: float) -> void:
 	if $day_timer.time_left >0:
 		var time = $day_timer.time_left

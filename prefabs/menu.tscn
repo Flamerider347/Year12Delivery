@@ -218,7 +218,6 @@ Final relase"
 horizontal_alignment = 1
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -233,18 +232,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -432.5
-offset_top = -346.5
-offset_right = 397.5
-offset_bottom = 317.5
+offset_left = -539.5
+offset_top = -355.5
+offset_right = 290.5
+offset_bottom = 308.5
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
 text = "[u]SCORE:
-ORDERS DELIVERED:
-STARS REMAINING:
-SCORE MULTIPLIER:
-DIFFICULTY MULTIPIER:
+ORDERS:
+STARS LEFT:
+SCORE X:
+DIFFICULTY X:
 TOTAL SCORE:
 MONEY: [/u]
 "
@@ -254,10 +253,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -250.5
-offset_top = 50.0
-offset_right = 9.5
-offset_bottom = 164.0
+offset_left = -432.5
+offset_top = 69.0
+offset_right = -172.5
+offset_bottom = 183.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 bbcode_enabled = true
@@ -300,14 +299,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 191.5
-offset_top = 354.5
-offset_right = 549.5
-offset_bottom = 448.5
+offset_left = 13.5
+offset_top = 349.5
+offset_right = 343.5
+offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-text = "To build menu"
+text = "Build Menu"
 
 [node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -316,14 +315,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -104.5
-offset_top = 355.5
-offset_right = 246.5
-offset_bottom = 449.5
+offset_left = -546.5
+offset_top = 349.5
+offset_right = -216.5
+offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-text = "Options menu"
+text = "Options "
 
 [node name="main_menu" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -332,14 +331,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -367.5
-offset_top = 353.5
-offset_right = -45.5
-offset_bottom = 447.5
+offset_left = -273.5
+offset_top = 349.5
+offset_right = 56.5
+offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
-text = "Main menu"
+text = "Main Menu"
+
+[node name="quit" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 284.5
+offset_top = 349.5
+offset_right = 614.5
+offset_bottom = 469.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+text = "Quit Game"
 
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
 
@@ -387,6 +402,7 @@ Mr. Rodkiss
 Mr O'Sullivan"
 
 [node name="options" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="return" type="Button" parent="CanvasLayer/options"]
 offset_left = 1310.0
@@ -1124,6 +1140,11 @@ scale = Vector2(1.5, 1.5)
 frame = 8
 frame_progress = 0.191771
 
+[node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1274, 435)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_7xkfb")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -8.2, -8.3)
 current = true
@@ -1148,6 +1169,8 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_w1n2x")
 
+[node name="quit_attempt_timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
 [connection signal="pressed" from="CanvasLayer/main_menu/options" to="." method="options"]
@@ -1162,6 +1185,7 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu" to="." method="main_menu"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/quit" to="." method="quit"]
 [connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/credits/return" to="." method="main_menu"]
 [connection signal="pressed" from="CanvasLayer/options/return" to="." method="main_menu"]
@@ -1309,3 +1333,4 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="pressed" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout" method="_on_open_tutorial"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="quit_attempt_timer" to="." method="_on_quit_attempt_timer_timeout"]

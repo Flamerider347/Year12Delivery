@@ -304,10 +304,10 @@ func lerp_text():
 
 func win_text():
 	$CanvasLayer/end_screen/Control/stats.text = "[u]SCORE: " + str(int(round(text_1))) +" 
-ORDERS DELIVERED: " + str(int(round(text_2))) +"
-STARS REMAINING: " + str(int(round(text_3))) + "
-SCORE MULTIPLIER: x" + str(score_multiplier) + "
-DIFFICULTY MULTIPLIER: x" + str(difficulty_multiplier) + "
+ORDERS: " + str(int(round(text_2))) +"
+STARS: " + str(int(round(text_3))) + "
+SCORE X: x" + str(score_multiplier) + "
+DIFFICULTY X: x" + str(difficulty_multiplier) + "
 TOTAL SCORE: " + str(int(round(new_money))) + "
 MONEY: " + str(int(round(visual_money))) + "[/u]"
 func reset_text():
@@ -320,6 +320,7 @@ func reset_text():
 func _on_play_level_pressed() -> void:
 	$CanvasLayer/end_screen/Control/text_you_exited.hide()
 	$"../player_single".can_exit = false
+	$"../GridContainer/SubViewportContainer/SubViewport/player".can_exit = false
 	if $"..".level == 0:
 		$"../transition animation".show()
 		$"../transition animation/transition animation".play("fade_transition")
@@ -334,6 +335,7 @@ func _on_play_level_pressed() -> void:
 		$"../transition animation/transition animation".play("fade_transition_reverse")
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
+		$"../GridContainer/SubViewportContainer/SubViewport/player".can_exit = true
 		$"../player_single".can_exit = true
 
 	else:
@@ -347,10 +349,12 @@ func _on_play_level_pressed() -> void:
 		$Timer.stop()
 		await get_tree().create_timer(1.0).timeout
 		$"../transition animation".hide()
+		$"../GridContainer/SubViewportContainer/SubViewport/player".can_exit = true
 		$"../player_single".can_exit = true
 
 func level_select_1() -> void:
 	$CanvasLayer/main_menu/players_2.button_pressed = false
+	$CanvasLayer/main_menu/players_1.button_pressed = true
 
 
 func level_select_2() -> void:
@@ -361,6 +365,7 @@ func level_select_2() -> void:
 	if $"..".controllers == 2:
 		$"..".player_count = 2
 		$CanvasLayer/main_menu/players_1.button_pressed = false
+		$CanvasLayer/main_menu/players_2.button_pressed = true
 	else:
 		$CanvasLayer/main_menu/players_1.button_pressed = true
 		$"..".player_count = 1
@@ -399,3 +404,18 @@ func _on_h_slider_4_value_changed(new_value) -> void:
 func _on_h_slider_5_value_changed(new_value) -> void:
 	# Changes the volume of the SFX audio bus
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(new_value))
+
+
+func quit() -> void:
+	# Stop the timer if it's already running
+	$quit_attempt_timer.stop()
+	
+	var quit_names = ["No","Why","Please Stay","Try again","Nope","Don't Go","Wait!","Nooo","Stay Pls","But Why?","Come Back","Not Yet","Hold On","Seriously?","Think Twice","Reconsider","Never","Nu-uh","Denied","Rejected","Forbidden","Impossible","Error 404","Ctrl+Z","Undo","Refresh","Reboot","Stay Here","One More?","Final Offer","Last Chance","Pretty Pls","With Sugar","I'll Miss U","Don't Leave","Stay 4ever","Pwease","Big Sad","Much Wow","Very Leave","Such Quit","Sadge","Cringe","Fr?","Bestie No","Bestie Pls"]
+	var quit_number = randi() % quit_names.size()
+	$CanvasLayer/end_screen/Control/quit.text = quit_names[quit_number]
+	
+	# Start the timer
+	$quit_attempt_timer.start()
+
+func _on_quit_attempt_timer_timeout():
+	$CanvasLayer/end_screen/Control/quit.text = "Quit Game"

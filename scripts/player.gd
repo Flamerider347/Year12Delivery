@@ -1,9 +1,11 @@
 extends CharacterBody3D
 
+var outlined_meshes: Array = []
 var speed = 0
 var can_pickup = true
 var controlling = false
 var evil = false
+var can_exit = false
 var controller_let_go = true
 var head_target_position = 0.525
 var head_moving = false
@@ -140,6 +142,53 @@ func attempt_pickup():
 			summon(summon_type)
 			pickup_hold_active = true
 
+func _physics_process(delta: float):
+	if controlling:
+		if head_moving:
+			if abs($head.position.y - head_target_position) > 0.05:
+				$head.position.y = lerp($head.position.y, head_target_position, 0.2)
+			else:
+				head_moving = false
+
+	if position.y < -10:
+		position = $"../../../../kitchen".position + Vector3(0,0.5,5)
+
+	if controlling:
+		# Handle menu
+		if Input.is_action_just_pressed("menu") and can_exit:
+			pause_exit()
+		
+		# Handle outlining
+		handle_outlining()
+		crosshair_change()
+		position_held_object()
+		movement(delta)
+		move_and_slide()
+
+
+func handle_outlining():
+	if seecast.is_colliding():
+		# clear previous outlines first
+		for m in outlined_meshes:
+			if m and m.material_overlay:
+				m.material_overlay = null
+		outlined_meshes.clear()
+		
+		# only outline if collider is in group and not holding something
+		if seecast.is_colliding() and not held_object:
+			var col = seecast.get_collider()
+			if is_instance_valid(col) and col.is_in_group("outline"):
+				for child in col.get_children():
+					if child is MeshInstance3D:
+						child.material_overlay = load("res://assets/haydenfoundassets/pixel_perfect_outline.tres")
+						outlined_meshes.append(child)
+	else:
+		# no collision → clear any old outlines
+		for m in outlined_meshes:
+			if m and m.material_overlay:
+				m.material_overlay = null
+		outlined_meshes.clear()
+
 func movement(delta):
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta * 1.5
@@ -170,24 +219,8 @@ func movement(delta):
 		camera.rotate_x(-cam_input.y * SENSITIVITY * $"../../../..".sens_multiplyer)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
-func _physics_process(delta: float):
-	if controlling:
-		if head_moving:
-			if abs($head.position.y - head_target_position) > 0.05:
-				$head.position.y = lerp($head.position.y, head_target_position, 0.2)
-			else:
-				head_moving = false
-
-	if position.y < -10:
-		position = $"../../../../kitchen".position + Vector3(0,0.5,5)
-
-	if controlling:
-		crosshair_change()
-		position_held_object()
-		movement(delta)
-		move_and_slide()
-
 func pickup(object):
+	vibrate(object)
 	if object.type == "knife":
 		seecast.target_position.z = -1.8
 		if $"../../../..".is_tutorial:
@@ -205,6 +238,24 @@ func pickup(object):
 		if child is CollisionObject3D:
 			seecast.add_exception(child)
 	position_held_object()
+
+func vibrate(body: RigidBody3D):
+	var space := get_world_3d().direct_space_state
+
+	var params := PhysicsShapeQueryParameters3D.new()
+	params.shape = SphereShape3D.new()
+	params.shape.radius = 0.75   # adjust radius
+	params.transform = Transform3D(Basis(), body.global_position)
+	params.collide_with_bodies = true
+	params.exclude = [body]  # don't include the grabbed object
+
+	var result = space.intersect_shape(params, 32)  # 32 = max results
+	for hit in result:
+		var collider = hit.collider
+		if collider is RigidBody3D:
+			collider.sleeping = false
+			var impulse = Vector3.UP * 0.2 + Vector3(randf()-0.5, 0, randf()-0.5) * 0.1
+			collider.apply_impulse(impulse, Vector3.ZERO)
 
 func drop(object):
 	if object.type == "knife":
@@ -251,6 +302,10 @@ func stack():
 		held_object.reparent(stack_bottom)
 		held_object.position = Vector3(0,stack_bottom.next_position,0)
 		ingredient_added.connect(stack_bottom._on_player_ingredient_added)
+		# Move MeshInstance3D children to stack_bottom (like in Script 2)
+		for i in held_object.get_children():
+			if i is MeshInstance3D:
+				i.reparent(stack_bottom)
 		if item_shape is BoxShape3D:
 			var item_size = item_shape.size.y
 			ingredient_added.emit(held_object.type,item_size)
@@ -309,23 +364,23 @@ func crosshair_change():
 		if not held_object:
 			if seecast.get_collider() != null:
 				if seecast.get_collider().is_in_group("pickupable"):
-					$"../../../../ui/Sprite2D2".play("pickup")
+					$"../../../../ui/Sprite2D".play("pickup")
 				elif seecast.get_collider().is_in_group("summoner"):
-					$"../../../../ui/Sprite2D2".play("pickup")
+					$"../../../../ui/Sprite2D".play("pickup")
 				elif seecast.get_collider().is_in_group("door"):
-					$"../../../../ui/Sprite2D2".play("pickup")
+					$"../../../../ui/Sprite2D".play("pickup")
 				else:
-					$"../../../../ui/Sprite2D2".play("default")
+					$"../../../../ui/Sprite2D".play("default")
 		if held_object:
 			if stackcast.get_collider() != null:
 				if held_object.is_in_group("can_stack_" + str(stackcast.get_collider().name)):
-					$"../../../../ui/Sprite2D2".play("stacking")
+					$"../../../../ui/Sprite2D".play("stacking")
 				else:
-					$"../../../../ui/Sprite2D2".play("default")
+					$"../../../../ui/Sprite2D".play("default")
 			else:
-				$"../../../../ui/Sprite2D2".play("default")
+				$"../../../../ui/Sprite2D".play("default")
 		if not stackcast.is_colliding():
-			$"../../../../ui/Sprite2D2".play("default")
+			$"../../../../ui/Sprite2D".play("default")
 
 func look_recipe():
 	if lookcast.is_colliding():
@@ -343,10 +398,10 @@ func look_recipe():
 				emitting_collision_item = [collision_item.name.replace("_crate","")]
 				looking_recipe.emit(emitting_collision_item)
 			elif collision_item.is_in_group("look_at_plates"):
-				if $"..".level == 0:
-					emitting_collision_item = $"../tutorial/plates".plate_contents["plate_1"]
+				if $"../../../..".level == 0:
+					emitting_collision_item = $"../../../../tutorial/plates".plate_contents["plate_1"]
 				else:
-					emitting_collision_item = $"../kitchen/plates".plate_contents[collision_item.name.replace("objective_plate","plate_")]
+					emitting_collision_item = $"../../../../kitchen/plates".plate_contents[collision_item.name.replace("objective_plate","plate_")]
 				looking_recipe.emit(emitting_collision_item)
 			else:
 				looking_recipe.emit([])
@@ -355,7 +410,28 @@ func look_recipe():
 				emitting_collision_item = [collision_item.name]
 				looking_recipe.emit(emitting_collision_item)
 	else:
-		$"../ui/looking_recipe".hide()
+		$"../../../../ui/looking_recipe".hide()
+
+func pause_exit() -> void:
+	$"../../../../kitchen/Audio_Box/trigger_body".menu()
+	if $"../../../..".world_toggle:
+		$"../../../..".world_toggle = false
+		get_tree().paused = false
+		controlling = false
+		$"../../../../GridContainer/SubViewportContainer/SubViewport/player".controlling = false
+		$"../../../../GridContainer/SubViewportContainer2/SubViewport/player2".controlling = false
+		if $"../../../../day_timer".is_stopped():
+			$"../../../../menu".win_screen()
+		else:
+			if $"../../../..".level == 0:
+				$"../../../../menu".menu_toggle = true
+				$"../../../../menu".menu_load()
+			else:
+				$"../../../../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
+				$"../../../../menu".lose_screen()
+		await get_tree().create_timer(1.0).timeout
+		$"../../../../environment".environment.fog_enabled = false
+		self.position.y += 10
 
 func _on_pickup_timer_timeout() -> void:
 	can_pickup = true
