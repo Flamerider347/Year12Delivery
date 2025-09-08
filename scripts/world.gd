@@ -31,6 +31,8 @@ var world_toggle = false
 var particle_ingredients_chopped = preload("res://prefabs/particle_ingredients_chopped.tscn")
 @onready var pot = preload("res://prefabs/delivery_pot.tscn")
 @onready var confetti = preload("res://prefabs/confetti.tscn")
+# Preloads the lava burn particle when ingredients and players collide with lava floor
+@onready var lava_burn = preload("res://prefabs/particle_lava_burn.tscn")
 var bench_summoning = {
 	"bench_1" : [Vector3(-5,0,0),0],
 	"bench_2" : [Vector3(-3,0,0),0],
@@ -533,6 +535,11 @@ func looking_recipe(looking_at_list):
 
 
 func _on_volcano_lava_body_entered(body: Node3D) -> void:
+	var spawned_lava_burn = lava_burn.instantiate()
+	spawned_lava_burn.global_position = body.position
+	add_child(spawned_lava_burn)
+	spawned_lava_burn.get_child(0).emitting = true 
+	spawned_lava_burn.get_child(1).emitting = true
 	if body is RigidBody3D:
 		body.queue_free()
 	if body is CharacterBody3D:
@@ -540,3 +547,5 @@ func _on_volcano_lava_body_entered(body: Node3D) -> void:
 		if score > 0:
 			score = round(score * 0.9)
 			$ui/Label.text = "Score: " +str(score)
+	await spawned_lava_burn.get_child(0).finished
+	spawned_lava_burn.queue_free()
