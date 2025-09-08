@@ -1,7 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhxi1c7vowdmn"]
+[gd_scene load_steps=16 format=3 uid="uid://bhxi1c7vowdmn"]
 
 [ext_resource type="Material" uid="uid://drsxsbw0f2620" path="res://assets/materials/black_particle_colour.tres" id="1_vl1vx"]
 [ext_resource type="Material" uid="uid://cqpfinmdv88cr" path="res://assets/materials/white_particle_colour.tres" id="2_a7mbu"]
+
+[sub_resource type="Curve" id="Curve_vl1vx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.755921), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a7mbu"]
+curve = SubResource("Curve_vl1vx")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ufkp0"]
 emission_shape = 1
@@ -9,11 +16,19 @@ emission_sphere_radius = 0.5
 gravity = Vector3(0, 4, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = 0.499998
+scale_curve = SubResource("CurveTexture_a7mbu")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nekil"]
 material = ExtResource("1_vl1vx")
 radius = 0.05
 height = 0.1
+
+[sub_resource type="Curve" id="Curve_ufkp0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.263514, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.515598), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nekil"]
+curve = SubResource("Curve_ufkp0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30666"]
 emission_shape = 1
@@ -21,11 +36,19 @@ emission_sphere_radius = 0.5
 gravity = Vector3(0, 4, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = 0.499998
+scale_curve = SubResource("CurveTexture_nekil")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2rfa1"]
 material = ExtResource("2_a7mbu")
 radius = 0.05
 height = 0.1
+
+[sub_resource type="Curve" id="Curve_30666"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253378, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.515598), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2rfa1"]
+curve = SubResource("Curve_30666")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fdvjx"]
 emission_shape = 1
@@ -33,6 +56,7 @@ emission_sphere_radius = 0.5
 gravity = Vector3(0, 4, 0)
 linear_accel_min = -2.23517e-06
 linear_accel_max = 0.499998
+scale_curve = SubResource("CurveTexture_2rfa1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5jio"]
 albedo_color = Color(0.57299, 0.572988, 0.572988, 1)

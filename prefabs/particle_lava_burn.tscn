@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dln6dkxcqeu3b"]
+[gd_scene load_steps=15 format=3 uid="uid://2knpubeujtyq"]
 
 [sub_resource type="Curve" id="Curve_okujn"]
 _data = [Vector2(0, 0.011236), 0.0, 0.0, 0, 0, Vector2(0.658768, 0.797753), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -75,13 +75,17 @@ emission_curve = SubResource("CurveTexture_oiyed")
 [node name="particle_lava_burn" type="Node3D"]
 
 [node name="smoke" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 12
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_jj6of")
 draw_pass_1 = SubResource("SphereMesh_7r2jl")
 
 [node name="lava" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 12
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_okujn")
 draw_pass_1 = SubResource("SphereMesh_7r2jl")
