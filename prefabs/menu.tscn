@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=37 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Texture2D" uid="uid://invjjj3eyaob" path="res://assets/bookanim/bookanim_right_nobg/tu30-Photoroom.png" id="2_7xkfb"]
@@ -20,9 +20,9 @@
 [ext_resource type="Script" uid="uid://7ry5gpnlyjjp" path="res://scripts/recipe.gd" id="14_21bg4"]
 [ext_resource type="Texture2D" uid="uid://cm877xs63r1qq" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png" id="14_dwafa"]
 [ext_resource type="Texture2D" uid="uid://uhwevs5wqbek" path="res://assets/icon.svg" id="15_w8pom"]
-[ext_resource type="Texture2D" uid="uid://bhl7p16gky0l" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222446.png" id="17_dll84"]
-[ext_resource type="Texture2D" uid="uid://dnl1gv48kvb3t" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222500.png" id="18_tcgir"]
-[ext_resource type="Texture2D" uid="uid://bg5ee6sgs0ms3" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222452.png" id="19_1lbl1"]
+[ext_resource type="Texture2D" uid="uid://c4yeru3vchj4a" path="res://assets/createdassets/Icon art/Burger(1).png" id="17_wvlgw"]
+[ext_resource type="Texture2D" uid="uid://bcnk8j65u05un" path="res://assets/createdassets/Icon art/Burger(2).png" id="18_bo82e"]
+[ext_resource type="Texture2D" uid="uid://dy5kguynl2mu5" path="res://assets/createdassets/Icon art/Burger(3).png" id="19_3g0tm"]
 [ext_resource type="Texture2D" uid="uid://b6aw4hitsyq8s" path="res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png" id="20_dll84"]
 [ext_resource type="PackedScene" uid="uid://cfepmsyun4rjo" path="res://prefabs/transition_animation_book_flip.tscn" id="22_1lbl1"]
 [ext_resource type="Texture2D" uid="uid://c6t7dc1mdpcun" path="res://assets/resized-images/Screenshot 2025-08-26 144301.png" id="22_7xkfb"]
@@ -47,8 +47,6 @@ size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x0nk"]
 size = Vector2(128, 128)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcgir"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w1n2x"]
 size = Vector3(45, 1, 30)
@@ -218,6 +216,7 @@ Final relase"
 horizontal_alignment = 1
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -516,7 +515,6 @@ text = "To move bars on controller, click on the bar and use d-pad arrows (left&
 horizontal_alignment = 1
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -922,7 +920,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_y5qo3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot1"]
-texture = ExtResource("19_1lbl1")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("17_wvlgw")
 
 [node name="recipe_slot2" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(615, 400)
@@ -933,7 +932,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_y5qo3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot2"]
-texture = ExtResource("17_dll84")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("18_bo82e")
 
 [node name="recipe_slot3" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(750, 400)
@@ -944,7 +944,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_y5qo3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot3"]
-texture = ExtResource("18_tcgir")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("19_3g0tm")
 
 [node name="recipe_slot4" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
 position = Vector2(885, 400)
@@ -955,6 +956,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_y5qo3")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/selected_recipes/recipe_slot4"]
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("15_w8pom")
 
 [node name="recipe_slot5" type="Area2D" parent="CanvasLayer/layout/recipes/selected_recipes"]
@@ -1009,7 +1011,7 @@ texture = ExtResource("15_w8pom")
 
 [node name="burger_hayden" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 visible = false
-position = Vector2(480, 790)
+position = Vector2(615, 790)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -1017,11 +1019,12 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_0x0nk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_hayden"]
-texture = ExtResource("17_dll84")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("18_bo82e")
 
 [node name="burger_ben" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 visible = false
-position = Vector2(615, 790)
+position = Vector2(480, 790)
 script = ExtResource("14_21bg4")
 metadata/_edit_group_ = true
 
@@ -1029,7 +1032,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_0x0nk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_ben"]
-texture = ExtResource("19_1lbl1")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("17_wvlgw")
 
 [node name="burger_aine" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 visible = false
@@ -1041,7 +1045,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_0x0nk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/burger_aine"]
-texture = ExtResource("18_tcgir")
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("19_3g0tm")
 
 [node name="burger_sullivan" type="Area2D" parent="CanvasLayer/layout/recipes/available_recipes"]
 position = Vector2(885, 790)
@@ -1075,13 +1080,6 @@ shape = SubResource("RectangleShape2D_0x0nk")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast"]
 texture = ExtResource("20_dll84")
-
-[node name="pay_wall" type="Node2D" parent="CanvasLayer/layout/recipes"]
-
-[node name="Area2D" type="Area2D" parent="CanvasLayer/layout/recipes/pay_wall"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/recipes/pay_wall/Area2D"]
-shape = SubResource("RectangleShape2D_tcgir")
 
 [node name="layout_tutorial" type="Node2D" parent="CanvasLayer/layout"]
 visible = false
@@ -1129,6 +1127,7 @@ text = "?"
 [node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/dragging_bench"]
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("15_w8pom")
 
 [node name="Label" type="Label" parent="CanvasLayer/layout/dragging_bench"]

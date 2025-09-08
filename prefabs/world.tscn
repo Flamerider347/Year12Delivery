@@ -1426,7 +1426,7 @@ rings = 100
 
 [node name="leaves" type="GPUParticles3D" parent="dine_in"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.929, 43.4209)
-amount = 100
+amount = 60
 speed_scale = 0.1
 visibility_aabb = AABB(-24.41, -4, -38.665, 50, 8, 50)
 trail_lifetime = 1.0
