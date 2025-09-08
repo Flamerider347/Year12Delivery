@@ -536,7 +536,7 @@ func looking_recipe(looking_at_list):
 
 func _on_volcano_lava_body_entered(body: Node3D) -> void:
 	var spawned_lava_burn = lava_burn.instantiate()
-	spawned_lava_burn.global_position = body.position
+	spawned_lava_burn.position = body.position
 	add_child(spawned_lava_burn)
 	spawned_lava_burn.get_child(0).emitting = true 
 	spawned_lava_burn.get_child(1).emitting = true

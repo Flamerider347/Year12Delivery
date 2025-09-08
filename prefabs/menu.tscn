@@ -225,6 +225,11 @@ anchors_preset = 0
 offset_right = 1919.0
 offset_bottom = 1081.0
 
+[node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/end_screen/Control"]
+position = Vector2(1274, 435)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_7xkfb")
+
 [node name="stats" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -1139,11 +1144,6 @@ position = Vector2(960, 540)
 scale = Vector2(1.5, 1.5)
 frame = 8
 frame_progress = 0.191771
-
-[node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(1274, 435)
-scale = Vector2(0.9, 0.9)
-texture = ExtResource("4_7xkfb")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -8.2, -8.3)
