@@ -113,6 +113,8 @@ func attempt_pickup():
 		var collider = seecast.get_collider()
 		
 		# Handle doors
+		if collider.is_in_group("phone"):
+			collider.get_call()
 		if collider.is_in_group("door"):
 			var door = collider
 			door.swinging = true
@@ -162,25 +164,49 @@ func _physics_process(delta: float):
 
 func handle_keyboard_pickup():
 	# For keyboard users, maintain the original toggle behavior
-	if Input.is_action_just_pressed("pickup_p1") and can_pickup:
-		if seecast.is_colliding() and seecast.get_collider().is_in_group("door"):
-			var door = seecast.get_collider()
-			door.swinging = true
+	if not Input.is_action_just_pressed("pickup_p1") or not can_pickup:
+		return
+	
+	# Get the collider once and validate it
+	var collider = null
+	if seecast.is_colliding():
+		collider = seecast.get_collider()
+		if not is_instance_valid(collider):
+			return
+	
+	# Handle drop when holding something (check this first)
+	if held_object:
+		drop(held_object)
+		start_pickup_cooldown()
+		return
+	
+	# Handle interactions when not holding anything
+	if collider:
+		# Handle door interaction
+		if collider.is_in_group("door"):
+			collider.swinging = true
 		
-		if not held_object and can_pickup:
-			$pickup_timer.start()
-			can_pickup = false
-			if seecast.is_colliding() and seecast.get_collider().is_in_group("pickupable"):
-				held_object = seecast.get_collider()
+		# Handle phone interaction
+		elif collider.is_in_group("phone"):
+			if collider.has_method("get_call"):
+				collider.get_call()
+		
+		# Handle pickup
+		else:
+			start_pickup_cooldown()
+			
+			if collider.is_in_group("pickupable"):
+				held_object = collider
 				pickup(held_object)
-			if seecast.is_colliding() and seecast.get_collider().is_in_group("summoner"):
-				var summon_type = seecast.get_collider().name.replace("_crate","")
+			elif collider.is_in_group("summoner"):
+				var summon_type = collider.name.replace("_crate", "")
 				summon(summon_type)
-		elif held_object and can_pickup:
-			drop(held_object)
-			$pickup_timer.start()
-			can_pickup = false
 
+func start_pickup_cooldown():
+	$pickup_timer.start()
+	can_pickup = false
+	
+	
 func handle_outlining():
 	if seecast.is_colliding():
 		# clear previous outlines first

@@ -59,6 +59,7 @@ interactable=""
 clear=""
 particle=""
 outline=""
+phone=""
 
 [gui]
 

@@ -18,7 +18,7 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 500
+var money = 500000000
 var score = 0
 var stars = 1
 var orders_delivered = 0
@@ -60,7 +60,8 @@ var bench_summoning = {
 	"fridge" : preload("res://prefabs/fridge.tscn"),
 	"bun_crate" : preload("res://prefabs/bun_crate.tscn"),
 	"bin"    : preload("res://prefabs/bin.tscn"),
-	"delivery_table" : preload("res://prefabs/delivery_table.tscn")
+	"delivery_table" : preload("res://prefabs/delivery_table.tscn"),
+	"reciever_bench" : preload("res://prefabs/reciever_bench.tscn")
 }
 @onready var maps = {
 	"tutorial" : $dine_in,
@@ -95,7 +96,7 @@ var benches = {
 	"bench_3" : ["chopping_board",0,true],
 	"bench_4" : ["bun_crate",0,true],
 	"bench_5" : ["fridge",0,true],
-	"bench_6" : ["bench",0,true],
+	"bench_6" : ["reciever_bench",0,true],
 	"bench_7" : ["stove",270,true],
 	"bench_8" : ["bench",90,false],
 	"bench_9" : ["bench",270,false],

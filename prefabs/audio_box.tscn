@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyp7gdk7w8mbv"]
+[gd_scene load_steps=9 format=3 uid="uid://cyp7gdk7w8mbv"]
 
 [ext_resource type="AudioStream" uid="uid://cqodv5abp45wr" path="res://assets/SFX/lava-bubbling-ambience.mp3" id="1_7p2h2"]
 [ext_resource type="AudioStream" uid="uid://5tdrf2hl43u5" path="res://assets/haydenfoundassets/nature-ambience-323729.mp3" id="2_lvbu6"]
@@ -11,8 +11,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ui4bh"]
 size = Vector3(12.5, 10, 12.5)
 
-[sub_resource type="BoxMesh" id="BoxMesh_dobhj"]
-
 [node name="Audio_Box" type="Node3D" groups=["keep"]]
 
 [node name="trigger_body" type="Area3D" parent="."]
@@ -22,9 +20,6 @@ script = ExtResource("3_d57w0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger_body"]
 shape = SubResource("BoxShape3D_ui4bh")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="trigger_body"]
-mesh = SubResource("BoxMesh_dobhj")
 
 [node name="Transition_timer" type="Timer" parent="trigger_body"]
 

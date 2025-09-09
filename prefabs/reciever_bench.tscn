@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqfk7rw5gihtk"]
+
+[ext_resource type="ArrayMesh" uid="uid://cn7qtwf1v1psi" path="res://assets/kitchenassets/kitchencounter_straight_A.obj" id="1_1yien"]
+[ext_resource type="ArrayMesh" uid="uid://bf11kw737lfq1" path="res://assets/kitchenassets/jar_A_large.obj" id="2_p4qb8"]
+[ext_resource type="Script" uid="uid://dxgyumh6tomdr" path="res://scripts/phone.gd" id="3_p4qb8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_03or4"]
+size = Vector3(2.0025, 1, 2.00879)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qv1rd"]
+
+[node name="reciever_bench" type="Node3D"]
+
+[node name="KitchencounterStraightA" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1yien")
+skeleton = NodePath("../collision")
+
+[node name="JarALarge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00867, 0)
+mesh = ExtResource("2_p4qb8")
+skeleton = NodePath("../collision")
+
+[node name="collision" type="StaticBody3D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000152588, 0.49992, 0.00146484)
+shape = SubResource("BoxShape3D_03or4")
+
+[node name="phone" type="StaticBody3D" parent="." groups=["phone"]]
+script = ExtResource("3_p4qb8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="phone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50945, 0)
+shape = SubResource("BoxShape3D_qv1rd")
+
+[node name="Timer" type="Timer" parent="phone"]
+wait_time = 5.0
+
+[node name="Label3D" type="Label3D" parent="phone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05886, 0)
+billboard = 2
+text = "5.0"
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 1.002, 0.72)
+text = "Click for new order"
+
+[connection signal="timeout" from="phone/Timer" to="phone" method="_on_timer_timeout"]

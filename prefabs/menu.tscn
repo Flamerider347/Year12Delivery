@@ -69,7 +69,20 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_w3v8e")
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
-visible = false
+
+[node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/main_menu"]
+position = Vector2(661, 290)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_7xkfb")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/main_menu/DeliveryCover-art"]
+offset_left = 392.857
+offset_top = 5.71428
+offset_right = 1323.86
+offset_bottom = 179.714
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Made for 12DTG Final relase"
+horizontal_alignment = 1
 
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -132,52 +145,54 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 1030.0
-offset_top = 500.0
+offset_top = 360.0
 offset_right = 1250.0
-offset_bottom = 594.0
+offset_bottom = 454.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Credits"
 
-[node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/main_menu"]
-position = Vector2(1246, 288)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("4_7xkfb")
-
 [node name="level_0" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1270.0
-offset_top = 500.0
+offset_top = 360.0
 offset_right = 1490.0
-offset_bottom = 594.0
+offset_bottom = 454.0
 text = "Tutorial"
 
 [node name="level_1" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1030.0
-offset_top = 640.0
+offset_top = 500.0
 offset_right = 1250.0
-offset_bottom = 734.0
+offset_bottom = 594.0
 text = "Level 1"
 
 [node name="level_2" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1270.0
-offset_top = 640.0
+offset_top = 500.0
 offset_right = 1490.0
-offset_bottom = 734.0
+offset_bottom = 594.0
 text = "Level 2"
 
 [node name="level_3" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1030.0
-offset_top = 780.0
+offset_top = 640.0
 offset_right = 1250.0
-offset_bottom = 874.0
+offset_bottom = 734.0
 text = "Level 3"
 
 [node name="level_4" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1270.0
-offset_top = 780.0
+offset_top = 640.0
 offset_right = 1490.0
-offset_bottom = 874.0
+offset_bottom = 734.0
 text = "Level 4"
+
+[node name="reset_4" type="Button" parent="CanvasLayer/main_menu"]
+offset_left = 995.0
+offset_top = 887.0
+offset_right = 1515.0
+offset_bottom = 981.0
+text = "CONTINUE ENDLESS"
 
 [node name="build_menu" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 440.0
@@ -188,31 +203,31 @@ text = "Build Menu/
 Recipe selection"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/main_menu"]
-offset_left = 415.0
-offset_top = 79.0
-offset_right = 1078.0
-offset_bottom = 221.0
+offset_left = 992.0
+offset_top = 78.0
+offset_right = 1655.0
+offset_bottom = 220.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 86
 text = "Kitchen CHAOS"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/main_menu"]
-offset_left = 414.0
-offset_top = 183.0
-offset_right = 992.0
-offset_bottom = 429.0
+offset_left = 993.0
+offset_top = 184.0
+offset_right = 1571.0
+offset_bottom = 430.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "by Hayden, Aine & Ben"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/main_menu"]
-offset_left = 440.0
-offset_top = 294.0
-offset_right = 880.0
-offset_bottom = 468.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Made for 12DTG 
-Final relase"
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/main_menu"]
+offset_left = 984.0
+offset_top = 739.0
+offset_right = 1528.0
+offset_bottom = 946.0
+text = "Level 4 HIGH SCORE:
+000000
+"
 horizontal_alignment = 1
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
@@ -515,6 +530,7 @@ text = "To move bars on controller, click on the bar and use d-pad arrows (left&
 horizontal_alignment = 1
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -787,6 +803,17 @@ shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/delivery_table"]
 texture = ExtResource("13_wvlgw")
+
+[node name="reciever_bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
+position = Vector2(1360, 840)
+script = ExtResource("6_y5qo3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_shop/reciever_bench"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/reciever_bench"]
+texture = ExtResource("15_w8pom")
 
 [node name="money" type="Label" parent="CanvasLayer/layout"]
 offset_left = 417.0
@@ -1180,6 +1207,7 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="pressed" from="CanvasLayer/main_menu/level_2" to="." method="_on_level_2"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_3" to="." method="_on_level_3"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_4" to="." method="_on_level_4"]
+[connection signal="pressed" from="CanvasLayer/main_menu/reset_4" to="." method="_on_level_4"]
 [connection signal="pressed" from="CanvasLayer/main_menu/build_menu" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
@@ -1268,6 +1296,9 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="bench_type" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout" method="_on_bench_bench_type"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout/layout_shop/delivery_table" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/delivery_table" to="CanvasLayer/layout/layout_shop/delivery_table" method="_on_mouse_exited"]
+[connection signal="bench_type" from="CanvasLayer/layout/layout_shop/reciever_bench" to="CanvasLayer/layout" method="_on_bench_bench_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/reciever_bench" to="CanvasLayer/layout/layout_shop/reciever_bench" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/reciever_bench" to="CanvasLayer/layout/layout_shop/reciever_bench" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/return" to="." method="main_menu"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout" method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]

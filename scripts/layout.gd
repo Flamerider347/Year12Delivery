@@ -13,6 +13,7 @@ var bench_type_sprites = {
 	"chopping_board" : preload("res://assets/resized-images/Chopping Board.png"),
 	"fridge" :preload("res://assets/resized-images/Fridge.png"),
 	"stove" : preload("res://assets/resized-images/Stove.png"),
+	"reciever_bench" : preload("res://assets/icon.svg"),
 	"delivery_table" : preload("res://assets/resized-images/delivery_plate.png"),
 	"burger_hayden" : preload("res://assets/createdassets/Icon art/Burger(2).png"),
 	"burger_ben" : preload("res://assets/createdassets/Icon art/Burger(1).png"),
@@ -23,15 +24,6 @@ var bench_type_sprites = {
 	"unselect" : preload("res://assets/icon.svg")
 }
 @onready var menu = $"../.."
-var bench_costs = {
-	"bench" : 0,
-	"stove" : 5,
-	"chopping_board" : 5,
-	"fridge": 10,
-	"bun_crate" : 5,
-	"bin" : 5,
-	"delivery_table" : 10
-}
 @onready var benches = $"../../..".benches
 @onready var recipe_list = $"../../../kitchen/plates".recipes_list
 var recipe_slots = ["burger_ben","burger_hayden","burger_aine",null,null,null,null,null]
@@ -39,8 +31,6 @@ func _ready() -> void:
 	setup()
 func setup():
 	$money.text = "Money: " + str($"../../..".money)
-	money_bench_check()
-	hide_benches()
 	assign_layout_names()
 	$upgrades.show()
 	$recipes.hide()
@@ -82,29 +72,14 @@ func _physics_process(_delta: float) -> void:
 		elif bench_type:
 			if editing_bench:
 				var purchase_cost = 0
-				purchase_cost -= int(bench_costs[benches[editing_bench][0]])
-				purchase_cost += bench_costs[bench_type]
 				benches[editing_bench][0] = bench_type
 				$"../../..".money -= purchase_cost
 				$layout_benches.find_child(str(editing_bench)).find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 				$money.text = "Money: " + str($"../../..".money)
-				money_bench_check()
 		editing_bench =  null
 		bench_type = null
 		editing_recipe = null
 		$dragging_bench.hide()
-
-func money_bench_check():
-	for i in $layout_shop.get_children():
-		if str(i.name) in bench_costs.keys():
-			if $"../../..".money < bench_costs[str(i.name)]:
-				i.hide()
-			else:
-				i.show()
-func hide_benches():
-	for i in benches:
-		if benches[i][2] == false:
-			find_child(i).hide()
 
 func assign_layout_names():
 	for i in benches:
