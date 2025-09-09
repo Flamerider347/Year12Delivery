@@ -34,6 +34,10 @@ var is_first_load: bool = true
 var is_transitioning:bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_on_h_slider_5_value_changed(0.5)
+	_on_h_slider_4_value_changed(0.5)
+	_on_h_slider_3_value_changed(1.0)
+
 	#gets controller amount
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$"..".controllers = 0
@@ -60,9 +64,6 @@ func menu_load():
 	$CanvasLayer/main_menu.show()
 	$CanvasLayer/book_resting_left.show()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	_on_h_slider_5_value_changed(0.5)
-	_on_h_slider_4_value_changed(0.5)
-	_on_h_slider_3_value_changed(1.0)
 
 
 func _input(event):
@@ -464,11 +465,6 @@ func _on_lerp_timer_timeout() -> void:
 
 func _on_h_slider_value_changed(value: float) -> void:
 	$CanvasLayer/options/RichTextLabel.text = "Sensitivity: " + str(value)
-
-
-func _on_h_slider_2_value_changed(value:int) -> void:
-	$CanvasLayer/options/RichTextLabel4.text = "Time between burger spawns: " + str(value)
-	$"..".next_spawn_time = value
 
 
 func _on_h_slider_3_value_changed(new_value) -> void:
