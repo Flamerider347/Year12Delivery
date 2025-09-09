@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=121 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -24,23 +24,32 @@
 [ext_resource type="PackedScene" uid="uid://bhxi1c7vowdmn" path="res://prefabs/particle_smoke.tscn" id="20_obwhl"]
 [ext_resource type="PackedScene" uid="uid://bk5q2jyy76phw" path="res://prefabs/menu.tscn" id="21_bpfb4"]
 [ext_resource type="Texture2D" uid="uid://ddmy0mhprch1v" path="res://assets/haydenfoundassets/purepng.com-maple-leafnatureleafautumncanadamaplecanadian-961524674221evur1.png" id="21_d6s6r"]
-[ext_resource type="PackedScene" uid="uid://drsdhk6tpv6u3" path="res://prefabs/parkour table.tscn" id="21_w6ly8"]
+[ext_resource type="PackedScene" path="res://prefabs/parkour table 4.tscn" id="21_w6ly8"]
 [ext_resource type="PackedScene" uid="uid://cb70phjqrxqyl" path="res://prefabs/tree_coral_gridmap.tscn" id="22_2h4m2"]
 [ext_resource type="Texture2D" uid="uid://c56k5ognadegp" path="res://assets/haydenfoundassets/Lava_3.png" id="22_p78bo"]
 [ext_resource type="ArrayMesh" uid="uid://uedbggc1w3hj" path="res://assets/haydenfoundassets/Volcano/1230 Volcano.obj" id="23_er0x2"]
+[ext_resource type="PackedScene" path="res://prefabs/parkour table 2.tscn" id="24_aqg0f"]
 [ext_resource type="Script" uid="uid://t5y0s5rk1ckx" path="res://scripts/player_2.gd" id="24_n7i1a"]
+[ext_resource type="ArrayMesh" uid="uid://krkkhpap0i2d" path="res://assets/createdassets/lava-rocks(2).obj" id="24_ro2rw"]
 [ext_resource type="Script" uid="uid://bbf5w7nqmwxjh" path="res://scripts/house.gd" id="24_u7kri"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="25_jbo5a"]
+[ext_resource type="PackedScene" path="res://prefabs/parkour table 1.tscn" id="25_jynr8"]
 [ext_resource type="Texture2D" uid="uid://bp8qrttk51j5s" path="res://assets/createdassets/Water.png" id="25_p78bo"]
 [ext_resource type="Script" uid="uid://bxtx5rd4178n0" path="res://scripts/player_single.gd" id="25_u7kri"]
 [ext_resource type="Texture2D" uid="uid://calsrxt8pt8jk" path="res://assets/grass.png" id="26_aqg0f"]
 [ext_resource type="PackedScene" uid="uid://bh1tyq3t8xos2" path="res://prefabs/tree_burnt_gridmap.tscn" id="26_lhn7i"]
 [ext_resource type="PackedScene" uid="uid://bcnkdccxjrpli" path="res://prefabs/tree_frozen_gridmap.tscn" id="26_p78bo"]
+[ext_resource type="PackedScene" path="res://prefabs/parkour table 3.tscn" id="26_ro2rw"]
 [ext_resource type="PackedScene" uid="uid://c7liwpmdhkn7p" path="res://prefabs/tree_alive_gridmap.tscn" id="26_umtm3"]
+[ext_resource type="ArrayMesh" uid="uid://cge7m2sng5v35" path="res://assets/createdassets/lava-rocks(3).obj" id="27_er0x2"]
+[ext_resource type="PackedScene" path="res://prefabs/parkour table 5.tscn" id="27_jbo5a"]
+[ext_resource type="PackedScene" path="res://prefabs/parkour table 6.tscn" id="28_er0x2"]
 [ext_resource type="Shader" uid="uid://bt10e6oni0q3r" path="res://assets/materials/transition_horizontal.gdshader" id="28_w6ly8"]
 [ext_resource type="AudioStream" uid="uid://cbqdnn01mad1p" path="res://assets/SFX/ingrediants added.wav" id="30_v44qx"]
 [ext_resource type="PackedScene" uid="uid://8knwxbv0ojoy" path="res://prefabs/tree_coral_and_seaweed_gridmap.tscn" id="31_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://disnak1s3l1f0" path="res://assets/SFX/player walking.wav" id="31_qrdq4"]
 [ext_resource type="Texture2D" uid="uid://8qnjl27yqjla" path="res://assets/haydenfoundassets/Volcano/bubble_7.png" id="32_2h4m2"]
+[ext_resource type="ArrayMesh" uid="uid://bcdtjywpeyo8a" path="res://assets/createdassets/lava-rocks(6).obj" id="32_er0x2"]
 [ext_resource type="Texture2D" uid="uid://1mkn56i021tw" path="res://assets/haydenfoundassets/snowflake.png" id="35_os0cm"]
 [ext_resource type="Texture2D" uid="uid://cnbkv0tr05cdg" path="res://assets/floorandstuff/mud_road_puresky.jpg" id="35_umtm3"]
 [ext_resource type="AudioStream" uid="uid://ss2100jcaehb" path="res://assets/haydenfoundassets/sharp-blade-slice-2-185145.mp3" id="36_p78bo"]
@@ -119,6 +128,18 @@ material = SubResource("StandardMaterial3D_os0cm")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xky7j"]
+height = 0.34021
+radius = 1.48926
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6j6fw"]
+height = 0.34021
+radius = 1.48926
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dfx56"]
+height = 0.34021
+radius = 1.48926
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h4m2"]
 shading_mode = 0
@@ -1453,70 +1474,100 @@ shape = SubResource("BoxShape3D_h6gec")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.370667, -9.53674e-07, -0.0472107)
 shape = SubResource("BoxShape3D_h6gec")
 
-[node name="parkour_tables" type="Node3D" parent="volcano"]
+[node name="lava_rocks" type="Node3D" parent="volcano"]
 
-[node name="parkour table" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.439)
+[node name="lava rocks" type="StaticBody3D" parent="volcano/lava_rocks"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0.351707, 0, 12.5289)
+collision_layer = 5
 
-[node name="parkour table2" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100403, 0, 19.4469)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/lava_rocks/lava rocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0586397, 0)
+shape = SubResource("CylinderShape3D_xky7j")
 
-[node name="parkour table3" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52519, 0, 16.6194)
+[node name="lava rocks 2" type="MeshInstance3D" parent="volcano/lava_rocks/lava rocks"]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 0.185997, -0.002737, 0.348007)
+mesh = ExtResource("24_ro2rw")
+surface_material_override/0 = ExtResource("25_jbo5a")
 
-[node name="parkour table4" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28432, 0, 21.5922)
+[node name="lava rocks1" parent="volcano/lava_rocks" instance=ExtResource("25_jynr8")]
+transform = Transform3D(0.4602, 0, 0.887815, 0, 1, 0, -0.887815, 0, 0.4602, -0.0603485, 0.0975003, 19.2953)
 
-[node name="parkour table5" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1598, 0, 15.4138)
+[node name="lava rocks2" type="StaticBody3D" parent="volcano/lava_rocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.64536, 0, 16.5025)
+collision_layer = 5
 
-[node name="parkour table6" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2135, 0, 22.511)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/lava_rocks/lava rocks2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.240575, 0)
+shape = SubResource("CylinderShape3D_6j6fw")
 
-[node name="parkour table7" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1701, 0, 30.5605)
+[node name="lava rocks 3" type="MeshInstance3D" parent="volcano/lava_rocks/lava rocks2"]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, -0.0599976, 0.137636, 0.145996)
+mesh = ExtResource("27_er0x2")
+surface_material_override/0 = ExtResource("25_jbo5a")
 
-[node name="parkour table8" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.14587, 0, 37.1574)
+[node name="lava rocks3" parent="volcano/lava_rocks" instance=ExtResource("21_w6ly8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1986, 0.0974994, 15.3916)
 
-[node name="parkour table9" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0181274, 0, 39.1692)
+[node name="lava rocks4" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
+transform = Transform3D(-0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, -0.576432, 6.46818, 0.30356, 21.4238)
 
-[node name="parkour table10" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.11409, 0, 37.1251)
+[node name="lava rocks5" parent="volcano/lava_rocks" instance=ExtResource("28_er0x2")]
+transform = Transform3D(-0.949426, 0, -0.313992, 0, 1, 0, 0.313992, 0, -0.949426, 12.1721, 0.155479, 22.3394)
 
-[node name="parkour table11" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1424, 0, 30.5374)
+[node name="lava rocks6" parent="volcano/lava_rocks" instance=ExtResource("24_aqg0f")]
+transform = Transform3D(-0.576432, 0, -0.817145, 0, 1, 0, 0.817145, 0, -0.576432, 11.1566, 0.404777, 30.4095)
 
-[node name="parkour table12" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1512, 0, 22.4933)
+[node name="lava rocks7" parent="volcano/lava_rocks" instance=ExtResource("26_ro2rw")]
+transform = Transform3D(-0.830012, 0, -0.557745, 0, 1, 0, 0.557745, 0, -0.830012, 6.14013, 0.37161, 28.8166)
 
-[node name="parkour table13" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.15, 0, 15.4077)
+[node name="lava rocks8" parent="volcano/lava_rocks" instance=ExtResource("21_w6ly8")]
+transform = Transform3D(0.612907, 0, -0.790155, 0, 1, 0, 0.790155, 0, 0.612907, 4.44283, 0.199219, 34.7316)
 
-[node name="parkour table14" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06496, 0, 16.676)
+[node name="lava rocks9" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.32658, 0.30356, 37.0349)
 
-[node name="parkour table15" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.17044, 0, 21.911)
+[node name="lava rocks10" type="StaticBody3D" parent="volcano/lava_rocks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111458, 0.349406, 38.8581)
+collision_layer = 5
 
-[node name="parkour table16" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.33023, 0, 26.8364)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="volcano/lava_rocks/lava rocks10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_dfx56")
 
-[node name="parkour table17" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18221, 0, 31.8364)
+[node name="lava rocks 6" type="MeshInstance3D" parent="volcano/lava_rocks/lava rocks10"]
+transform = Transform3D(1.3, 0, 0, 0, 1, 0, 0, 0, 1.3, -0.0719986, -0.215828, -0.0330048)
+mesh = ExtResource("32_er0x2")
+surface_material_override/0 = ExtResource("25_jbo5a")
 
-[node name="parkour table18" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.527344, 0, 31.6803)
+[node name="lava rocks11" parent="volcano/lava_rocks" instance=ExtResource("25_jynr8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434479, 0.199219, 31.5524)
 
-[node name="parkour table19" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.38235, 0, 34.8019)
+[node name="lava rocks12" parent="volcano/lava_rocks" instance=ExtResource("24_aqg0f")]
+transform = Transform3D(0.746638, 0, 0.66523, 0, 1, 0, -0.66523, 0, 0.746638, -8.23019, 0.303058, 37.3492)
 
-[node name="parkour table20" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.15982, 0, 28.9471)
+[node name="lava rocks13" parent="volcano/lava_rocks" instance=ExtResource("26_ro2rw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1445, 0.37161, 30.4536)
 
-[node name="parkour table21" parent="volcano/parkour_tables" instance=ExtResource("21_w6ly8")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.208527, 0, 25.522)
+[node name="lava rocks14" parent="volcano/lava_rocks" instance=ExtResource("21_w6ly8")]
+transform = Transform3D(-0.91706, 0, -0.398749, 0, 1, 0, 0.398749, 0, -0.91706, -7.32768, 0.0974998, 26.8558)
+
+[node name="lava rocks15" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
+transform = Transform3D(-0.776046, 0, -0.630676, 0, 1, 0, 0.630676, 0, -0.776046, -5.07407, 0.30356, 31.9708)
+
+[node name="lava rocks16" parent="volcano/lava_rocks" instance=ExtResource("28_er0x2")]
+transform = Transform3D(-0.419452, 0, 0.907777, 0, 1, 0, -0.907777, 0, -0.419452, -12.31, 0.247687, 22.1918)
+
+[node name="lava rocks17" parent="volcano/lava_rocks" instance=ExtResource("26_ro2rw")]
+transform = Transform3D(-0.246999, 0, 0.969016, 0, 1, 0, -0.969016, 0, -0.246999, -6.21797, 0.269891, 21.8561)
+
+[node name="lava rocks18" parent="volcano/lava_rocks" instance=ExtResource("21_w6ly8")]
+transform = Transform3D(-0.91706, 0, 0.398749, 0, 1, 0, -0.398749, 0, -0.91706, -5.00533, 0.0975008, 16.6535)
+
+[node name="lava rocks19" parent="volcano/lava_rocks" instance=ExtResource("25_jynr8")]
+transform = Transform3D(-0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, -0.576432, -9.99245, 0.0975003, 15.3804)
+
+[node name="lava rocks20" parent="volcano/lava_rocks" instance=ExtResource("28_er0x2")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.309072, 25.4001)
 
 [node name="floor" type="Node3D" parent="volcano"]
 

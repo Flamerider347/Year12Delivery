@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://drsdhk6tpv6u3"]
+
+[ext_resource type="ArrayMesh" uid="uid://xdmqecge7124" path="res://assets/createdassets/lava-rocks(4).obj" id="1_24klp"]
+[ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="2_7jy60"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xky7j"]
+height = 0.34021
+radius = 1.48926
+
+[node name="lava rocks 4" type="StaticBody3D"]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
+shape = SubResource("CylinderShape3D_xky7j")
+
+[node name="lava rocks 4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.45, 0, 0, 0, 1, 0, 0, 0, 1.45, 0.119074, 0.100983, -0.0326377)
+mesh = ExtResource("1_24klp")
+surface_material_override/0 = ExtResource("2_7jy60")
