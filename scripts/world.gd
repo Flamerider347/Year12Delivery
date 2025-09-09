@@ -306,6 +306,7 @@ Dangers:
 	# Special level-specific logic
 	if level == 3:
 		$underwater/fish.run_away()
+		$ui/Label4.hide()
 	elif level == 4:
 		_setup_frozen_houses()
 		await get_tree().create_timer(1.0).timeout
@@ -321,7 +322,9 @@ Dangers:
 			req_score = 100
 			$ui/Label.text = "Score: " + str(carried_score)
 			$ui/Label4.text = "Req. Score: " + str(req_score)
+		$ui/Label4.show()
 	else:
+		$ui/Label4.hide()
 		_setup_normal_houses()
 
 func _setup_frozen_houses():

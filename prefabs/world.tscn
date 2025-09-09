@@ -1846,6 +1846,7 @@ horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Label4" type="Label" parent="ui"]
+visible = false
 anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.12963
@@ -1870,7 +1871,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 180.0
 
 [node name="order_timer" type="Timer" parent="."]
 
