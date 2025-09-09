@@ -19,6 +19,10 @@ var player_count = 1
 var level = 1
 var level_updates_left = 0
 var money = 500000000
+var reset_4 = true
+var endless_high_score = 0
+var req_score = 100
+var carried_score = 0
 var score = 0
 var stars = 1
 var orders_delivered = 0
@@ -241,7 +245,8 @@ func _reset_game_state():
 	orders_delivered = 0
 	score = 0
 	stars = $menu/CanvasLayer/layout/upgrades/buy_star.stars_bought
-	$ui/Label.text = "Score: " + str(score)
+	if level != 4:
+		$ui/Label.text = "Score: " + str(score)
 	$ui/Label2.text = "Stars: " + str(stars)
 	sens_multiplyer = $menu/CanvasLayer/options/HSlider.value
 	$player_single.SENSITIVITY = sens_multiplyer * 0.1
@@ -305,6 +310,17 @@ Dangers:
 		_setup_frozen_houses()
 		await get_tree().create_timer(1.0).timeout
 		$environment.environment.fog_enabled = true
+		if not reset_4:	
+			req_score *= randf_range(1.2,2)
+			req_score = round(req_score)
+			$ui/Label.text = "Score: " + str(carried_score)
+			$ui/Label4.text = "Req. Score: " + str(req_score)
+		else:
+			reset_4 =false
+			carried_score = 0
+			req_score = 100
+			$ui/Label.text = "Score: " + str(carried_score)
+			$ui/Label4.text = "Req. Score: " + str(req_score)
 	else:
 		_setup_normal_houses()
 
@@ -449,7 +465,11 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 		if not is_tutorial:
 			making_time_left = round(time_left)
 			score += making_time_left
-			$ui/Label.text = "Score " + str(score)
+			if level == 4:
+				carried_score += making_time_left
+				$ui/Label.text = "Score: " + str(carried_score)
+			else:
+				$ui/Label.text = "Score: " + str(score)
 			$SFX/delivered.global_position = delivered_pot.global_position
 			$SFX/delivered.play()
 			delivered_pot.queue_free()
@@ -550,3 +570,39 @@ func _on_volcano_lava_body_entered(body: Node3D) -> void:
 			$ui/Label.text = "Score: " +str(score)
 	await spawned_lava_burn.get_child(0).finished
 	spawned_lava_burn.queue_free()
+
+func pause_exit() -> void:
+	$kitchen/Audio_Box/trigger_body.menu()
+	if level == 4 and carried_score < req_score:
+		reset_4 = true
+		$menu.endless_screen(false)
+		if carried_score > endless_high_score:
+			endless_high_score = int(carried_score)
+		$menu/CanvasLayer/main_menu/RichTextLabel4.text = "ENDLESS HIGH SCORE:\n" + str(endless_high_score)
+	else:
+		$menu.endless_screen(true)
+		if carried_score > endless_high_score:
+			endless_high_score = int(carried_score)
+			$menu/CanvasLayer/main_menu/RichTextLabel4.text = "ENDLESS HIGH SCORE:\n" + str(endless_high_score) + "\n(CURRENT)"
+	if world_toggle:
+		world_toggle = false
+		get_tree().paused = false
+		# Note: You'll need to get reference to the original script that had 'controlling'
+		# For now, commenting out this line as it references a variable not in world scope
+		# controlling = false
+		$GridContainer/SubViewportContainer/SubViewport/player.controlling = false
+		$GridContainer/SubViewportContainer2/SubViewport/player2.controlling = false
+		if level != 4:
+			if $day_timer.is_stopped():
+				$menu.win_screen()
+			else:
+				if level == 0:
+					$menu.menu_toggle = true
+					$menu.menu_load()
+				else:
+					$menu/CanvasLayer/end_screen/Control/text_you_exited.show()
+					$menu.lose_screen()
+		await get_tree().create_timer(1.0).timeout
+		$player_single.position.y += 10
+		$GridContainer/SubViewportContainer/SubViewport/player.position.y += 10
+		$environment.environment.fog_enabled = false

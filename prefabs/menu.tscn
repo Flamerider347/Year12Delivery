@@ -70,18 +70,18 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_w3v8e")
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/main_menu"]
 position = Vector2(661, 290)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_7xkfb")
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/main_menu/DeliveryCover-art"]
-offset_left = 392.857
-offset_top = 5.71428
-offset_right = 1323.86
-offset_bottom = 179.714
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/main_menu"]
+offset_left = 994.0
+offset_top = 295.0
+offset_right = 1759.0
+offset_bottom = 469.0
+scale = Vector2(0.7, 0.7)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Made for 12DTG Final relase"
 horizontal_alignment = 1
@@ -189,13 +189,6 @@ offset_right = 1490.0
 offset_bottom = 734.0
 text = "Level 4"
 
-[node name="reset_4" type="Button" parent="CanvasLayer/main_menu"]
-offset_left = 995.0
-offset_top = 887.0
-offset_right = 1515.0
-offset_bottom = 981.0
-text = "CONTINUE ENDLESS"
-
 [node name="build_menu" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 440.0
 offset_top = 780.0
@@ -223,12 +216,12 @@ theme_override_font_sizes/normal_font_size = 36
 text = "by Hayden, Aine & Ben"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/main_menu"]
-offset_left = 984.0
-offset_top = 739.0
-offset_right = 1528.0
-offset_bottom = 946.0
-text = "Level 4 HIGH SCORE:
-000000
+offset_left = 956.0
+offset_top = 741.0
+offset_right = 1555.0
+offset_bottom = 970.0
+text = "ENDLESS HIGH SCORE: 
+0
 "
 horizontal_alignment = 1
 
@@ -312,6 +305,21 @@ grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 bbcode_enabled = true
 text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0][b]Day Complete![/b][/pulse]"
+
+[node name="endless_result" type="RichTextLabel" parent="CanvasLayer/end_screen/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -546.5
+offset_top = 72.0
+offset_right = -154.5
+offset_bottom = 186.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+bbcode_enabled = true
+text = "[shake rate=20.0 level=5 connected=1][b]Day Exited![/b]"
 
 [node name="layout" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -532,6 +540,7 @@ text = "To move bars on controller, click on the bar and use d-pad arrows (left&
 horizontal_alignment = 1
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -1214,7 +1223,6 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="pressed" from="CanvasLayer/main_menu/level_2" to="." method="_on_level_2"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_3" to="." method="_on_level_3"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_4" to="." method="_on_level_4"]
-[connection signal="pressed" from="CanvasLayer/main_menu/reset_4" to="." method="_on_level_4"]
 [connection signal="pressed" from="CanvasLayer/main_menu/build_menu" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]

@@ -1770,10 +1770,10 @@ sprite_frames = SubResource("SpriteFrames_qrdq4")
 anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.12963
-offset_left = 8.0
-offset_right = 493.0
+offset_left = 14.0
+offset_right = 499.0
 offset_bottom = 43.0
-text = "Money: 0"
+text = "Score: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="ui"]
@@ -1794,6 +1794,17 @@ text = "00:00 PM"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="Label4" type="Label" parent="ui"]
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.12963
+offset_left = 15.0
+offset_top = 78.0
+offset_right = 500.0
+offset_bottom = 121.0
+text = "Req. Score: 100 (-100)"
+metadata/_edit_use_anchors_ = true
+
 [node name="looking_recipe" type="RichTextLabel" parent="ui"]
 offset_left = 1668.0
 offset_top = 312.0
@@ -1808,7 +1819,7 @@ environment = SubResource("Environment_tlwt5")
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
-wait_time = 180.0
+wait_time = 10.0
 
 [node name="order_timer" type="Timer" parent="."]
 

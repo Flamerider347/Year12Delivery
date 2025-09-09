@@ -5,6 +5,8 @@ var new_money = 0.0
 var text_1 = 0.0
 var text_2 = 0.0
 var text_3 = 0.0
+var text_4 = 0.0  # For orders delivered in endless mode
+var text_5 = 0.0  # For stars remaining in endless mode
 var difficulty_multiplier
 var object_count = 0
 var score_multiplier = 0.0
@@ -84,18 +86,19 @@ func _process(delta: float) -> void:
 	var screen_size = get_viewport().get_visible_rect().size
 	new_mouse_pos = new_mouse_pos.clamp(Vector2.ZERO, screen_size)
 
-
 	# Move (warp) the mouse cursor to the new position
 	get_viewport().warp_mouse(new_mouse_pos)
 
 	if not_toggled:
 		lerp_text()
-		win_text()
+		# Call the appropriate text function based on mode
+		if $"..".level == 4:
+			endless_text()
+		else:
+			win_text()
 
 	if spawn:
 		_spawn()
-		
-		
 func _spawn():
 	var list_keys = random_spawn.keys()
 	var list_size = list_keys.size()
@@ -235,6 +238,45 @@ func credits() -> void:
 func options() -> void:
 	await show_page_with_transition($CanvasLayer/options, "right")
 
+func endless_screen(goal_met: bool = false):
+	$"../transition animation".show()
+	$"../transition animation/transition animation".play("fade_transition")
+	await get_tree().create_timer(1.0).timeout
+
+	menu_load()
+	hide_everything_instant()
+	reset_text()
+	$CanvasLayer/book_resting_right.show()
+	$CanvasLayer/end_screen.show()
+	$CanvasLayer/end_screen/Control/text_you_lost.hide()
+	$CanvasLayer/end_screen/Control/text_you_won.hide()
+	$CanvasLayer/end_screen/Control/text_you_exited.hide()
+	
+	# Set the endless result text
+	if goal_met:
+		$CanvasLayer/end_screen/Control/endless_result.text = "GOAL MET"
+	else:
+		$CanvasLayer/end_screen/Control/endless_result.text = "GOAL FAILED"
+	$CanvasLayer/end_screen/Control/endless_result.show()
+	
+	# Calculate money based on goal achievement
+	visual_money = $"..".money
+	if goal_met:
+		# Goal met: multiply by 1 + (stars_remaining/5) * 3
+		var money_multiplier = (1.0 + (float($"..".stars) / 5.0)) * 3.0
+		new_money = int(round($"..".score * money_multiplier))
+	else:
+		# Goal not met: multiply by 1
+		new_money = int(round($"..".score))
+	
+	$CanvasLayer/end_screen/lerp_timer.start(0.5)
+	$"..".money += new_money
+	$"../transition animation/transition animation".play("fade_transition_reverse")
+	await get_tree().create_timer(1.0).timeout
+	$"../transition animation".hide()
+	endless_text()
+	
+	
 func lose_screen():
 	$"../transition animation".show()
 	$"../transition animation/transition animation".play("fade_transition")
@@ -289,19 +331,44 @@ func lerp_text():
 	var orders_delivered = float($"..".orders_delivered)
 	var stars = float($"..".stars)
 	var money = float($"..".money)
-	if round(text_1) != round(score):
-		text_1 = lerp(float(text_1),score,0.05)
-	elif round(text_2) != round(orders_delivered):
-		text_2 = lerp(float(text_2),orders_delivered,0.05)
-	elif round(text_3) != round(stars):
-		text_3 = lerp(float(text_3),stars,0.05)
-	elif round(visual_score) != round(new_money):
-		visual_score = lerp(float(visual_score),float(new_money),0.05)
-	elif round(visual_money) != money:
-		visual_money = lerp(float(visual_money), float(money),0.05)
+	var req_score = float($"..".req_score)
+	var initial_score = float($"..".carried_score - $"..".score)
+	var carried_score = float($"..".carried_score)
+	
+	# Check if we're in endless mode (level 4)
+	var is_endless_mode = ($"..".level == 4)
+	
+	if is_endless_mode:
+		# Endless mode lerping
+		if round(text_1) != round(req_score):
+			text_1 = lerp(float(text_1), req_score, 0.05)
+		elif round(text_2) != round(initial_score):
+			text_2 = lerp(float(text_2), initial_score, 0.05)
+		elif round(text_3) != round(score):
+			text_3 = lerp(float(text_3), score, 0.05)
+		elif round(visual_score) != round(carried_score):
+			visual_score = lerp(float(visual_score), carried_score, 0.05)
+		elif round(text_4) != round(orders_delivered):
+			text_4 = lerp(float(text_4), orders_delivered, 0.05)
+		elif round(text_5) != round(money):
+			text_5 = lerp(float(text_5), money, 0.05)
+		else:
+			not_toggled = false
 	else:
-		not_toggled = false
-
+		# Original mode lerping
+		if round(text_1) != round(score):
+			text_1 = lerp(float(text_1), score, 0.05)
+		elif round(text_2) != round(orders_delivered):
+			text_2 = lerp(float(text_2), orders_delivered, 0.05)
+		elif round(text_3) != round(stars):
+			text_3 = lerp(float(text_3), stars, 0.05)
+		elif round(visual_score) != round(new_money):
+			visual_score = lerp(float(visual_score), float(new_money), 0.05)
+		elif round(visual_money) != money:
+			visual_money = lerp(float(visual_money), float(money), 0.05)
+		else:
+			not_toggled = false
+			
 func win_text():
 	$CanvasLayer/end_screen/Control/stats.text = "[u]SCORE: " + str(int(round(text_1))) +" 
 ORDERS: " + str(int(round(text_2))) +"
@@ -310,13 +377,24 @@ SCORE X: x" + str(score_multiplier) + "
 DIFFICULTY X: x" + str(difficulty_multiplier) + "
 TOTAL SCORE: " + str(int(round(new_money))) + "
 MONEY: " + str(int(round(visual_money))) + "[/u]"
+
+func endless_text():
+	$CanvasLayer/end_screen/Control/stats.text = "[u]REQUIRED SCORE: " + str(int(round(text_1))) + " 
+INITIAL SCORE: " + str(int(round(text_2))) +"
+TODAY'S SCORE: " + str(int(round(text_3))) + "
+FINAL SCORE: " + str(int(round(visual_score))) + "
+ORDERS DELIVERED: " + str(int(round(text_4))) + "
+MONEY: " + str(int(round(text_5))) + "[/u]"
 func reset_text():
 	text_1 = 0.0
 	text_2 = 0.0
 	text_3 = 0.0
+	text_4 = 0.0
+	text_5 = 0.0
 	visual_score = 0.0
 	visual_money = 0.0
-
+	
+	
 func _on_play_level_pressed() -> void:
 	$CanvasLayer/end_screen/Control/text_you_exited.hide()
 	$"../player_single".can_exit = false

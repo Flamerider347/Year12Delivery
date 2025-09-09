@@ -11,6 +11,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if $Timer.time_left:
 		$Label3D.text = str(round($Timer.time_left*10.0)/10.0)
+	elif not $"../../../day_timer".time_left:
+		$Label3D.text = "DAY OVER"
 	else:
 		$Label3D.text = "READY"
 
@@ -19,7 +21,7 @@ func get_call():
 	timer.stop()
 	timer.start(50)
 	var can_call = $"../../..".orders.has(0)
-	if timer_timedout and can_call:
+	if timer_timedout and can_call and $"../../../day_timer".time_left:
 		$"../../.."._on_order_timer_timeout()
 		$Timer.start(5.0)
 		timer_timedout = false

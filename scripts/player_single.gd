@@ -477,22 +477,4 @@ func bounce():
 	velocity.y = 8
 
 func pause_exit() -> void:
-	$"../kitchen/Audio_Box/trigger_body".menu()
-	if $"..".world_toggle:
-		$"..".world_toggle = false
-		get_tree().paused = false
-		controlling = false
-		$"../GridContainer/SubViewportContainer/SubViewport/player".controlling = false
-		$"../GridContainer/SubViewportContainer2/SubViewport/player2".controlling = false
-		if $"../day_timer".is_stopped():
-			$"../menu".win_screen()
-		else:
-			if $"..".level == 0:
-				$"../menu".menu_toggle = true
-				$"../menu".menu_load()
-			else:
-				$"../menu/CanvasLayer/end_screen/Control/text_you_exited".show()
-				$"../menu".lose_screen()
-		await get_tree().create_timer(1.0).timeout
-		$"../environment".environment.fog_enabled = false
-		self.position.y += 10
+	$"..".pause_exit()
