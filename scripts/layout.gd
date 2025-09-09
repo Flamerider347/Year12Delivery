@@ -18,10 +18,10 @@ var bench_type_sprites = {
 	"burger_hayden" : preload("res://assets/createdassets/Icon art/Burger(2).png"),
 	"burger_ben" : preload("res://assets/createdassets/Icon art/Burger(1).png"),
 	"burger_aine" : preload("res://assets/createdassets/Icon art/Burger(3).png"),
-	"burger_sullivan" : preload("res://assets/resized-images/Screenshot 2025-08-26 144301.png"),
-	"stew" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-15 222506.png"),
-	"bacon_egg_toast" : preload("res://assets/Sprint 1 Icons for benches/Screenshot 2025-07-23 092125.png"),
-	"unselect" : preload("res://assets/icon.svg")
+	"burger_sullivan" : preload("res://assets/createdassets/Icon art/Burger(4).png"),
+	"stew" : preload("res://assets/createdassets/Icon art/Soup.png"),
+	"bacon_egg_toast" : preload("res://assets/createdassets/Icon art/Bacon&Eggs.png"),
+	"unselect" : preload("res://assets/createdassets/Icon art/Rescipe_Slot.png")
 }
 @onready var menu = $"../.."
 @onready var benches = $"../../..".benches
