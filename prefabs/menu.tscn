@@ -76,16 +76,6 @@ position = Vector2(661, 290)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_7xkfb")
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/main_menu"]
-offset_left = 994.0
-offset_top = 295.0
-offset_right = 1759.0
-offset_bottom = 469.0
-scale = Vector2(0.7, 0.7)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Made for 12DTG Final relase"
-horizontal_alignment = 1
-
 [node name="players_1" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
 anchor_left = 0.5
@@ -187,7 +177,7 @@ offset_left = 1270.0
 offset_top = 640.0
 offset_right = 1490.0
 offset_bottom = 734.0
-text = "Level 4"
+text = "Endless"
 
 [node name="build_menu" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 440.0
@@ -210,17 +200,27 @@ text = "Kitchen CHAOS"
 offset_left = 993.0
 offset_top = 184.0
 offset_right = 1571.0
-offset_bottom = 430.0
+offset_bottom = 249.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "by Hayden, Aine & Ben"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/main_menu"]
+offset_left = 994.0
+offset_top = 295.0
+offset_right = 1759.0
+offset_bottom = 378.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Made for 12DTG Final relase"
+horizontal_alignment = 1
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/main_menu"]
 offset_left = 956.0
 offset_top = 741.0
 offset_right = 1555.0
 offset_bottom = 970.0
-text = "ENDLESS HIGH SCORE: 
+text = "Endless High Score:
 0
 "
 horizontal_alignment = 1

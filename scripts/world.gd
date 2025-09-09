@@ -257,38 +257,51 @@ func _setup_level_specific_content():
 			"camera": "dinein",
 			"billboard_text": """Todays weather: Cloudy with a chance of meatballs
 
-Neighbourhood level
-Difficulty level: SAFE
-Dangers & Modifications:
+Friendly Forest
+
 -Timers on food, more score means more money
+
 -If a timer runs out, you lose a star
--Losing all 5 stars restarts level, no money is rewarded"""
+
+-Losing all stars fails level and loses progress
+made that day, even in overtime"""
 		},
 		2: {
 			"camera": "volcano",
 			"billboard_text": """Todays weather: Cloudy with a chance of meatballs
 
-Volcano level
-Difficulty level: C
-Dangers & Modifications:
--LAVA!!!
+Lava Lakes
+
 -Touching lava will make you bounce around
--Lava burns delivery pots (-10% of the score/bounce)"""
+
+-Touching lava loses score (-10% of score/bounce)"""
 		},
 		3: {
 			"camera": "underwater",
 			"billboard_text": """Todays weather: Cloudy with a chance of meatballs
 
-Underwater level
-Difficulty level: B
+Frank's Feast
+
 Dangers:
--Shark can steal your ingredients if you aren't watching
--Pickup the ingredient the Shark is going for to scare him
--Nothing can stop the Shark"""
+-Shark can steal unattended ingredients
+
+-Pickup targeted ingredient to scare Frank away
+
+-Nothing can stop the Frank coming"""
 		},
 		4: {
 			"camera": "tundra",
-			"billboard_text": ""
+			"billboard_text": "Todays weather:   Cloudy with a chance of meatballs
+Frostbite Fields
+
+-Limited vision
+
+-Requirements get harder each day, Score saves
+
+-Leave any time for upgrades, but you might miss
+valuable time to make more foods!
+
+-Go until you can't anymore"
 		}
 	}
 	

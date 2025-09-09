@@ -288,6 +288,7 @@ func lose_screen():
 	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
+	$CanvasLayer/end_screen/Control/endless_result.hide()
 	if not $CanvasLayer/end_screen/Control/text_you_exited.is_visible_in_tree():
 		$CanvasLayer/end_screen/Control/text_you_lost.show()
 	$CanvasLayer/end_screen/Control/text_you_won.hide()
@@ -313,6 +314,7 @@ func win_screen():
 	$CanvasLayer/book_resting_right.show()
 	$CanvasLayer/end_screen.show()
 	$CanvasLayer/end_screen/Control/text_you_lost.hide()
+	$CanvasLayer/end_screen/Control/endless_result.hide()
 	$CanvasLayer/end_screen/Control/text_you_won.show()
 	score_multiplier = (1+$"..".stars/5.0)
 	difficulty_multiplier = $"..".level
