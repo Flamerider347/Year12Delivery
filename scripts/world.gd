@@ -325,7 +325,7 @@ valuable time to make more foods!
 		await get_tree().create_timer(1.0).timeout
 		$environment.environment.fog_enabled = true
 		if not reset_4:	
-			req_score *= randf_range(1.2,2)
+			req_score *= randf_range(1.01,1.5)
 			req_score = round(req_score)
 			$ui/Label.text = "Score: " + str(carried_score)
 			$ui/Label4.text = "Req. Score: " + str(req_score)
