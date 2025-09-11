@@ -1,13 +1,22 @@
 extends StaticBody3D
 var swinging = false
 var swing_direction = 1
-var swing_power = 1
 func _process(_delta) -> void:
-	if swinging:
-		if rotation_degrees.y < 90 and swing_direction == 1:
-			rotation_degrees.y += 1 * swing_power
-		elif rotation_degrees.y > 0 and swing_direction == -1:
-			rotation_degrees.y -= 1 * swing_power
-		else:
+	if swinging and not $"../AnimationPlayer".is_playing():
+		if swing_direction == 1:
+			$"../AnimationPlayer".play("door_open")
 			swing_direction *= -1
-			swinging = false
+			$"../Timer".stop()
+			$"../Timer".start(5.0)
+		else:
+			$"../AnimationPlayer".play_backwards("door_open")
+			swing_direction *= -1
+		swinging = false
+
+
+
+func _on_timer_timeout() -> void:
+	if not $"../AnimationPlayer".is_playing():
+		if swing_direction == -1:
+			$"../AnimationPlayer".play_backwards("door_open")
+			swing_direction *= -1

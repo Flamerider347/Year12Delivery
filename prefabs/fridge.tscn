@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cf2s322ap3bxw"]
+[gd_scene load_steps=19 format=3 uid="uid://cf2s322ap3bxw"]
 
 [ext_resource type="Script" uid="uid://8nrws8bwiprl" path="res://scripts/fridge_door.gd" id="2_252b1"]
 [ext_resource type="ArrayMesh" uid="uid://bmnjpfam7mg7n" path="res://assets/kitchenassets/fridge_B_door.obj" id="3_2xlda"]
@@ -35,6 +35,71 @@ size = Vector3(0.482803, 0.31012, 0.652527)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_252b1"]
 size = Vector3(0.246216, 2.49585, 1.50586)
+
+[sub_resource type="Animation" id="Animation_252b1"]
+resource_name = "door_open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fridge_door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.999, 0, 0.44), Vector3(0.92, 0, 0.445)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fridge_door:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2xlda"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fridge_door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.999, 0, 0.44)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fridge_door:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_56ary"]
+resource_name = "door_close"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5x7q2"]
+_data = {
+&"RESET": SubResource("Animation_2xlda"),
+&"door_close": SubResource("Animation_56ary"),
+&"door_open": SubResource("Animation_252b1")
+}
 
 [node name="fridge" type="Node3D"]
 
@@ -95,7 +160,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0412598, 0.0716095, 0)
 shape = SubResource("BoxShape3D_2xlda")
 
 [node name="fridge_door" type="StaticBody3D" parent="." groups=["door", "outline"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00318, 0, 0.49724)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999, 0, 0.44)
 collision_layer = 5
 script = ExtResource("2_252b1")
 
@@ -107,6 +172,12 @@ shape = SubResource("BoxShape3D_56ary")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5)
 mesh = ExtResource("3_2xlda")
 skeleton = NodePath("../../..")
+
+[node name="Label3D2" type="Label3D" parent="fridge_door"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0.734707, -0.005)
+text = "Press crouch
+(Left Ctrl/R3)
+To reach lower items"
 
 [node name="FrigdeEdited" type="MeshInstance3D" parent="."]
 mesh = ExtResource("3_252b1")
@@ -152,3 +223,13 @@ collision_mask = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
 shape = SubResource("BoxShape3D_252b1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5x7q2")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="fridge_door" method="_on_timer_timeout"]

@@ -28,7 +28,7 @@ surface_material_override/0 = ExtResource("3_6ocx3")
 mesh = ExtResource("4_nfu55")
 
 [node name="FoodIngredientBunBottom" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00162137, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00699967, 0)
 mesh = ExtResource("5_q2uf3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

@@ -46,5 +46,10 @@ shape = SubResource("BoxShape3D_pnses")
 [node name="knife" parent="." instance=ExtResource("4_dhrcg")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.38, 1.08, 0.65)
 
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, -3.93403e-08, 0.9, 0, -0.9, -3.93403e-08, 0, 1.15598, 0)
+text = "Chop food ON the 
+board with knife"
+
 [connection signal="body_entered" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_entered"]
 [connection signal="body_exited" from="chopping_board/chopping_board" to="." method="_on_chopping_board_body_exited"]
