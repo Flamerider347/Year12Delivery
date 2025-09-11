@@ -496,3 +496,11 @@ func quit() -> void:
 
 func _on_quit_attempt_timer_timeout():
 	$CanvasLayer/end_screen/Control/quit.text = "Quit Game"
+
+
+func _on_options_mouse_exited() -> void:
+	pass # Replace with function body.
+
+
+func _on_layout_mouse_exited() -> void:
+	pass # Replace with function body.
