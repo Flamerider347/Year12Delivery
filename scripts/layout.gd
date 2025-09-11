@@ -120,12 +120,14 @@ func _on_recipes_button_pressed() -> void:
 	$upgrades.hide()
 	$recipes.show()
 	$upgrades_button.button_pressed = false
+	$recipes_button.button_pressed = true
 
 
 func _on_upgrades_button_pressed() -> void:
 	$upgrades.show()
 	$recipes.hide()
 	$recipes_button.button_pressed = false
+	$upgrades_button.button_pressed = true
 
 
 

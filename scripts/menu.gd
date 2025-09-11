@@ -231,6 +231,7 @@ func main_menu():
 	await show_page_with_transition($CanvasLayer/main_menu, "left")
 
 func layout():
+	$CanvasLayer/layout._on_upgrades_button_pressed()
 	await show_page_with_transition($CanvasLayer/layout, "right")
 
 func credits() -> void:
