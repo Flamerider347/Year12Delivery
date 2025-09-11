@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=40 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Texture2D" uid="uid://invjjj3eyaob" path="res://assets/bookanim/bookanim_right_nobg/tu30-Photoroom.png" id="2_7xkfb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://du5wly5ra5c5i" path="res://assets/bookanim/bookanim_left_nobg/tut0001-Photoroom.png" id="3_w3v8e"]
 [ext_resource type="Texture2D" uid="uid://beni3mx1rotvr" path="res://assets/createdassets/Delivery_Cover-art.png" id="4_7xkfb"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
+[ext_resource type="Script" uid="uid://ny3ofx5yvw4g" path="res://scripts/build_menu.gd" id="5_5c2ga"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
 [ext_resource type="Texture2D" uid="uid://c5b6q8aqldb8s" path="res://assets/resized-images/Bench.png" id="7_8hwiu"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
@@ -32,6 +33,10 @@
 [sub_resource type="ButtonGroup" id="ButtonGroup_506h2"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_7xkfb"]
+
+[sub_resource type="Theme" id="Theme_bo82e"]
+Button/colors/font_color = Color(0.807843, 0.788235, 0.772549, 1)
+Button/styles/focus = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
 size = Vector2(80, 80)
@@ -184,8 +189,11 @@ offset_left = 440.0
 offset_top = 780.0
 offset_right = 880.0
 offset_bottom = 972.0
+theme = SubResource("Theme_bo82e")
+theme_override_colors/font_hover_color = Color(0.470076, 0.470076, 0.470076, 1)
 text = "Build Menu/
 Recipe selection"
+script = ExtResource("5_5c2ga")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/main_menu"]
 offset_left = 992.0
