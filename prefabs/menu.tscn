@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=41 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Texture2D" uid="uid://invjjj3eyaob" path="res://assets/bookanim/bookanim_right_nobg/tu30-Photoroom.png" id="2_7xkfb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://beni3mx1rotvr" path="res://assets/createdassets/Delivery_Cover-art.png" id="4_7xkfb"]
 [ext_resource type="Script" uid="uid://k6n016erx3j4" path="res://scripts/bench.gd" id="4_d7fan"]
 [ext_resource type="Script" uid="uid://ny3ofx5yvw4g" path="res://scripts/build_menu.gd" id="5_5c2ga"]
+[ext_resource type="Script" uid="uid://bv014t67mqulj" path="res://scripts/buttonTween.gd" id="5_wvlgw"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
 [ext_resource type="Texture2D" uid="uid://c5b6q8aqldb8s" path="res://assets/resized-images/Bench.png" id="7_8hwiu"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
@@ -75,6 +76,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_w3v8e")
 
 [node name="main_menu" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/main_menu"]
 position = Vector2(661, 290)
@@ -93,10 +95,12 @@ offset_right = 650.0
 offset_bottom = 594.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(110, 47)
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_506h2")
 text = "1 player"
+script = ExtResource("5_wvlgw")
 
 [node name="players_2" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -110,9 +114,11 @@ offset_right = 890.0
 offset_bottom = 594.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(110, 47)
 toggle_mode = true
 button_group = SubResource("ButtonGroup_7xkfb")
 text = "2 player"
+script = ExtResource("5_wvlgw")
 
 [node name="options" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -126,14 +132,27 @@ offset_right = 650.0
 offset_bottom = 734.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(110, 47)
 text = "Options"
+script = ExtResource("5_wvlgw")
 
 [node name="quit" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = 670.0
 offset_top = 640.0
 offset_right = 890.0
 offset_bottom = 734.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(110, 47)
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Quit"
+script = ExtResource("5_wvlgw")
 
 [node name="credits" type="Button" parent="CanvasLayer/main_menu"]
 anchors_preset = 8
@@ -147,48 +166,61 @@ offset_right = 1250.0
 offset_bottom = 454.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(110, 47)
 text = "Credits"
+script = ExtResource("5_wvlgw")
 
 [node name="level_0" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1270.0
 offset_top = 360.0
 offset_right = 1490.0
 offset_bottom = 454.0
+pivot_offset = Vector2(110, 47)
 text = "Tutorial"
+script = ExtResource("5_wvlgw")
 
 [node name="level_1" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1030.0
 offset_top = 500.0
 offset_right = 1250.0
 offset_bottom = 594.0
+pivot_offset = Vector2(110, 47)
 text = "Level 1"
+script = ExtResource("5_wvlgw")
 
 [node name="level_2" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1270.0
 offset_top = 500.0
 offset_right = 1490.0
 offset_bottom = 594.0
+pivot_offset = Vector2(110, 47)
 text = "Level 2"
+script = ExtResource("5_wvlgw")
 
 [node name="level_3" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1030.0
 offset_top = 640.0
 offset_right = 1250.0
 offset_bottom = 734.0
+pivot_offset = Vector2(110, 47)
 text = "Level 3"
+script = ExtResource("5_wvlgw")
 
 [node name="level_4" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 1270.0
 offset_top = 640.0
 offset_right = 1490.0
 offset_bottom = 734.0
+pivot_offset = Vector2(110, 47)
 text = "Endless"
+script = ExtResource("5_wvlgw")
 
 [node name="build_menu" type="Button" parent="CanvasLayer/main_menu"]
 offset_left = 440.0
 offset_top = 780.0
 offset_right = 880.0
 offset_bottom = 972.0
+pivot_offset = Vector2(220, 96)
 theme = SubResource("Theme_bo82e")
 theme_override_colors/font_hover_color = Color(0.470076, 0.470076, 0.470076, 1)
 text = "Build Menu/
@@ -343,7 +375,9 @@ offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(165, 60)
 text = "Build Menu"
+script = ExtResource("5_wvlgw")
 
 [node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -359,7 +393,9 @@ offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(165, 60)
 text = "Options "
+script = ExtResource("5_wvlgw")
 
 [node name="main_menu" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -375,7 +411,9 @@ offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(165, 60)
 text = "Main Menu"
+script = ExtResource("5_wvlgw")
 
 [node name="quit" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -391,7 +429,9 @@ offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(165, 60)
 text = "Quit Game"
+script = ExtResource("5_wvlgw")
 
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
 
@@ -420,7 +460,9 @@ offset_left = 1310.0
 offset_top = 80.0
 offset_right = 1530.0
 offset_bottom = 174.0
+pivot_offset = Vector2(110, 47)
 text = "Return"
+script = ExtResource("5_wvlgw")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/credits"]
 offset_left = 997.0
@@ -439,14 +481,15 @@ Mr. Rodkiss
 Mr O'Sullivan"
 
 [node name="options" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="return" type="Button" parent="CanvasLayer/options"]
 offset_left = 1310.0
 offset_top = 80.0
 offset_right = 1530.0
 offset_bottom = 174.0
+pivot_offset = Vector2(110, 47)
 text = "Return"
+script = ExtResource("5_wvlgw")
 
 [node name="HSlider" type="HSlider" parent="CanvasLayer/options"]
 offset_left = 460.0
@@ -847,7 +890,9 @@ offset_left = 1310.0
 offset_top = 80.0
 offset_right = 1530.0
 offset_bottom = 174.0
+pivot_offset = Vector2(110, 47)
 text = "Return"
+script = ExtResource("5_wvlgw")
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades_button" type="Button" parent="CanvasLayer/layout"]
@@ -856,10 +901,12 @@ offset_top = 167.0
 offset_right = 690.0
 offset_bottom = 261.0
 scale = Vector2(0.95, 0.95)
+pivot_offset = Vector2(135, 47)
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_w3v8e")
 text = "Upgrades"
+script = ExtResource("5_wvlgw")
 metadata/_edit_use_anchors_ = true
 
 [node name="recipes_button" type="Button" parent="CanvasLayer/layout"]
@@ -868,9 +915,11 @@ offset_top = 167.0
 offset_right = 959.205
 offset_bottom = 261.0
 scale = Vector2(0.95, 0.95)
+pivot_offset = Vector2(135, 47)
 toggle_mode = true
 button_group = SubResource("ButtonGroup_t816m")
 text = "Recipes"
+script = ExtResource("5_wvlgw")
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
@@ -881,6 +930,7 @@ offset_left = 615.0
 offset_top = 283.0
 offset_right = 935.0
 offset_bottom = 377.0
+pivot_offset = Vector2(160, 47)
 text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
@@ -910,6 +960,7 @@ offset_left = 615.0
 offset_top = 526.175
 offset_right = 935.0
 offset_bottom = 620.175
+pivot_offset = Vector2(160, 47)
 text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
@@ -928,6 +979,7 @@ offset_left = 615.0
 offset_top = 756.0
 offset_right = 935.0
 offset_bottom = 850.0
+pivot_offset = Vector2(151, 47)
 text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
@@ -1145,21 +1197,27 @@ offset_left = 18.0
 offset_top = 957.0
 offset_right = 125.0
 offset_bottom = 1051.0
+pivot_offset = Vector2(65, 47)
 text = "Back"
+script = ExtResource("5_wvlgw")
 
 [node name="next" type="Button" parent="CanvasLayer/layout/layout_tutorial"]
 offset_left = 132.0
 offset_top = 957.0
 offset_right = 239.0
 offset_bottom = 1051.0
+pivot_offset = Vector2(64, 47)
 text = "Next"
+script = ExtResource("5_wvlgw")
 
 [node name="close" type="Button" parent="CanvasLayer/layout/layout_tutorial"]
 offset_left = 246.0
 offset_top = 960.0
 offset_right = 356.0
 offset_bottom = 1054.0
+pivot_offset = Vector2(73, 47)
 text = "Close"
+script = ExtResource("5_wvlgw")
 
 [node name="tutorial_text" type="RichTextLabel" parent="CanvasLayer/layout/layout_tutorial"]
 offset_left = 11.0
@@ -1173,7 +1231,9 @@ offset_left = 1260.0
 offset_top = 80.0
 offset_right = 1300.0
 offset_bottom = 174.0
+pivot_offset = Vector2(20, 47)
 text = "?"
+script = ExtResource("5_wvlgw")
 
 [node name="dragging_bench" type="Node2D" parent="CanvasLayer/layout"]
 
@@ -1221,23 +1281,55 @@ shape = SubResource("BoxShape3D_w1n2x")
 
 [node name="quit_attempt_timer" type="Timer" parent="."]
 
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/players_1" to="CanvasLayer/main_menu/players_1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/players_1" to="CanvasLayer/main_menu/players_1" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_1" to="." method="level_select_1"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/players_2" to="CanvasLayer/main_menu/players_2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/players_2" to="CanvasLayer/main_menu/players_2" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/players_2" to="." method="level_select_2"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/options" to="CanvasLayer/main_menu/options" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/options" to="CanvasLayer/main_menu/options" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/options" to="." method="options"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/quit" to="CanvasLayer/main_menu/quit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/quit" to="CanvasLayer/main_menu/quit" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/credits" to="CanvasLayer/main_menu/credits" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/credits" to="CanvasLayer/main_menu/credits" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/credits" to="." method="credits"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/level_0" to="CanvasLayer/main_menu/level_0" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/level_0" to="CanvasLayer/main_menu/level_0" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_0" to="." method="_on_level_0"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/level_1" to="CanvasLayer/main_menu/level_1" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/level_1" to="CanvasLayer/main_menu/level_1" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_1" to="." method="_on_level_1"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/level_2" to="CanvasLayer/main_menu/level_2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/level_2" to="CanvasLayer/main_menu/level_2" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_2" to="." method="_on_level_2"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/level_3" to="CanvasLayer/main_menu/level_3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/level_3" to="CanvasLayer/main_menu/level_3" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_3" to="." method="_on_level_3"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/level_4" to="CanvasLayer/main_menu/level_4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/level_4" to="CanvasLayer/main_menu/level_4" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/level_4" to="." method="_on_level_4"]
+[connection signal="mouse_entered" from="CanvasLayer/main_menu/build_menu" to="CanvasLayer/main_menu/build_menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/main_menu/build_menu" to="CanvasLayer/main_menu/build_menu" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/main_menu/build_menu" to="." method="layout"]
+[connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/layout" to="CanvasLayer/end_screen/Control/layout" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/layout" to="CanvasLayer/end_screen/Control/layout" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout" to="." method="layout"]
+[connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/layout2" to="CanvasLayer/end_screen/Control/layout2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/layout2" to="CanvasLayer/end_screen/Control/layout2" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu" to="." method="main_menu"]
+[connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/quit" to="CanvasLayer/end_screen/Control/quit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/quit" to="CanvasLayer/end_screen/Control/quit" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/quit" to="." method="quit"]
 [connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
+[connection signal="mouse_entered" from="CanvasLayer/credits/return" to="CanvasLayer/credits/return" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/credits/return" to="CanvasLayer/credits/return" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/credits/return" to="." method="main_menu"]
+[connection signal="mouse_entered" from="CanvasLayer/options/return" to="CanvasLayer/options/return" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/options/return" to="CanvasLayer/options/return" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/options/return" to="." method="main_menu"]
 [connection signal="value_changed" from="CanvasLayer/options/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/options/HSlider3" to="." method="_on_h_slider_3_value_changed"]
@@ -1322,11 +1414,23 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="bench_type" from="CanvasLayer/layout/layout_shop/reciever_bench" to="CanvasLayer/layout" method="_on_bench_bench_type"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_shop/reciever_bench" to="CanvasLayer/layout/layout_shop/reciever_bench" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_shop/reciever_bench" to="CanvasLayer/layout/layout_shop/reciever_bench" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/return" to="CanvasLayer/layout/return" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/return" to="CanvasLayer/layout/return" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/return" to="." method="main_menu"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout/upgrades_button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout/upgrades_button" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades_button" to="CanvasLayer/layout" method="_on_upgrades_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout/recipes_button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout/recipes_button" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/recipes_button" to="CanvasLayer/layout" method="_on_recipes_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_bench" to="CanvasLayer/layout/upgrades/buy_bench" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/upgrades/buy_star" to="CanvasLayer/layout/upgrades/buy_star" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/upgrades/buy_star" to="CanvasLayer/layout/upgrades/buy_star" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_star" to="CanvasLayer/layout/upgrades/buy_star" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/upgrades/buy_recipe_slot" to="CanvasLayer/layout/upgrades/buy_recipe_slot" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/upgrades/buy_recipe_slot" to="CanvasLayer/layout/upgrades/buy_recipe_slot" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/upgrades/buy_recipe_slot" to="CanvasLayer/layout/upgrades/buy_recipe_slot" method="_on_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/unselect_area" to="CanvasLayer/layout" method="_on_unselect_area_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/recipes/unselect_area" to="CanvasLayer/layout" method="_on_unselect_area_mouse_exited"]
@@ -1380,9 +1484,17 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="mouse_entered" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" method="_on_mouse_exited"]
 [connection signal="recipe_type" from="CanvasLayer/layout/recipes/available_recipes/bacon_egg_toast" to="CanvasLayer/layout" method="_on_area_2d_recipe_type"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout/layout_tutorial/back" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout/layout_tutorial/back" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/back" to="CanvasLayer/layout" method="_on_back_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout/layout_tutorial/next" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout/layout_tutorial/next" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/next" to="CanvasLayer/layout" method="_on_next_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout/layout_tutorial/close" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout/layout_tutorial/close" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/layout_tutorial/close" to="CanvasLayer/layout" method="_on_close_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout/show_tutorial" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout/show_tutorial" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/layout/show_tutorial" to="CanvasLayer/layout" method="_on_open_tutorial"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
