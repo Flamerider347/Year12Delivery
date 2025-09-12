@@ -29,8 +29,10 @@ polygon = PackedVector2Array(0, 0.8, 0, 0, 0, 0, 2, 0, 2, 0.8, 1.95, 0.8, 1.95, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="incinerator"]
 shape = SubResource("BoxShape3D_8bx52")
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0.11, 0)
-text = "Bin"
+[node name="Label3D" type="Label3D" parent="." groups=["labels"]]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 1.64492, 0)
+billboard = 2
+text = "Throw rubbish
+in the bin"
 
 [connection signal="body_entered" from="incinerator" to="." method="_on_incinerator_body_entered"]

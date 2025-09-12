@@ -1104,6 +1104,8 @@ valuable time to make more foods!
 horizontal_alignment = 0
 vertical_alignment = 0
 
+[node name="Sprite3D" type="Sprite3D" parent="kitchen"]
+
 [node name="tutorial" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
 
@@ -1710,19 +1712,6 @@ transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1.2, -0.0599976, 0.137636, 0.1
 mesh = ExtResource("27_er0x2")
 surface_material_override/0 = ExtResource("25_jbo5a")
 
-[node name="lava rocks3" parent="volcano/lava_rocks"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1986, 0.0974994, 15.3916)
-script = null
-
 [node name="lava rocks4" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
 transform = Transform3D(-0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, -0.576432, 6.46818, 0.30356, 21.4238)
 
@@ -1734,19 +1723,6 @@ transform = Transform3D(-0.576432, 0, -0.817145, 0, 1, 0, 0.817145, 0, -0.576432
 
 [node name="lava rocks7" parent="volcano/lava_rocks" instance=ExtResource("26_ro2rw")]
 transform = Transform3D(-0.830012, 0, -0.557745, 0, 1, 0, 0.557745, 0, -0.830012, 6.14013, 0.37161, 28.8166)
-
-[node name="lava rocks8" parent="volcano/lava_rocks"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(0.612907, 0, -0.790155, 0, 1, 0, 0.790155, 0, 0.612907, 4.44283, 0.199219, 34.7316)
-script = null
 
 [node name="lava rocks9" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.32658, 0.30356, 37.0349)
@@ -1773,19 +1749,6 @@ transform = Transform3D(0.746638, 0, 0.66523, 0, 1, 0, -0.66523, 0, 0.746638, -8
 [node name="lava rocks13" parent="volcano/lava_rocks" instance=ExtResource("26_ro2rw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1445, 0.37161, 30.4536)
 
-[node name="lava rocks14" parent="volcano/lava_rocks"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(-0.91706, 0, -0.398749, 0, 1, 0, 0.398749, 0, -0.91706, -7.32768, 0.0974998, 26.8558)
-script = null
-
 [node name="lava rocks15" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
 transform = Transform3D(-0.776046, 0, -0.630676, 0, 1, 0, 0.630676, 0, -0.776046, -5.07407, 0.30356, 31.9708)
 
@@ -1794,19 +1757,6 @@ transform = Transform3D(-0.419452, 0, 0.907777, 0, 1, 0, -0.907777, 0, -0.419452
 
 [node name="lava rocks17" parent="volcano/lava_rocks" instance=ExtResource("26_ro2rw")]
 transform = Transform3D(-0.246999, 0, 0.969016, 0, 1, 0, -0.969016, 0, -0.246999, -6.21797, 0.269891, 21.8561)
-
-[node name="lava rocks18" parent="volcano/lava_rocks"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(-0.91706, 0, 0.398749, 0, 1, 0, -0.398749, 0, -0.91706, -5.00533, 0.0975008, 16.6535)
-script = null
 
 [node name="lava rocks19" parent="volcano/lava_rocks" instance=ExtResource("25_jynr8")]
 transform = Transform3D(-0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, -0.576432, -9.99245, 0.0975003, 15.3804)

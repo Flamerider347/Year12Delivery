@@ -50,5 +50,11 @@ billboard = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.688397, 0)
 shape = SubResource("CylinderShape3D_lrai8")
 
+[node name="Label3D2" type="Label3D" parent="." groups=["labels"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25097, 0)
+billboard = 1
+text = "Cook meat 
+in the pan"
+
 [connection signal="body_entered" from="stove" to="." method="_on_stove_body_entered"]
 [connection signal="body_exited" from="stove" to="." method="_on_stove_body_exited"]

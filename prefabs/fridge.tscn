@@ -36,34 +36,6 @@ size = Vector3(0.482803, 0.31012, 0.652527)
 [sub_resource type="BoxShape3D" id="BoxShape3D_252b1"]
 size = Vector3(0.246216, 2.49585, 1.50586)
 
-[sub_resource type="Animation" id="Animation_252b1"]
-resource_name = "door_open"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("fridge_door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.999, 0, 0.44), Vector3(0.92, 0, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("fridge_door:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_2xlda"]
 length = 0.001
 tracks/0/type = "value"
@@ -93,6 +65,34 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_56ary"]
 resource_name = "door_close"
+
+[sub_resource type="Animation" id="Animation_252b1"]
+resource_name = "door_open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fridge_door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.999, 0, 0.44), Vector3(0.92, 0, 0.445)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fridge_door:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5x7q2"]
 _data = {
@@ -173,11 +173,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5)
 mesh = ExtResource("3_2xlda")
 skeleton = NodePath("../../..")
 
-[node name="Label3D2" type="Label3D" parent="fridge_door"]
+[node name="Label3D2" type="Label3D" parent="fridge_door" groups=["labels"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0.734707, -0.005)
 text = "Press crouch
 (Left Ctrl/R3)
 To reach lower items"
+
+[node name="Label3D3" type="Label3D" parent="fridge_door" groups=["labels"]]
+transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, -1, 1.71624, -0.005)
+text = "Pickup/Put down items
+(Left click/L2)"
+
+[node name="Label3D4" type="Label3D" parent="fridge_door" groups=["labels"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.63337, 0.555712)
+text = "Press Left Click/L2
+To open the fridge"
 
 [node name="FrigdeEdited" type="MeshInstance3D" parent="."]
 mesh = ExtResource("3_252b1")

@@ -43,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.893244, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326782, 0)
 shape = SubResource("CylinderShape3D_2a2la")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." groups=["labels"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39004, 0)
 billboard = 1
 text = "Place completed

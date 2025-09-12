@@ -7,6 +7,7 @@ var evil = false
 var can_exit = false
 var head_target_position = 0.525
 var head_moving = false
+var tips_shown = true
 var SENSITIVITY = 0.1
 const WALK_SPEED = 10
 const SPRINT_SPEED = 15
@@ -145,7 +146,17 @@ func _physics_process(delta: float):
 		# Handle menu
 		if Input.is_action_just_pressed("menu") and can_exit:
 			pause_exit()
-		
+		if Input.is_action_just_pressed("tips"):
+			if tips_shown:
+				tips_shown = false
+				var label_nodes = get_tree().get_nodes_in_group("labels")
+				for label in label_nodes:
+					label.hide()
+			else:
+				tips_shown = true
+				var label_nodes = get_tree().get_nodes_in_group("labels")
+				for label in label_nodes:
+					label.show()
 		# Handle outlining
 		handle_outlining()
 		

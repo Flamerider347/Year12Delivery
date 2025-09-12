@@ -15,7 +15,7 @@ mesh = ExtResource("1_byrj6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_2tqtf")
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 1.01296, 0.661963)
+[node name="Label3D" type="Label3D" parent="." groups=["labels"]]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 1.013, 0)
 text = "Use plain benches to 
 prepare food"

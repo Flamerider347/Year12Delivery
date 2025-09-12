@@ -122,10 +122,10 @@ collision_mask = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
 shape = SubResource("BoxShape3D_3bn08")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="Label3D" type="Label3D" parent="." groups=["labels"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0666672, 0.17605, 0.576264)
 text = "Plates         Bowls"
 
-[node name="Label3D2" type="Label3D" parent="."]
+[node name="Label3D2" type="Label3D" parent="." groups=["labels"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36592, 0.566091)
 text = "Burger Buns"
