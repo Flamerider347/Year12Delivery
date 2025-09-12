@@ -99,6 +99,7 @@ func _on_recipe_slot_recipe_type_unselect(type) -> void:
 		recipe_type = str(type)
 		$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[recipe_slots[int(type.replace("recipe_slot",""))-1]]
 		$dragging_bench.position = get_local_mouse_position()
+		$dragging_bench/Sprite2D.scale = Vector2(0.04,0.04)
 		$dragging_bench.show()
 		$dragging_bench.rotation_degrees = 0
 func _on_area_2d_recipe_type(type) -> void:
@@ -106,12 +107,14 @@ func _on_area_2d_recipe_type(type) -> void:
 	recipe_type = str(type)
 	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[recipe_type]
 	$dragging_bench.position = get_local_mouse_position()
+	$dragging_bench/Sprite2D.scale = Vector2(0.04,0.04)
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0
 func _on_bench_bench_type(type) -> void:
 	bench_type = str(type)
 	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 	$dragging_bench.position = get_local_mouse_position()
+	$dragging_bench/Sprite2D.scale = Vector2(1,1)
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0
 

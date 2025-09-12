@@ -150,7 +150,7 @@ func _on_level_4() -> void:
 
 
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	get_tree().reload_current_scene()
 	#set to reload
 
 # New tweening functions

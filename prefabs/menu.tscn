@@ -266,7 +266,6 @@ text = "Endless High Score:
 horizontal_alignment = 1
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -368,10 +367,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 13.5
-offset_top = 349.5
-offset_right = 343.5
-offset_bottom = 469.5
+offset_left = 235.5
+offset_top = 284.5
+offset_right = 565.5
+offset_bottom = 404.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
@@ -386,10 +385,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -546.5
-offset_top = 349.5
-offset_right = -216.5
-offset_bottom = 469.5
+offset_left = -564.5
+offset_top = 284.5
+offset_right = -234.5
+offset_bottom = 404.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
@@ -404,33 +403,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -273.5
-offset_top = 349.5
-offset_right = 56.5
-offset_bottom = 469.5
+offset_left = -164.5
+offset_top = 284.5
+offset_right = 165.5
+offset_bottom = 404.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(165, 60)
 text = "Main Menu"
-script = ExtResource("5_wvlgw")
-
-[node name="quit" type="Button" parent="CanvasLayer/end_screen/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 284.5
-offset_top = 349.5
-offset_right = 614.5
-offset_bottom = 469.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(165, 60)
-text = "Quit Game"
 script = ExtResource("5_wvlgw")
 
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
@@ -481,6 +462,7 @@ Mr. Rodkiss
 Mr O'Sullivan"
 
 [node name="options" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="return" type="Button" parent="CanvasLayer/options"]
 offset_left = 1310.0
@@ -1320,10 +1302,9 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/layout2" to="CanvasLayer/end_screen/Control/layout2" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/layout2" to="CanvasLayer/end_screen/Control/layout2" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/layout2" to="." method="options"]
+[connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/main_menu" to="CanvasLayer/end_screen/Control/main_menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/main_menu" to="CanvasLayer/end_screen/Control/main_menu" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu" to="." method="main_menu"]
-[connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/quit" to="CanvasLayer/end_screen/Control/quit" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/quit" to="CanvasLayer/end_screen/Control/quit" method="_on_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/end_screen/Control/quit" to="." method="quit"]
 [connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
 [connection signal="mouse_entered" from="CanvasLayer/credits/return" to="CanvasLayer/credits/return" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/credits/return" to="CanvasLayer/credits/return" method="_on_mouse_exited"]
