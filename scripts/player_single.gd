@@ -9,8 +9,8 @@ var head_target_position = 0.525
 var head_moving = false
 var tips_shown = true
 var SENSITIVITY = 0.1
-const WALK_SPEED = 10
-const SPRINT_SPEED = 15
+const WALK_SPEED = 5
+const SPRINT_SPEED = 10
 const JUMP_VELOCITY = 4.5
 const GRAVITY = 9.81 #ms^-2
 @export var controller_id: int = 0
@@ -286,6 +286,7 @@ func movement(delta):
 	var cam_input = Vector2(Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_X), Input.get_joy_axis(controller_id, JOY_AXIS_RIGHT_Y))
 
 	if cam_input.length() > 0.1:
+		look_recipe()
 		head.rotate_y(-cam_input.x * SENSITIVITY/10)
 		camera.rotate_x(-cam_input.y * SENSITIVITY/10)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))

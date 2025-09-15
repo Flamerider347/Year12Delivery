@@ -18,7 +18,7 @@ var current_map
 var player_count = 1
 var level = 1
 var level_updates_left = 0
-var money = 400
+var money = 4000000000
 var reset_4 = true
 var endless_high_score = 0
 var req_score = 100

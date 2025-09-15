@@ -138,13 +138,13 @@ func start():
 	$"../tutorial_text".position = Vector3(-0.5,2.0,0)
 	$"../tutorial_text".rotation_degrees = Vector3.ZERO
 	$"../tutorial_text".text = "Let's play a game, come a
- little closer with WASD and SPACE
+ little closer with Left Joystick
 			"
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if step == 1:
 		if body is CharacterBody3D:
 			$"../tutorial_text".text = "Get a PLATE from the PANTRY to your right
-		 using LEFT CLICK and put it on the BENCH
+		 Holding L2 and put it on the BENCH
 			"
 			$"../tutorial_text".position = Vector3(-0.5,2.0,0)
 			$"../tutorial_text".rotation_degrees = Vector3.ZERO
@@ -177,13 +177,13 @@ func pickup_knife():
 		step = 5
 func cut_bun():
 	if step == 5:
-		$"../tutorial_text".text = "Now open the fridge using LEFT CLICK, and chop up a TOMATO.
+		$"../tutorial_text".text = "Now open the fridge using L2, and chop up a TOMATO.
 				"
 		step = 6
 func cut_tomato():
 	if step == 6:
 		$"../tutorial_text".text = "Pick up the BOTTOM BUN and assemble the 
-		BURGER on the PLATE using RIGHT CLICK.
+		BURGER on the PLATE using R2.
 		Your crosshair will change to arrows when you can stack something.
 				"
 		step = 7
@@ -199,7 +199,7 @@ func delivered():
 	if step == 8:
 		$"../tutorial_text".position = Vector3(2.7,2.3,10.9)
 		$"../tutorial_text".rotation_degrees.y = 180
-		$"../tutorial_text".text = "Now pickup the POT using LEFT CLICK
+		$"../tutorial_text".text = "Now pickup the BAG using L2
 		and deliver it to the HOUSE stated 
 		on the DELIVERY BOX by dropping
 		it on the DOORSTEP in time.
