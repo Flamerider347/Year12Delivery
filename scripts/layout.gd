@@ -14,7 +14,7 @@ var bench_type_sprites = {
 	"fridge" :preload("res://assets/createdassets/Icon art/Frige.png"),
 	"stove" : preload("res://assets/createdassets/Icon art/Stove.png"),
 	"reciever_bench" : preload("res://assets/createdassets/Icon art/Telephone.png"),
-	"delivery_table" : preload("res://assets/resized-images/delivery_plate.png"),
+	"delivery_table" : preload("res://assets/createdassets/Icon art/Delivery-Bench.png"),
 	"burger_hayden" : preload("res://assets/createdassets/Icon art/Burger(2).png"),
 	"burger_ben" : preload("res://assets/createdassets/Icon art/Burger(1).png"),
 	"burger_aine" : preload("res://assets/createdassets/Icon art/Burger(3).png"),
@@ -114,7 +114,7 @@ func _on_bench_bench_type(type) -> void:
 	bench_type = str(type)
 	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 	$dragging_bench.position = get_local_mouse_position()
-	$dragging_bench/Sprite2D.scale = Vector2(0.02,0.02)
+	$dragging_bench/Sprite2D.scale = Vector2(0.023,0.023)
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0
 

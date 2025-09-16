@@ -16,12 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://c58nli6j1h1fs" path="res://assets/createdassets/Icon art/Frige.png" id="12_bo82e"]
 [ext_resource type="Texture2D" uid="uid://bcb5bab8hrt0y" path="res://assets/createdassets/Icon art/Bin.png" id="13_3g0tm"]
 [ext_resource type="Script" uid="uid://cf6prq01f4d01" path="res://scripts/recipe_slot.gd" id="13_73aox"]
-[ext_resource type="Texture2D" uid="uid://bmr0jgvrr4cqj" path="res://assets/resized-images/delivery_plate.png" id="13_wvlgw"]
 [ext_resource type="Script" uid="uid://7ry5gpnlyjjp" path="res://scripts/recipe.gd" id="14_21bg4"]
 [ext_resource type="Texture2D" uid="uid://deg60v8exg55a" path="res://assets/createdassets/Icon art/Counter_Cutting.png" id="14_bo82e"]
 [ext_resource type="Texture2D" uid="uid://c8avci3keeeq2" path="res://assets/createdassets/Icon art/Pantry.png" id="14_rmb50"]
 [ext_resource type="Texture2D" uid="uid://uhwevs5wqbek" path="res://assets/icon.svg" id="15_w8pom"]
 [ext_resource type="Texture2D" uid="uid://dfeslw0n5uu3o" path="res://assets/createdassets/Icon art/Telephone.png" id="16_a1qfg"]
+[ext_resource type="Texture2D" uid="uid://b85pu6mgdckpv" path="res://assets/createdassets/Icon art/Delivery-Bench.png" id="16_bo82e"]
 [ext_resource type="Texture2D" uid="uid://c4yeru3vchj4a" path="res://assets/createdassets/Icon art/Burger(1).png" id="17_wvlgw"]
 [ext_resource type="Texture2D" uid="uid://bcnk8j65u05un" path="res://assets/createdassets/Icon art/Burger(2).png" id="18_bo82e"]
 [ext_resource type="Texture2D" uid="uid://dy5kguynl2mu5" path="res://assets/createdassets/Icon art/Burger(3).png" id="19_3g0tm"]
@@ -41,7 +41,7 @@ Button/colors/font_color = Color(0.807843, 0.788235, 0.772549, 1)
 Button/styles/focus = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v44qx"]
-size = Vector2(80, 80)
+size = Vector2(92, 92)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_w3v8e"]
 
@@ -585,7 +585,7 @@ texture = ExtResource("4_7xkfb")
 [node name="layout_benches" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="bench_1" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 230)
+position = Vector2(1025, 231)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -593,10 +593,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_1"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_2" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1120, 230)
+position = Vector2(1117, 231)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -604,10 +604,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_2"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_3" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1200, 230)
+position = Vector2(1209, 231)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -615,10 +615,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_3"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_4" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1280, 230)
+position = Vector2(1301, 231)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -626,10 +626,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_4"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_5" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1360, 230)
+position = Vector2(1393, 231)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -637,10 +637,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_5"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_6" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 230)
+position = Vector2(1485, 231)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -648,7 +648,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_6"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1440, 310)
@@ -783,6 +783,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.02, 0.02)
 
 [node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/layout/layout_benches/unselect_area"]
 polygon = PackedVector2Array(990, 180, 1490, 180, 1490, 680, 1310, 680, 1310, 580, 1390, 580, 1390, 280, 1090, 280, 1090, 580, 1170, 580, 1170, 680, 990, 680)
@@ -790,7 +791,8 @@ polygon = PackedVector2Array(990, 180, 1490, 180, 1490, 680, 1310, 680, 1310, 58
 [node name="layout_shop" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1120, 760)
+position = Vector2(1063, 760)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -802,7 +804,8 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("10_wvlgw")
 
 [node name="stove" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1280, 760)
+position = Vector2(1170, 867)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -814,7 +817,8 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("11_wvlgw")
 
 [node name="fridge" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1120, 840)
+position = Vector2(1383, 760)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -826,7 +830,8 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("12_bo82e")
 
 [node name="bin" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1280, 840)
+position = Vector2(1062, 868)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -838,7 +843,8 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("13_3g0tm")
 
 [node name="chopping_board" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1360, 760)
+position = Vector2(1170, 759)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -850,7 +856,8 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("14_bo82e")
 
 [node name="bun_crate" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1200, 840)
+position = Vector2(1276, 760)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -862,7 +869,8 @@ scale = Vector2(0.02, 0.02)
 texture = ExtResource("14_rmb50")
 
 [node name="delivery_table" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1200, 760)
+position = Vector2(1276, 866)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -870,10 +878,12 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/delivery_table"]
-texture = ExtResource("13_wvlgw")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("16_bo82e")
 
 [node name="reciever_bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1360, 840)
+position = Vector2(1382, 866)
+scale = Vector2(1.125, 1.125)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
