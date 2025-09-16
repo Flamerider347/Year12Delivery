@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=42 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Texture2D" uid="uid://invjjj3eyaob" path="res://assets/bookanim/bookanim_right_nobg/tu30-Photoroom.png" id="2_7xkfb"]
@@ -9,18 +9,19 @@
 [ext_resource type="Script" uid="uid://ny3ofx5yvw4g" path="res://scripts/build_menu.gd" id="5_5c2ga"]
 [ext_resource type="Script" uid="uid://bv014t67mqulj" path="res://scripts/buttonTween.gd" id="5_wvlgw"]
 [ext_resource type="Script" uid="uid://c7qeydybqfoal" path="res://scripts/bench_types.gd" id="6_y5qo3"]
-[ext_resource type="Texture2D" uid="uid://c5b6q8aqldb8s" path="res://assets/resized-images/Bench.png" id="7_8hwiu"]
 [ext_resource type="Script" uid="uid://bld1rujukty04" path="res://scripts/buy_buttons.gd" id="7_73aox"]
 [ext_resource type="Texture2D" uid="uid://b37lxiul7q6qj" path="res://assets/Sprint 1 Icons for benches/Bench.png" id="7_84sbs"]
-[ext_resource type="Texture2D" uid="uid://byighdpt48h7j" path="res://assets/resized-images/Stove.png" id="8_506h2"]
-[ext_resource type="Texture2D" uid="uid://d4leseb5uo1qq" path="res://assets/resized-images/Fridge.png" id="9_7xkfb"]
-[ext_resource type="Texture2D" uid="uid://d21odjojbhmb8" path="res://assets/resized-images/Bin Crate.png" id="10_w3v8e"]
-[ext_resource type="Texture2D" uid="uid://ho7ee6aancsm" path="res://assets/resized-images/Chopping Board.png" id="11_t816m"]
-[ext_resource type="Texture2D" uid="uid://ddbsimi811hbc" path="res://assets/resized-images/Screenshot 2025-06-25 192059(1).png" id="12_5c2ga"]
+[ext_resource type="Texture2D" uid="uid://bnt4i7lofk5e4" path="res://assets/createdassets/Icon art/Counter.png" id="10_wvlgw"]
+[ext_resource type="Texture2D" uid="uid://duwo360ff54y5" path="res://assets/createdassets/Icon art/Stove.png" id="11_wvlgw"]
+[ext_resource type="Texture2D" uid="uid://c58nli6j1h1fs" path="res://assets/createdassets/Icon art/Frige.png" id="12_bo82e"]
+[ext_resource type="Texture2D" uid="uid://bcb5bab8hrt0y" path="res://assets/createdassets/Icon art/Bin.png" id="13_3g0tm"]
 [ext_resource type="Script" uid="uid://cf6prq01f4d01" path="res://scripts/recipe_slot.gd" id="13_73aox"]
 [ext_resource type="Texture2D" uid="uid://bmr0jgvrr4cqj" path="res://assets/resized-images/delivery_plate.png" id="13_wvlgw"]
 [ext_resource type="Script" uid="uid://7ry5gpnlyjjp" path="res://scripts/recipe.gd" id="14_21bg4"]
+[ext_resource type="Texture2D" uid="uid://deg60v8exg55a" path="res://assets/createdassets/Icon art/Counter_Cutting.png" id="14_bo82e"]
+[ext_resource type="Texture2D" uid="uid://c8avci3keeeq2" path="res://assets/createdassets/Icon art/Pantry.png" id="14_rmb50"]
 [ext_resource type="Texture2D" uid="uid://uhwevs5wqbek" path="res://assets/icon.svg" id="15_w8pom"]
+[ext_resource type="Texture2D" uid="uid://dfeslw0n5uu3o" path="res://assets/createdassets/Icon art/Telephone.png" id="16_a1qfg"]
 [ext_resource type="Texture2D" uid="uid://c4yeru3vchj4a" path="res://assets/createdassets/Icon art/Burger(1).png" id="17_wvlgw"]
 [ext_resource type="Texture2D" uid="uid://bcnk8j65u05un" path="res://assets/createdassets/Icon art/Burger(2).png" id="18_bo82e"]
 [ext_resource type="Texture2D" uid="uid://dy5kguynl2mu5" path="res://assets/createdassets/Icon art/Burger(3).png" id="19_3g0tm"]
@@ -266,6 +267,7 @@ text = "Endless High Score:
 horizontal_alignment = 1
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -573,7 +575,6 @@ text = "To move bars on controller, click on the bar and use d-pad arrows (left&
 horizontal_alignment = 1
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
-visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -592,6 +593,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_1"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_2" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1120, 230)
@@ -602,6 +604,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_2"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_3" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1200, 230)
@@ -612,6 +615,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_3"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_4" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1280, 230)
@@ -622,6 +626,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_4"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_5" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1360, 230)
@@ -632,6 +637,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_5"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_6" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1440, 230)
@@ -642,6 +648,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_6"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1440, 310)
@@ -652,6 +659,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_7" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1040, 310)
@@ -662,6 +670,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_7"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_9" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1040, 390)
@@ -672,6 +681,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_9"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_10" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1440, 390)
@@ -682,6 +692,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_10"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_11" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1040, 470)
@@ -692,6 +703,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_11"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_12" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1440, 470)
@@ -702,6 +714,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_12"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_13" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1040, 550)
@@ -712,6 +725,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_13"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_14" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1440, 550)
@@ -722,6 +736,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_14"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_15" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1040, 630)
@@ -732,6 +747,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_15"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_16" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1440, 630)
@@ -742,6 +758,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_16"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_17" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1120, 630)
@@ -752,6 +769,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_17"]
+scale = Vector2(0.02, 0.02)
 
 [node name="bench_18" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1360, 630)
@@ -762,6 +780,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_18"]
+scale = Vector2(0.02, 0.02)
 
 [node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 
@@ -779,7 +798,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bench"]
-texture = ExtResource("7_8hwiu")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("10_wvlgw")
 
 [node name="stove" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1280, 760)
@@ -790,7 +810,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/stove"]
-texture = ExtResource("8_506h2")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("11_wvlgw")
 
 [node name="fridge" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1120, 840)
@@ -801,7 +822,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/fridge"]
-texture = ExtResource("9_7xkfb")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("12_bo82e")
 
 [node name="bin" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1280, 840)
@@ -812,7 +834,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bin"]
-texture = ExtResource("10_w3v8e")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("13_3g0tm")
 
 [node name="chopping_board" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1360, 760)
@@ -823,7 +846,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/chopping_board"]
-texture = ExtResource("11_t816m")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("14_bo82e")
 
 [node name="bun_crate" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1200, 840)
@@ -834,7 +858,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
-texture = ExtResource("12_5c2ga")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("14_rmb50")
 
 [node name="delivery_table" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
 position = Vector2(1200, 760)
@@ -856,7 +881,8 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/reciever_bench"]
-texture = ExtResource("15_w8pom")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("16_a1qfg")
 
 [node name="money" type="Label" parent="CanvasLayer/layout"]
 offset_left = 417.0

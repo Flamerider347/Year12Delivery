@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deg60v8exg55a"
-path="res://.godot/imported/Counter_Cutting.png-71ec537c1de5d26fb2451b8f8fa8aaab.ctex"
+uid="uid://c58nli6j1h1fs"
+path="res://.godot/imported/Frige.png-4781c2fb8b7b25feeaadec9c0b5eeadc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/createdassets/Icon art/Counter_Cutting.png"
-dest_files=["res://.godot/imported/Counter_Cutting.png-71ec537c1de5d26fb2451b8f8fa8aaab.ctex"]
+source_file="res://assets/createdassets/Icon art/Frige.png"
+dest_files=["res://.godot/imported/Frige.png-4781c2fb8b7b25feeaadec9c0b5eeadc.ctex"]
 
 [params]
 

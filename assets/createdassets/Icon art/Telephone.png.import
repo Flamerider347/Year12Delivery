@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deg60v8exg55a"
-path="res://.godot/imported/Counter_Cutting.png-71ec537c1de5d26fb2451b8f8fa8aaab.ctex"
+uid="uid://dfeslw0n5uu3o"
+path="res://.godot/imported/Telephone.png-cb71395b1fd48273c6d8ed0094d23cbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/createdassets/Icon art/Counter_Cutting.png"
-dest_files=["res://.godot/imported/Counter_Cutting.png-71ec537c1de5d26fb2451b8f8fa8aaab.ctex"]
+source_file="res://assets/createdassets/Icon art/Telephone.png"
+dest_files=["res://.godot/imported/Telephone.png-cb71395b1fd48273c6d8ed0094d23cbe.ctex"]
 
 [params]
 
