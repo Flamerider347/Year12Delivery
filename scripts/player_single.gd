@@ -9,8 +9,8 @@ var head_target_position = 0.525
 var head_moving = false
 var tips_shown = true
 var SENSITIVITY = 0.1
-const WALK_SPEED = 5
-const SPRINT_SPEED = 10
+const WALK_SPEED = 10
+const SPRINT_SPEED = 15
 const JUMP_VELOCITY = 4.5
 const GRAVITY = 9.81 #ms^-2
 @export var controller_id: int = 0
@@ -147,6 +147,8 @@ func _physics_process(delta: float):
 		if Input.is_action_just_pressed("menu") and can_exit:
 			pause_exit()
 		if Input.is_action_just_pressed("tips"):
+			if $"..".level == 0:
+				$"../tutorial/plates".toggle_tips()
 			if tips_shown:
 				tips_shown = false
 				var label_nodes = get_tree().get_nodes_in_group("labels")

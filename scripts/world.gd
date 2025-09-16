@@ -143,6 +143,7 @@ func tutorial():
 	for cam in cameras:
 		$player_single/head.get_node(cam).hide()
 	world_toggle = true
+	$tutorial/plates.step = 0
 	$tutorial.show()
 	$ui.show()
 	$player_single.position = Vector3(0, 31.65, 5.3)

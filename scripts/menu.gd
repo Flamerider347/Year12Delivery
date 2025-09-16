@@ -150,7 +150,7 @@ func _on_level_4() -> void:
 
 
 func _on_quit_pressed() -> void:
-	get_tree().reload_current_scene()
+	get_tree().quit()
 	#set to reload
 
 # New tweening functions
@@ -481,21 +481,6 @@ func _on_h_slider_4_value_changed(new_value) -> void:
 func _on_h_slider_5_value_changed(new_value) -> void:
 	# Changes the volume of the SFX audio bus
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(new_value))
-
-
-func quit() -> void:
-	# Stop the timer if it's already running
-	$quit_attempt_timer.stop()
-	
-	var quit_names = ["No","Why","Please Stay","Try again","Nope","Don't Go","Wait!","Nooo","Stay Pls","But Why?","Come Back","Not Yet","Hold On","Seriously?","Think Twice","Reconsider","Never","Nu-uh","Denied","Rejected","Forbidden","Impossible","Error 404","Ctrl+Z","Undo","Refresh","Reboot","Stay Here","One More?","Final Offer","Last Chance","Pretty Pls","I'll Miss U","Don't Leave","Stay 4ever","Pwease","Big Sad","Much Wow","Very Leave","Such Quit","Sadge"]
-	var quit_number = randi() % quit_names.size()
-	$CanvasLayer/end_screen/Control/quit.text = quit_names[quit_number]
-	
-	# Start the timer
-	$quit_attempt_timer.start()
-
-func _on_quit_attempt_timer_timeout():
-	$CanvasLayer/end_screen/Control/quit.text = "Quit Game"
 
 
 func _on_options_mouse_exited() -> void:

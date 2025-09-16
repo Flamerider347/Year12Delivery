@@ -5,7 +5,7 @@ signal objective_clear
 var delivery_location
 var ingredient_amount = 0
 var timing = false
-var step = 1
+var step = 0
 var next_position = 0.1
 var making_plate = "plate_1"
 var recipes_list = {
@@ -141,15 +141,23 @@ func start():
  little closer with Left Joystick
 			"
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if step == 1:
+	if step == 0:
 		if body is CharacterBody3D:
-			$"../tutorial_text".text = "Get a PLATE from the PANTRY to your right
-		 Holding L2 and put it on the BENCH
+			$"../tutorial_text".text = "If you're ever unsure what to do, 
+			try press 'T' to toggle bench tips
+			on or off in any level.
 			"
 			$"../tutorial_text".position = Vector3(-0.5,2.0,0)
 			$"../tutorial_text".rotation_degrees = Vector3.ZERO
-			step = 2
-
+			step = 1
+func toggle_tips(): 
+	if step == 1:
+		$"../tutorial_text".text = "Get a PLATE from the PANTRY to your right
+		 Holding L2 and put it on the BENCH
+			"
+		$"../tutorial_text".position = Vector3(-0.5,2.0,0)
+		$"../tutorial_text".rotation_degrees = Vector3.ZERO
+		step = 2
 func _on_area_3d_2_body_entered(body: Node3D) -> void:
 	if step == 2:
 		if body is RigidBody3D:
@@ -184,15 +192,18 @@ func cut_tomato():
 	if step == 6:
 		$"../tutorial_text".text = "Pick up the BOTTOM BUN and assemble the 
 		BURGER on the PLATE using R2.
-		Your crosshair will change to arrows when you can stack something.
+		Your crosshair will change to arrows
+		when you can stack something.
 				"
 		step = 7
 
 func complete_burger():
 	if step == 7:
 		$"../tutorial_text".text = "
-		Put the completed burger on the plate behind you for inspection.
-		You must match the ORDER exactly, but the ingredient order is irrelevant.
+		Put the completed burger 
+		on the plate behind you for inspection.
+		You must match the ORDER exactly, 
+		but the ingredient order is irrelevant.
 				"
 		step = 8
 func delivered():
@@ -201,7 +212,7 @@ func delivered():
 		$"../tutorial_text".rotation_degrees.y = 180
 		$"../tutorial_text".text = "Now pickup the BAG using L2
 		and deliver it to the HOUSE stated 
-		on the DELIVERY BOX by dropping
+		on the DELIVERY BAG by dropping
 		it on the DOORSTEP in time.
 				"
 		step = 9
@@ -212,4 +223,4 @@ func delivered_to_house():
 		by walking back to the starting bench. 
 		Good luck, have fun!
 			"
-		step = 1
+		step = 0
