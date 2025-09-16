@@ -7,13 +7,13 @@ var replaced_recipe = null
 var tutorial_step = 1
 var entered_unselect_area = false
 var bench_type_sprites = {
-	"bench" : preload("res://assets/resized-images/Bench.png"),
-	"bin" : preload("res://assets/resized-images/Bin Crate.png"),
-	"bun_crate" : preload("res://assets/resized-images/Screenshot 2025-06-25 192059(1).png"),
-	"chopping_board" : preload("res://assets/resized-images/Chopping Board.png"),
-	"fridge" :preload("res://assets/resized-images/Fridge.png"),
-	"stove" : preload("res://assets/resized-images/Stove.png"),
-	"reciever_bench" : preload("res://assets/icon.svg"),
+	"bench" : preload("res://assets/createdassets/Icon art/Counter.png"),
+	"bin" : preload("res://assets/createdassets/Icon art/Bin.png"),
+	"bun_crate" : preload("res://assets/createdassets/Icon art/Pantry.png"),
+	"chopping_board" : preload("res://assets/createdassets/Icon art/Counter_Cutting.png"),
+	"fridge" :preload("res://assets/createdassets/Icon art/Frige.png"),
+	"stove" : preload("res://assets/createdassets/Icon art/Stove.png"),
+	"reciever_bench" : preload("res://assets/createdassets/Icon art/Telephone.png"),
 	"delivery_table" : preload("res://assets/resized-images/delivery_plate.png"),
 	"burger_hayden" : preload("res://assets/createdassets/Icon art/Burger(2).png"),
 	"burger_ben" : preload("res://assets/createdassets/Icon art/Burger(1).png"),
@@ -114,7 +114,7 @@ func _on_bench_bench_type(type) -> void:
 	bench_type = str(type)
 	$dragging_bench.find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 	$dragging_bench.position = get_local_mouse_position()
-	$dragging_bench/Sprite2D.scale = Vector2(1,1)
+	$dragging_bench/Sprite2D.scale = Vector2(0.02,0.02)
 	$dragging_bench.show()
 	$dragging_bench.rotation_degrees = 0
 
