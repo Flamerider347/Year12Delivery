@@ -27,8 +27,15 @@ var score = 0
 var stars = 1
 var orders_delivered = 0
 var day_timer = 20
+var variance = 1.4
 var is_tutorial = false
 var world_toggle = false
+
+# Score animation variables
+var score_tween: Tween
+var displayed_score_value: float = 0.0
+var score_display_timer: Timer
+
 # Defines the animation player for when the player moves between menus.
 @onready var animation: AnimationPlayer = $"transition animation/transition animation"
 # Preloads the ingrients getting chopped particle
@@ -78,7 +85,7 @@ var bench_summoning = {
 var ingredient_colors := {
 	"tomato": Color(1, 0, 0),
 	"lettuce": Color(0.1, 0.9, 0),
-	"cheese": Color(1, 1, 0),
+	"cheese": Color(0.85, 0.6, 0.27),
 	"bun": Color(0.9, 0.8, 0.6),
 	"carrot": Color(1, 0.5, 0),
 	"meat_cooked": Color(0.33,0.175,0.12),
@@ -134,10 +141,22 @@ var tutorial_benches = {
 	"bench_17" : ["bench",180,false],
 	"bench_18" : ["delivery_table",180,true],
 }
+
 func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
+	# Initialize the score display
+	$ui/added_score.modulate.a = 0.0
+	$ui/added_score.text = ""
+	
+	# Create and setup the score display timer
+	score_display_timer = Timer.new()
+	score_display_timer.wait_time = 2.0
+	score_display_timer.one_shot = true
+	score_display_timer.timeout.connect(_fade_out_score)
+	add_child(score_display_timer)
+	
 func tutorial():
 	var cameras = ["dinein", "volcano", "underwater", "tundra"]
 	for cam in cameras:
@@ -350,6 +369,49 @@ func _setup_normal_houses():
 	for i in $kitchen/houses.get_children():
 		i.find_child("house").find_child("house_frozen_mesh").hide()
 		i.find_child("house").find_child("house_mesh").show()
+
+# Function to animate the score display
+func animate_score_display(earned_score: int):
+	# Kill any existing tween and stop timer
+	if score_tween:
+		score_tween.kill()
+	if score_display_timer:
+		score_display_timer.stop()
+	
+	# Set the text content
+	$ui/added_score.text = "+%d (x%.1f)" % [earned_score, variance]
+	
+	# Create new tween for fade in and number counting
+	score_tween = create_tween()
+	score_tween.set_parallel(true)
+	
+	# Fade in animation
+	score_tween.tween_property($ui/added_score, "modulate:a", 1.0, 0.3)
+	
+	# Number lerp animation
+	displayed_score_value = 0.0
+	score_tween.tween_method(_update_score_display, 0.0, float(earned_score), 0.8)
+	
+	# Start timer to fade out after 2 seconds
+	score_display_timer.start()
+
+# Function to fade out the score display
+func _fade_out_score():
+	if score_tween:
+		score_tween.kill()
+	
+	score_tween = create_tween()
+	score_tween.tween_property($ui/added_score, "modulate:a", 0.0, 0.5)
+
+# Helper function to fade out after hold
+func _hold_and_fade_out():
+	if score_tween:
+		score_tween.tween_property($ui/added_score, "modulate:a", 0.0, 0.5)
+
+# Helper function to update the score display during lerping
+func _update_score_display(value: float):
+	displayed_score_value = value
+	$ui/added_score.text = "+%d (x%.1f)" % [int(round(displayed_score_value)), variance]
 		
 		
 func _physics_process(delta: float) -> void:
@@ -481,9 +543,14 @@ func _on_house_item_entered(address,target_address,time_left,delivered_pot) -> v
 	if address == target_address:
 		if not is_tutorial:
 			making_time_left = round(time_left)
-			score += making_time_left
+			var earned_score = int(round(making_time_left * variance))
+			score += earned_score
+			
+			# Animate the score display
+			animate_score_display(earned_score)
+			
 			if level == 4:
-				carried_score += making_time_left
+				carried_score += earned_score
 				$ui/Label.text = "Score: " + str(carried_score)
 			else:
 				$ui/Label.text = "Score: " + str(score)
@@ -589,18 +656,20 @@ func _on_volcano_lava_body_entered(body: Node3D) -> void:
 	spawned_lava_burn.queue_free()
 
 func pause_exit() -> void:
+	$ui.hide()
 	$kitchen/Audio_Box/trigger_body.menu()
-	if level == 4 and carried_score < req_score:
-		reset_4 = true
-		$menu.endless_screen(false)
-		if carried_score > endless_high_score:
-			endless_high_score = int(carried_score)
-		$menu/CanvasLayer/main_menu/RichTextLabel4.text = "ENDLESS HIGH SCORE:\n" + str(endless_high_score)
-	else:
-		$menu.endless_screen(true)
-		if carried_score > endless_high_score:
-			endless_high_score = int(carried_score)
-			$menu/CanvasLayer/main_menu/RichTextLabel4.text = "ENDLESS HIGH SCORE:\n" + str(endless_high_score) + "\n(CURRENT)"
+	if level == 4:
+		if carried_score < req_score:
+			reset_4 = true
+			$menu.endless_screen(false)
+			if carried_score > endless_high_score:
+				endless_high_score = int(carried_score)
+			$menu/CanvasLayer/main_menu/RichTextLabel4.text = "ENDLESS HIGH SCORE:\n" + str(endless_high_score)
+		else:
+			$menu.endless_screen(true)
+			if carried_score > endless_high_score:
+				endless_high_score = int(carried_score)
+				$menu/CanvasLayer/main_menu/RichTextLabel4.text = "ENDLESS HIGH SCORE:\n" + str(endless_high_score) + "\n(CURRENT)"
 	if world_toggle:
 		world_toggle = false
 		get_tree().paused = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=127 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -122,7 +122,7 @@ color_ramp = SubResource("GradientTexture1D_umtm3")
 hue_variation_min = -0.6
 hue_variation_max = 0.6
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_os0cm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqtvo"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -131,7 +131,7 @@ albedo_texture = ExtResource("21_d6s6r")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_p78bo"]
-material = SubResource("StandardMaterial3D_os0cm")
+material = SubResource("StandardMaterial3D_mqtvo")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6gec"]
 size = Vector3(100, 0.1, 100)
@@ -159,6 +159,29 @@ shading_mode = 0
 albedo_color = Color(0.501407, 0.501406, 0.501406, 1)
 albedo_texture = ExtResource("35_umtm3")
 uv1_scale = Vector3(3, 1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2dp0v"]
+emission_shape_offset = Vector3(0, 7.75, -14)
+emission_shape_scale = Vector3(20, 6, 17.83)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 5.0
+color_ramp = SubResource("GradientTexture1D_umtm3")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.08
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pwah"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.705496, 0.345533, 0.174503, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ac4bk"]
+material = SubResource("StandardMaterial3D_0pwah")
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6gec"]
 shading_mode = 0
@@ -1670,7 +1693,7 @@ transform = Transform3D(-0.297827, 0, 0.036041, 0, 0.3, 0, -0.036041, 0, -0.2978
 mesh = ExtResource("23_er0x2")
 
 [node name="volcano_lava" type="Area3D" parent="volcano"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 collision_layer = 5
 collision_mask = 5
 
@@ -1737,7 +1760,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0291138, 0)
 shape = SubResource("CylinderShape3D_dfx56")
 
 [node name="lava rocks 6" type="MeshInstance3D" parent="volcano/lava_rocks/lava rocks10"]
-transform = Transform3D(1.3, 0, 0, 0, 1, 0, 0, 0, 1.3, -0.0719986, -0.215828, -0.0330048)
+transform = Transform3D(-0.897228, 0, -0.940735, 0, 1, 0, 0.940735, 0, -0.897228, -0.0719986, -0.215828, -0.0330048)
 mesh = ExtResource("32_er0x2")
 surface_material_override/0 = ExtResource("25_jbo5a")
 
@@ -1764,6 +1787,12 @@ transform = Transform3D(-0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, -0.576432
 
 [node name="lava rocks20" parent="volcano/lava_rocks" instance=ExtResource("28_er0x2")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.309072, 25.4001)
+
+[node name="lava rocks8" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
+transform = Transform3D(0.658899, 0, -0.752231, 0, 1, 0, 0.752231, 0, 0.658899, 9.94218, 0.30356, 15.6713)
+
+[node name="lava rocks14" parent="volcano/lava_rocks" instance=ExtResource("25_jynr8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5322, 0.199219, 16.835)
 
 [node name="floor" type="Node3D" parent="volcano"]
 
@@ -1792,6 +1821,18 @@ rings = 100
 transform = Transform3D(-1, 8.74228e-08, 0, -1.04251e-15, -1.19249e-08, 1, 8.74228e-08, 1, 1.19249e-08, 0, 0.218, 12.43)
 text = "Hold LEFT SHIFT (L3 on controller)
 To sprint. Makes this level a lot easier!"
+
+[node name="leaves" type="GPUParticles3D" parent="volcano"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.929, 43.4209)
+amount = 60
+speed_scale = 0.1
+visibility_aabb = AABB(-24.41, -4, -38.665, 50, 8, 50)
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_2dp0v")
+draw_pass_1 = SubResource("QuadMesh_ac4bk")
+
+[node name="lava rocks4" parent="volcano" instance=ExtResource("27_jbo5a")]
+transform = Transform3D(-0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, -0.576432, -7.86157, 0.30356, 26.4532)
 
 [node name="underwater" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
@@ -2019,8 +2060,8 @@ sprite_frames = SubResource("SpriteFrames_qrdq4")
 anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.12963
-offset_left = 14.0
-offset_right = 499.0
+offset_left = 15.0
+offset_right = 435.0
 offset_bottom = 43.0
 text = "Score: 0"
 metadata/_edit_use_anchors_ = true
@@ -2049,9 +2090,9 @@ anchors_preset = -1
 anchor_right = 0.25
 anchor_bottom = 0.12963
 offset_left = 15.0
-offset_top = 78.0
-offset_right = 500.0
-offset_bottom = 121.0
+offset_top = 146.16
+offset_right = 435.0
+offset_bottom = 189.16
 text = "Req. Score: 100 (-100)"
 metadata/_edit_use_anchors_ = true
 
@@ -2061,6 +2102,17 @@ offset_top = 312.0
 offset_right = 2174.0
 offset_bottom = 1354.0
 scale = Vector2(0.5, 0.5)
+
+[node name="added_score" type="Label" parent="ui"]
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.12963
+offset_left = 15.0
+offset_top = 70.0
+offset_right = 435.0
+offset_bottom = 113.0
+text = "+ 100 (x1.4)"
+metadata/_edit_use_anchors_ = true
 
 [node name="environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tlwt5")

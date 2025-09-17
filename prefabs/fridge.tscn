@@ -1,7 +1,5 @@
-[gd_scene load_steps=19 format=3 uid="uid://cf2s322ap3bxw"]
+[gd_scene load_steps=12 format=3 uid="uid://cf2s322ap3bxw"]
 
-[ext_resource type="Script" uid="uid://8nrws8bwiprl" path="res://scripts/fridge_door.gd" id="2_252b1"]
-[ext_resource type="ArrayMesh" uid="uid://bmnjpfam7mg7n" path="res://assets/kitchenassets/fridge_B_door.obj" id="3_2xlda"]
 [ext_resource type="ArrayMesh" uid="uid://br5b4a8narumr" path="res://assets/createdassets/frigde_edited.obj" id="3_252b1"]
 [ext_resource type="Material" uid="uid://c83yvitweelxs" path="res://assets/materials/restaurant.material" id="4_2xlda"]
 
@@ -27,84 +25,24 @@ size = Vector3(0.585938, 0.418892, 0.649841)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2xlda"]
 size = Vector3(0.48291, 0.497711, 0.678955)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_56ary"]
-size = Vector3(0.5, 2.5, 2.001)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_yynxn"]
 size = Vector3(0.482803, 0.31012, 0.652527)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_252b1"]
 size = Vector3(0.246216, 2.49585, 1.50586)
 
-[sub_resource type="Animation" id="Animation_2xlda"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("fridge_door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.999, 0, 0.44)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("fridge_door:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_56ary"]
-resource_name = "door_close"
-
-[sub_resource type="Animation" id="Animation_252b1"]
-resource_name = "door_open"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("fridge_door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.999, 0, 0.44), Vector3(0.92, 0, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("fridge_door:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5x7q2"]
-_data = {
-&"RESET": SubResource("Animation_2xlda"),
-&"door_close": SubResource("Animation_56ary"),
-&"door_open": SubResource("Animation_252b1")
-}
-
 [node name="fridge" type="Node3D"]
 
+[node name="Label3D2" type="Label3D" parent="." groups=["labels"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.159464, 0.556941)
+text = "Crouch (Left Ctrl/R3)"
+
+[node name="Label3D3" type="Label3D" parent="." groups=["labels"]]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 2.37465, 0.564967)
+text = "Pickup items (Left click/L2)"
+
 [node name="lettuce_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502846, 0.563016, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.502846, 0.563016, 0.0506846)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="lettuce_crate"]
@@ -112,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120209, 0, -0.154724)
 shape = SubResource("BoxShape3D_bpfb4")
 
 [node name="carrot_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0213193, 0.563016, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0213193, 0.563016, 0.0506846)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="carrot_crate"]
@@ -120,7 +58,7 @@ transform = Transform3D(0.78043, 0.606933, 0.150201, 0, 0.240228, -0.970716, -0.
 shape = SubResource("CapsuleShape3D_56ary")
 
 [node name="meat_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.286625, 1.18721, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.286625, 1.18721, 0.0506846)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="meat_crate"]
@@ -128,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0127674, -0.0404959, -0.438
 shape = SubResource("BoxShape3D_5x7q2")
 
 [node name="bacon_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.566256, 1.18721, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.566256, 1.18721, 0.0506846)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bacon_crate"]
@@ -136,7 +74,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0177656, -0.0848771, -0.200
 shape = SubResource("BoxShape3D_6mti1")
 
 [node name="cheese_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.433261, 1.8033, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.433261, 1.8033, 0.0506846)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cheese_crate"]
@@ -144,7 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.391885, -0.0693055, -0.083
 shape = SubResource("BoxShape3D_deaom")
 
 [node name="tomato_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59661, 1.79119, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.59661, 1.79119, 0.0506846)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tomato_crate"]
@@ -152,44 +90,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134521, 0.0160025, -0.01620
 shape = SubResource("BoxShape3D_2a2la")
 
 [node name="potato_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541946, 0.4711, 0.167418)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.541946, 0.4711, 0.218103)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="potato_crate"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0412598, 0.0716095, 0)
 shape = SubResource("BoxShape3D_2xlda")
 
-[node name="fridge_door" type="StaticBody3D" parent="." groups=["door", "outline"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.999, 0, 0.44)
-collision_layer = 5
-script = ExtResource("2_252b1")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="fridge_door"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.006, 1.252, 0.251)
-shape = SubResource("BoxShape3D_56ary")
-
-[node name="FridgeBDoor" type="MeshInstance3D" parent="fridge_door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5)
-mesh = ExtResource("3_2xlda")
-skeleton = NodePath("../../..")
-
-[node name="Label3D2" type="Label3D" parent="fridge_door" groups=["labels"]]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0.734707, -0.005)
-text = "Press crouch
-(Left Ctrl/R3)
-To reach lower items"
-
-[node name="Label3D3" type="Label3D" parent="fridge_door" groups=["labels"]]
-transform = Transform3D(-1, 0, -8.74229e-08, 0, 1, 0, 8.74229e-08, 0, -1, -1, 1.71624, -0.005)
-text = "Pickup/Put down items
-(Left click/L2)"
-
-[node name="Label3D4" type="Label3D" parent="fridge_door" groups=["labels"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.63337, 0.555712)
-text = "Press Left Click/L2
-To open the fridge"
-
 [node name="FrigdeEdited" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0506846)
 mesh = ExtResource("3_252b1")
 surface_material_override/0 = ExtResource("4_2xlda")
 surface_material_override/1 = ExtResource("4_2xlda")
@@ -199,7 +108,7 @@ surface_material_override/4 = ExtResource("4_2xlda")
 surface_material_override/5 = ExtResource("4_2xlda")
 
 [node name="egg_crate" type="StaticBody3D" parent="." groups=["look_at", "summoner"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18874, 0.0779926)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18874, 0.128677)
 collision_layer = 5
 collision_mask = 5
 
@@ -208,7 +117,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.504273, 0.568557, 0.0603944
 shape = SubResource("BoxShape3D_yynxn")
 
 [node name="wall" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.872204, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.872204, 0, 0.0506846)
 collision_layer = 5
 collision_mask = 5
 
@@ -217,7 +126,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293
 shape = SubResource("BoxShape3D_252b1")
 
 [node name="wall2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.879741, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.879741, 0, 0.0506846)
 collision_layer = 5
 collision_mask = 5
 
@@ -226,20 +135,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293
 shape = SubResource("BoxShape3D_252b1")
 
 [node name="wall3" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.258, 0, -0.87336)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.258, 0, -0.822675)
 collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00689697, 1.25159, -0.25293)
 shape = SubResource("BoxShape3D_252b1")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5x7q2")
-}
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-
-[connection signal="timeout" from="Timer" to="fridge_door" method="_on_timer_timeout"]

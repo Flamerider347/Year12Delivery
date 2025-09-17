@@ -8,7 +8,7 @@ height = 1.23633
 radius = 0.268555
 
 [node name="carrot" type="RigidBody3D" groups=["choppable", "outline", "pickupable"]]
-transform = Transform3D(-4.37114e-08, 1, -3.82137e-15, -4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, 4.37114e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
 script = ExtResource("1_wtyes")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["hitbox"]]

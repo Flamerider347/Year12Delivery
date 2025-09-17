@@ -426,7 +426,6 @@ func summon(item):
 	instance.type = str(item)
 	instance.position = Vector3(0,-5,0)
 	instance.add_to_group("pickupable")
-	instance.add_to_group("choppable")
 	instance.find_child("CollisionShape3D").disabled = true
 	instance.freeze = true
 	seecast.target_position.z = -1.6

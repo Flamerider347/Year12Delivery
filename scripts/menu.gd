@@ -106,6 +106,7 @@ func _spawn():
 	var spawned_random_item = list_keys[randi_range(0,list_size-1)]
 	var instance = random_spawn[spawned_random_item].instantiate()
 	add_child(instance)
+	instance.rotation_degrees = Vector3(0,0,randi_range(0,360))
 	instance.position = random_position()
 
 	spawn = false

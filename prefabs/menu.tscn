@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bk5q2jyy76phw"]
+[gd_scene load_steps=43 format=3 uid="uid://bk5q2jyy76phw"]
 
 [ext_resource type="Script" uid="uid://eq2xmpsjftws" path="res://scripts/menu.gd" id="1_jhrhb"]
 [ext_resource type="Texture2D" uid="uid://invjjj3eyaob" path="res://assets/bookanim/bookanim_right_nobg/tu30-Photoroom.png" id="2_7xkfb"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dfeslw0n5uu3o" path="res://assets/createdassets/Icon art/Telephone.png" id="16_a1qfg"]
 [ext_resource type="Texture2D" uid="uid://b85pu6mgdckpv" path="res://assets/createdassets/Icon art/Delivery-Bench.png" id="16_bo82e"]
 [ext_resource type="Texture2D" uid="uid://c4yeru3vchj4a" path="res://assets/createdassets/Icon art/Burger(1).png" id="17_wvlgw"]
+[ext_resource type="Script" uid="uid://dfyuglf2ylhd6" path="res://scripts/smaller_tween.gd" id="18_3g0tm"]
 [ext_resource type="Texture2D" uid="uid://bcnk8j65u05un" path="res://assets/createdassets/Icon art/Burger(2).png" id="18_bo82e"]
 [ext_resource type="Texture2D" uid="uid://dy5kguynl2mu5" path="res://assets/createdassets/Icon art/Burger(3).png" id="19_3g0tm"]
 [ext_resource type="Texture2D" uid="uid://detvp7yuhnc5l" path="res://assets/createdassets/Icon art/Rescipe_Slot.png" id="21_t816m"]
@@ -369,16 +370,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 235.5
-offset_top = 284.5
-offset_right = 565.5
-offset_bottom = 404.5
+offset_left = -469.5
+offset_top = 179.5
+offset_right = -139.5
+offset_bottom = 299.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.85, 0.85)
 pivot_offset = Vector2(165, 60)
 text = "Build Menu"
-script = ExtResource("5_wvlgw")
+script = ExtResource("18_3g0tm")
 
 [node name="layout2" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -387,16 +388,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -564.5
-offset_top = 284.5
-offset_right = -234.5
-offset_bottom = 404.5
+offset_left = 128.75
+offset_top = 179.5
+offset_right = 458.75
+offset_bottom = 299.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.85, 0.85)
 pivot_offset = Vector2(165, 60)
 text = "Options "
-script = ExtResource("5_wvlgw")
+script = ExtResource("18_3g0tm")
 
 [node name="main_menu" type="Button" parent="CanvasLayer/end_screen/Control"]
 layout_mode = 1
@@ -405,16 +406,34 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -164.5
-offset_top = 284.5
-offset_right = 165.5
-offset_bottom = 404.5
+offset_left = -468.5
+offset_top = 309.5
+offset_right = -138.5
+offset_bottom = 429.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.85, 0.85)
 pivot_offset = Vector2(165, 60)
 text = "Main Menu"
-script = ExtResource("5_wvlgw")
+script = ExtResource("18_3g0tm")
+
+[node name="main_menu2" type="Button" parent="CanvasLayer/end_screen/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 127.75
+offset_top = 309.5
+offset_right = 457.75
+offset_bottom = 429.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.85, 0.85)
+pivot_offset = Vector2(165, 60)
+text = "Quit"
+script = ExtResource("18_3g0tm")
 
 [node name="lerp_timer" type="Timer" parent="CanvasLayer/end_screen"]
 
@@ -650,17 +669,6 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_6"]
 scale = Vector2(0.023, 0.023)
 
-[node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1485, 323)
-script = ExtResource("4_d7fan")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
-shape = SubResource("RectangleShape2D_v44qx")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
-scale = Vector2(0.023, 0.023)
-
 [node name="bench_7" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
 position = Vector2(1025, 323)
 script = ExtResource("4_d7fan")
@@ -672,7 +680,20 @@ shape = SubResource("RectangleShape2D_v44qx")
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_7"]
 scale = Vector2(0.023, 0.023)
 
+[node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
+position = Vector2(1485, 323)
+script = ExtResource("4_d7fan")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
+shape = SubResource("RectangleShape2D_v44qx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
+scale = Vector2(0.023, 0.023)
+
 [node name="bench_9" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1025, 415)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -684,6 +705,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_10" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1485, 415)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -695,6 +717,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_11" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1025, 507)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -706,6 +729,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_12" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1485, 507)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -717,6 +741,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_13" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1025, 599)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -728,6 +753,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_14" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1485, 599)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -739,6 +765,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_15" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1025, 691)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -750,6 +777,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_16" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1485, 691)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -761,6 +789,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_17" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
+visible = false
 position = Vector2(1117, 691)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
@@ -907,30 +936,30 @@ script = ExtResource("5_wvlgw")
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades_button" type="Button" parent="CanvasLayer/layout"]
-offset_left = 420.0
-offset_top = 167.0
-offset_right = 690.0
-offset_bottom = 261.0
-scale = Vector2(0.95, 0.95)
+offset_left = 414.75
+offset_top = 164.95
+offset_right = 684.75
+offset_bottom = 258.95
+scale = Vector2(0.85, 0.85)
 pivot_offset = Vector2(135, 47)
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_w3v8e")
 text = "Upgrades"
-script = ExtResource("5_wvlgw")
+script = ExtResource("18_3g0tm")
 metadata/_edit_use_anchors_ = true
 
 [node name="recipes_button" type="Button" parent="CanvasLayer/layout"]
-offset_left = 689.205
-offset_top = 167.0
-offset_right = 959.205
-offset_bottom = 261.0
-scale = Vector2(0.95, 0.95)
+offset_left = 683.955
+offset_top = 164.95
+offset_right = 953.955
+offset_bottom = 258.95
+scale = Vector2(0.85, 0.85)
 pivot_offset = Vector2(135, 47)
 toggle_mode = true
 button_group = SubResource("ButtonGroup_t816m")
 text = "Recipes"
-script = ExtResource("5_wvlgw")
+script = ExtResource("18_3g0tm")
 metadata/_edit_use_anchors_ = true
 
 [node name="upgrades" type="Node2D" parent="CanvasLayer/layout"]
@@ -951,7 +980,7 @@ offset_top = 344.0
 offset_right = 1309.0
 offset_bottom = 632.0
 scale = Vector2(0.6, 0.6)
-text = "Buy Bench 9
+text = "Space 9
 -Adds another customisable bench. 
 -More benches speed up production."
 metadata/_edit_use_anchors_ = true
@@ -962,7 +991,7 @@ offset_top = 590.0
 offset_right = 1211.0
 offset_bottom = 878.0
 scale = Vector2(0.6, 0.6)
-text = "Buy Star 2
+text = "Star 2
 -Stars allow you to fail orders. 
 -More stars means more money!"
 
@@ -981,7 +1010,7 @@ offset_top = 808.555
 offset_right = 1255.0
 offset_bottom = 1096.55
 scale = Vector2(0.6, 0.6)
-text = "Buy Slot 5
+text = "Slot 5
 -Cook more recipes at one time
 -Change equipped slots in Recipes"
 
@@ -995,6 +1024,17 @@ text = "MAX LEVEL!"
 script = ExtResource("7_73aox")
 
 [node name="recipes" type="Node2D" parent="CanvasLayer/layout"]
+
+[node name="Label3" type="Label" parent="CanvasLayer/layout/recipes"]
+offset_left = 683.0
+offset_top = 483.0
+offset_right = 1101.0
+offset_bottom = 634.0
+scale = Vector2(0.65, 0.65)
+text = "Recipe Variation 
+Multiplier: 1.4x"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/recipes"]
 position = Vector2(654, 815)
@@ -1332,6 +1372,9 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/main_menu" to="CanvasLayer/end_screen/Control/main_menu" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/main_menu" to="CanvasLayer/end_screen/Control/main_menu" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu" to="." method="main_menu"]
+[connection signal="mouse_entered" from="CanvasLayer/end_screen/Control/main_menu2" to="CanvasLayer/end_screen/Control/main_menu2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/end_screen/Control/main_menu2" to="CanvasLayer/end_screen/Control/main_menu2" method="_on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/end_screen/Control/main_menu2" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="CanvasLayer/end_screen/lerp_timer" to="." method="_on_lerp_timer_timeout"]
 [connection signal="mouse_entered" from="CanvasLayer/credits/return" to="CanvasLayer/credits/return" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/credits/return" to="CanvasLayer/credits/return" method="_on_mouse_exited"]
@@ -1361,12 +1404,12 @@ shape = SubResource("BoxShape3D_w1n2x")
 [connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_6" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_6" to="CanvasLayer/layout/layout_benches/bench_6" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_6" to="CanvasLayer/layout/layout_benches/bench_6" method="_on_mouse_exited"]
-[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout" method="_on_bench_name"]
-[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout/layout_benches/bench_8" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout/layout_benches/bench_8" method="_on_mouse_exited"]
 [connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_7" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_7" to="CanvasLayer/layout/layout_benches/bench_7" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_7" to="CanvasLayer/layout/layout_benches/bench_7" method="_on_mouse_exited"]
+[connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout" method="_on_bench_name"]
+[connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout/layout_benches/bench_8" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_8" to="CanvasLayer/layout/layout_benches/bench_8" method="_on_mouse_exited"]
 [connection signal="bench_name" from="CanvasLayer/layout/layout_benches/bench_9" to="CanvasLayer/layout" method="_on_bench_name"]
 [connection signal="mouse_entered" from="CanvasLayer/layout/layout_benches/bench_9" to="CanvasLayer/layout/layout_benches/bench_9" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/layout/layout_benches/bench_9" to="CanvasLayer/layout/layout_benches/bench_9" method="_on_mouse_exited"]

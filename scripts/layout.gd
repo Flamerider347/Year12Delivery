@@ -50,6 +50,9 @@ func _physics_process(_delta: float) -> void:
 					if recipe_slots[int(recipe_type.replace("recipe_slot",""))-1] in recipe_list.keys():
 						recipe_list[recipe_slots[int(recipe_type.replace("recipe_slot",""))-1]][1] = false
 						recipe_slots[int(recipe_type.replace("recipe_slot",""))-1] = null
+						$"../../..".variance -= 0.2
+						$recipes/Label3.text = "Recipe Variation
+						Multiplier: " + str($"../../..".variance) + "x"
 			else:
 				$recipes/selected_recipes.find_child(str(recipe_type)).show()
 			recipe_type = null
@@ -59,10 +62,16 @@ func _physics_process(_delta: float) -> void:
 			if not entered_unselect_area and editing_recipe or editing_recipe == 0:
 				if recipe_slots[editing_recipe] in recipe_list.keys():
 					recipe_list[recipe_slots[editing_recipe]][1] = false
+					$"../../..".variance -= 0.2
+					$recipes/Label3.text = "Recipe Variation
+					Multiplier: " + str($"../../..".variance) + "x"
 					$recipes/available_recipes.find_child(str(recipe_slots[editing_recipe])).show()
 				recipe_slots[editing_recipe] = recipe_type
 				if recipe_type in recipe_list.keys():
 					recipe_list[recipe_type][1] = true
+					$"../../..".variance += 0.2
+					$recipes/Label3.text = "Recipe Variation
+					Multiplier: " + str($"../../..".variance) + "x"
 					$recipes/selected_recipes.find_child("recipe_slot" + str(editing_recipe+1)).find_child("Sprite2D").texture = bench_type_sprites[recipe_type]
 			else:
 				$recipes/available_recipes.find_child(str(recipe_type)).show()
@@ -71,9 +80,7 @@ func _physics_process(_delta: float) -> void:
 
 		elif bench_type:
 			if editing_bench:
-				var purchase_cost = 0
 				benches[editing_bench][0] = bench_type
-				$"../../..".money -= purchase_cost
 				$layout_benches.find_child(str(editing_bench)).find_child("Sprite2D").texture = bench_type_sprites[bench_type]
 				$money.text = "Money: " + str($"../../..".money)
 		editing_bench =  null
