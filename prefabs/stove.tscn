@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlo177jjo3d14"]
+[gd_scene load_steps=8 format=3 uid="uid://dlo177jjo3d14"]
 
 [ext_resource type="ArrayMesh" uid="uid://bt5fqusd0i7s8" path="res://assets/kitchenassets/pan_A.obj" id="1_jdkrk"]
 [ext_resource type="Script" uid="uid://dha0i03srgpsi" path="res://scripts/stove.gd" id="1_lrai8"]
 [ext_resource type="ArrayMesh" uid="uid://d3hkf5s5qkh65" path="res://assets/kitchenassets/stove_single.obj" id="2_lrai8"]
+[ext_resource type="AudioStream" uid="uid://deb46txo0ln8j" path="res://assets/SFX/Oil Sizzling Sound Effect _ Frying Sound Effect _ Realistic Frying Sound.mp3" id="4_v22ig"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v22ig"]
 size = Vector3(2, 1, 2)
@@ -55,6 +56,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25097, 0)
 billboard = 1
 text = "Cook meat 
 in the pan"
+
+[node name="SFX_sizzling" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_v22ig")
+volume_db = -16.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="stove" to="." method="_on_stove_body_entered"]
 [connection signal="body_exited" from="stove" to="." method="_on_stove_body_exited"]

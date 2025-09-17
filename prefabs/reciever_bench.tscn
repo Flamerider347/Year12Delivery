@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqfk7rw5gihtk"]
+[gd_scene load_steps=7 format=3 uid="uid://bqfk7rw5gihtk"]
 
 [ext_resource type="ArrayMesh" uid="uid://cn7qtwf1v1psi" path="res://assets/kitchenassets/kitchencounter_straight_A.obj" id="1_1yien"]
 [ext_resource type="ArrayMesh" uid="uid://bf11kw737lfq1" path="res://assets/kitchenassets/jar_A_large.obj" id="2_p4qb8"]
 [ext_resource type="Script" uid="uid://dxgyumh6tomdr" path="res://scripts/phone.gd" id="3_p4qb8"]
+[ext_resource type="AudioStream" uid="uid://dlkttlrpwmiq5" path="res://assets/SFX/Phone Hang Up 3 sound effect No copyright ...sound effect LNC.mp3" id="4_03or4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_03or4"]
 size = Vector3(2.0025, 1, 2.00879)
@@ -42,6 +43,10 @@ wait_time = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05886, 0)
 billboard = 2
 text = "5.0"
+
+[node name="SFX_order_recieved" type="AudioStreamPlayer3D" parent="phone"]
+stream = ExtResource("4_03or4")
+bus = &"SFX"
 
 [node name="Label3D" type="Label3D" parent="." groups=["labels"]]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 1.002, 0.72)

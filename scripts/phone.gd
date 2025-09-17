@@ -22,6 +22,7 @@ func get_call():
 	timer.start(50)
 	var can_call = $"../../..".orders.has(0)
 	if timer_timedout and can_call and $"../../../day_timer".time_left:
+		$SFX_order_recieved.play()
 		$"../../.."._on_order_timer_timeout()
 		$Timer.start(5.0)
 		timer_timedout = false
