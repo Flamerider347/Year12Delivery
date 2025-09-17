@@ -1765,7 +1765,7 @@ mesh = ExtResource("32_er0x2")
 surface_material_override/0 = ExtResource("25_jbo5a")
 
 [node name="lava rocks11" parent="volcano/lava_rocks" instance=ExtResource("25_jynr8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.434479, 0.199219, 31.5524)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91747, 0.199219, 32.7333)
 
 [node name="lava rocks12" parent="volcano/lava_rocks" instance=ExtResource("24_aqg0f")]
 transform = Transform3D(0.746638, 0, 0.66523, 0, 1, 0, -0.66523, 0, 0.746638, -8.23019, 0.303058, 37.3492)
@@ -1789,7 +1789,7 @@ transform = Transform3D(-0.576432, 0, 0.817145, 0, 1, 0, -0.817145, 0, -0.576432
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.309072, 25.4001)
 
 [node name="lava rocks8" parent="volcano/lava_rocks" instance=ExtResource("27_jbo5a")]
-transform = Transform3D(0.658899, 0, -0.752231, 0, 1, 0, 0.752231, 0, 0.658899, 9.94218, 0.30356, 15.6713)
+transform = Transform3D(0.658899, 0, -0.752231, 0, 1, 0, 0.752231, 0, 0.658899, 9.94315, 0.299485, 15.6607)
 
 [node name="lava rocks14" parent="volcano/lava_rocks" instance=ExtResource("25_jynr8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5322, 0.199219, 16.835)

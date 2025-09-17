@@ -362,6 +362,8 @@ func position_held_object():
 		else:
 			if held_object.global_position != seecast.to_global(seecast.target_position):
 				var target_position = seecast.to_global(seecast.target_position)
+				if held_object.type == "delivery_pot":
+					target_position += Vector3(0,-0.4,0)
 				held_object.global_position.x = lerp(held_object.global_position.x, target_position.x,0.8)
 				held_object.global_position.y = lerp(held_object.global_position.y, target_position.y,0.8)
 				held_object.global_position.z = lerp(held_object.global_position.z, target_position.z,0.8)
@@ -373,8 +375,19 @@ func stack():
 	if stack_bottom.type == "plate" and stack_bottom.get_child_count() == 3 and held_object.type != "bun_bottom_chopped":
 		evil = true
 	if not evil:
+		# Reparent first
 		held_object.reparent(stack_bottom)
-		held_object.position = Vector3(0,stack_bottom.next_position,0)
+
+		# Align rotation with stack_bottom
+		var new_transform = held_object.global_transform
+		new_transform.basis = stack_bottom.global_transform.basis
+
+		# Put it slightly above
+		new_transform.origin = stack_bottom.global_transform.origin + stack_bottom.global_transform.basis.y * stack_bottom.next_position
+
+		# Apply directly to RigidBody3D
+		held_object.global_transform = new_transform
+
 		ingredient_added.connect(stack_bottom._on_player_ingredient_added)
 		for i in held_object.get_children():
 			if i is MeshInstance3D:
@@ -392,9 +405,6 @@ func stack():
 					$"../tutorial/plates".complete_burger()
 			stack_bottom.add_to_group("packageable")
 			stack_bottom.remove_from_group("stackable")
-		held_object.rotation_degrees.x = 0
-		held_object.rotation_degrees.y = randi_range(0,360)
-		held_object.rotation_degrees.z = 0
 		held_object.find_child("CollisionShape3D").disabled = false
 		held_object.find_child("CollisionShape3D").reparent(stack_bottom)
 		held_object.remove_from_group("pickupable")
