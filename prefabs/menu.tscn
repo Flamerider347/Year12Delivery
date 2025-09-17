@@ -578,8 +578,8 @@ horizontal_alignment = 1
 script = ExtResource("2_kuqlr")
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
-position = Vector2(1244, 434)
-scale = Vector2(0.44, 0.44)
+position = Vector2(1257, 475)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_7xkfb")
 
 [node name="layout_benches" type="Node2D" parent="CanvasLayer/layout"]
@@ -651,7 +651,7 @@ shape = SubResource("RectangleShape2D_v44qx")
 scale = Vector2(0.023, 0.023)
 
 [node name="bench_8" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 310)
+position = Vector2(1485, 323)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -659,10 +659,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_8"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_7" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 310)
+position = Vector2(1025, 323)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -670,10 +670,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_7"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_9" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 390)
+position = Vector2(1025, 415)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -681,10 +681,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_9"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_10" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 390)
+position = Vector2(1485, 415)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -692,10 +692,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_10"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_11" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 470)
+position = Vector2(1025, 507)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -703,10 +703,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_11"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_12" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 470)
+position = Vector2(1485, 507)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -714,10 +714,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_12"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_13" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 550)
+position = Vector2(1025, 599)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -725,10 +725,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_13"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_14" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 550)
+position = Vector2(1485, 599)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -736,10 +736,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_14"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_15" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1040, 630)
+position = Vector2(1025, 691)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -747,10 +747,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_15"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_16" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1440, 630)
+position = Vector2(1485, 691)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -758,10 +758,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_16"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_17" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1120, 630)
+position = Vector2(1117, 691)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -769,10 +769,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_17"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="bench_18" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-position = Vector2(1360, 630)
+position = Vector2(1393, 691)
 script = ExtResource("4_d7fan")
 metadata/_edit_group_ = true
 
@@ -780,19 +780,19 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_benches/bench_18"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 
 [node name="unselect_area" type="Area2D" parent="CanvasLayer/layout/layout_benches"]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/layout/layout_benches/unselect_area"]
+position = Vector2(-140, -24)
+scale = Vector2(1.125, 1.125)
 polygon = PackedVector2Array(990, 180, 1490, 180, 1490, 680, 1310, 680, 1310, 580, 1390, 580, 1390, 280, 1090, 280, 1090, 580, 1170, 580, 1170, 680, 990, 680)
 
 [node name="layout_shop" type="Node2D" parent="CanvasLayer/layout"]
 
 [node name="bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1063, 760)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1083, 800)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -800,12 +800,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bench"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("10_wvlgw")
 
 [node name="stove" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1170, 867)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1190, 900)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -813,12 +812,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/stove"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("11_wvlgw")
 
 [node name="fridge" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1383, 760)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1405, 800)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -826,12 +824,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/fridge"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("12_bo82e")
 
 [node name="bin" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1062, 868)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1082, 900)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -839,12 +836,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bin"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("13_3g0tm")
 
 [node name="chopping_board" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1170, 759)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1190, 800)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -852,12 +848,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/chopping_board"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("14_bo82e")
 
 [node name="bun_crate" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1276, 760)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1300, 800)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -865,12 +860,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/bun_crate"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("14_rmb50")
 
 [node name="delivery_table" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1276, 866)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1300, 900)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -878,12 +872,11 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/delivery_table"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("16_bo82e")
 
 [node name="reciever_bench" type="Area2D" parent="CanvasLayer/layout/layout_shop"]
-position = Vector2(1382, 866)
-scale = Vector2(1.125, 1.125)
+position = Vector2(1405, 900)
 script = ExtResource("6_y5qo3")
 metadata/_edit_group_ = true
 
@@ -891,7 +884,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_v44qx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/layout/layout_shop/reciever_bench"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.023, 0.023)
 texture = ExtResource("16_a1qfg")
 
 [node name="money" type="Label" parent="CanvasLayer/layout"]
