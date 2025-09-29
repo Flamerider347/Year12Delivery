@@ -146,6 +146,7 @@ func _ready() -> void:
 	$GridContainer.hide()
 	$ui/Sprite2D.hide()
 	$ui/Sprite2D2.hide()
+	$tutorial/plates/CanvasLayer.hide()
 	# Initialize the score display
 	$ui/added_score.modulate.a = 0.0
 	$ui/added_score.text = ""
@@ -158,13 +159,11 @@ func _ready() -> void:
 	add_child(score_display_timer)
 	
 func tutorial():
-	var cameras = ["dinein", "volcano", "underwater", "tundra"]
-	for cam in cameras:
-		$player_single/head.get_node(cam).hide()
 	world_toggle = true
 	$tutorial/plates.step = 0
 	$tutorial.show()
 	$ui.show()
+	$tutorial/plates/CanvasLayer.show()
 	$player_single.position = Vector3(0, 31.65, 5.3)
 	is_tutorial = true
 	
@@ -188,6 +187,7 @@ func _setup():
 	$ui.show()
 	$tutorial.hide()
 	$day_timer.start()
+	$tutorial/plates/CanvasLayer.hide()
 	map_select()
 	
 	_setup_players()
@@ -326,13 +326,10 @@ valuable time to make more foods!
 	}
 	
 	# Hide all cameras first
-	var cameras = ["dinein", "volcano", "underwater", "tundra"]
-	for cam in cameras:
-		$player_single/head.get_node(cam).hide()
+
 	
 	if level in level_configs:
 		var config = level_configs[level]
-		$player_single/head.get_node(config.camera).show()
 		if config.billboard_text != "":
 			$kitchen/billboard/Label3D.text = config.billboard_text
 	
@@ -342,7 +339,6 @@ valuable time to make more foods!
 		$ui/Label4.hide()
 	elif level == 4:
 		_setup_frozen_houses()
-		await get_tree().create_timer(1.0).timeout
 		$environment.environment.fog_enabled = true
 		if not reset_4:	
 			req_score *= randf_range(1.01,1.5)
@@ -627,7 +623,8 @@ func map_select():
 
 
 func _on_day_timer_timeout() -> void:
-	$ui/Label3.text = "OVERTIME"
+	$ui/Label3.text = "DAY COMPLETE
+	PRESS ESCAPE"
 	$day_timer.stop()
 	$order_timer.stop()
 
@@ -656,6 +653,7 @@ func _on_volcano_lava_body_entered(body: Node3D) -> void:
 	spawned_lava_burn.queue_free()
 
 func pause_exit() -> void:
+	$tutorial/plates/CanvasLayer.hide()
 	$ui.hide()
 	$kitchen/Audio_Box/trigger_body.menu()
 	if level == 4:

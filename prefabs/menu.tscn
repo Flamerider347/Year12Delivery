@@ -268,7 +268,6 @@ text = "Endless High Score:
 horizontal_alignment = 1
 
 [node name="end_screen" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer/end_screen"]
 layout_mode = 3
@@ -289,11 +288,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -539.5
-offset_top = -355.5
-offset_right = 290.5
-offset_bottom = 308.5
+offset_top = -290.5
+offset_right = 137.5
+offset_bottom = 373.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 bbcode_enabled = true
 text = "[u]SCORE:
 ORDERS:
@@ -594,6 +594,7 @@ text = "To move bars on controller, click on the bar and use d-pad arrows (left&
 horizontal_alignment = 1
 
 [node name="layout" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource("2_kuqlr")
 
 [node name="DeliveryCover-art" type="Sprite2D" parent="CanvasLayer/layout"]
@@ -1278,6 +1279,7 @@ offset_bottom = 974.0
 text = "The upgrades menu allows you to buy benches and more (just benches rn) with money (in the top left)"
 
 [node name="show_tutorial" type="Button" parent="CanvasLayer/layout"]
+visible = false
 offset_left = 1260.0
 offset_top = 80.0
 offset_right = 1300.0

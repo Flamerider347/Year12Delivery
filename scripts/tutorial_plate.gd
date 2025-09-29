@@ -138,8 +138,10 @@ func start():
 	$"../tutorial_text".position = Vector3(-0.5,2.0,0)
 	$"../tutorial_text".rotation_degrees = Vector3.ZERO
 	$"../tutorial_text".text = "Let's play a game, come a
- little closer with Left Joystick
+little closer with WASD and 
+SPACEBAR if you want to jump
 			"
+	$CanvasLayer/Label.text = $"../tutorial_text".text
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if step == 0:
 		if body is CharacterBody3D:
@@ -147,14 +149,16 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 			try press 'T' to toggle bench tips
 			on or off in any level.
 			"
+			$CanvasLayer/Label.text = $"../tutorial_text".text
 			$"../tutorial_text".position = Vector3(-0.5,2.0,0)
 			$"../tutorial_text".rotation_degrees = Vector3.ZERO
 			step = 1
 func toggle_tips(): 
 	if step == 1:
 		$"../tutorial_text".text = "Get a PLATE from the PANTRY to your right
-		 Holding L2 and put it on the BENCH
+		with LEFT CLICK and put it on the BENCH
 			"
+		$CanvasLayer/Label.text = $"../tutorial_text".text
 		$"../tutorial_text".position = Vector3(-0.5,2.0,0)
 		$"../tutorial_text".rotation_degrees = Vector3.ZERO
 		step = 2
@@ -162,11 +166,11 @@ func _on_area_3d_2_body_entered(body: Node3D) -> void:
 	if step == 2:
 		if body is RigidBody3D:
 			if body.type == "plate":
-				$"../tutorial_text".text = "Great, now get a bun and put it on the chopping board.
-				If you don't know what you're making,
-				it tells you when you look up at it.
-				(On the right side of screen.)
+				$"../tutorial_text".text = "Great, now get a bun and
+				put it on the chopping board.
+				Orders show up above you.
 				"
+				$CanvasLayer/Label.text = $"../tutorial_text".text
 				step = 3
 
 
@@ -176,25 +180,36 @@ func _on_area_3d_3_body_entered(body: Node3D) -> void:
 			if body.type == "bun":
 				$"../tutorial_text".text = "Great, now pick up the KNIFE
 				"
+				$CanvasLayer/Label.text = $"../tutorial_text".text
 				step = 4
 	
 func pickup_knife():
 	if step == 4:
-		$"../tutorial_text".text = "Great, now SWING the KNIFE into the BUN to cut it
+		$"../tutorial_text".text = "Great, now SWING the KNIFE to cut the BUN
+Cut fruits and vegetables
+Cook meat in the pan
+Break eggs by dropping them
 			"
+		$CanvasLayer/Label.text = $"../tutorial_text".text
 		step = 5
 func cut_bun():
 	if step == 5:
-		$"../tutorial_text".text = "Now open the fridge using L2, and chop up a TOMATO.
+		$"../tutorial_text".text = "Now chop up a tomato from the fridge.
+		Look at the timer below the order,
+		it tells you the order contents 
+		on the right side of your screen.
 				"
+		$CanvasLayer/Label.text = $"../tutorial_text".text
 		step = 6
 func cut_tomato():
 	if step == 6:
 		$"../tutorial_text".text = "Pick up the BOTTOM BUN and assemble the 
-		BURGER on the PLATE using R2.
-		Your crosshair will change to arrows
+		BURGER on the PLATE by looking directly
+		at the plate and pressing RIGHT CLICK.
+		Your crosshair changes to arrows
 		when you can stack something.
 				"
+		$CanvasLayer/Label.text = $"../tutorial_text".text
 		step = 7
 
 func complete_burger():
@@ -205,16 +220,18 @@ func complete_burger():
 		You must match the ORDER exactly, 
 		but the ingredient order is irrelevant.
 				"
+		$CanvasLayer/Label.text = $"../tutorial_text".text
 		step = 8
 func delivered():
 	if step == 8:
 		$"../tutorial_text".position = Vector3(2.7,2.3,10.9)
 		$"../tutorial_text".rotation_degrees.y = 180
-		$"../tutorial_text".text = "Now pickup the BAG using L2
+		$"../tutorial_text".text = "Now pickup the BAG using LEFT CLICK
 		and deliver it to the HOUSE stated 
 		on the DELIVERY BAG by dropping
 		it on the DOORSTEP in time.
 				"
+		$CanvasLayer/Label.text = $"../tutorial_text".text
 		step = 9
 func delivered_to_house():
 	if step == 9:
@@ -223,4 +240,5 @@ func delivered_to_house():
 		by walking back to the starting bench. 
 		Good luck, have fun!
 			"
+		$CanvasLayer/Label.text = $"../tutorial_text".text
 		step = 0

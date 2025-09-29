@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://8qj24c53bx0e"]
+[gd_scene load_steps=125 format=3 uid="uid://8qj24c53bx0e"]
 
 [ext_resource type="Script" uid="uid://bbqkm07fo1hkp" path="res://scripts/world.gd" id="1_k40i2"]
 [ext_resource type="Script" uid="uid://bciar80p3kqcc" path="res://scripts/player.gd" id="2_le6xu"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://ciavdwk3guaof" path="res://scripts/objective_screen.gd" id="14_sxw1y"]
 [ext_resource type="Material" uid="uid://bkwolbgrq1wl4" path="res://assets/materials/shark.material" id="15_l0am5"]
 [ext_resource type="ArrayMesh" uid="uid://mak1xkpcpdg0" path="res://assets/kitchenassets/wall_orderwindow.obj" id="17_6j6fw"]
+[ext_resource type="Texture2D" uid="uid://btopja4sa2lg0" path="res://assets/haydenfoundassets/Volcano/New Piskel.png" id="17_hq0kh"]
 [ext_resource type="PackedScene" uid="uid://bjmj5dj16j0mt" path="res://prefabs/particle_sizzle.tscn" id="19_obwhl"]
 [ext_resource type="Texture2D" uid="uid://m6yxl4gsmoix" path="res://assets/floorandstuff/kloofendal_48d_partly_cloudy_puresky.jpg" id="20_2h4m2"]
 [ext_resource type="AudioStream" uid="uid://bi4bkrmahcsiq" path="res://assets/SFX/ChamberUltKill3.mp3" id="20_b1m2q"]
@@ -53,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://1mkn56i021tw" path="res://assets/haydenfoundassets/snowflake.png" id="35_os0cm"]
 [ext_resource type="Texture2D" uid="uid://cnbkv0tr05cdg" path="res://assets/floorandstuff/mud_road_puresky.jpg" id="35_umtm3"]
 [ext_resource type="AudioStream" uid="uid://ss2100jcaehb" path="res://assets/haydenfoundassets/sharp-blade-slice-2-185145.mp3" id="36_p78bo"]
+[ext_resource type="AudioStream" uid="uid://bilwcfwkyslou" path="res://assets/haydenfoundassets/doorbell-223669.mp3" id="46_dfx56"]
 [ext_resource type="Texture2D" uid="uid://bj37c1gttwgo5" path="res://assets/createdassets/Icon art/Buger-checkered.png" id="52_6j6fw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_aqg0f"]
@@ -70,6 +72,10 @@ size = Vector3(3.015, 2.408, 0.919)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w6ly8"]
 size = Vector3(12.5, 0.07, 12.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dp0v"]
+shading_mode = 0
+albedo_color = Color(0.533894, 0.469828, 0.405407, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w6ly8"]
 size = Vector3(1, 0.408936, 1.00232)
@@ -232,7 +238,7 @@ uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfx56"]
 transparency = 1
-albedo_color = Color(1, 1, 1, 0.407843)
+albedo_color = Color(1, 1, 1, 0.718)
 
 [sub_resource type="Gradient" id="Gradient_os0cm"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -279,27 +285,6 @@ material = SubResource("StandardMaterial3D_a82c5")
 height = 1.99
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k1hdb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbo5a"]
-shading_mode = 0
-albedo_color = Color(0.784179, 0.956568, 0.755781, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_aqg0f"]
-flip_faces = true
-radius = 0.2
-height = 0.4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_er0x2"]
-shading_mode = 0
-albedo_color = Color(1, 0.396078, 0.0941176, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqg0f"]
-shading_mode = 0
-albedo_color = Color(0.00784314, 0.12549, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p78bo"]
-shading_mode = 0
-albedo_color = Color(0.54099, 0.54099, 0.54099, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1k5bn"]
 size = Vector3(0.2, 4.67618, 0.2)
@@ -757,8 +742,9 @@ depth = 0.499
 polygon = PackedVector2Array(-1.99, 0, -1.99, -3.99, 1.99, -3.99, 1.99, 0, 0.8, 0, 0.8, -2.8, -0.807, -2.8, -0.8, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="kitchen/kitchen_walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.03653, 5.48638)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0292, 5.48637)
 mesh = SubResource("BoxMesh_w6ly8")
+surface_material_override/0 = SubResource("StandardMaterial3D_2dp0v")
 
 [node name="Fences_GridMap" type="GridMap" parent="kitchen" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -1144,6 +1130,28 @@ visible = false
 [node name="plates" type="Node3D" parent="tutorial" groups=["keep"]]
 transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -4, 2.915, 0)
 script = ExtResource("7_k1hdb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="tutorial/plates"]
+layer = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="tutorial/plates/CanvasLayer"]
+texture_filter = 1
+position = Vector2(317, 916)
+scale = Vector2(20, 16.6875)
+texture = ExtResource("17_hq0kh")
+
+[node name="Label" type="Label" parent="tutorial/plates/CanvasLayer"]
+offset_left = 17.0
+offset_top = 766.0
+offset_right = 618.0
+offset_bottom = 1064.0
+theme_override_font_sizes/font_size = 32
+text = "Great, now SWING the KNIFE to cut the BUN
+Cut fruits and vegetables
+Cook meat in the pan
+Break eggs by dropping them"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="objective_plate1" type="StaticBody3D" parent="tutorial/plates" groups=["look_at_plates"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45245, 0, 0)
@@ -1938,7 +1946,7 @@ stream = ExtResource("20_b1m2q")
 bus = &"SFX"
 
 [node name="delivered" type="AudioStreamPlayer3D" parent="SFX"]
-stream = ExtResource("20_b1m2q")
+stream = ExtResource("46_dfx56")
 bus = &"SFX"
 
 [node name="ingrediants added" type="AudioStreamPlayer3D" parent="SFX"]
@@ -1967,38 +1975,6 @@ mesh = SubResource("CapsuleMesh_k1hdb")
 
 [node name="head" type="Node3D" parent="player_single"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524684, 0)
-
-[node name="dinein" type="MeshInstance3D" parent="player_single/head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.039, 0.007)
-visible = false
-material_override = SubResource("StandardMaterial3D_jbo5a")
-transparency = 0.95
-mesh = SubResource("SphereMesh_aqg0f")
-skeleton = NodePath("../..")
-
-[node name="volcano" type="MeshInstance3D" parent="player_single/head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038859, 0.00701427)
-visible = false
-material_override = SubResource("StandardMaterial3D_er0x2")
-transparency = 0.9
-mesh = SubResource("SphereMesh_aqg0f")
-skeleton = NodePath("../..")
-
-[node name="underwater" type="MeshInstance3D" parent="player_single/head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.038859, 0.00701475)
-visible = false
-material_override = SubResource("StandardMaterial3D_aqg0f")
-transparency = 0.9
-mesh = SubResource("SphereMesh_aqg0f")
-skeleton = NodePath("../..")
-
-[node name="tundra" type="MeshInstance3D" parent="player_single/head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0389999, 0.00699997)
-visible = false
-material_override = SubResource("StandardMaterial3D_p78bo")
-transparency = 0.7
-mesh = SubResource("SphereMesh_aqg0f")
-skeleton = NodePath("../..")
 
 [node name="player_camera" type="Camera3D" parent="player_single/head"]
 far = 300.0
@@ -2119,7 +2095,7 @@ metadata/_edit_use_anchors_ = true
 environment = SubResource("Environment_tlwt5")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="day_timer" type="Timer" parent="."]
 wait_time = 180.0

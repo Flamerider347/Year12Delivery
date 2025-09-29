@@ -45,15 +45,17 @@ var plate_contents = {
 var ingredient_time = {
 	"plate" : 5,
 	"bowl" : 5,
-	"tomato_chopped":10,
-	"meat_cooked": 15,
-	"cheese_chopped": 10,
-	"carrot_chopped":10,
-	"lettuce_chopped":10,
+	"tomato_chopped":5,
+	"meat_cooked": 20,
+	"cheese_chopped": 5,
+	"carrot_chopped":5,
+	"potato_chopped" : 5,
+	"lettuce_chopped":5,
 	"bun_bottom_chopped" : 10,
+	"meat_cooked_chopped" : 25,
 	"bun_top_chopped" : 10,
-	"bacon_cooked" : 10,
-	"egg_cooked" : 10
+	"bacon_cooked" : 20,
+	"egg_cooked" : 20
 }
 var ingredient_list = {
 	"plate" : preload("res://prefabs/plate.tscn"),
@@ -93,7 +95,7 @@ func randomise_objective():
 	var making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
 	while recipes_list[making_recipe][1] == false:
 		making_recipe = recipes_list_keys[randi_range(0,recipes_list_keys.size()-1)]
-	var make_time = 120
+	var make_time = 80
 	delivery_location = delivery_list[randi_range(0,8)]
 	plate_contents[making_plate] = recipes_list[making_recipe][0].duplicate()
 	
